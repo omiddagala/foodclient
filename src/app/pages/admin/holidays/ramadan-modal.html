@@ -1,0 +1,61 @@
+<div class="food_detail_body" style="width: 100%">
+    <div>
+        <div class="newmodal_close_header">
+            <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                <img src="/assets/img/ui/close.png">
+            </button>
+            <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+        </div>
+        <div class="confirm_header_title padding-md">
+            <i class="ion-checkmark modal-icon"></i><span>فیلدهای مورد نظر برای تعریف تعطیلی را پر کنید</span>
+        </div>
+    </div>
+</div>
+<div class="modal-content modal-fit">
+    <!-- <div class="modal-header bg-success">
+        <i class="ion-checkmark modal-icon"></i><span>فیلدهای مورد نظر برای تعریف تعطیلی را پر کنید</span>
+    </div> -->
+    <div class="modal-body text-center">
+        <form name="myform" ng-submit="doAddRamadanHoliday()" novalidate>
+            <div class="row flex-xs flex-col-reverse-xs no-margin bottom-padding-lg-imp">
+                <div class="col-sm-9">
+                    <adm-dtp id="fromDate" ng-model='fromDate' options='{calType: "jalali", format: "YYYY/MM/DD", multiple:false,freezeInput:true,autoClose:true,dtpType:"date"}'></adm-dtp>
+                </div>
+                <label for="fromDate" class="col-sm-3 control-label top-margin-lg">از تاریخ</label>
+            </div>
+            <div class="row flex-xs flex-col-reverse-xs no-margin bottom-padding-lg-imp">
+                <div class="col-sm-9">
+                    <adm-dtp id="toDate" ng-model='toDate' options='{calType: "jalali", format: "YYYY/MM/DD", multiple:false,freezeInput:true,autoClose:true,dtpType:"date"}'></adm-dtp>
+                </div>
+                <label for="toDate" class="col-sm-3 control-label top-margin-lg">تا تاریخ</label>
+            </div>
+            <div class="row flex-xs flex-col-reverse-xs no-margin full-width bottom-padding-lg-imp">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control full-width" id="fromTime" placeholder="">
+                </div>
+                <label for="fromTime" class="col-sm-3 control-label top-margin-md">از ساعت</label>
+            </div>
+            <div class="row flex-xs flex-col-reverse-xs no-margin full-width bottom-padding-lg-imp">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control full-width " id="toTime" placeholder="">
+                </div>
+                <label for="toTime" class="col-sm-3 control-label top-margin-md">تا ساعت</label>
+            </div>
+            <div class="modal-footer left-text">
+                <button type="button" class="btn btn-success" ng-click="$dismiss()">لغو</button>
+                <button type="submit" class="btn btn-success">ثبت</button>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    .clock-timepicker{
+        width: 100% !important;
+    }
+    #toDate, #fromDate{
+        float: right;
+    }
+    #toTime, #fromTime{
+        min-width: unset !important;
+    }
+</style>

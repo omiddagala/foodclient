@@ -1,0 +1,111 @@
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden;height: 100%">
+        <ul class="al-sidebar-list sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ba-sidebar-toggling-item="item"
+                style="height: 220px">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <img style="width: 65px" src="/assets/img/ui/report-filter.png">
+                    <div class="newmenu__search_title top-padding-md">نام رستوران</div>
+                </div>
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li style="padding: 15px" ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item no-padding-right">
+                        <input ng-model="resName" ng-change="search()" type="text" class="form-control" id="resName"
+                            placeholder="جستجو">
+                    </li>
+                </ul>
+            </li>
+
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ba-sidebar-toggling-item="item"
+                style="height: 220px">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <img style="width: 65px" src="/assets/img/ui/foodtype.png">
+                    <div class="newmenu__search_title top-padding-md">نوع</div>
+                </div>
+                <div class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <div style="padding: 15px" class="ba-sidebar-sublist-item no-padding-right">
+                        <ui-select multiple ng-model="selectedType" ng-disabled="false" ng-change="typeChanged($select.selected)"
+                            search-enabled="true" append-to-body="true" class="form-control ">
+                            <ui-select-match placeholder="انتخاب کنید">
+                                {{$item.label}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in restaurantTypes | filter: $select.search">
+                                {{item.label}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</aside>
+<style>
+    .modal {
+        bottom: unset;
+        top: 0
+    }
+
+    .form-control.ui-select-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+</style>
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<div class="mycontent" ng-init="ctrlInit()">
+    <div class="content__wrapper">
+        <aside class="al-sidebar sabad__">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 90% !important;">
+                <ul id="sabad-side" class="al-sidebar-list" style="overflow:hidden;width: auto; height: 100%;padding-top: 0;">
+                </ul>
+            </div>
+        </aside>
+        <div class="article-list" id="article-list-main" style="padding-bottom: 100px">
+            <div ng-repeat="rest in rests track by $index" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xxs-12 rest-box padding-sm">
+                <div class="scene scene--card">
+                    <div class="newcard">
+                        <div class="card__face card__face--front res_card_" ng-click="goToHome(rest.name)">
+                            <div class="card__image__div"><img src="{{rest.imageAddress}}" class="card__image"></div>
+                            <div class="margin__top_20">
+                                <div class="res__restaurant__name hide__text_overflow padding-sm no-padding-right">{{rest.name}}
+                                </div>
+                                <div class="card__restaurant__star margin-sm"></div>
+                                <div class="card__restaurant__rate padding-sm">{{rest.averageRate === 0 ? '-' :
+                                    rest.averageRate}}</div>
+                                    <div class="remove-float"></div>
+                            </div>
+                            <div class="margin__bottom_10">
+                                <div class="card__restaurant__type hide__text_overflow"
+                                     style="cursor: pointer;">{{rest.restaurantTypeInFarsi}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__detail" ng-click="resDetail(rest)">جزییات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    @media (min-width: 1440px) {
+        .card__image__div {
+            height: 150px !important;
+        }
+
+        .scene {
+            height: 320px !important;
+        }
+
+        .card__detail {
+            top: 120px !important;
+        }
+
+        .card__rate {
+            top: 140px !important;
+        }
+    }
+</style>

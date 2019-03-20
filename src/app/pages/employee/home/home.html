@@ -1,0 +1,306 @@
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv">
+        <ul class="al-sidebar-list sidebar__" >
+
+            <li id="date-search" ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded top-margin-lg"
+                style="height: 200px;">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <img style="width: 100px" src="/assets/img/ui/motor.png">
+                    <div class="newmenu__search_title top-padding-md">روز تحویل غذا</div>
+                </div>
+                <ul class="al-sidebar-sublist"
+                    style="display: block;">
+                    <li style="padding: 10px 16px; padding-right: 0;" class="ba-sidebar-sublist-item">
+                        <adm-dtp on-datechange="search(true)" id="taghvim" ng-model='searchDate' options='{calType: "jalali", format: "YYYY/MM/DD", multiple:false,freezeInput:true,autoClose:true,dtpType:"date"}'></adm-dtp>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="time-search" ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded right-direction"
+                style="height: 150px;justify-content: space-between;">
+                <div style="cursor: default;float: right;text-align: right"
+                     class="al-sidebar-list-link">
+                    <img style="width: 88px" src="/assets/img/ui/clock.png">
+                    <div class="newmenu__search_title top-padding-md">ساعت تحویل غذا</div>
+                </div>
+                <!-- <div class="remove-float"></div> -->
+                <ul class="al-sidebar-sublist time" style="display: block;width: 45%;align-self: flex-end;margin-bottom: 20px;float: left;padding-left: 5%;height: 80%;display: flex;flex-direction: column-reverse">
+                    <li style="padding: 20px 16px 15px;" class="ba-sidebar-sublist-item">
+                        <input ng-model="searchTime" style="direction: ltr;text-align: center;font-size: large;font-weight: bold"
+                               readonly id="searchTime" type="text" name="timepicker" class="timepicker form-control newui__inputs" />
+                    </li>
+                </ul>
+            </li>
+
+            <li ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                style="height: 240px;margin-top: 20px;">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <img style="width: 65px" src="/assets/img/ui/sort.png">
+                    <div class="newmenu__search_title top-padding-md">مرتب سازی بر اساس</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;">
+                    <li style="padding: 16px; padding-right: 0;" class="ba-sidebar-sublist-item">
+                        <div>
+                            <select ng-change="sortOrderChanged(sortOrder)" class="form-control btn-primary" ng-model="sortOrder"
+                                    data-style="btn-primary" selectpicker>
+                                <option style="color: black" value="low">کمترین قیمت</option>
+                                <option style="color: black" value="high">بیشترین قیمت</option>
+                                <option style="color: black" value="fav">محبوب ترین</option>
+                                <option style="color: black" value="name">نام</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li id="rest-search" ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                style="height: 220px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 94px" src="/assets/img/ui/restaurant.png">
+                    <div class="newmenu__search_title top-padding-md">جستجوی رستوران</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;">
+                    <li style="padding: 16px; padding-right: 0;" class="ba-sidebar-sublist-item">
+                        <div>
+                            <div class="btn-group bootstrap-select form-control btn-primary ng-pristine ng-untouched ng-valid ng-empty">
+                                <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
+                                        role="button" data-id="resName" aria-expanded="false"><span id="resName_selected_title"
+                                                                                                    class="filter-option pull-left">همه</span>&nbsp;<span class="bs-caret"><span
+                                        class="caret"></span></span></button>
+                                <div class="dropdown-menu open" role="combobox" style="max-height: 350px; overflow: hidden; min-height: 0px;">
+                                    <ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 339px; overflow-y: auto; min-height: 0px;">
+                                        <li ng-click="resName_changed(0)" data-original-index="0">
+                                            <a tabindex="0" class="no-border no-box-shadow" data-tokens="null" role="option"
+                                               aria-disabled="false" aria-selected="false">
+                                                <span class="text" id="resName-0">همه</span>
+                                                <span class="glyphicon glyphicon-ok check-mark"></span>
+                                            </a>
+                                        </li>
+                                        <li ng-click="resName_changed($index+1)" ng-repeat="res in restNames"
+                                            data-original-index="{{$index + 1}}">
+                                            <a tabindex="0" class="no-border no-box-shadow" data-tokens="null" role="option"
+                                               aria-disabled="false" aria-selected="false">
+                                                <span class="text" id="resName-{{$index+1}}">{{res}}</span>
+                                                <span class="glyphicon glyphicon-ok check-mark"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li id="food-search" ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                style="height: 250px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 67px" src="/assets/img/ui/foodname.png">
+                    <div class="newmenu__search_title top-padding-md">غذای دلخواه من</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;">
+                    <li style="padding: 16px; padding-right: 0;" class="ba-sidebar-sublist-item">
+                        <div>
+                            <input ng-model="foodName" ng-change="search()" type="text" class="form-control" id="foodName"
+                                   placeholder="جستجو">
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                style="height: 250px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 89px" src="/assets/img/ui/foodtype.png">
+                    <div class="newmenu__search_title top-padding-md">انتخاب نوع غذا</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;">
+                    <li style="padding: 16px; padding-right: 0;" class="ba-sidebar-sublist-item">
+                        <div>
+                            <select ng-change="foodTypeChanged(foodType)" class="form-control btn-primary" ng-model="foodType"
+                                    data-style="btn-primary" selectpicker>
+                                <option style="color: black" value="ALL">نوع غذا</option>
+                                <option style="color: black" value="IRANIAN">ایرانی</option>
+                                <option style="color: black" value="FAST_FOOD">فست فود</option>
+                                <option style="color: black" value="FOREIGN">خارجی</option>
+                                <option style="color: black" value="VEG">گیاهی</option>
+                            </select>
+                        </div>
+
+                    </li>
+                </ul>
+            </li>
+
+            <li ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                style="height: 150px">
+                <div style="text-align: right;cursor: default;width: 80%;float: right"
+                     class="al-sidebar-list-link">
+                    <img style="width: 67px" src="/assets/img/ui/off.png">
+                    <div class="newmenu__search_title top-padding-md">نمایش غذاهای تخفیف دار</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;width: 20%;padding-top: 4.5em">
+                    <li style="padding: 16px; padding-right: 0;" class="ba-sidebar-sublist-item">
+                        <div>
+                            <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
+                                <input ng-change="search()" ng-model="justOff" type="checkbox" id="justOff" name="justOff"
+                                       value="true">
+                                <span style="color: white"></span>
+                            </label>
+                        </div>
+
+                    </li>
+                </ul>
+            </li>
+
+            <li ng-show="isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                style="height: 150px;width: 100%">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <div class="newmenu__search_title">بازه ی قیمت</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;padding-bottom: 150px">
+                    <li style="padding: 16px;" class="ba-sidebar-sublist-item">
+                        <div>
+                            <ion-slider id="range" type="double" grid="true" min="1000" max="70000" from="1000" to="70000"
+                                        disable="false" step="1000">
+                            </ion-slider>
+                        </div>
+
+                    </li>
+                </ul>
+            </li>
+
+            <li style="text-align: center" ng-show="!isMainFood" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded">
+                <button ng-click="cancelDessert()" type="button" style="width: auto" class="confirm_button confirm_yes btn">بازگشت
+                    به غذاهای اصلی
+                </button>
+            </li>
+
+        </ul>
+    </div>
+</aside>
+
+<input type="text" style="display: none" id="dateForOrder">
+
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<div class="mycontent" ng-init="homeInit()">
+    <div class="content__wrapper">
+        <aside class="al-sidebar sabad__">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%">
+                <ul id="sabad-side" class="al-sidebar-list" style="overflow:hidden;width: auto; height: 100%;padding-top: 0;">
+                    <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded sabad__container">
+                        <div class="sabad" ng-click="orderList()">
+                            <div class="newsabad"></div>
+                            <div class="newsabad__text">مشاهده رزروها
+                            </div>
+                        </div>
+                        <div id="wrapper-panel" class="reserves__wrapper">
+                            <div class="cart" style="height: 80px">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="article-list" id="article-list-main">
+            <div ng-repeat="food in foods track by $index" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xxs-12 food-box padding-lg">
+                <div class="scene scene--card">
+                    <div class="newcard" style="background: rgb(242, 73, 73);"><img src="assets/img/ui/info.png" class="card__info"
+                            ng-click="flipCard($event)">
+                        <div class="card__close" ng-click="flipCard($event)"></div>
+                        <div ng-click="showFoodDetail(food)" class="card__detail font-xs">جزییات
+                        </div>
+                        <div class="card__rate">{{food.averageRate === 0 ? '-' : food.averageRate}}</div>
+                        <div class="card__bottom" ng-click="cardsBottomOrderFoodAction($event,food)" style="cursor: pointer;">
+                            <div class="card__bottom_date">سفارش {{dateToShowOnCards}} ساعت {{timeToShowOnCards}}</div>
+                            <div class="card__bottom_basket"></div>
+                        </div>
+                        <div class="card__face card__face--front">
+                            <div class="card__image__div"><img src="{{food.imageAddress}}" class="card__image"></div>
+                            <div class="card__food__name margin__bottom_10 hide__text_overflow padding-sm no-padding-right">{{food.name}}</div>
+                            <div class="margin__bottom_10">
+                                <div class="card__restaurant__name hide__text_overflow" ng-click="goToRestaurantPage(food.restaurant.name)"
+                                    style="cursor: pointer;">{{food.restaurant.name}}
+                                </div>
+                                <div class="card__restaurant__star"></div>
+                                <div class="card__restaurant__rate">{{food.restaurant.averageRate === 0 ? '-' :
+                                    food.restaurant.averageRate}}
+                                </div>
+                            </div>
+                            <div class="margin__bottom_10">
+                                <div class="card__price__title">قیمت</div>
+                                <div class="card__price__amount" ng-class="{'is__off':food.price.preOrderPrice<food.price.foodPrice}">
+                                    {{formatPrice(food.price.foodPrice)}}
+                                </div>
+                            </div>
+                            <div ng-if="food.price.preOrderPrice<food.price.foodPrice">
+                                <div class="card__price__title">رزرو اکنون({{diffDaysForOff}}روزه)</div>
+                                <div class="card__price__amount" style="width: 40%; color: rgb(26, 64, 73);">{{formatPrice(food.price.preOrderPrice)}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__face card__face--back">
+                            <div class="card__food__name margin__bottom_10 hide__text_overflow padding-sm no-padding-right" style="color: white; margin-top: 40px;">{{food.name}}
+                            </div>
+                            <div class="margin__bottom_10">
+                                <div class="back__info_icon"></div>
+                                <div class="card__restaurant__name hide__text_overflow" ng-click="goToRestaurantPage(food.restaurant.name)"
+                                    style="color: white; margin-right: 0; cursor: pointer;">{{food.restaurant.name}}
+                                </div>
+                            </div>
+                            <div class="card__mokhalafat">مواد اولیه :</div>
+                            <div class="card__mokhalafat_desc" style="color: white; font-size: small; height: 40px;">
+                                {{food.ingredients}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    @media (min-width: 1440px) {
+        .card__image__div {
+            height: 150px !important;
+        }
+
+        .scene {
+            height: 320px !important;
+        }
+        .card__detail {
+            top: 120px !important;
+        }
+        .card__rate{
+            top: 140px !important;
+        }
+    }
+    .form-control {
+        border: 1px solid #ccc !important;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .btn-group button {
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+    .modal {
+        bottom: unset;
+        top: 0
+    }
+</style>

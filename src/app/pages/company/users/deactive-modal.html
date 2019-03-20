@@ -1,0 +1,58 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body" style="height: 100%; padding-bottom: 10px;">
+        <div class="confirm_icon"></div>
+        <div class="confirm_question">
+            آیا از غیرفعال کردن کاربر اطمینان دارید؟
+        </div>
+        <div class="confirm_button_wrapper left-padding-lg">
+            <button type="button" style="width: 4em;" class="confirm_button confirm_no btn bottom-margin-md" ng-click="$dismiss()">خیر</button>
+            <button type="button" style="width: 4em;" class="confirm_button confirm_yes btn" ng-click="deactiveUser()">بله</button>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    .modal .modal-dialog {
+        height: 80% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    .modal-content {
+        height: 13em;
+        top: 30% !important;
+    }
+
+    .btn.confirm_yes {
+        margin-bottom: 6px !important;
+    }
+
+    .modal-content .confirm_body {
+        top: 3.5em;
+        width: 37em;
+        height: 11em !important;
+        margin: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: 575px;
+        }
+    }
+</style>

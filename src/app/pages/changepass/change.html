@@ -1,0 +1,132 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div>
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div class="confirm_header_title padding-md">
+                تغییر کلمه عبور
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body">
+        <form novalidate name="myform" class="form-horizontal modal__form top-padding-lg" ng-submit="myform.$valid && changePass()"
+            ng-controller="changepassCtrl">
+            <div class="form-group">
+                <label for="oldpass" style="color: #575757" class="col-xs-12 col-sm-4 control-label font-md pull-right">کلمه
+                    عبور فعلی</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input tabindex="6" ng-model="oldpass" ng-maxlength="60" ng-minlength="8" required name="oldpass"
+                        type="password" class="confirm_input form-control bottom-margin-md" id="oldpass">
+                    <div class="error-message" ng-show="(myform.oldpass.$dirty || submitted) && inputIsInvalid(myform.oldpass.$valid,'oldpass') && myform.oldpass.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.oldpass.$dirty || submitted) && inputIsInvalid(myform.oldpass.$valid,'oldpass') && myform.oldpass.$error.minlength">
+                        حداقل 8 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.oldpass.$dirty || submitted) && inputIsInvalid(myform.oldpass.$valid,'oldpass') && myform.oldpass.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" style="color: #575757" class="col-xs-12 col-sm-4 control-label font-md pull-right">کلمه
+                    عبور
+                    جدید</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input tabindex="6" ng-model="password" ng-maxlength="60" ng-minlength="8" required name="password"
+                        type="password" class="confirm_input form-control bottom-margin-md" id="password">
+                    <div class="error-message" ng-show="(myform.password.$dirty || submitted) && inputIsInvalid(myform.password.$valid,'password') && myform.password.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.password.$dirty || submitted) && inputIsInvalid(myform.password.$valid,'password') && myform.password.$error.minlength">
+                        حداقل 8 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.password.$dirty || submitted) && inputIsInvalid(myform.password.$valid,'password') && myform.password.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="repassword" style="color: #575757" class="col-xs-12 col-sm-4 control-label font-md pull-right">تکرار
+                    کلمه عبور
+                    جدید</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input tabindex="6" ng-model="repassword" ng-maxlength="60" ng-minlength="8" required name="repassword"
+                        type="password" class="confirm_input form-control bottom-margin-md" id="repassword">
+                    <div class="error-message" ng-show="(myform.repassword.$dirty || submitted) && inputIsInvalid(myform.repassword.$valid,'repassword') && myform.repassword.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.repassword.$dirty || submitted) && inputIsInvalid(myform.repassword.$valid,'repassword') && myform.repassword.$error.minlength">
+                        حداقل 8 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.repassword.$dirty || submitted) && inputIsInvalid(myform.repassword.$valid,'repassword') && myform.repassword.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                    <div class="error-message" style="display: none" id="twofieldsareequal">
+                        فیلد کلمه عبور جدید و تکرار کلمه عبور جدید باهم برابر نیستند
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="left-text" style="margin-top: 20px">
+                    <button type="submit" class="confirm_button confirm_yes btn">تایید</button>
+                    <button type="button" ng-click="$dismiss()" class="confirm_button confirm_no btn pull-left"> بازگشت
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    @media (max-height: 800px) {
+        .modal .modal-dialog {
+            height: 70% !important;
+        }
+    }
+
+    .modal .modal-dialog {
+        height: 50% !important;
+
+    }
+
+    .modal-content {
+        background-color: #f44545 !important;
+        height: 17em;
+        top: 50% !important;
+        /* transform: translateY(-50%); */
+    }
+
+    .confirm_body {
+        top: 3.5em !important;
+        width: 37em !important;
+        height: 11em !important;
+        margin: 0 !important;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: 575px;
+            margin: 30px auto;
+        }
+    }
+</style>
+<style>
+    @media (max-height: 600px) {
+        .modal-content .newmodal_small_logo {
+            height: 22px;
+            width: 64px;
+        }
+    }
+</style>

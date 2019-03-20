@@ -1,0 +1,1183 @@
+@font-face {
+    font-family: "IRANSans";
+    src: url("../fonts/IRANSans(FaNum).ttf")
+}
+
+@font-face {
+    font-family: "IRANSansb";
+    src: url("../fonts/iransans_bold.ttf")
+}
+
+body {
+    font-family: IRANSans, serif !important;
+    margin-right: -14px !important;
+    margin-bottom: -14px !important;
+    padding-right: 15px;
+}
+
+body ::-webkit-scrollbar,
+::-webkit-scrollbar {
+    width: 14px;
+    height: 10px;
+}
+
+.mycontent {
+    background: #e2eded;
+    margin-top: 76px !important;
+    margin-left: 200px;
+    margin-right: 328px;
+    min-height: 100%;
+    overflow-y: auto;
+}
+
+.mycontent>.widgets>.row,
+.mycontent.widgets>.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.panel.panel-blur {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.article-list__page_main:last-child div:last-child .row {
+    padding-bottom: 150px;
+}
+
+/* .horizontal-scroll {
+    padding-bottom: 150px;
+} */
+
+.full-screen-btn {
+    display: none;
+}
+
+.sabad {
+    width: 180px;
+    height: 120px;
+    position: fixed;
+    top: 116px;
+    z-index: 999999;
+    cursor: pointer;
+}
+
+.mycards {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    height: 100%;
+}
+
+.mymenu {
+    height: 42px !important;
+    width: 120px !important;
+    display: inline-table !important;
+    padding-right: 10px;
+    padding-left: 10px;
+    vertical-align: top !important;
+    text-align: center;
+}
+
+.mybigmenu {
+    height: 42px !important;
+    width: 150px !important;
+    display: inline-table !important;
+    padding-left: 20px !important;
+    vertical-align: top !important;
+}
+
+.myadminmenu {
+    height: 42px !important;
+    width: 160px !important;
+    display: inline-table !important;
+    padding-left: 20px !important;
+    vertical-align: top !important;
+    font-size: small !important;
+    text-align: center;
+}
+
+.mymenu-icon {
+    width: 80px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.mymenu-text {
+    margin-right: 5px;
+}
+
+.mymenu-text-responsive {
+    float: left;
+    line-height: 35px;
+    font-size: small;
+    width: 70%;
+}
+
+.menu-img-responsive {
+    background: none !important;
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.myadmin-text {
+    /* float: right; */
+    line-height: normal;
+    font-size: small;
+    margin-right: 5px;
+}
+
+.mylogo {
+    max-width: 100%;
+    height: auto;
+}
+
+.mybox {
+    width: 40%;
+    margin-top: 10%;
+    margin-left: 30%;
+}
+
+.mytoggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    margin: 13px 47px 0 0;
+}
+
+.al-sidebar-list-item .al-sidebar-list-link img {
+    width: 65px !important;
+}
+
+.responsive-menu {
+    float: none;
+    left: 80px;
+    top: 28px;
+    position: absolute;
+    display: none;
+}
+
+.responsive-menu a.profile-toggle-link.dropdown-toggle {
+    width: 36px;
+}
+
+.page-top .top-search {
+    font-size: 1.1em;
+}
+
+.page-top .top-search.page-top-charge {
+    margin-top: 38px;
+}
+
+.top-search.page-top-buttons img {
+    width: 32px;
+    height: 32px;
+}
+
+.top-search.page-top-buttons.pointer.charge-account img {
+    width: 40px;
+    height: 45px;
+}
+
+.top-search.page-top-buttons:not(.for-alert) {
+    margin-left: 16px;
+}
+
+.top-dropdown-menu i.fa {
+    text-align: center;
+    width: 10%;
+}
+
+.modal.fade .modal-dialog {
+    -webkit-transition: inherit;
+    -o-transition: inherit;
+    transition: inherit;
+    -webkit-transform: inherit;
+    -ms-transform: inherit;
+    -o-transform: inherit;
+    transform: inherit;
+}
+
+@media screen and (min-width: 1500px) {
+    .collapse-menu-link {
+        display: none !important;
+    }
+    .mycards {
+        padding-left: 7.5%;
+        padding-right: 7.5%;
+    }
+    .mymenu {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+    .grid_sidebar__ {
+        margin-top: 0;
+    }
+    .scene {
+        height: 290px;
+    }
+}
+
+@media screen and (min-width: 1199px) and (max-width: 1500px) {
+    .collapse-menu-link {
+        display: none !important;
+    }
+    .mycards {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .scene {
+        /* width: 190px; */
+        height: 275px;
+    }
+    .card__bottom_date {
+        font-size: x-small;
+    }
+    .margin__bottom_10 {
+        margin-bottom: 10px;
+    }
+    .slimScrollDiv {
+        width: 100% !important;
+    }
+    .employee_detail_menu_container {
+        height: 16%;
+    }
+}
+
+/*
+ino khodam ezafe kardam, shayad lazem nabashe
+*/
+
+@media screen and (min-width: 1200px) {
+    .full-screen-btn {
+        display: block;
+    }
+    .full-screen-btn:hover {
+        transform: scale(1.2);
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+    /* .scene{
+        height: 300px;
+    }
+    .card__bottom{
+        height: 50px;
+        line-height: 25px;
+    } */
+    .content__wrapper {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .card__bottom_date {
+        font-size: .6em;
+    }
+}
+
+@media (max-width: 1200px) {
+    #mySearchSidebar .grid_sidebar__wrapper {
+        height: 100% !important;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    .collapse-menu-link {
+        display: block !important;
+    }
+    .mycards {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .scene {
+        /* width: 170px; */
+        height: 275px;
+    }
+    .card__bottom_date {
+        font-size: x-small;
+    }
+    .margin__bottom_10 {
+        margin-bottom: 10px;
+    }
+    .slimScrollDiv {
+        width: 100% !important;
+    }
+    .food_detail_qute {
+        background-size: 100% 100%;
+        font-size: 8px;
+    }
+    /* .food_rate_wrapper {
+        width: 40%;
+    } */
+    .employee_detail_menu_container {
+        height: 12%;
+    }
+    .page-top-buttons {
+        margin-top: 30px;
+    }
+    .user-profile {
+        margin-top: 30px;
+    }
+    .page-top-charge {
+        margin-top: 38px;
+    }
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    /* .col-md-3 {
+        width: unset;
+    } */
+    .mycontent {
+        margin-top: -67px !important;
+    }
+    .panel.panel-blur {
+        background-position: unset !important;
+    }
+    .collapse-menu-link {
+        display: block !important;
+    }
+    .mycards {
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+    .mylogo {
+        width: 200px;
+        height: 30px;
+    }
+    .cd-timeline-content {
+        margin-left: 80px;
+    }
+    .al-logo {
+        display: none !important;
+    }
+    .responsive-menu {
+        display: block !important;
+    }
+    /* 
+    .menu-top {
+        display: none !important;
+    } */
+    .mycontent {
+        margin-top: -67px !important;
+    }
+    .card__bottom_date {
+        font-size: x-small;
+    }
+    .margin__bottom_10 {
+        margin-bottom: 10px;
+    }
+    /* .responsive-menu {
+        left: 40px;
+    } */
+    .mytoggle {
+        display: block !important;
+    }
+    /* .margin__top_10 {
+        margin-top: 0;
+    } */
+    .food_detail_qute {
+        background-size: 100% 100%;
+        font-size: 8px;
+    }
+    /* .food_rate_wrapper {
+        width: 40%;
+    } */
+    .employee_detail_menu_container {
+        height: 12%;
+    }
+    /* .form-control {
+        height: 28px !important;
+    } */
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .panel.panel-blur {
+        background-position: unset !important;
+    }
+    .collapse-menu-link {
+        display: block !important;
+    }
+    .mycards {
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+    .cd-timeline-content {
+        margin-left: 80px;
+    }
+    .al-logo {
+        display: none !important;
+    }
+    .responsive-menu {
+        display: block !important;
+    }
+    /* 
+    .menu-top {
+        display: none !important;
+    } */
+    .mycontent {
+        margin-top: -67px !important;
+    }
+    .card__bottom_date {
+        font-size: x-small;
+    }
+    .margin__bottom_10 {
+        margin-bottom: 10px;
+    }
+    /* .responsive-menu {
+        left: 40px;
+    } */
+    .mytoggle {
+        display: block !important;
+    }
+    .row {
+        margin-left: -15px !important;
+    }
+    /* .col-sm-3 {
+        width: 35%;
+    } */
+    .employee_detail_menu_container {
+        height: 12%;
+    }
+    /* .form-control {
+        height: 28px !important;
+    } */
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (max-width: 767px) {
+    .top-search.page-top-buttons.pointer.charge-account {
+        margin-right: -4% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .top-search.page-top-buttons.pointer.charge-account {
+        margin-right: -7% !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .panel.panel-blur {
+        background-position: unset !important;
+    }
+    .collapse-menu-link {
+        display: block !important;
+    }
+    .mylogo {
+        width: 100px;
+        height: 20px;
+    }
+    /* 
+    .top-search {
+        width: 100px;
+        font-size: 10px;
+    } */
+    .top-search,
+    .user-profile {
+        transform: scale(0.7);
+        margin-left: 0;
+        margin-top: 16px !important;
+    }
+    .page-top .user-profile.clearfix {
+        margin-top: 18px !important;
+    }
+    .responsive-menu {
+        top: 18px;
+    }
+    a.collapse-menu-link {
+        margin-top: 18px;
+    }
+    .page-top .top-search.page-top-charge {
+        margin-top: 22px !important;
+        margin-right: -20px;
+    }
+    .mybox {
+        width: 90%;
+        margin-left: 5%;
+    }
+    .cd-timeline-content {
+        margin-left: 80px;
+    }
+    .al-logo {
+        display: none !important;
+    }
+    .responsive-menu {
+        display: block !important;
+    }
+    /* .menu-top {
+        display: none !important;
+    } */
+    .card__bottom_date {
+        font-size: x-small;
+    }
+    .margin__bottom_10 {
+        margin-bottom: 10px;
+    }
+    .mycontent {
+        margin-top: -67px !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .modal-dialog {
+        width: 100%;
+    }
+    .employee_detail_menu_container {
+        height: 12%;
+    }
+    .login-stage {
+        /* width: 60% !important; */
+        width: 100% !important;
+        padding: 4% !important;
+        background-image: url('/assets/img/ui/login.png');
+        background-repeat: no-repeat;
+        background-size: 27% 180px;
+    }
+    .login-stage .text-line {
+        padding-left: 25%;
+    }
+    .login-img {
+        /* width: 40% !important; */
+        display: none !important;
+    }
+    .page-top {
+        height: auto;
+    }
+    .page-top-buttons.charge-account {
+        margin-top: 6px;
+    }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+    .panel.panel-blur {
+        background-position: unset !important;
+    }
+    .collapse-menu-link {
+        display: block !important;
+    }
+    .user-profile {
+        min-width: 0px;
+    }
+    .mylogo {
+        width: 80px;
+        height: 25px;
+    }
+    /* 
+    .top-search {
+        width: 80px;
+        font-size: 8px;
+    } */
+    .top-search,
+    .user-profile {
+        transform: scale(0.7);
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    .page-top .top-search.page-top-charge {
+        margin-top: 12px;
+    }
+    .page-top-charge {
+        margin-top: 38px;
+        margin-right: -15px;
+        font-size: 1.2em;
+    }
+    .mymenu {
+        width: 70px !important;
+    }
+    .mybigmenu {
+        width: 90px !important;
+    }
+    .mymenu-text {
+        font-size: xx-small;
+        line-height: 35px;
+    }
+    .mymenu-icon {
+        width: 24px;
+    }
+    /* .menu-top {
+        padding: 10px 0 0 0;
+    } */
+    a.al-sidebar-list-link {
+        padding-left: 0 !important;
+    }
+    #floating-button {
+        top: 100px !important;
+        right: 50px !important;
+    }
+    .mybox {
+        width: 90%;
+        margin-left: 5%;
+    }
+    .cd-timeline-content {
+        margin-left: 80px;
+    }
+    .my-timeline-content {
+        width: 90%;
+    }
+    .al-logo {
+        display: none !important;
+    }
+    .responsive-menu {
+        display: block !important;
+        width: 24px;
+        top: 20px;
+        left: 60px;
+    }
+    a.collapse-menu-link {
+        width: 28px !important;
+        margin-top: 20px !important;
+    }
+    .responsive-menu a.profile-toggle-link.dropdown-toggle {
+        width: 28px;
+    }
+    /* .menu-top {
+        display: none !important;
+    } */
+    .mycontent {
+        margin-top: -32px !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .modal-dialog {
+        width: 100%;
+    }
+    .scene {
+        height: 290px;
+    }
+    .page-top-buttons {
+        margin-left: 4px !important;
+    }
+    .col-xxs-12 {
+        width: 100%;
+    }
+    .page-top {
+        height: auto;
+    }
+    .login-stage {
+        /* width: 60% !important; */
+        width: 100% !important;
+        padding: 4% !important;
+        background-image: url('/assets/img/ui/login.png');
+        background-repeat: no-repeat;
+        background-size: 27% 180px;
+    }
+    .login-stage .text-line {
+        padding-left: 25%;
+    }
+    .login-img {
+        /* width: 40% !important; */
+        display: none !important;
+    }
+    .page-top-buttons.charge-account {
+        margin-top: 6px;
+        margin-right: -24px;
+    }
+}
+
+/*
+landscaped smart phones. khodam ezafe kardam
+*/
+
+/*@media (min-width: 481px) and (max-width: 1000px) and (orientation: landscape) {*/
+
+/*.panel.panel-blur {*/
+
+/*background-position: unset !important;*/
+
+/*}*/
+
+/*.collapse-menu-link {*/
+
+/*display: block !important;*/
+
+/*}*/
+
+/*.mycardscontainer {*/
+
+/*padding-right: 50px;*/
+
+/*padding-left: 50px;*/
+
+/*}*/
+
+/*.user-profile {*/
+
+/*min-width: 90px;*/
+
+/*}*/
+
+/*.mylogo {*/
+
+/*width: 80px;*/
+
+/*height: 25px;*/
+
+/*}*/
+
+/*.mytoggle {*/
+
+/*left: 120px;*/
+
+/*}*/
+
+/*.top-search {*/
+
+/*width: 80px;*/
+
+/*font-size: 8px;*/
+
+/*}*/
+
+/*.mymenu {*/
+
+/*width: 70px !important;*/
+
+/*}*/
+
+/*.mymenu {*/
+
+/*width: 90px !important;*/
+
+/*}*/
+
+/*.mymenu-text {*/
+
+/*font-size: xx-small;*/
+
+/*line-height: 35px;*/
+
+/*}*/
+
+/*.mymenu-icon {*/
+
+/*width: 24px;*/
+
+/*}*/
+
+/*.menu-top {*/
+
+/*padding: 10px 0 0 0;*/
+
+/*}*/
+
+/*a.al-sidebar-list-link {*/
+
+/*padding-left: 0 !important;*/
+
+/*}*/
+
+/*#floating-button {*/
+
+/*top: 100px !important;*/
+
+/*right: 50px !important;*/
+
+/*}*/
+
+/*.mybox {*/
+
+/*width: 90%;*/
+
+/*margin-top: 40%;*/
+
+/*margin-left: 5%;*/
+
+/*}*/
+
+/*.a0{*/
+
+/*height: unset;*/
+
+/*}*/
+
+/*.a1 {*/
+
+/*width: unset;*/
+
+/*float: unset;*/
+
+/*}*/
+
+/*.a2 {*/
+
+/*width: unset;*/
+
+/*float: unset;*/
+
+/*margin-left: unset*/
+
+/*}*/
+
+/*.a3 {*/
+
+/*width: unset;*/
+
+/*float: unset*/
+
+/*}*/
+
+/*.a4 {*/
+
+/*width: unset;*/
+
+/*float: unset;*/
+
+/*margin-bottom: unset*/
+
+/*}*/
+
+/*.a5 {*/
+
+/*width: unset;*/
+
+/*float: unset;*/
+
+/*margin-left: unset*/
+
+/*}*/
+
+/*.a6 {*/
+
+/*width: unset;*/
+
+/*float: unset*/
+
+/*}*/
+
+/*}*/
+
+@media screen and (max-width: 320px) {
+    .al-logo {
+        display: none !important;
+    }
+    .responsive-menu {
+        display: block !important;
+    }
+    /* .menu-top {
+        display: none !important;
+    } */
+    .mycontent {
+        margin-top: -67px !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .modal-dialog {
+        width: 100%;
+    }
+    a.collapse-menu-link {
+        width: 28px !important;
+        margin-top: 20px !important;
+    }
+}
+
+@media (max-width: 1024px) and (max-height: 800px) {}
+
+@media (min-height: 601px) and (max-height: 800px) and (min-width: 1025px) {
+    .margin__top_20 {
+        margin-top: 5px;
+    }
+    .comments__wrapper {
+        margin-top: 0;
+    }
+    .newmodal_close_header {
+        height: 20px;
+    }
+    .newmodal_small_logo {
+        height: 22px;
+        width: 52px;
+    }
+    .form_top_margin {
+        padding-top: 0;
+    }
+    .profile__body {
+        top: 8%;
+        height: 70%;
+    }
+    .profile__map_wrapper {
+        top: 74%;
+    }
+    .profile__map {
+        height: 100px;
+    }
+    /* .reserves_sabad_icon {
+        width: 42px;
+        height: 42px;
+    } */
+    /* .form-control {
+        height: 28px !important;
+    } */
+    .edit_emp_modal {
+        height: 65%;
+    }
+    .food_detail_qute {
+        background-size: 90% 100%;
+        /* width: 30%; */
+    }
+    .food__detail_date {
+        font-size: x-small;
+        margin-top: 0;
+    }
+    .page-top {
+        height: 76px;
+    }
+    .responsive-menu {
+        top: 14px;
+    }
+    a.collapse-menu-link {
+        margin-top: 14px;
+    }
+    .grid_sidebar__wrapper {
+        margin-top: 235px;
+        height: calc(100% - 235px) !important;
+    }
+    .user-profile {
+        margin-top: 18px;
+    }
+    .page-top-buttons {
+        margin-top: 18px;
+        /* width: 35px; */
+        margin-left: 32px;
+        height: 42px;
+    }
+    .sidebar__ {
+        margin-top: 74px;
+        padding-bottom: 74px;
+    }
+    .sabad__ {
+        margin-top: 74px;
+        padding-bottom: 20px;
+    }
+    .menu-top {
+        top: 74px;
+    }
+    /* .sabad {
+        top: 96px;
+    } */
+    .page-top-buttons {
+        margin-top: 10px !important;
+    }
+    .user-profile {
+        margin-top: 10px;
+    }
+    .page-top-charge {
+        margin-top: 18px;
+    }
+    .page-top .top-search.page-top-charge {
+        margin-top: 16px;
+    }
+    .page-top-buttons.charge-account {
+        margin-top: 8px !important;
+    }
+}
+
+@media (max-height: 600px) {
+    .margin__top_20 {
+        margin-top: 5px;
+    }
+    .comments__wrapper {
+        margin-top: 0;
+    }
+    .newmodal_close_header {
+        height: 0;
+    }
+    .newmodal_small_logo {
+        height: 22px;
+        width: 50px;
+    }
+    .form_top_margin {
+        padding-top: 0;
+    }
+    .form_input_margin {
+        margin-bottom: 5px;
+    }
+    .profile__body {
+        top: 8%;
+        height: 70%;
+    }
+    .profile__map_wrapper {
+        top: 74%;
+    }
+    .profile__map {
+        height: 100px;
+    }
+    .reserves_sabad_icon {
+        width: 42px;
+        height: 42px;
+    }
+    .form-control {
+        /* height: 20px !important; */
+        padding: 0 12px;
+    }
+    .confirm_question {
+        height: 26px;
+    }
+    .edit_emp_modal {
+        height: 65%;
+    }
+    /* .page-top {
+        height: 76px;
+    } */
+    .user-profile {
+        margin-top: 18px;
+    }
+    .page-top-buttons {
+        margin-top: 18px;
+        /* width: 35px; */
+        margin-left: 20px;
+        height: 42px;
+    }
+    .sidebar__ {
+        margin-top: 74px;
+        padding-bottom: 150px;
+    }
+    .sabad__ {
+        margin-top: 74px;
+        padding-bottom: 88px;
+    }
+    .menu-top {
+        top: 86px;
+    }
+    .al-sidebar {
+        top: -8px;
+    }
+    /* .sabad {
+        top: 96px;
+    } */
+    /* .col-sm-3 {
+        width: 35%;
+    } */
+    .page-top-buttons {
+        margin-top: 28px !important;
+    }
+    .user-profile {
+        margin-top: 28px;
+    }
+    .page-top-charge {
+        margin-top: 18px;
+    }
+    .page-top .top-search.page-top-charge {
+        margin-top: 37px;
+    }
+    /* .page-top{
+        height: fit-content;
+        height: -moz-fit-content;
+    } */
+    .page-top-buttons.charge-account {
+        margin-top: 28px !important;
+    }
+    /* .modal-open .modal {
+        overflow: hidden auto !important;
+    } */
+}
+
+@media (max-height: 600px) and (max-width: 768px) {
+    .page-top {
+        height: fit-content;
+    }
+    .page-top-buttons {
+        margin-top: 20px !important;
+    }
+    .page-top-buttons.charge-account {
+        margin-top: 16px !important;
+    }
+    .page-top .top-search.page-top-charge,
+    .page-top .user-profile.clearfix {
+        margin-top: 20px !important;
+    }
+    .top-search.page-top-buttons.charge-account {
+        margin-right: -24px;
+    }
+}
+
+@media (max-height: 600px) and (max-width: 390px) {
+    .page-top>.top-search.page-top-buttons.pointer.charge-account {
+        margin-right: -4px !important;
+        margin-top: -22px !important;
+    }
+}
+
+.ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
+    text-align: right;
+}
+
+.ui-select-choices-row-inner:hover {
+    color: #fff !important;
+    text-decoration: none !important;
+    outline: 0 !important;
+    background-color: #f44545 !important;
+}
+
+.ui-select-match-item.btn.btn-default.btn-xs {
+    position: relative;
+    padding: 6px;
+    padding-right: 20px;
+}
+
+.ui-select-match-item.btn.btn-default.btn-xs:hover {
+    color: black !important;
+    z-index: 5;
+}
+
+.ui-select-match-item.btn.btn-default.btn-xs .close.ui-select-match-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    color: white
+}
+
+.ui-select-search.input-xs.ng-pristine.ng-valid.ng-empty.ng-touched,
+.ui-select-search.input-xs.ng-pristine.ng-untouched.ng-valid.ng-empty {
+    width: 25% !important;
+    min-width: 70px !important;
+}
+
+span:not(.ui-select-choices-row-inner) span.ng-binding.ng-scope {
+    color: white !important;
+}
+
+body .ui-select-bootstrap .ui-select-choices-row.active>span {
+    color: black;
+    background-color: transparent;
+}
+
+span.ui-select-match-item.btn.btn-default.btn-xs,
+span.ui-select-match-item.btn.btn-default.btn-xs:focus {
+    background-color: #f44545 !important;
+}
+
+[type=reset],
+[type=submit],
+button,
+html [type=button] {
+    -webkit-appearance: none !important;
+}
+
+.ui-select-multiple.ui-select-bootstrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ui-select-match-item.btn:hover{
+    transform: scale(1) !important;
+}
+.ui-select-bootstrap .ui-select-choices-row>span {
+    transition: 0.4s;
+}

@@ -1,0 +1,98 @@
+<div class="relative full-height">
+    <input id="test" type="text" class="hidden" title="hi" />
+    <div class="newmodal_header full-width">
+        <div class="h-25">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div>
+                <div class="reserves_sabad_icon"></div>
+                <div class="text-right w-90 white-color absolute t-80 font-md">رزروها</div>
+            </div>
+        </div>
+    </div>
+    <div class="newmodal_body">
+        <div ng-click="toggleDetailShow()" class="newmodal_body_header">نمایش کلی</div>
+        <div class="full-height newmodal_body_content">
+            <div ng-repeat="myday in mydays" class="food_detail_wrapper margin__bottom_30" id="d-{{$index}}">
+                <div class="pull-right w-30">
+                    <div class="newmodal_date candy-color">
+                        {{getDayOfWeek(myFormatDate(myday.dayDate))}}
+                    </div>
+                    <div class="newmodal_date">{{getDay(myFormatDate(myday.dayDate))}}</div>
+                    <div class="newmodal_date babyblue-color">ساعت {{getHour(myFormatDate(myday.dayDate))}}</div>
+                </div>
+                <div id="receipt" class="w-70 pull-left">
+                    <div ng-repeat="res in myday.restaurants" id="r-{{$parent.$index + '-' + $index}}">
+                        <div ng-repeat="food in res.foodOrders" class="food__details_ no-bottom-margin">
+                            <div class="paypal__item-price">{{formatPrice(food.foodPriceAfterOff)}}</div>
+                            <div class="paypal__item-name babyblue-color">{{food.food.name}}
+                            </div>
+                        </div>
+                        <div class="remove-float"></div>
+                        <div class="no-bottom-margin cost-container" ng-if="showDetails">
+                            <div>
+                                <div class="paypal__item-price">{{formatPrice(res.totalContainerPrice)}}</div>
+                                <div class="paypal__item-name">ظرف</div>
+                            </div>
+                        </div>
+                        <div class="remove-float"></div>
+                        <div class="no-bottom-margin cost-container" ng-if="showDetails">
+                            <div>
+                                <div class="paypal__item-price">{{formatPrice(res.deliveryPrice)}}</div>
+                                <div class="paypal__item-name">هزینه حمل</div>
+                            </div>
+                        </div>
+                        <div class="remove-float"></div>
+                        <div class="no-bottom-margin cost-container" ng-if="showDetails">
+                            <div class="no-bottom-border">
+                                <div class="paypal__item-price">{{formatPrice(res.totalTaxAmount)}}</div>
+                                <div class="paypal__item-name">مالیات</div>
+                            </div>
+                        </div>
+                        <div class="remove-float"></div>
+                        <div class="no-bottom-margin cost-container">
+                            <div class="total-amount">
+                                <div class="black-color paypal__item-name no-padding-left no-padding-right">مجموع</div>
+                                <div class="black-color paypal__item-price no-padding-left no-padding-right">
+                                    {{formatPrice(res.totalAmount)}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="remove-float"></div>
+                    </div>
+                    <form novalidate ng-if="showDetails" ng-submit="validateSubmitMin($index) && validateSubmitMax($index) && addFoodDesc(myday.id,$index)"
+                        class="ui reply form">
+                        <div class="field white-back bottom-padding-lg">
+                            <textarea id="orderDesc_{{$index}}" name="orderDesc_{{$index}}" placeholder="توضیحات"
+                                descindex="{{$index}}" onkeyup="validateDesc(event)" class="placeholder-color-for-desc text-right right-directioon no-border no-resize">{{myday.desc}}</textarea>
+                            <div class="error-message hidden" id="max_{{$index}}">
+                                حداکثر 250 کاراکتر وارد کنید
+                            </div>
+                            <div class="error-message hidden" id="min_{{$index}}">
+                                حداقل 2 کاراکتر وارد کنید
+                            </div>
+                            <button type="submit" class="btn red__button btn-raised left-margin-lg pull-left">ارسال
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="remove-float"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal .modal-dialog {
+        height: 80% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+    .food_detail_wrapper{
+        padding: 0 10% !important;
+    }
+</style>

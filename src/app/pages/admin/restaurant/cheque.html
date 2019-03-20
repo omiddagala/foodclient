@@ -1,0 +1,128 @@
+<div include-with-scope="page-top.html"></div>
+<div class="widgets mycontent" ng-init="initCtrl()" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="صدور چک" ba-panel-class="with-scroll">
+                <div>
+                    <div class="form-group select-page-size-wrap " style="width: 100%;">
+                        <!-- <div style="width: 20%;float: left">
+                            <div>
+                                <div style="width: 40%;float: right;margin-left: 20px">
+                                    تعداد
+                                </div>
+                                <div style="width: 50%;float: left">
+                                    <select class="form-control selectpicker" data-style="btn-primary"
+                                            title="Rows on page" selectpicker
+                                            style="text-align:right;"
+                                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div style="width: 100%;float: right;height: 100%;text-align: right;">
+                            <button style="margin-top: 15px;margin-right: 15px;margin-left: 0" class="btn btn-danger btn-with-icon save-profile  col-4-xs"
+                                ng-click="openModal('app/pages/admin/restaurant/cheque-modal.html', 'md',null,$index)">صدور
+                                دسته ای</button>
+                            <button style="margin-top: 15px;margin-right: 15px;margin-left: 0" class="btn btn-default btn-with-icon save-profile  col-4-xs"
+                                ng-click="openModal('app/pages/admin/restaurant/pay-modal.html', 'md',null,$index)">تسویه
+                                دسته ای</button>
+                            <button style="margin-top: 15px;margin-right: 15px;margin-left: 0" class="btn btn-info white-color-imp candy-back btn-with-icon   col-4-xs save-profile"
+                                ng-click="report(null)">گزارش دسته ای</button>
+                        </div>
+                        <div class="remove-float"></div>
+                    </div>
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods">
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">
+                                            عملیات
+                                        </div>
+                                    </th>
+                                    <th st-sort="accountStatus">
+                                        <div class="newtable_header">
+                                            وضعیت
+                                        </div>
+                                    </th>
+                                    <th st-sort="sharePercent">
+                                        <div class="newtable_header">
+                                            سهم کارافید
+                                        </div>
+                                    </th>
+                                    <th st-sort="username">
+                                        <div class="newtable_header">
+                                            موبایل
+                                        </div>
+                                    </th>
+                                    <th st-sort="lastName">
+                                        <div class="newtable_header">
+                                            تلفن
+                                        </div>
+                                    </th>
+                                    <th st-sort="firstName">
+                                        <div class="newtable_header">
+                                            نام
+                                        </div>
+                                    </th>
+                                    <th class="table-id" st-sort="id" st-sort-default="true">
+                                        <div class="newtable_header">
+                                            ردیف
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <!--<input st-search="price.averageRate" placeholder="جستجو بر اساس امتیاز" class="input-sm form-control search-input"
+                           type="search"/>-->
+                                    </th>
+                                    <th>
+                                        <!--<input st-search="price.foodPrice" placeholder="جستجو بر اساس قیمت" class="input-sm form-control search-input"
+                           type="search"/>-->
+                                    </th>
+                                    <th></th>
+                                    <th><input style="width: 50%;display: inline-table" st-search="name" placeholder="جستجو بر اساس نام"
+                                            class="input-sm form-control search-input" type="search" /></th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="{{$index}}" ng-repeat="item in rests">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="btn btn-danger editable-table-button btn-xs" ng-click="openModal('app/pages/admin/restaurant/cheque-modal.html', 'md',item.id,$index)">صدور
+                                            </button>
+                                            <button class="btn btn-default editable-table-button btn-xs" ng-click="openModal('app/pages/admin/restaurant/pay-modal.html', 'md',item.id,$index)">تسویه
+                                            </button>
+                                            <button class="btn btn-info editable-table-button btn-xs" ng-click="report(item.id)">گزارش
+                                            </button>
+                                            <button class="btn white-color-imp candy-back editable-table-button btn-xs"
+                                                ng-click="financial(item.id)">مالی
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td ng-style="getStatusColor(item.accountStatus)">{{getStatus(item.accountStatus)}}</td>
+                                    <td>{{item.sharePercent}}</td>
+                                    <td>{{item.address.mobile}}</td>
+                                    <td>{{item.address.phone}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

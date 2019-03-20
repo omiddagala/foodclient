@@ -1,0 +1,129 @@
+<div style="width: 100%;height: 100%" ng-controller="forgetCtrl">
+    <div style="width: 30%;height: 100%;float: right;padding-top: 10%;text-align: right;padding-right: 10%">
+        <div style="width: 100%;height: 65px;background-image: url('/assets/img/ui/login-logo.png');background-size: contain;background-repeat: no-repeat;background-position-x: right"></div>
+        <div class="margin__top_10" style="color: #1a4049;font-size: medium;font-weight: bold">سامانه آنلاین تامین غذای
+            شرکت
+        </div>
+
+        <form novalidate ng-if="mylevel === '1'" id="form" name="myform2" class="margin__top_40 form-horizontal"
+              ng-submit="myform2.$valid && level1()">
+            <div>
+                <div class="col-sm-10">
+                    <label for="mobile" class="control-label">شماره موبایل خود را وارد کنید</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="tel" class="confirm_input form-control bottom-margin-md" ng-maxlength="11" ng-minlength="11" required
+                           name="mobile" ng-model="mobile" id="mobile">
+                    <div class="error-message"
+                         ng-show="(myform2.mobile.$dirty || submitted) && inputIsInvalid(myform2.mobile.$valid,'mobile') && myform2.mobile.$error.maxlength">
+                        حداکثر 11 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform2.mobile.$dirty || submitted) && inputIsInvalid(myform2.mobile.$valid,'mobile') && myform2.mobile.$error.minlength">
+                        حداقل 11 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform2.mobile.$dirty || submitted) && inputIsInvalid(myform2.mobile.$valid,'mobile') && myform2.mobile.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+            </div>
+            <span class="msg-error error"></span>
+            <div style="width: 100%;height:30px;text-align: left">
+                <button type="submit" style="margin-left: 0" class="confirm_button confirm_yes btn">
+                    ثبت
+                </button>
+            </div>
+        </form>
+        <form novalidate ng-if="mylevel === '2'" name="myform" class="margin__top_40 form-horizontal"
+              ng-submit="myform.$valid && level2()">
+            <div class="form-group">
+                <div class="col-sm-8 bottom-margin-md">
+                    <input type="number" class="confirm_input form-control" ng-maxlength="4" ng-minlength="4" required
+                           name="code"
+                           ng-model="code" id="code">
+                    <div class="error-message"
+                         ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'mobile') && myform.code.$error.maxlength">
+                        حداکثر 4 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'mobile') && myform.code.$error.minlength">
+                        حداقل 4 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'mobile') && myform.code.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+                <label for="code" class="col-sm-4 control-label">کد ارسال شده</label>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8 bottom-margin-md">
+                    <input tabindex="6" ng-model="password" ng-maxlength="60" ng-minlength="8" required
+                           name="password" type="password"
+                           class="confirm_input form-control" id="password"
+                           style="text-align:right;color: white">
+                    <div class="error-message"
+                         ng-show="(myform.password.$dirty || submitted) && inputIsInvalid(myform.password.$valid,'password') && myform.password.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform.password.$dirty || submitted) && inputIsInvalid(myform.password.$valid,'password') && myform.password.$error.minlength">
+                        حداقل 8 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform.password.$dirty || submitted) && inputIsInvalid(myform.password.$valid,'password') && myform.password.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+                <label for="password" class="col-sm-4 control-label">کلمه عبور</label>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8 bottom-margin-md">
+                    <input tabindex="6" ng-model="repassword" ng-maxlength="60" ng-minlength="8" required
+                           name="repassword" type="password"
+                           class="confirm_input form-control" id="repassword"
+                           style="text-align:right;color: white">
+                    <div class="error-message"
+                         ng-show="(myform.repassword.$dirty || submitted) && inputIsInvalid(myform.repassword.$valid,'repassword') && myform.repassword.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform.repassword.$dirty || submitted) && inputIsInvalid(myform.repassword.$valid,'repassword') && myform.repassword.$error.minlength">
+                        حداقل 8 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(myform.repassword.$dirty || submitted) && inputIsInvalid(myform.repassword.$valid,'repassword') && myform.repassword.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+                <label for="repassword" class="col-sm-4 control-label">تکرار کلمه عبور</label>
+            </div>
+            <div style="width: 100%;height:30px;text-align: left">
+                <button style="margin-left: 0" type="submit" class="confirm_button confirm_yes btn">
+                    ثبت
+                </button>
+            </div>
+            <div id="code-timeout"></div>
+            <span class="msg-error error"></span>
+        </form>
+
+    </div>
+    <div style="width: 55%;height: 100%;float: left;background-image: url('/assets/img/ui/login.png');background-repeat: no-repeat;background-size: cover">
+
+    </div>
+</div>
+
+<style>
+    .msg-error {
+        color: #c64105;
+        font-size: medium;
+    }
+
+    .flip-clock-label {
+        display: none;
+    }
+
+</style>

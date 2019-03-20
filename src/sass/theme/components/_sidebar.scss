@@ -1,0 +1,268 @@
+$sidebar-width: 320px;
+$angle-left: "\f100";
+$angle-right: "\f101";
+
+.al-sidebar {
+  top: 0;
+  transition: width 0.5s ease;
+  width: $sidebar-width;
+  right: 24px;
+  z-index: 2;
+  bottom: 0;
+  display: block;
+  // min-height: 100%;
+  background-color: $sidebar;
+  // height: 100%;
+  position: absolute;
+  overflow: hidden; 
+}
+
+.al-sidebar-list {
+  margin: 0;
+  padding: 25px 0 0 0;
+  list-style: none;
+}
+.al-sidebar-list_grid {
+  margin: 0;
+  padding: 18px 0 0 0;
+  list-style: none;
+}
+
+.al-sidebar-sublist .subitem-submenu-list {
+  padding-left: 15px;
+}
+
+.subitem-submenu-link {
+  .fa {
+    top: 7px;
+  }
+}
+
+.al-sidebar-list-item {
+  direction: ltr;
+  display: block;
+  position: relative;
+  float: none;
+  padding: 0;
+  margin-right:-14px!important;
+  margin-bottom:-14px!important;
+  padding-right: 15px;
+  &.selected:not(.with-sub-menu) {
+    background-color: $primary;
+    a.al-sidebar-list-link {
+      color: $sidebar-text;
+      b {
+        color: $sidebar-text;
+      }
+    }
+  }
+}
+
+.al-sidebar-list-item, .ba-sidebar-sublist-item {
+  &.ba-sidebar-item-expanded {
+    > .al-sidebar-list-link {
+      b {
+        transform: rotate(180deg);
+      }
+    }
+
+    > .al-sidebar-sublist {
+      display: block;
+    }
+  }
+}
+
+a.al-sidebar-list-link {
+  display: block;
+  height: 42px;
+  text-shadow: none;
+  font-size: 13px;
+  text-decoration: none;
+  color: $sidebar-text;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    //color: #d2aa18;
+    //background: #727b87;
+    border-radius: 4px;
+    b {
+      //color: $primary;
+    }
+  }
+  i {
+    margin-right: 18px;
+    width: 16px;
+    display: inline-block;
+  }
+  b {
+    display: block;
+    opacity: 1;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-shadow: none;
+    font-size: 18px;
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    padding: 0;
+    text-align: center;
+    color: $sidebar-text;
+    transition: transform 0.2s linear;
+  }
+}
+
+.slimScrollBar, .slimScrollRail {
+  border-radius: 0px !important;
+  width: 4px !important;
+  left: 176px;
+}
+
+@mixin layout-collapsed() {
+  .al-main {
+    //margin-left: 50px;
+  }
+
+  .al-footer {
+    padding-left: 83px
+  }
+}
+
+@mixin default-sublist() {
+  padding: 0;
+  list-style: none;
+  position: relative;
+  display: none;
+  &.expanded {
+    display: block;
+  }
+  > li {
+    display: block;
+    float: none;
+    padding: 0;
+    border-bottom: none;
+    position: relative;
+    a {
+      display: block;
+      text-shadow: none;
+      font-size: 13px;
+      text-decoration: none;
+      color: $sidebar-text;
+      //padding-left: 52px;
+      height: auto;
+      line-height: 29px;
+      &:hover {
+        color: #f44545;
+      }
+    }
+    &.selected:not(.with-sub-menu) > a {
+      border: none;
+      background-color: $primary;
+      &:hover {
+        color: #f44545;
+      }
+    }
+
+  }
+}
+
+.al-sidebar-sublist {
+  @include default-sublist();
+}
+
+.sidebar-hover-elem{
+  width: 4px;
+  background: $primary;
+  position: absolute;
+  top: -150px;
+  right: 0;
+  transition: all 0.5s ease;
+  transition-property: top, height;
+  height: 42px;
+  display: block;
+}
+
+.sidebar-select-elem {
+  display: block;
+  top: 94px;
+}
+
+@mixin sidebar-collapsed() {
+  .al-sidebar {
+    width: 0 !important;
+
+    .fa-angle-down, .fa-angle-up {
+      opacity: 0;
+    }
+
+    .al-sidebar-sublist {
+      position: absolute;
+      top: -1px;
+      left: 52px;
+      @include bg-translucent-dark(0.8);
+      width: 0;
+      display: block;
+      overflow: hidden;
+      transition: width 0.5s ease;
+      &.slide-right {
+        width: 135px;
+      }
+      &:before {
+        display: none;
+      }
+      li {
+        &:before {
+          display: none;
+        }
+        a {
+          padding-left: 18px;
+          padding-right: 18px;
+          min-width: 130px;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .sidebar-hover-elem, .sidebar-select-elem {
+      left: 48px;
+    }
+  }
+}
+
+@mixin sidebar-hidden() {
+  .al-sidebar {
+    width: 0 !important;
+  }
+  .sidebar-hover-elem, .sidebar-select-elem {
+    display: none;
+  }
+}
+
+@mixin sidebar-overlap() {
+  .al-sidebar {
+    width: 180px;
+    @include bg-translucent-dark(0.75);
+    transition: width 0.5s ease;
+
+    .fa-angle-down, .fa-angle-up {
+      opacity: 1;
+    }
+
+    .al-sidebar-sublist {
+      @include default-sublist();
+      top: auto;
+      left: auto;
+      background: none;
+      width: auto;
+      overflow: visible;
+      transition: none;
+    }
+
+    .sidebar-hover-elem, .sidebar-select-elem {
+      left: $sidebar-width - 4;
+      transition: left 0.5s ease;
+    }
+  }
+}
+

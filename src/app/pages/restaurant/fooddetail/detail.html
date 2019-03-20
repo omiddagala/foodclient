@@ -1,0 +1,251 @@
+<style>
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-sm-6 col-xs-12, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+        float: right !important;
+        text-align: right;
+    }
+    .panel{
+        background-color: #e2eded;
+    }
+    textarea.form-control{
+        height: fit-content !important;
+    }
+    .form-group{
+        margin-bottom: 10px !important;
+    }
+    .btn.confirm_yes{
+        width: fit-content !important;
+    }
+</style>
+<div include-with-scope="page-top.html"></div>
+<div class="widgets mycontent h-85 no-top-margin-lg" ng-init="initCtrl()">
+    <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+        <form name="myform" ng-submit="myform.$valid && saveOrUpdateFood(myform)" novalidate>
+
+            <div class="panel-content text-right right-direction">
+                <!--<div class="progress-info">Your profile is 70% Complete</div>-->
+                <!--<div class="progress">-->
+                <!--<div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"-->
+                <!--aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <h3 class="with-line header-color">اطلاعات کلی</h3>
+
+                <div class="row flex wrap" ng-if="food.id">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-9">
+                                <div class="userpic relative height-unset" style="width:-moz-fit-content;width: fit-content;">
+                                    <div class="userpic-wrapper">
+                                        <img ng-src="{{ food.imageAddress }}" ng-click="uploadPicture()">
+                                    </div>
+                                    <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="food.imageAddress !== 'assets/img/defaults/default-food.png'"></i>
+                                    <a href class="change-userpic" ng-click="uploadPicture()">انتخاب عکس</a>
+                                    <input type="file" ng-show="false" id="uploadFile">
+                                </div>
+                            </div>
+                            <label class="col-sm-3 control-label bottom-margin-lg-imp">عکس</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12"></div>
+                </div>
+                <div class="row flex wrap">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-9">
+                                <input tabindex="1" ng-model="food.name" ng-maxlength="70" ng-minlength="2" type="text"
+                                    class="form-control right-text" name="name" required id="name">
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.maxlength">
+                                    حداکثر 70 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.minlength">
+                                    حداقل 2 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="name" class="col-sm-3 control-label bottom-margin-lg-imp">نام</label>
+                        </div>
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-9">
+                                <textarea tabindex="3" rows="2" ng-model="food.ingredients" ng-maxlength="250" class="form-control fit-height-imp no-resize text-right right-direction"
+                                    name="ingredients" id="ingredients"></textarea>
+                                <div class="error-message" ng-show="(myform.ingredients.$dirty || submitted) && inputIsInvalid(myform.ingredients.$valid,'ingredients') && myform.ingredients.$error.maxlength">
+                                    حداکثر 250 کاراکتر وارد کنید
+                                </div>
+                            </div>
+                            <label for="ingredients" class="col-sm-3 control-label bottom-margin-lg-imp">مواد اولیه</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-9">
+                                <select tabindex="2" class="form-control btn-primary" ng-model="food.foodType"
+                                    data-style="btn-primary" selectpicker>
+                                    <option class="black-color" value="IRANIAN">ایرانی</option>
+                                    <option class="black-color" value="FAST_FOOD">فست فود</option>
+                                    <option class="black-color" value="FOREIGN">خارجی</option>
+                                    <option class="black-color" value="VEG">گیاهی</option>
+                                    <option class="black-color" value="DDA">نوشیدنی و دسر و پیش غذا</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-3 control-label bottom-margin-lg-imp">نوع</label>
+                        </div>
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-9">
+                                <input tabindex="4" type="number" ng-maxlength="15" name="calories" ng-model="food.mealAverageCalorie"
+                                    class="form-control right-text" id="calories">
+                                <div class="error-message" ng-show="(myform.calories.$dirty || submitted) && inputIsInvalid(myform.calories.$valid,'calories') && myform.calories.$error.maxlength">
+                                    حداکثر 15 کاراکتر وارد کنید
+                                </div>
+                            </div>
+                            <label for="calories" class="col-sm-3 control-label bottom-margin-lg-imp">کالری</label>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="with-line header-color">هزینه ها</h3>
+                <div class="row flex wrap">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-6">
+                                <input tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.foodPrice"
+                                    name="price" class="form-control text-right" id="price">
+                                <div class="error-message" ng-show="(myform.price.$dirty || submitted) && inputIsInvalid(myform.price.$valid,'price') && myform.price.$error.maxlength">
+                                    حداکثر 15 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.price.$dirty || submitted) && inputIsInvalid(myform.price.$valid,'price') && myform.price.$error.min">
+                                    حداقل مقدار 0 وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.price.$dirty || submitted) && inputIsInvalid(myform.price.$valid,'price') && myform.price.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">قیمت</label>
+                        </div>
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-6">
+                                <input tabindex="6" type="number" ng-maxlength="2" min="0" required ng-model="food.price.dailyDiscountRate"
+                                    class="form-control text-right" name="dailyPreorder" id="dailyPreorder">
+                                <div class="error-message" ng-show="(myform.dailyPreorder.$dirty || submitted) && inputIsInvalid(myform.dailyPreorder.$valid,'dailyPreorder') && myform.dailyPreorder.$error.maxlength">
+                                    حداکثر 2 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.dailyPreorder.$dirty || submitted) && inputIsInvalid(myform.dailyPreorder.$valid,'dailyPreorder') && myform.dailyPreorder.$error.min">
+                                    حداقل مقدار 0 وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.dailyPreorder.$dirty || submitted) && inputIsInvalid(myform.dailyPreorder.$valid,'dailyPreorder') && myform.dailyPreorder.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="dailyPreorder" class="col-sm-6 control-label bottom-margin-lg-imp right-direction">تخفیف
+                                روزانه(درصد)</label>
+                        </div>
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-6">
+                                <input tabindex="9" type="number" ng-maxlength="2" min="0" required ng-model="food.price.threeDaysPreOrderDiscountRate"
+                                    class="form-control right-text" name="threeDayPreorder" id="threeDayPreorder">
+                                <div class="error-message" ng-show="(myform.threeDayPreorder.$dirty || submitted) && inputIsInvalid(myform.threeDayPreorder.$valid,'threeDayPreorder') && myform.threeDayPreorder.$error.maxlength">
+                                    حداکثر 2 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.threeDayPreorder.$dirty || submitted) && inputIsInvalid(myform.threeDayPreorder.$valid,'threeDayPreorder') && myform.threeDayPreorder.$error.min">
+                                    حداقل مقدار 0 وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.threeDayPreorder.$dirty || submitted) && inputIsInvalid(myform.threeDayPreorder.$valid,'threeDayPreorder') && myform.threeDayPreorder.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="threeDayPreorder" class="col-sm-6 control-label bottom-margin-lg-imp right-direction">تخفیف
+                                سفارش سه روز
+                                قبل(درصد)</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-6">
+                                <input tabindex="7" type="number" ng-maxlength="15" min="0" required ng-model="food.price.containerPrice"
+                                    class="form-control text-right" name="containerPrice" id="containerPrice">
+                                <div class="error-message" ng-show="(myform.containerPrice.$dirty || submitted) && inputIsInvalid(myform.containerPrice.$valid,'containerPrice') && myform.containerPrice.$error.maxlength">
+                                    حداکثر 15 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.containerPrice.$dirty || submitted) && inputIsInvalid(myform.containerPrice.$valid,'containerPrice') && myform.containerPrice.$error.min">
+                                    حداقل مقدار 0 وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.containerPrice.$dirty || submitted) && inputIsInvalid(myform.containerPrice.$valid,'containerPrice') && myform.containerPrice.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="containerPrice" class="col-sm-6 control-label">هزینه ظرف</label>
+                        </div>
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-6">
+                                <input tabindex="8" type="number" ng-maxlength="2" min="0" required ng-model="food.price.oneDayPreOrderDiscountRate"
+                                    class="form-control text-right" name="oneDayPreorder" id="oneDayPreorder">
+                                <div class="error-message" ng-show="(myform.oneDayPreorder.$dirty || submitted) && inputIsInvalid(myform.oneDayPreorder.$valid,'oneDayPreorder') && myform.oneDayPreorder.$error.maxlength">
+                                    حداکثر 2 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.oneDayPreorder.$dirty || submitted) && inputIsInvalid(myform.oneDayPreorder.$valid,'oneDayPreorder') && myform.oneDayPreorder.$error.min">
+                                    حداقل مقدار 0 وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.oneDayPreorder.$dirty || submitted) && inputIsInvalid(myform.oneDayPreorder.$valid,'oneDayPreorder') && myform.oneDayPreorder.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="oneDayPreorder" class="col-sm-6 control-label bottom-margin-lg-imp right-direction">تخفیف
+                                سفارش یک روز
+                                قبل(درصد)</label>
+                        </div>
+                        <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                            <div class="col-sm-6">
+                                <input tabindex="10" type="number" ng-maxlength="2" min="0" required ng-model="food.price.sevenDaysPreOrderDiscountRate"
+                                    class="form-control right-text" name="sevenDayPreorder" id="sevenDayPreorder">
+                                <div class="error-message" ng-show="(myform.sevenDayPreorder.$dirty || submitted) && inputIsInvalid(myform.sevenDayPreorder.$valid,'sevenDayPreorder') && myform.sevenDayPreorder.$error.maxlength">
+                                    حداکثر 2 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.sevenDayPreorder.$dirty || submitted) && inputIsInvalid(myform.sevenDayPreorder.$valid,'sevenDayPreorder') && myform.sevenDayPreorder.$error.min">
+                                    حداقل مقدار 0 وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.sevenDayPreorder.$dirty || submitted) && inputIsInvalid(myform.sevenDayPreorder.$valid,'sevenDayPreorder') && myform.sevenDayPreorder.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="sevenDayPreorder" class="col-sm-6 control-label bottom-margin-lg-imp right-direction">تخفیف
+                                سفارش هفت روز
+                                قبل(درصد)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin__top_10 margin__bottom_20 left-text">
+                    <button ng-if="food.id" type="submit" class=" btn confirm_button confirm_yes padding-md fit-width no-margin-imp">
+                        بروزرسانی غذا
+                    </button>
+                    <button ng-if="!food.id" type="submit" class="btn confirm_button confirm_yes padding-md fit-width no-margin-imp">
+                        ثبت غذا
+                    </button>
+                    <button type="button" ng-click="goBack()" class="btn confirm_button confirm_no padding-md fit-width no-margin-imp">
+                        بازگشت
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="row flex wrap" ng-if="food.id" style="margin-bottom: 50px">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="روزها و ساعات عرضه این غذا" ba-panel-class="with-scroll">
+                <div include-with-scope="app/pages/restaurant/fooddetail/crud.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .panel.panel-blur {
+        background-position: unset !important;
+    }
+
+    .mycontent {
+        margin-right: 0px !important;
+    }
+    .userpic .userpic-wrapper {
+        height: 112px !important;
+    }
+</style>

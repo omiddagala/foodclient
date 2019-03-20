@@ -1,0 +1,80 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 120px">
+                <div class="al-sidebar-list-link default-curdor text-right">
+                    <div class="newmenu__search_title ">تاریخ</div>
+                </div>
+
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item " style="padding: 16px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(fromDate,true)" id="from" ng-model='fromDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{fromDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div class="default-back full-height">
+        <div style="background: #e2eded;padding-left: 16px;padding-top: 5%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable ">
+                                    <th st-sort="count">
+                                        <div class="newtable_header">تعداد</div>
+                                    </th>
+                                    <th st-sort="name">
+                                        <div class="newtable_header">نام</div>
+                                    </th>
+                                    <th id="triggerSearch" class="table-id" st-sort="food.id" st-sort-default="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in orders">
+                                    <td>{{item.count}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 30px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        padding-left: 20px !important;
+    }
+    .table{
+        min-width: 700px;
+    }
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>

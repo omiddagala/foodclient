@@ -1,0 +1,128 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+        </div>
+        <div style="height: 40%;padding-bottom: 9%">
+            <div class="food_detail_right">
+                <img src="{{selectedRest.imageAddress}}" style="height: 75%;object-fit: contain;width: 100%">
+
+            </div>
+            <div class="food_detail_left">
+                <div class="food_rate_wrapper flex" style="width: 40%">
+
+                </div>
+                <div style="position: relative;">
+
+                    <div style="width: calc(100% - 3em);overflow: auto;max-height: 3.5em;margin-right: 0;margin-left: auto;" class="food_detail_title">{{selectedRest.name}}</div>
+                    <div style="width: calc(100% - 3em);margin-right: 0;margin-left: auto;font-size: .8em;" class="food_detail_title">{{selectedRest.restaurantTypeInFarsi}}</div>
+                </div>
+                <!--<div style="height: 48%;max-height: 48%;margin-top: 2%;" class="food_detail_desc">-->
+                <!--توضیحات-->
+                <!--</div>-->
+            </div>
+            <div class="col-xs-100" style="position: relative;top:-26%">
+                <div class="food_detail_right">
+                    <div class="margin__top_10">
+                        <div style="width: 100%;float: right;text-align: center">
+                            <div class="food_detail_rates">متوسط کاربران</div>
+                            <div class="food_detail_rates">{{selectedRest.averageRate === 0 ? '-' :
+                                selectedRest.averageRate}}</div>
+                        </div>
+                        <!--<div style="width: 25%;float: right">-->
+                        <!--<div class="food_detail_rates">ارزیابی کارافید</div>-->
+                        <!--<div class="food_detail_rates">4.7</div>-->
+                        <!--</div>-->
+                        <!--<div style="width: 25%;float: right">-->
+                        <!--<div class="food_detail_rates">هم ذائقه ها</div>-->
+                        <!--<div class="food_detail_rates">4.7</div>-->
+                        <!--</div>-->
+                        <!--<div style="width: 25%;float: right">-->
+                        <!--<div class="food_detail_rates">انجمن تجربه گراها</div>-->
+                        <!--<div class="food_detail_rates">4.9</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="food_detail_left">
+                    <div style="position: relative;">
+                        <div class="res_detail_qute">امتیازشما به این رستوران</div>
+                        <div class="food_detail_stars text-left">
+                            <ul class="rating">
+                                <li ng-repeat="star in stars" ng-class="star" ng-click="rateRestaurant($index+1)">
+                                    &#8902
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div style="height: 50%;background: #e1e1e1;padding: 4% 15% 2%;">
+            <div ng-click="toggleComments()" class="margin__top_20">
+                <div id="comment_toggle_icon" style="background-image: url(/assets/img/ui/toggle-open.png);
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 5%;
+    height: 16px;
+    float: right;cursor: pointer;"></div>
+                <div style="float: right;font-size: small;color: #626262;width: 95%;text-align: right;cursor: pointer;">نظرات
+                    کاربران
+                </div>
+            </div>
+            <div id="food_comments" class="comments__wrapper">
+                <div ng-repeat="c in comments">
+                    <div class="comments__name">
+                        {{c.employee.name}}
+                    </div>
+                    <div class="comments__date">
+                        {{myFormatDate(c.date)}}
+                    </div>
+                    <div class="comments__text">
+                        {{c.comment}}
+                    </div>
+                </div>
+            </div>
+            <div style="height: 20%;padding-left: 5%;padding-right: 5%;width: 100%;padding-top: 5%">
+                <form novalidate ng-submit="forms.myform.$valid && addComments()" name="forms.myform" class="ui reply form">
+                    <div>
+                        <input type="text" ng-model="commentInDetail" id="commentInDetail" name="commentInDetail"
+                            required ng-maxlength="250" ng-minlength="2" placeholder="افزودن نظر شما" style="background: rgba(256,256,256,0.1);text-align: right;direction: rtl;color: #9d9d9d;border-radius: 16px;padding: 0 10px;height: 24px" />
+                        <div class="error-message" ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                        <div class="error-message" ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.maxlength">
+                            حداکثر 250 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message" ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.minlength">
+                            حداقل 2 کاراکتر وارد کنید
+                        </div>
+                    </div>
+                    <div style="text-align: left;" class="button-wrapper">
+                        <button type="submit" style="padding: 0;width: 60px;" class="btn red__button btn-raised">ارسال
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    .modal .modal-dialog {
+        height: 80% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+</style>

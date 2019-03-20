@@ -1,0 +1,231 @@
+<div style="position: relative;height: 100%; overflow: auto;">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div class="confirm_header_title padding-md">
+                پروفایل
+            </div>
+        </div>
+        <div style="height: 50%;padding-bottom: 9%">
+
+        </div>
+        <div class="map" style="height: 40%;background: #e1e1e1;padding: 9% 15% 2%;">
+
+        </div>
+    </div>
+    <div class="profile__body relative block">
+        <div ng-controller="companyProfileCtrl" ng-init="initCtrl()" class="panel-content">
+            <div class="form_top_margin relative">
+                <div class="userpic" style="width: 115px;border: none; height: 115px; position: absolute; cursor: pointer; right: 20px;">
+                    <img style="border-radius: 50%" ng-src="{{ restInfo.imageAddress }}" ng-click="uploadPicture()">
+                    <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="restInfo.imageAddress !== 'assets/img/defaults/default-company.png'"></i>
+                    <input type="file" ng-show="false" id="uploadFile">
+                </div>
+                <div style="position: absolute;width: 75%;left: 0;text-align: right">
+                    <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)" novalidate style="padding-left: 30px">
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" id="name"
+                                    placeholder="" value="{{restInfo.name}}">
+                            </div>
+                            <label for="name" class="col-sm-4 col-xs-12 control-label">نام</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="number" ng-disabled="true" class="confirm_input form-control" id="inputOccupation"
+                                    placeholder="" value="{{restInfo.address.phone}}">
+                            </div>
+                            <label for="inputOccupation" class="col-sm-4 col-xs-12 control-label">تلفن</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" id="userName"
+                                    placeholder="" value="{{restInfo.userName}}">
+                            </div>
+                            <label for="userName" class="col-sm-4 col-xs-12 control-label">نام کاربری</label>
+                        </div>
+
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" id="inputFirstName"
+                                    placeholder="" value="{{restInfo.address.address}}">
+                            </div>
+                            <label for="inputFirstName" class="col-sm-4 col-xs-12 control-label">آدرس</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="number" ng-disabled="true" class="confirm_input form-control" id="inputLastName"
+                                    placeholder="" value="{{restInfo.address.mobile}}">
+                            </div>
+                            <label for="inputLastName" class="col-sm-4 col-xs-12 control-label">موبایل</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="6" ng-model="restInfo.nationalIdentity" name="nationalIdentity"
+                                    type="text" class="confirm_input form-control" id="nationalIdentity">
+                            </div>
+                            <label for="nationalIdentity" class="col-sm-4 col-xs-12 control-label">شناسه ملی اقتصادی</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="6" ng-model="restInfo.economyCode" name="economyCode"
+                                    type="text" class="confirm_input form-control" id="economyCode">
+                            </div>
+                            <label for="economyCode" class="col-sm-4 col-xs-12 control-label">کد اقتصادی</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="6" ng-model="restInfo.managerName" name="managerName"
+                                    type="text" class="confirm_input form-control" id="managerName">
+                            </div>
+                            <label for="managerName" class="col-sm-4 col-xs-12 control-label">مدیریت شرکت</label>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-8 bottom-margin-lg text-left">
+                                <button type="button" ng-click="$dismiss()" class="confirm_button confirm_no btn">
+                                    بازگشت
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile__map_wrapper">
+        <div style="text-align: right;color: #575757">
+            محل شرکت
+        </div>
+        <div class="row profile__map">
+            <div id="map" style="height: 100%;width: 100%"></div>
+        </div>
+    </div>
+</div>
+<style>
+    @media (max-height: 800px) {
+        .modal .modal-dialog .profile__body {
+            height: 60% !important;
+        }
+    }
+
+    @media (max-height: 700px) {
+        .map {
+            height: 300px !important;
+        }
+    }
+
+    @media (max-height: 800px) and (min-height: 601px) and (min-width: 1025px) {
+        .modal-dialog .modal-content .profile__body {
+            top: 3.5em;
+        }
+
+        .panel-content .form_top_margin {
+            padding-top: 3%;
+        }
+
+        .modal-dialog .modal-content .newmodal_small_logo {
+            width: 64px !important;
+            height: 28px !important;
+        }
+    }
+
+    @media (max-height: 600px) {
+        .modal-dialog .modal-content .profile__body {
+            top: 3.5em;
+        }
+
+        .modal-dialog .modal-content .newmodal_small_logo {
+            width: 64px !important;
+            height: 28px !important;
+        }
+    }
+
+    .modal-dialog .modal-content .panel-content .form_top_margin {
+        padding-top: 3%;
+    }
+
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    .modal .modal-dialog {
+        height: 90% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    .profile__map_wrapper {
+        top: 5.5em !important;
+        position: relative !important;
+    }
+
+    .modal-content .profile__body {
+        padding-top: 0;
+        padding-bottom: 20px;
+    }
+
+    .modal-content .profile__map_wrapper .profile__map {
+        height: 170px !important;
+        margin-left: 0 !important;
+    }
+
+    .modal-content {
+        top: 0 !important;
+        height: 100% !important;
+        max-height: 800px;
+    }
+
+    .modal-dialog.modal-lg {
+        max-height: 800px;
+    }
+    .map {
+            min-height: 320px;
+        }
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    #form .form-control{
+        min-height: unset !important;
+        height: 32px !important;
+    }
+    
+@media (min-height: 880px) {
+    .form-control{
+        height: 40px !important;
+    }
+}    
+@media (max-width: 800px) {
+    .modal-content .profile__body{
+        width: 85%;
+    }
+    .modal-content .profile__map_wrapper{
+        width: 85%;
+    }
+}
+
+@media (max-width: 1024px) and (max-height: 800px){
+    .col-sm-8.bottom-margin-lg.text-left{
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 801px) and (min-height: 800px) and (max-height: 963px){
+    .col-sm-8.bottom-margin-lg.text-left{
+        padding-left: 0px;
+    }
+}
+.modal-content .col-sm-8{
+    padding: 0 !important;
+}
+.modal-content .row{
+    margin-left: 0 !important;
+}
+</style>

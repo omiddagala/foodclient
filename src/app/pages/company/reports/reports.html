@@ -1,0 +1,114 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li id="food-search" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item"
+                style="height: 220px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 67px" src="/assets/img/ui/report-filter.png">
+                    <div class="newmenu__search_title top-padding-md">نام</div>
+                </div>
+
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu=""
+                    style="display: block;">
+                    <li style="padding: 15px; padding-right: 0;"
+                        ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item">
+                        <div>
+                            <input ng-model="name" ng-change="sideSearch()" type="text" class="form-control" id="foodName"
+                                   placeholder="جستجو">
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 120px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">تاریخ</div>
+                </div>
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="commissionDateChanged(commissionDate)" ng-model='commissionDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{commissionDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true,imgsrc:"xxxx"}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">فاکتورهای کارافید</div>
+                </div>
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div style="text-align: center;">
+                            <div style="height: 72px">
+                                <img style="width: 72px;" src="/assets/img/ui/download.png">
+                            </div>
+                            <button ng-click="factorsOfKarafeed()" style="width: 8em;" class="confirm_button confirm_yes btn">دریافت
+                                فایل
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="mycontent widgets" style="background: #e2eded;padding-left: 16px;padding-bottom: 25%;padding-top: 5%">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="horizontal-scroll">
+                <table class="table" st-table="foods" refresh-table>
+                    <thead>
+                    <tr class="sortable ">
+                        <th>
+                            <div class="newtable_header">عملیات</div>
+                        </th>
+                        <th st-sort="transactionDate">
+                            <div class="newtable_header">نام</div>
+                        </th>
+                        <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="r in rests">
+                        <td>
+                            <div class="buttons">
+                                <button class="confirm_button confirm_yes btn"
+                                        ng-click="restaurantFactor(r.id,r.name)">
+                                    دریافت فاکتورها
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{r.name}}</td>
+                        <td class="table-id">{{$index+1}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="12" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize"
+                                 st-displayed-pages="10"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-left: 12px !important;
+    }
+</style>

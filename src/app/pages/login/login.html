@@ -1,0 +1,65 @@
+<div style="width: 100%;height: 100%">
+    <div class="login-stage" style="width: 40%;height: 100%;float: right;padding-top: 10%;text-align: right;padding-right: 10%;direction: rtl">
+
+        <div style="width: 100%;height: 65px;background-image: url('/assets/img/ui/login-logo.png');background-size: contain;background-repeat: no-repeat;background-position-x: right"></div>
+        <div class="margin__top_15 text-line" style="color: #1a4049;font-size: medium;line-height: 1.6;max-width: 23.7em;text-align: justify;direction: rtl">رویکردی
+            متفاوت به تهیه وعده های غذایی شرکت ها و ادارات</div>
+
+        <form name="myform" class="form-horizontal margin__top_15" ng-submit="login()" style="max-width: 27.2em;">
+            <div class="form-group">
+
+                <label for="username" style="font-weight: bold;white-space: nowrap;" class="col-sm-3 col-xs-12 control-label pull-right">نام
+                    کاربری</label>
+                <div class="col-sm-9 col-xs-12 bottom-margin-md">
+                    <input ng-model="username" name="username" required type="text" class="confirm_input form-control" id="username" placeholder="">
+                    <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label for="pass" style="font-weight: bold;white-space: nowrap;" class="col-sm-3 col-xs-12 control-label pull-right">رمز
+                    عبور</label>
+                <div class="col-sm-9 col-xs-12">
+                    <input ng-model="pass" name="pass" ng-maxlength="60" required type="password" class="confirm_input form-control" id="pass" placeholder="">
+                    <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.maxlength">
+                        حداکثر 60 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+            </div>
+            <div class="form-group top-padding-md" style="text-align: left;margin-bottom: 8px;margin-left: 0">
+                <a style="color: rgba(26, 64, 73, 0.36);font-size: 0.8em;" href="#/forget">رمز عبور را فراموش کرده ام</a>
+            </div>
+            <div id="captcha_container" style="direction: ltr"></div>
+            <span class="msg-error error " style="color: rgba(26, 64, 73, 0.36);font-size: 0.8em;margin-bottom: 10px"></span>
+            <div class="inline-block" style="width: 100%;text-align: left">
+                <button type="submit" style="margin-left:0;width:5em;" class="confirm_button confirm_yes btn">
+                    ورود
+                </button>
+            </div>
+        </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=loadCaptcha&render=explicit" async defer></script>
+
+    </div>
+    <div class="login-img" style="width: 60%;height: 100%;float: left;background-image: url('/assets/img/ui/login.png');background-repeat: no-repeat;background-size: contain">
+
+    </div>
+</div>
+<style>
+    .msg-error {
+        color: #c64105;
+        font-size: medium;
+    }
+
+    span.msg-error.error {
+        float: left;
+        margin-top: 8px;
+    }
+</style>

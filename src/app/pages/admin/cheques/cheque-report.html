@@ -1,0 +1,89 @@
+<div include-with-scope="page-top.html"></div>
+<div class="widgets mycontent" ng-init="initCtrl()" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="گزارش چک" ba-panel-class="with-scroll">
+                <div>
+                    <div class="form-group a0 full-width">
+                        <!-- <div class="a1">
+                            <div>
+                                <div class="a2">
+                                    تعداد
+                                </div>
+                                <div class="a3">
+                                    <select class="form-control selectpicker" data-style="btn-primary" title="Rows on page"
+                                        selectpicker style="text-align:right;" ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="a4  bottom-margin-lg">
+                            <div class="col-xs-12 no-padding right-text">
+                                <div class="a5 col-xs-12 defult-color bottom-margin-lg top-margin-lg">
+                                    از تاریخ
+                                </div>
+                                <div class="a6 right-float">
+                                    <adm-dtp on-datechange="dateChanged(fromDate,true)" id="from" ng-model='fromDate'
+                                        options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{fromDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 no-padding right-text">
+                                <div class="a5 col-xs-12 defult-color bottom-margin-lg top-margin-lg">
+                                    تا تاریخ
+                                </div>
+                                <div class="a6 right-float">
+                                    <adm-dtp on-datechange="dateChanged(toDate,false)" id="to" ng-model='toDate'
+                                        options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{toDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+                                </div>
+                            </div>
+                            <div class="remove-float"></div>
+                        </div>
+                    </div>
+                    <div class="horizontal-scroll full-width">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable ">
+                                    <th st-sort="deliveryPrice">
+                                        <div class="newtable_header">
+                                            مبلغ
+                                        </div>
+                                    </th>
+                                    <th st-sort="transactionDate">
+                                        <div class="newtable_header">
+                                            تاریخ بروزرسانی
+                                        </div>
+                                    </th>
+                                    <th st-sort="description">
+                                        <div class="newtable_header">
+                                            توضیحات
+                                        </div>
+                                    </th>
+                                    <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true">
+                                        <div class="newtable_header">
+                                            ردیف
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in orders">
+                                    <td>{{item.amount}}</td>
+                                    <td>{{myFormatDate(item.updateDate)}}</td>
+                                    <td>{{item.description}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

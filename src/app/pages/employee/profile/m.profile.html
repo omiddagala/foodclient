@@ -1,0 +1,371 @@
+<!-- header & footer -->
+<!-- <div include-with-scope="mobile-page-top.html"></div> -->
+
+<!-- -->
+<div ng-controller="ProfilePageCtrl" class="profile-pag no-padding-bottom-imp" ng-init="initCtrl()">
+    <div
+        class="card transparent-back w-95 mobile-card auto-height flex flex-col items-center content-evenly right-direction no-box-shadow no-padding-imp margin-center un-overflow">
+        <div
+            class="w-100 top-padding-lg bottom-padding-lg back-a2cece flex flex-col items-center content-evenly right-direction relative dark-box-shadow-l-b">
+            <div class="m-w-50 no-full-width bottom-vertical-align">
+                <img class="redius-xl w-100" ng-src="{{ employee.imageAddress }}" ng-click="uploadPicture()">
+            </div>
+            <!-- <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="employee.imageAddress !== 'assets/img/defaults/default-mobile-employee.png'"></i> -->
+            <img src="../../../../assets/img/ui/mobile/edit.png" class="absolute top-4 left-4 w-5" alt="">
+            <input type="file" ng-show="false" id="uploadFile">
+        </div>
+        <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)"
+            class="w-100 flex flex-col items-center" novalidate>
+
+            <div
+                class="w-100 padding-4 white-back flex items-center content-between dark-box-shadow-l-b z-index-1 bottom-margin-4">
+                <div class="flex items-center m-w-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 70 70" width="50"
+                        height="50">
+                        <path fill="#A1A2A3" fill-rule="evenodd"
+                            d="M23.486.983C11.065.983.983 11.29.983 23.989c0 12.701 10.082 23.006 22.503 23.006S45.991 36.69 45.991 23.989C45.991 11.29 35.907.983 23.486.983zm0 6.904c3.737 0 6.751 3.08 6.751 6.9 0 3.819-3.014 6.901-6.751 6.901-3.735 0-6.748-3.082-6.748-6.901 0-3.82 3.013-6.9 6.748-6.9zm0 32.667c-5.624 0-10.597-2.944-13.499-7.409.067-4.576 8.999-7.085 13.499-7.085 4.479 0 13.436 2.509 13.502 7.085-2.901 4.465-7.874 7.409-13.502 7.409z" />
+                    </svg>  
+                    <div class="m-w-70">
+                        <input ng-disabled="true" type="text" ng-maxlength="150" required
+                            class="transparent-back black-color" name="userName" id="userName"
+                            ng-model="employee.userName">
+                        <div class="error-message"
+                            ng-show="(myform.userName.$dirty || submitted) && inputIsInvalid(myform.userName.$valid,'userName') && myform.userName.$error.maxlength">
+                            حداکثر 150 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="(myform.userName.$dirty || submitted) && inputIsInvalid(myform.userName.$valid,'userName') && myform.userName.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                    </div>
+                </div>
+                <div class="user-rate left-direction flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position pointer" viewBox="0 0 40 40"
+                        width="25" height="25">
+                        <path fill="#FFC700" fill-rule="evenodd"
+                            d="M17.265.859l5.47 10.461 11.121 2.254-7.741 8.718 1.404 11.853-10.254-5.073-10.256 5.073 1.407-11.853-7.742-8.718 11.122-2.254L17.265.859" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position pointer" viewBox="0 0 40 40"
+                        width="25" height="25">
+                        <path fill="#FFC700" fill-rule="evenodd"
+                            d="M17.265.859l5.47 10.461 11.121 2.254-7.741 8.718 1.404 11.853-10.254-5.073-10.256 5.073 1.407-11.853-7.742-8.718 11.122-2.254L17.265.859" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position pointer" viewBox="0 0 40 40"
+                        width="25" height="25">
+                        <path fill="#FFC700" fill-rule="evenodd"
+                            d="M17.265.859l5.47 10.461 11.121 2.254-7.741 8.718 1.404 11.853-10.254-5.073-10.256 5.073 1.407-11.853-7.742-8.718 11.122-2.254L17.265.859" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position pointer" viewBox="0 0 40 40"
+                        width="25" height="25">
+                        <path fill="#bcbec0" fill-rule="evenodd"
+                            d="M17.265.859l5.47 10.461 11.121 2.254-7.741 8.718 1.404 11.853-10.254-5.073-10.256 5.073 1.407-11.853-7.742-8.718 11.122-2.254L17.265.859" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position pointer" viewBox="0 0 40 40"
+                        width="25" height="25">
+                        <path fill="#bcbec0" fill-rule="evenodd"
+                            d="M17.265.859l5.47 10.461 11.121 2.254-7.741 8.718 1.404 11.853-10.254-5.073-10.256 5.073 1.407-11.853-7.742-8.718 11.122-2.254L17.265.859" />
+                    </svg>
+                </div>
+            </div>
+
+            <div
+                class="w-100 padding-4 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4">
+
+                <div class="w-100  flex items-center content-between">
+                    <div class="w-60 items-center flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 70 70"
+                            width="50" height="50">
+                            <path fill="#A1A2A3" fill-rule="evenodd"
+                                d="M23.486.983C11.065.983.983 11.29.983 23.989c0 12.701 10.082 23.006 22.503 23.006S45.991 36.69 45.991 23.989C45.991 11.29 35.907.983 23.486.983zm0 6.904c3.737 0 6.751 3.08 6.751 6.9 0 3.819-3.014 6.901-6.751 6.901-3.735 0-6.748-3.082-6.748-6.901 0-3.82 3.013-6.9 6.748-6.9zm0 32.667c-5.624 0-10.597-2.944-13.499-7.409.067-4.576 8.999-7.085 13.499-7.085 4.479 0 13.436 2.509 13.502 7.085-2.901 4.465-7.874 7.409-13.502 7.409z" />
+                        </svg>
+                        <div class="w-100">
+                            <input ng-disabled="true" type="text" ng-maxlength="8" class="transparent-back black-color"
+                                name="family" id="family" ng-model="employee.name">
+                        </div>
+                    </div>
+                    <div class="w-40 left-padding-md">
+                        <input ng-disabled="true" type="text" class="transparent-back black-color left-text w-100"
+                            id="personnelCode" ng-model="employee.personnelCode">
+                    </div>
+                </div>
+
+                <div class="w-100 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 70 70" width="50"
+                        height="50">
+                        <path fill="#A1A2A3" fill-rule="evenodd"
+                            d="M22.003.009C9.848.009-.005 9.853-.005 21.997c0 12.145 9.853 21.989 22.008 21.989 12.154 0 22.007-9.844 22.007-21.989C44.01 9.853 34.157.009 22.003.009zM35.308 30.83c-.645.644-2.527 2.626-5.356 2.626-2.83 0-9.567-2.3-13.156-5.887-3.59-3.587-6.778-7.225-7.531-10.534-.752-3.312-.651-4.808.275-6.172 0 0 1.51-2.633 2.738-2.783 1.23-.152 2.812-.152 3.238.651.427.802 2.335 5.469 2.335 5.469s.327.803-.175 1.58-1.631 1.907-1.631 1.907-.628.802 0 1.655c.628.852 1.6 2.42 3.614 4.43 2.013 2.013 5.875 3.446 5.875 3.446s.552.075.905-.276c.35-.351 2.259-2.734 2.259-2.734s.612-.789 1.63-.326c1.018.464 5.423 2.659 5.423 2.659s.515.188.515.966c0 .777-.314 2.68-.958 3.323z" />
+                    </svg>
+
+                    <div class="w-100">
+                        <input type="tel" class="transparent-back black-color" ng-maxlength="11" ng-minlength="11"
+                            required name="mobile" ng-model="employee.address.mobile" id="mobile">
+                        <div class="error-message"
+                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                            حداکثر 11 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                            حداقل 11 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 70 70" width="50"
+                        height="50">
+                        <path fill="#A1A2A3" fill-rule="evenodd"
+                            d="M22.003.009C9.848.009-.005 9.853-.005 21.997c0 12.145 9.853 21.989 22.008 21.989 12.154 0 22.007-9.844 22.007-21.989C44.01 9.853 34.157.009 22.003.009zM35.308 30.83c-.645.644-2.527 2.626-5.356 2.626-2.83 0-9.567-2.3-13.156-5.887-3.59-3.587-6.778-7.225-7.531-10.534-.752-3.312-.651-4.808.275-6.172 0 0 1.51-2.633 2.738-2.783 1.23-.152 2.812-.152 3.238.651.427.802 2.335 5.469 2.335 5.469s.327.803-.175 1.58-1.631 1.907-1.631 1.907-.628.802 0 1.655c.628.852 1.6 2.42 3.614 4.43 2.013 2.013 5.875 3.446 5.875 3.446s.552.075.905-.276c.35-.351 2.259-2.734 2.259-2.734s.612-.789 1.63-.326c1.018.464 5.423 2.659 5.423 2.659s.515.188.515.966c0 .777-.314 2.68-.958 3.323z" />
+                    </svg>
+                    <div class="w-100">
+                        <input type="tel" ng-minlength="4" ng-maxlength="100" required
+                            class="transparent-back black-color" id="phone" name="phone"
+                            ng-model="employee.address.phone">
+                        <div class="error-message"
+                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                            حداکثر 11 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                            حداقل 11 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 70 70" width="50"
+                        height="50">
+                        <path fill="#A1A2A3" fill-rule="evenodd"
+                            d="M21.493 42.999c-11.876 0-21.506-9.627-21.506-21.504 0-11.876 9.63-21.504 21.506-21.504s21.503 9.628 21.503 21.504c0 11.877-9.627 21.504-21.503 21.504zm.51-37.04c-5.545-.172-10.177 4.185-10.349 9.729-.217 7.081 9.39 21.344 9.39 21.344s10.47-13.642 10.689-20.724c.171-5.544-4.184-10.178-9.73-10.349zm-5.044 9.357a4.755 4.755 0 1 1 9.503.295 4.755 4.755 0 0 1-9.503-.295z" />
+                    </svg>
+                    <div class="w-100">
+                        <input ng-disabled="true" type="text" ng-maxlength="150" required
+                            class="transparent-back black-color" name="adr" id="adr"
+                            ng-model="employee.address.address">
+                        <div class="error-message"
+                            ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
+                            حداکثر 150 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div
+                class="w-100 padding-4 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4 relative">
+                <div class="color-319ab1 w-100 text-right font-large line-height-initial bottom-margin-4">
+                    Bio
+                </div>
+                <textarea class="w-100 no-resize" name="desc" ng-maxlength="500"
+                    ng-model="employee.employeeInfo.biography" id="desc"
+                    placeholder="و دنیای شغلی شما چه آب و رنگی دارد؟" class="transparent-back"></textarea>
+                <div class="error-message"
+                    ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
+                    حداکثر 500 کاراکتر وارد کنید
+                </div>
+            </div>
+
+            <div
+                class="w-100 padding-4 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4">
+
+                <div class="color-319ab1 w-100 text-right font-large line-height-initial bottom-margin-4">
+                    ملاحظات رژیمی
+                </div>
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.obesityDiet" type="checkbox" id="obesityDiet"
+                            name="obesityDiet">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        رژیم غذایی چاقی
+                    </div>
+                </div>
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.slimmingDiet" type="checkbox" id="slim" name="slim"
+                            value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        رژیم غذایی لاغری
+                    </div>
+                </div>
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.sugarDiet" type="checkbox" id="sugar" name="sugar"
+                            value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        رژیم غذایی قند
+                    </div>
+                </div>
+                <div class="w-100 wrap flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.sugarDiet" type="checkbox" id="" name="" value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4 fit-width">
+                        حساسیت غذایی به
+                    </div>
+                    <!-- <div class="right-padding-4">
+                        <input type="text" ng-maxlength="500" placeholder="" class="full-width" name="allergicTo" id="allergicTo"
+                            ng-model="employee.employeeInfo.foodAllergy">
+                        <div class="error-message" ng-show="(myform.allergicTo.$dirty || submitted) && inputIsInvalid(myform.allergicTo.$valid,'allergicTo') && myform.allergicTo.$error.maxlength">
+                            حداکثر 500 کاراکتر وارد کنید
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+
+
+            <div
+                class="w-100 padding-4 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4">
+
+                <div class="color-319ab1 w-100 text-right font-large line-height-initial bottom-margin-4">
+                    سبک غذایی
+                </div>
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.vegetarian" type="checkbox" id="veg" name="veg">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        گیاهخوار: حیوانات را دوست دارم، البته نه به عنوان غذا
+                    </div>
+                </div>
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.tourists" type="checkbox" id="tourist" name="tourist"
+                            value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        جهانگرد: به غذاهای اقوام و ملت های دیگر علاقه خاصی دارم
+                    </div>
+                </div>
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.experimenter" type="checkbox" id="experiment"
+                            name="experiment" value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        تجربه گر: دوست دارم غذاهایی با طعم ها و روش هایی متفاوت را تجربه کنم
+                    </div>
+                </div>
+                <div class="w-100 wrap flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.conservative" type="checkbox" id="cons" name="cons"
+                            value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4 fit-width">
+                        محافظه کار: همان غذاهای آشنا را ترجیح میدهم
+                    </div>
+                </div>
+                <div class="w-100 wrap flex items text-right line-height-initial bottom-margin-2">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.conservative" type="checkbox" id="cons" name="cons"
+                            value="true">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4 fit-width">
+                        محافظه کار: همان غذاهای آشنا را ترجیح میدهم
+                    </div>
+                </div>
+
+            </div>
+
+            <div
+                class="w-100 padding-4 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4 text-center">
+                <div class="w-100 flex items text-right line-height-initial bottom-margin-4">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input ng-model="employee.employeeInfo.adviceRequest" type="checkbox" id="advice" name="advice">
+                        <span class="white-color-imp"></span>
+                    </label>
+                    <div class="right-padding-4">
+                        مایلم مشاوره های تغذیه دریافت کنم
+                    </div>
+                </div>
+                <div class="w-100">
+                    <div class="col-xs-6 flex flex-col-xs top-margin-lg">
+                        <label
+                            class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">جنسیت</label>
+
+                        <select ng-disabled="!employee.employeeInfo.adviceRequest" class="form-control btn-primary"
+                            ng-model="employee.employeeInfo.gender" data-style="btn-primary" selectpicker>
+                            <option class="black-color" value="FEMALE">زن</option>
+                            <option class="black-color" value="MEN">مرد</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 flex flex-col-xs top-margin-lg">
+                        <label
+                            class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">سن</label>
+
+                        <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
+                            placeholder="" class="confirm_input form-control" name="age" id="age"
+                            ng-model="employee.employeeInfo.age">
+                        <div class="error-message"
+                            ng-show="(myform.age.$dirty || submitted) && inputIsInvalid(myform.age.$valid,'age') && myform.age.$error.maxlength">
+                            حداکثر 3 رقم وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="myform.age.$valid && isNotNumber(employee.employeeInfo.age)">
+                            لطفا عدد وارد کنید
+                        </div>
+                    </div>
+                    <div class="col-xs-6 flex flex-col-xs top-margin-lg">
+                        <label
+                            class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">وزن</label>
+                        <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
+                            placeholder="" class="confirm_input form-control" name="weight" id="weight"
+                            ng-model="employee.employeeInfo.weight">
+                        <div class="error-message"
+                            ng-show="(myform.weight.$dirty || submitted) && inputIsInvalid(myform.weight.$valid,'weight') && myform.weight.$error.maxlength">
+                            حداکثر 3 رقم وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="myform.weight.$valid && isNotNumber(employee.employeeInfo.weight)">
+                            لطفا عدد وارد کنید
+                        </div>
+                    </div>
+                    <div class="col-xs-6 flex flex-col-xs top-margin-lg">
+                        <label
+                            class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">قد</label>
+                        <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
+                            placeholder="" class="confirm_input form-control" name="myheight" id="myheight"
+                            ng-model="employee.employeeInfo.height">
+                        <div class="error-message"
+                            ng-show="(myform.myheight.$dirty || submitted) && inputIsInvalid(myform.myheight.$valid,'myheight') && myform.myheight.$error.maxlength">
+                            حداکثر 3 رقم وارد کنید
+                        </div>
+                        <div class="error-message"
+                            ng-show="myform.myheight.$valid && isNotNumber(employee.employeeInfo.height)">
+                            لطفا عدد وارد کنید
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="btn candy-back white-color left-padding-4 right-padding-4 font-bold top-margin-lg">تایید
+            </button>
+
+        </form>
+
+    </div>
+</div>

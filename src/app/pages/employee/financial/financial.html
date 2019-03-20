@@ -1,0 +1,139 @@
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; height: 100%">
+        <ul class="al-sidebar-list sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 220px">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <img style="width: 48px" src="/assets/img/ui/report-filter.png">
+                    <div class="newmenu__search_title">فیلتر</div>
+                </div>
+
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li style="padding: 15px" ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item">
+                        <div>
+                            <select ng-change="reportTypeChanged(reportType)" class="form-control btn-primary" ng-model="reportType"
+                                data-style="btn-primary" selectpicker>
+                                <option style="color: black" value="ALL">همه</option>
+                                <option style="color: black" value="DEPOSIT">واریزی ها</option>
+                                <option style="color: black" value="WITHDRAW">برداشتی ها</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 120px">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <div class="newmenu__search_title">از تاریخ</div>
+                </div>
+
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li style="padding: 15px" ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(fromDate,true)" id="from" ng-model='fromDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{fromDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 120px">
+                <div style="text-align: right;cursor: default;" class="al-sidebar-list-link">
+                    <div class="newmenu__search_title">تا تاریخ</div>
+                </div>
+
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li style="padding: 15px" ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(toDate,false)" id="to" ng-model='toDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{toDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<div class="mycontent widgets" ng-init="initCtrl()">
+    <div class="content__wrapper">
+        
+        <div style="background: #e2eded;padding-left: 16px;padding-top: 5%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">عملیات</div>
+                                    </th>
+                                    <th st-sort="previousBalance">
+                                        <div class="newtable_header">نوع</div>
+                                    </th>
+                                    <th st-sort="newBalance">
+                                        <div class="newtable_header">مبلغ</div>
+                                    </th>
+                                    <th st-sort="transactionDate">
+                                        <div class="newtable_header">تاریخ</div>
+                                    </th>
+                                    <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in orders">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/employee/financial/financial-modal.html', 'lg',$index)">
+                                                مشاهده
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>{{getTransactionType(item.transactionTypeEnum)}}</td>
+                                    <td>{{formatPrice(item.totalAmount)}}</td>
+                                    <td>{{myFormatDate(item.transactionDate)}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<aside class="al-sidebar sabad__">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 90% !important;">
+        <ul id="sabad-side" class="al-sidebar-list" style="overflow:hidden;width: auto; height: 100%;padding-top: 0;">
+        </ul>
+    </div>
+</aside>
+<style>
+    /* .mycontent {
+        margin-left: 10px !important;
+    } */
+
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    /* .menu-top {
+        left: 10px;
+    }
+    @media (min-width: 2048px) {
+        .menu-top {
+            left: calc(50% - 162px);
+            width: 1685px;
+        }
+    } */
+</style>

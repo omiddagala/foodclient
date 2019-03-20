@@ -1,0 +1,29 @@
+<div class="modal-content">
+    <div class="modal-header bg-info">
+        <i class="ion-flame modal-icon"></i><span>تغییر رمز عبور خیریه</span>
+    </div>
+    <div class="modal-body text-center">
+        <div class="row">
+            <div class="form-group row clearfix">
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" name="newPass" required id="newPass"
+                           style="text-align:right;color: white">
+                </div>
+                <label for="newPass" class="col-sm-3 control-label">رمز عبور جدید</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group row clearfix">
+                <div class="col-sm-9">
+                    <input name="newPass2" type="password" class="form-control" id="newPass2"
+                           style="text-align:right;color: white">
+                </div>
+                <label for="newPass2" class="col-sm-3 control-label">تکرار رمز عبور جدید</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" ng-click="$dismiss()">لغو</button>
+        <button type="button" class="btn btn-info" ng-click="changePass()">ثبت</button>
+    </div>
+</div>

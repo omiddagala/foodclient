@@ -1,0 +1,44 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi"/>
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body" style="height: 95%; padding-bottom: 10px;">
+        <div class="confirm_icon"></div>
+        <div class="confirm_question">
+            آیا از تسویه با کاربر اطمینان دارید؟
+        </div>
+        <div class="confirm_button_wrapper left-padding-lg">
+            <button type="button" style="width: 4em;" class="confirm_button confirm_no btn" ng-click="$dismiss()">خیر</button>
+            <button type="button" style="width: 4em;" class="confirm_button confirm_yes btn" ng-click="doSettle()">بله</button>
+        </div>
+    </div>
+</div>
+<style>
+    /* .modal-open .modal {
+        height: 100%;
+    } */
+
+    .modal .modal-dialog {
+        height: 24% !important;
+    }
+    .confirm_body {
+        top: 28% !important;
+    }
+    .btn.confirm_no {
+        margin-bottom: 5px !important;
+    }
+
+    /* .modal-content {
+        height: 30%;
+        top: 30%;
+    } */
+</style>
+

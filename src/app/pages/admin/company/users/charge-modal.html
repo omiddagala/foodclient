@@ -1,0 +1,80 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi"/>
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div class="confirm_header_title padding-md">
+                انتقال وجه
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body" style="padding-top: 40px;padding-left: 40px">
+        <form name="myform" ng-submit="myform.$valid && doCharge(myform)" novalidate>
+            <div class="modal-body text-center">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <input type="number" ng-maxlength="10" required name="amount" ng-model="amount" class="confirm_input form-control" id="amount">
+                        <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.maxlength">
+                            حداکثر 10 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                    </div>
+                    <label for="amount" class="col-sm-3 control-label">مبلغ مورد نظر</label>
+                </div>
+                <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-9">
+                            <textarea class="confirm_input form-control" name="desc" ng-maxlength="150" ng-model="desc"
+                                      id="desc"
+                                      style="text-align:right;direction: rtl"></textarea>
+                            <div class="error-message" ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
+                                حداکثر 150 کاراکتر وارد کنید
+                            </div>
+                        </div>
+                        <label for="desc" class="col-sm-3 control-label">توضیحات</label>
+                </div>
+                <div style="margin-top: 30px">
+                    <div class="col-sm-5">
+                        <button type="submit" style="width: 52px" class="confirm_button confirm_yes">ثبت</button>
+                        <button type="button" ng-click="$dismiss()" style="float: left;width: 52px"
+                                class="confirm_button confirm_no"> بازگشت
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<style>
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    .modal .modal-dialog {
+        height: 50% !important;
+        top: 50%;
+    transform: translateY(-50%) !important;
+    }
+
+    .modal-content {
+        height: 60%;
+        top: 50%;
+    }
+    .btn-group button.btn.btn-primary {
+        border-color: #dfdfdf !important;
+        background: #ebebeb !important;
+        height: 42px;
+    }
+    .open > .btn.dropdown-toggle.btn.btn-primary {
+        background: #ebebeb !important;
+        border-color: #ebebeb !important;
+        background-color: #ebebeb !important;
+    }
+</style>

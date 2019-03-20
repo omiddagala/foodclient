@@ -1,0 +1,107 @@
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50"
+     ng-class="{'scrolled': myscrolled , 'admin-menu': hasRole('MASTER_ADMIN') }">
+    <div class="top-search full-screen-btn page-top-buttons left-float" style="width: 32px">
+        <svg class="pointer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px"
+            y="0px" viewBox="0 0 215.35 215.35" style="enable-background:new 0 0 215.35 215.35;" xml:space="preserve">
+            <g>
+                <path fill="white" d="M7.5,65.088c4.143,0,7.5-3.358,7.5-7.5V25.61l48.305,48.295c1.465,1.464,3.384,2.196,5.303,2.196   c1.92,0,3.84-0.732,5.304-2.197c2.929-2.929,2.929-7.678-0.001-10.606L25.604,15.002h31.985c4.142,0,7.5-3.358,7.5-7.5   c0-4.142-3.357-7.5-7.5-7.5H7.5c-4.143,0-7.5,3.358-7.5,7.5v50.087C0,61.73,3.357,65.088,7.5,65.088z" />
+                <path fill="white" d="M207.85,150.262c-4.143,0-7.5,3.358-7.5,7.5v31.979l-49.792-49.792c-2.93-2.929-7.678-2.929-10.607,0   c-2.929,2.929-2.929,7.678,0,10.606l49.791,49.791h-31.977c-4.143,0-7.5,3.358-7.5,7.5c0,4.142,3.357,7.5,7.5,7.5h50.086   c4.143,0,7.5-3.358,7.5-7.5v-50.084C215.35,153.62,211.992,150.262,207.85,150.262z" />
+                <path fill="white" d="M64.792,139.949L15.005,189.74v-31.978c0-4.142-3.357-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v50.086c0,4.142,3.357,7.5,7.5,7.5   h50.084c4.142,0,7.5-3.358,7.5-7.5s-3.357-7.5-7.5-7.5H25.611l49.788-49.793c2.929-2.929,2.929-7.678-0.001-10.607   C72.471,137.02,67.722,137.02,64.792,139.949z" />
+                <path fill="white" d="M207.85,0.002h-50.086c-4.143,0-7.5,3.358-7.5,7.5c0,4.142,3.357,7.5,7.5,7.5h31.979l-48.298,48.301   c-2.929,2.929-2.929,7.678,0.001,10.607c1.464,1.464,3.384,2.196,5.303,2.196c1.919,0,3.839-0.733,5.304-2.197l48.298-48.301v31.98   c0,4.142,3.357,7.5,7.5,7.5c4.143,0,7.5-3.358,7.5-7.5V7.502C215.35,3.359,211.992,0.002,207.85,0.002z" />
+            </g>
+        </svg>
+    </div>
+    <div class="al-user-profile responsive-menu" uib-dropdown>
+        <a uib-dropdown-toggle class="profile-toggle-link">
+            <img src="assets/img/menu.png" class="img-responsive"/>
+        </a>
+        <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu
+            style="z-index: 2;width: 140px;min-width: 140px">
+            <li style="direction: rtl"><i class="dropdown-arr"></i></li>
+            <li ng-repeat="menu in mainMenus" style="direction: rtl">
+                <a href="{{menu.isModal ? '' : '#/'+menu.url}}" ng-click="menuClicked(menu.url,menu.isModal)">
+                    <span class="ng-binding mymenu-text-responsive">{{menu.title}}</span>
+                    <div class="remove-float"></div>
+                </a>
+            </li> 
+        </ul>
+    </div>
+    <div class="user-profile clearfix">
+        <div class="al-user-profile" uib-dropdown>
+            <a uib-dropdown-toggle class="profile-toggle-link">
+                <img src="{{myProfilePic}}" style="min-height: 36px" class="img-responsive">
+            </a>
+            <div class="top-dropdown-menu profile-dropdown" uib-dropdown-menu style="z-index: 2">
+                <div style="direction: rtl"><i class="dropdown-arr"></i></div>
+                <div ng-if='hasRole("EMPLOYEE") || hasRole("RESTAURANT") || hasRole("COMPANY")' style="direction: rtl">
+                    <a
+                            href ng-click="profile()"><i class="fa fa-user"></i>پروفایل</a></div>
+                <div style="direction: rtl" ng-click="openModal('app/pages/changepass/change.html', 'md')"><a href><i
+                        class="fa fa-lock"></i>تغییر کلمه عبور</a></div>
+                <div ng-if='hasRole("EMPLOYEE")' ng-click="openModal('app/pages/employee/transfer/transfer.html', 'md')"
+                     style="direction: rtl"><a href><i class="fa fa-cog"></i>انتقال موجودی</a></div>
+                <div ng-if='hasRole("EMPLOYEE")' style="direction: rtl"><a style="cursor: pointer"
+                                                                           ng-click="tutorial()"><i
+                        class="fa fa-info"></i>راهنمای صفحه</a></div>
+                <div style="direction: rtl"><a href ng-click="logout()" class="signout"><i class="fa fa-power-off"></i>خروج</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top-search page-top-buttons for-alert">
+        <img src="assets/img/ui/bell.png">
+        <span class="bell-alert">0</span>
+    </div>
+    <div class="top-search page-top-buttons">
+        <img src="assets/img/ui/wallet.png">
+    </div>
+    <div class="top-search page-top-charge">
+        {{formatPrice(userBalance)}} تومان
+    </div>
+    <div class="top-search page-top-buttons pointer charge-account" ng-click="chargeAccount()">
+        <img src="assets/img/ui/shape-696.svg" alt="charge-img"/>
+        <span class="margin-lg">افزایش موجودی</span>
+    </div>
+</div>
+
+<div class="newmenu">
+    <div class="menu-top clearfix" scroll-position="scrolled"
+         ng-class="{'menu-top-without-sides': !hasRole('EMPLOYEE'), 'admin-menu-top': hasRole('MASTER_ADMIN')}"
+         max-height="50">
+        <div style="text-align: left;float: left;margin-top: 25px;margin-left: 20px">
+            <a ng-repeat="menu in mainMenus" ng-click="menuClicked(menu.url,menu.isModal)"
+               ng-class="{'active_link_color':currentActiveMenu === menu.url}"
+               class="al-sidebar-list-link ng-scope mymenu" href="{{menu.isModal ? '' : '#/'+menu.url}}">
+                <div class="kameleon-icon  info mymenu-icon">
+                    <img style="background: none" src="{{menu.img}}">
+                </div>
+                <span class="ng-binding mymenu-text">{{menu.title}}</span>
+            </a>
+        </div>
+        <a href ng-click="locateFirstPage()" class="ng-scope karafeed_logo">
+            <img class="mylogo" src="assets/img/ui/logo.png">
+        </a>
+    </div>
+</div>
+<style>
+    .mymenu-text-responsive {
+        float: right !important;
+    }
+</style>
+<script src="myassets/js/jquery-fullscreen.js"></script>
+<script>
+    $(function () {
+        var check = false;
+        $('.full-screen-btn').click(function () {
+            if (!check) {
+                $('html').fullscreen();
+                check = true;
+                return false;
+            } else {
+                $.fullscreen.exit();
+                check = false;
+                return false;
+            }
+        });
+    });
+</script>

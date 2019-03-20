@@ -1,0 +1,114 @@
+<div include-with-scope="page-top.html"></div>
+<div class="widgets mycontent" ng-init="initCtrl()" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <audio id="myAudio">
+        <source src="myassets/audio/bell.mp3" type="audio/mp3">
+    </audio>
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="فاکتور" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <!-- <div class="form-group select-page-size-wrap a0">
+                        <div class="a1">
+                            <div>
+                                <div class="a2">
+                                    تعداد
+                                </div>
+                                <div class="a3">
+                                    <select class="form-control selectpicker" data-style="btn-primary"
+                                            title="Rows on page" selectpicker
+                                            style="text-align:right;"
+                                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <table class="table" st-table="foods" refresh-table>
+                        <thead>
+                            <tr class="sortable ">
+                                <th>
+                                    <div class="newtable_header">
+                                        عملیات
+                                    </div>
+                                </th>
+                                <th st-sort="totalPrice">
+                                    <div class="newtable_header">
+                                        قیمت
+                                    </div>
+                                </th>
+                                <th st-sort="employee.name">
+                                    <div class="newtable_header">
+                                        نام تحویل گیرنده
+                                    </div>
+                                </th>
+                                <th st-sort="taxAmount">
+                                    <div class="newtable_header">
+                                        شماره تحویل گیرنده
+                                    </div>
+                                </th>
+                                <th st-sort="containerPrice">
+                                    <div class="newtable_header">
+                                        شماره رستوران
+                                    </div>
+                                </th>
+                                <th st-sort="deliveryPrice">
+                                    <div class="newtable_header">
+                                        نام رستوران
+                                    </div>
+                                </th>
+                                <th st-sort="deliveryDate">
+                                    <div class="newtable_header">
+                                        تاریخ تحویل
+                                    </div>
+                                </th>
+                                <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true">
+                                    <div class="newtable_header">
+                                        ردیف
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in orders">
+                                <td>
+                                    <div class="buttons">
+                                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/invoice/cancel-modal.html', 'md',item,$index)">لغو
+                                            غذا
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>{{item.totalPrice}}</td>
+                                <td>{{item.employee.name}}</td>
+                                <td>{{item.employee.address.phone}}</td>
+                                <td>{{item.restaurant.address.phone}}</td>
+                                <td>{{item.restaurant.name}}</td>
+                                <td>{{myFormatDate(item.deliveryDate)}}</td>
+                                <td class="table-id">{{$index+1}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .panel-body ::-webkit-scrollbar {
+        height: 10px !important;
+    }
+
+    .horizontal-scroll {
+        padding-bottom: unset !important;
+    }
+
+    nav.ng-scope {
+        text-align: left;
+    }
+</style>

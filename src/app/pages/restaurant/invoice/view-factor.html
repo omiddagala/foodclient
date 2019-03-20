@@ -1,0 +1,35 @@
+<div>
+    <div class="newmodal_close_header">
+        <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+            <img src="/assets/img/ui/close.png">
+        </button>
+        <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+    </div>
+    <div class="confirm_header_title padding-md">
+        <i class="ion-flame modal-icon"></i><span>مشاهده فاکتور</span>
+    </div>
+</div>
+<div class="modal-content" style="background: white">
+    <!-- <div class="modal-header bg-success" style="background-color: #f44545">
+        <i class="ion-flame modal-icon"></i><span>مشاهده فاکتور</span>
+    </div> -->
+    <div class="modal-body text-center" id="detail"></div>
+    <div class="modal-footer left-text">
+        <button type="button" class="confirm_button confirm_no btn" ng-click="$dismiss()">بستن</button>
+    </div>
+</div>
+<style>
+    .modal .modal-dialog {
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%) !important;
+        position: absolute;
+        left: 50%;
+        height: 42% !important;
+    }
+
+    .modal .modal-dialog .modal-content .modal-content {
+        width: 90%;
+        height: 100%;
+        transform: translateY(2.5em);
+    }
+</style>

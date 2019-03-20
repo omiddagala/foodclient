@@ -1,0 +1,135 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div class="confirm_header_title padding-md">
+                افزایش اعتبار
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body block charge-account-stage" style="padding: 40px">
+
+        <form name="myform" ng-submit="myform.$valid && pay(myform)" ng-controller="chargeAccountCtrl"
+            novalidate>
+
+            <div>
+
+                <div class="row flex items-center bottom-margin-lg form_input_margin">
+                    <div class="col-sm-8 col-xs-12">
+                        <input type="number" value="0" class="confirm_input form-control" name="amount" ng-model="amount"
+                            required id="amount" style="text-align:right;color: white">
+                    </div>
+                    <label for="amount" class="col-sm-4 col-xs-12 control-label">مبلغ مورد نظر(تومان)</label>
+                </div>
+                <div>
+                    <div class="col-sm-8 text-left no-padding">
+                        <button ng-show="!accepted" type="button" ng-click="myform.$valid && showPreOrder()" class="confirm_button confirm_yes btn">تایید
+                            و نمایش</button>
+                    </div>
+                    <div class="remove-float"></div>
+                </div>
+
+                <div ng-show="accepted">
+                    <div class="col-xs-12 bottom-margin-md no-padding auto-overflow">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        مبلغ قابل پرداخت(تومان)
+                                    </th>
+                                    <th>
+                                        شرکت
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span>{{amount}}</span>
+                                    </td>
+                                    <td>
+                                         ایده نگاران مکتب خوارزمی
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-8 col-xs-12 text-left no-padding">
+                        <button type="submit" class="confirm_button confirm_yes btn">تایید و پرداخت</button>
+                        <button type="button" ng-click="$dismiss()" style="float: left;" class="confirm_button confirm_no btn">
+                            بازگشت
+                        </button>
+                    </div>
+                    <div class="remove-float"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<style>
+    .modal-content .confirm_body {
+        height: 20em !important;
+        position: relative;
+        transform: translateY(4em) translateX(-50%);
+        top: 0;
+        width: calc(100% - 4em);
+        margin: 0;
+        left: 50%;
+    }
+
+    .modal-content .food_detail_body {
+        height: unset;
+
+    }
+
+    .modal-open .modal-dialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) !important;
+    }
+    .modal-content { 
+        height: 22em;
+    }
+
+    /* .confirm_body {
+        min-height: 250px;
+    } */
+
+    @media (max-width: 767px) {
+        .modal-content {
+            top: unset !important;
+            transform: none !important;
+        }
+    }
+
+    @media (max-height: 600px) {
+        .modal-content .newmodal_small_logo {
+            height: 28px;
+            width: 64px;
+        }
+    }
+
+    /* .modal .modal-dialog {
+        height: 36% !important;
+    } */
+    .charge-account-stage .table {
+        min-width: 340px;
+    }
+
+    .auto-overflow {
+        overflow: auto;
+    }
+
+    /* .modal-content {
+        min-height: 290px;
+    } */
+</style>

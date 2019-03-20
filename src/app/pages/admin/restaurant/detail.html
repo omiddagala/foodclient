@@ -1,0 +1,438 @@
+<div include-with-scope="page-top.html"></div>
+<div class="mycontent" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div ba-panel ba-panel-class="profile-page">
+        <div class="panel-content" ng-init="initCtrl()" ng-controller="restaurantDetailCtrl">
+
+            <h3 class="with-line black-color-imp">اطلاعات رستوران</h3>
+
+            <div class="row" ng-if="restInfo.id">
+                <div class="col-sm-6 col-xs-12"></div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group row clearfix">
+                        <div class="col-md-8 col-sm-7 col-xs-12">
+                            <div class="userpic relative">
+                                <div class="userpic-wrapper" style="max-height: 100%;">
+                                    <img ng-src="{{ restInfo.imageAddress }}" ng-click="uploadPicture()">
+                                </div>
+                                <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="restInfo.imageAddress != 'assets/img/defaults/default-rest.png'"></i>
+                                <a href class="change-userpic" ng-click="uploadPicture()">انتخاب عکس</a>
+                                <input type="file" ng-show="false" id="uploadFile">
+                            </div>
+                        </div>
+                        <label class="col-md-4 col-sm-5 col-xs-12 control-label">عکس</label>
+                    </div>
+                </div>
+            </div>
+            <form id="form" name="myform" ng-submit="saveOrUpdate(myform)" novalidate>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="2" ng-model="restInfo.address.address" ng-maxlength="250" required
+                                    type="text" class="form-control" id="adr" name="adr" placeholder="">
+                                <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
+                                    حداکثر 250 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="adr" class="col-md-4 col-sm-5 col-xs-12 control-label">آدرس</label>
+                        </div>
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="4" ng-model="restInfo.address.mobile" ng-maxlength="11" ng-minlength="11"
+                                    required type="tel" class="form-control" id="mobile" name="mobile" placeholder="">
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                                    حداکثر 11 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                                    حداقل 11 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="mobile" class="col-md-4 col-sm-5 col-xs-12 control-label">موبایل</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="1" ng-model="restInfo.name" ng-maxlength="70" ng-minlength="2"
+                                    required name="name" type="text" class="form-control" id="name" placeholder="">
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.maxlength">
+                                    حداکثر 70 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.minlength">
+                                    حداقل 2 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="name" class="col-md-4 col-sm-5 col-xs-12 control-label">نام</label>
+                        </div>
+
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="3" ng-model="restInfo.address.phone" ng-minlength="4" ng-maxlength="100" required type="tel"
+                                    class="form-control" id="phone" name="phone" placeholder="">
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
+                                    حداکثر 100 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
+                                    حداقل 4 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="phone" class="col-md-4 col-sm-5 col-xs-12 control-label">تلفن</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="!restInfo.id">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="6" ng-model="restInfo.password" ng-maxlength="60" ng-minlength="8"
+                                    required name="pass" type="password" class="form-control" id="pass" style="text-align:right;">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback"></i>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.maxlength">
+                                    حداکثر 60 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.minlength">
+                                    حداقل 8 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="pass" class="col-md-4 col-sm-5 col-xs-12 control-label">کلمه عبور</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="5" ng-model="restInfo.username" ng-maxlength="60"
+                                    ng-minlength="4" type="text" class="form-control" name="username" required id="username"
+                                    style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.maxlength">
+                                    حداکثر 60 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.minlength">
+                                    حداقل 4 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="username" class="col-md-4 col-sm-5 col-xs-12 control-label">نام کاربری</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12" style="float: right">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="7" ng-model="restInfo.shebaAccountNumber" ng-maxlength="50" type="text"
+                                    class="form-control" name="sheba" required id="sheba" style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.sheba.$dirty || submitted) && inputIsInvalid(myform.sheba.$valid,'sheba') && myform.sheba.$error.maxlength">
+                                    حداکثر 50 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.sheba.$dirty || submitted) && inputIsInvalid(myform.sheba.$valid,'sheba') && myform.sheba.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="sheba" class="col-md-4 col-sm-5 col-xs-12 control-label">شبا</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12" style="float: right;">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="10" type="number" max="30" required ng-model="restInfo.sharePercent"
+                                    class="form-control" name="sharePercent" id="sharePercent" style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.sharePercent.$dirty || submitted) && inputIsInvalid(myform.sharePercent.$valid,'sharePercent') && myform.sharePercent.$error.max">
+                                    حداکثر مقدار 30 می تواند باشد
+                                </div>
+                                <div class="error-message" ng-show="(myform.sharePercent.$dirty || submitted) && inputIsInvalid(myform.sharePercent.$valid,'sharePercent') && myform.sharePercent.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="sharePercent" style="direction: rtl" class="col-md-4 col-sm-5 col-xs-12 control-label">سهم
+                                کارافید(درصد)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12" style="float: right">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="7" ng-model="restInfo.shebaOwnerName" type="text" class="form-control"
+                                    name="shebaOwnerName" id="shebaOwnerName" style="text-align:right;">
+                            </div>
+                            <label for="shebaOwnerName" class="col-md-4 col-sm-5 col-xs-12 control-label">صاحب حساب شبا</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12" style="float: right;">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="10" type="text" ng-model="restInfo.managerName" class="form-control"
+                                    name="managerName" id="managerName" style="text-align:right;">
+                            </div>
+                            <label for="managerName" style="direction: rtl" class="col-md-4 col-sm-5 col-xs-12 control-label">مدیریت
+                                رستوران</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12" style="float: right">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="7" ng-model="restInfo.economyCode" type="text" class="form-control"
+                                    name="economyCode" id="economyCode" style="text-align:right;">
+                            </div>
+                            <label for="economyCode" class="col-md-4 col-sm-5 col-xs-12 control-label">کد اقتصادی</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12" style="float: right;">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="10" type="text" ng-model="restInfo.nationalIdentity" class="form-control"
+                                    name="nationalIdentity" id="nationalIdentity" style="text-align:right;">
+                            </div>
+                            <label for="nationalIdentity" style="direction: rtl" class="col-md-4 col-sm-5 col-xs-12 control-label">شناسه
+                                ملی اقتصادی</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12" style="float: right">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="7" ng-model="restInfo.managerMobile" type="text" class="form-control"
+                                    name="managerMobile" id="managerMobile" style="text-align:right;">
+                            </div>
+                            <label for="managerMobile" class="col-md-4 col-sm-5 col-xs-12 control-label">موبایل مدیر
+                                رستوران</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row flex-xs">
+                            <div class="col-md-3 col-xs-2" style="text-align: right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-click="setHasTax(false)" ng-checked="!restInfo.hasTax" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio1" value="option1">
+                                    <span>ندارد</span>
+                                </label>
+                            </div>
+                            <div class="col-md-3 col-xs-2" style="text-align: right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-click="setHasTax(true)" ng-checked="restInfo.hasTax" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="option2">
+                                    <span>دارد</span>
+                                </label>
+                            </div>
+                            <label class="col-md-6 col-xs-8 control-label">مالیات</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row flex-xs">
+                            <div class="col-md-3 col-xs-2" style="text-align: right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-click="setWorkAtVacation(false)" ng-checked="!restInfo.workAtVacation"
+                                        type="radio" name="inlineRadioOptions2" value="option3">
+                                    <span>ندارد</span>
+                                </label>
+                            </div>
+                            <div class="col-md-3 col-xs-2" style="text-align: right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-click="setWorkAtVacation(true)" ng-checked="restInfo.workAtVacation" type="radio"
+                                        name="inlineRadioOptions3" value="option4">
+                                    <span>دارد</span>
+                                </label>
+                            </div>
+                            <label class="col-md-6 col-xs-8 control-label">سرویس دهی در روزهای تعطیل</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                    </div>
+                    <div class="col-sm-6 col-xs-12" style="float: right;">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-md-8 col-sm-7 col-xs-12">
+                                <ui-select multiple ng-model="selectedType"
+                                           ng-disabled="false"
+                                           ng-change="typeChanged($select.selected)"
+                                           search-enabled="true"
+                                           append-to-body="true"
+                                           class="form-control ">
+                                    <ui-select-match placeholder="انتخاب کنید">
+                                        {{$item.label}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in restaurantTypes | filter: $select.search">
+                                        {{item.label}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <label for="nationalIdentity" style="direction: rtl" class="col-md-4 col-sm-5 col-xs-12 control-label">نوع رستوران</label>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="with-line black-color-imp">تعیین ساعت کاری</h3>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div style="text-align: right" class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="9" type="text" class="form-control" id="toTime">
+                            </div>
+                            <label style="text-align: right" for="toTime" class="col-md-4 col-sm-5 col-xs-12 control-label">تا
+                                ساعت</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div style="text-align: right" class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="8" type="text" class="form-control" id="fromTime">
+                            </div>
+                            <label style="text-align: right" for="fromTime" class="col-md-4 col-sm-5 col-xs-12 control-label">از
+                                ساعت</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div style="text-align: right" class="col-md-8 col-sm-7 col-xs-12">
+                                <input tabindex="11" ng-model="restInfo.deliveryPrice" ng-maxlength="10" required type="text"
+                                    class="form-control" id="deliveryPrice" name="deliveryPrice" placeholder="">
+                                <div class="error-message" ng-show="(myform.deliveryPrice.$dirty || submitted) && inputIsInvalid(myform.deliveryPrice.$valid,'deliveryPrice') && myform.deliveryPrice.$error.maxlength">
+                                    حداکثر 10 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.deliveryPrice.$dirty || submitted) && inputIsInvalid(myform.deliveryPrice.$valid,'deliveryPrice') && myform.deliveryPrice.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label style="text-align: right" for="deliveryPrice" class="col-md-4 col-sm-5 col-xs-12 control-label">هزینه
+                                ارسال</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div style="text-align: right" class="col-md-8 col-sm-7 col-xs-12">
+                                <textarea tabindex="10" ng-model="restInfo.restaurantInfo.description" rows="3"
+                                    ng-maxlength="150" type="text" class="form-control no-resize" id="description" name="description"
+                                    placeholder="">{{restInfo.restaurantInfo.description}}</textarea>
+                                <div class="error-message" ng-show="(myform.description.$dirty || submitted) && inputIsInvalid(myform.description.$valid,'description') && myform.description.$error.maxlength">
+                                    حداکثر 150 کاراکتر وارد کنید
+                                </div>
+                            </div>
+                            <label style="text-align: right" for="description" class="col-md-4 col-sm-5 col-xs-12 control-label">توضیحات</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="text-align: center;height: 400px">
+                    <div style="width: 90%;display: inline-table;" ba-panel ba-panel-title="محل رستوران" class="viewport100">
+                        <div id="map" style="height: 100%;width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="row" style="text-align: center;margin-top: 60px">
+                    <div style="width: 90%;display: inline-table" ba-panel ba-panel-title="محدوده سرویس دهی" class="viewport100">
+                        <button type="button" ng-click="clearZoneMap()" class="btn btn-danger btn-with-icon save-profile">
+                            <i class="ion-android-checkmark-circle"></i>ویرایش محدوده سرویس دهی
+                        </button>
+                        <div id="google-maps"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn padding-md btn-with-icon save-profile confirm_yes confirm_button left-float">
+                    <i class="ion-android-checkmark-circle"></i>ثبت
+                </button>
+                <button type="button" ng-click="goBack()" class="btn padding-md btn-with-icon save-profile confirm_no confirm_button left-float">
+                    <i class="ion-android-arrow-back"></i>بازگشت
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    #deliveryPrice,
+    #toTime,
+    #fromTime {
+        width: 100%;
+        padding: 0 15px;
+        min-width: unset !important;
+    }
+
+    .clock-timepicker {
+        width: 100%;
+    }
+
+    form input.form-control {
+        height: 30px !important;
+    }
+    
+    .panel > .panel-heading{
+        color: black !important;
+    }
+    .userpic {
+        padding-bottom: 8px;
+    }
+     
+    .userpic a.change-userpic {
+        bottom: 8px !important;
+    } 
+
+    .userpic .userpic-wrapper {
+        max-height: unset !important;
+        height: 112px !important;
+    }
+    
+
+    @media(min-width: 1300px) and (max-width: 1420px) {
+        .col-md-4 {
+            width: 40% !important;
+        }
+
+        .col-md-8 {
+            width: 60% !important;
+        }
+
+        .col-md-6 {
+            width: 55% !important;
+        }
+
+        .col-md-3 {
+            width: 20% !important;
+        }
+    }
+
+    @media(min-width: 768px) and (max-width: 990px) {
+        .error-message {
+            right: 25% !important;
+        }
+    }
+
+    @media(min-width: 1300px) and (max-width: 1500px) {
+        .error-message {
+            right: 25% !important;
+        }
+    }
+</style>

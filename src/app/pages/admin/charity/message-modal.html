@@ -1,0 +1,28 @@
+<div class="modal-content">
+    <div class="modal-header bg-info">
+        <i class="ion-checkmark modal-icon"></i><span> ارسال پیام به خیریه</span>
+    </div>
+    <div class="modal-body text-center">
+        <form name="myform" ng-submit="myform.$valid && sendMessage(myform)" novalidate>
+            <div class="row" style="margin: 20px">
+                <div class="form-group row clearfix">
+                    <div class="col-sm-9">
+                            <textarea class="form-control" name="desc" ng-maxlength="150" ng-model="desc"
+                                      id="desc"
+                                      style="text-align:right;color: white"></textarea>
+                        <div class="error-message"
+                             ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
+                            حداکثر 150 کاراکتر وارد کنید
+                        </div>
+                    </div>
+                    <label for="desc" class="col-sm-3 control-label">متن پیام</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" ng-click="$dismiss()">لغو</button>
+                <button type="submit" class="btn btn-info">ارسال</button>
+            </div>
+        </form>
+    </div>
+
+</div>

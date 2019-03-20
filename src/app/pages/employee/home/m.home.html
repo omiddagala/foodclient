@@ -1,0 +1,127 @@
+<!-- search-bar -->
+<div
+    class="bar bar-subheader search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height items-center left-direction">
+    <input type="text" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
+    <button type="button" class="btn btn-link fit-height fit-width line-height-initial no-padding-imp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewBox="-10 -10 60 60" width="35"
+            height="50">
+            <path fill="#808285" fill-rule="evenodd"
+                d="M37.394 37.342l-9.363-10.15c2.407-2.983 3.725-6.734 3.725-10.641 0-9.128-7.123-16.555-15.879-16.555-8.757 0-15.88 7.427-15.88 16.555 0 9.127 7.123 16.553 15.88 16.553 3.287 0 6.42-1.033 9.098-2.995l9.432 10.226c.395.427.926.662 1.493.662a2.02 2.02 0 0 0 1.436-.602 2.229 2.229 0 0 0 .058-3.053zM15.877 4.315c6.472 0 11.738 5.489 11.738 12.236 0 6.747-5.266 12.235-11.738 12.235-6.472 0-11.739-5.488-11.739-12.235 0-6.747 5.267-12.236 11.739-12.236z" />
+        </svg>
+    </button>
+</div>
+
+<!-- cardItem -->
+<div class="article-mobile-list" id="article-list-main" ng-init="homeInit()">
+    <div class="white-back w-100 auto-height flex items-center content-evenly right-direction relative no-overflow">
+        <img ng-src="{{headerImgSrc}}" class="w-90 header-animation header-img" alt="">
+    </div>
+    <div ng-repeat="food in foods track by $index" class="card white-back w-95 mobile-card auto-height flex items-center content-evenly right-direction relative">
+        <img src="../../../../assets/img/ui/info.png" class="mobil-card-info pointer" alt="" ng-click="showFoodDetail(food)">
+        <div class="fit-width mobil-card-img full-height relative">
+            <div class="mobil-card-rate">{{food.averageRate === 0 ? '-' : food.averageRate}}</div>
+            <img src="{{food.imageAddress}}" class="w-100 card-img">
+        </div>
+        <div class="full-width right-padding-lg left-padding-lg relative flex flex-col items-center content-evenly">
+            <div class="defult-color text-right font-bold w-100 font-xlg line-height-initial min-height-lg">
+                {{food.name}}</div>
+            <div class="text-right flex items-center w-100 font-xlg line-height-initial min-height-lg">
+                <div class="color-2e6977 pointer" ng-click="goToRestaurantPage(food.restaurant.name)">
+                    {{food.restaurant.name}}</div>
+                <div class="card__restaurant__star"></div>
+                <div class="color-319ab1">
+                    {{food.restaurant.averageRate === 0 ? '-' : food.restaurant.averageRate}}
+                </div>
+            </div>
+            <div class="text-right color-b6b6b6 w-100 food-ingredients min-height-xs">{{food.ingredients}}</div>
+            <div class="text-right w-100 flex items-center content-between pointer min-height-xs"
+                ng-click="cardsBottomOrderFoodAction($event,food)">
+                <div class="color-9f9f9f">سفارش برای {{dateToShowOnCards}} ساعت {{timeToShowOnCards}}</div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 130 130" width="35"
+                    height="35">
+                    <path fill="rgb(242, 69, 69)" fill-rule="evenodd"
+                        d="M100.604 53.889c2.052-9.647 4.153-19.452 6.186-28.933.74-3.429-.374-6.134-3.045-7.425-.777-.375-1.65-.556-2.577-.749l-.477-.091H58.4l-.5.038-22.862-.039-.019-.1c-.093-.48-.186-.956-.287-1.434-.199-1.003-.408-2.038-.593-3.063C32.874 5.074 27.034.113 19.943.029c-3.032-.036-6.112-.027-9.094-.021l-4.111.01C3.25.022 1.214 1.528.135 4.911a.624.624 0 0 1-.087.167l-.059.096v2.008l.051.089c.156.287.309.578.454.864l.078.152c.447.87.864 1.692 1.47 2.386.976 1.118 2.431 1.662 4.473 1.662 3.083-.004 6.157-.002 9.238 0l3.341.005c2.008.001 2.663.537 3.037 2.493 1.835 9.517 3.662 19.034 5.489 28.552l1.297 6.769c.414 2.145.823 4.293 1.232 6.441l.305 1.594c.82 4.289 1.662 8.684 2.511 13.012.636 3.246 2.94 5.143 6.322 5.202.631.011 1.261.007 1.95.005l1.175-.002-.081.176c-.892 1.971-1.187 3.564-.961 5.165.527 3.643 3.088 6.351 6.68 7.07.118.025.231.068.402.143l.071.028 2.11-.012c1.752-.448 3.732-1.142 5.133-2.888 2.219-2.751 2.621-5.654 1.236-8.873l-.309-.736h23.431l-.084.178c-.867 1.83-1.166 3.446-.937 5.086.519 3.643 3.078 6.353 6.684 7.074.131.027.242.074.34.111l.097.06h2.094l.051-.012c1.754-.454 3.738-1.149 5.134-2.89 2.219-2.76 2.618-5.662 1.222-8.878-.039-.093-.08-.187-.137-.33l-.199-.483h.187c.398 0 .788.006 1.195.013.795.012 1.552.025 2.306-.025 2.888-.184 5.184-2.201 5.71-5.018.53-2.822-.895-5.552-3.464-6.639-1.166-.491-2.441-.597-3.305-.599-11.896-.026-23.96-.028-35.769-.029l-17.203-.002-.853-4.434h50.295c4.128-.002 6.258-1.727 7.116-5.773zM80.881 43.831l-1.608 11.848H61.741l-1.628-11.848h20.768zM91.589 80.68c.016 1.136-.431 2.219-1.247 3.053a4.298 4.298 0 0 1-3.069 1.305c-1.131 0-2.2-.445-3.018-1.256a4.267 4.267 0 0 1-1.278-3.057c0-2.328 1.892-4.253 4.218-4.294h.047c1.139 0 2.215.434 3.034 1.229a4.269 4.269 0 0 1 1.313 3.02zm-37.733.097a4.29 4.29 0 0 1-1.322 3.031 4.343 4.343 0 0 1-3.066 1.232c-2.325-.041-4.222-1.971-4.227-4.302a4.266 4.266 0 0 1 1.266-3.051 4.284 4.284 0 0 1 6.104.043 4.224 4.224 0 0 1 1.245 3.047zm31.025-36.985h13.836l-1.734 8.253c-.12.591-.243 1.198-.392 1.794-.294 1.18-1.029 1.839-2.071 1.851-1.643.022-3.267.028-4.92.028l-6.349-.009 1.63-11.917zm16.973-14.657l-2.261 10.628H85.436l1.457-10.628h14.961zM56.122 43.798l1.626 11.842H42.422l-2.249-11.842h15.949zM37.393 29.131h16.713l1.471 10.611H39.4l-2.007-10.611zM5.85 4.008c.186-.036.382-.075.594-.05 1.342 0 2.685-.008 4.029-.016 3.117-.014 6.343-.037 9.545.047 5.206.139 9.211 3.536 10.196 8.657a9273.701 9273.701 0 0 1 5.357 28.1l3.333 17.557c.471 2.482.941 4.964 1.419 7.446.355 1.84.9 2.29 2.791 2.291l53.704.009c.505-.007.976.003 1.435.101a2.186 2.186 0 0 1 1.713 2.068c.023.987-.667 1.882-1.64 2.125-.486.12-1.019.132-1.48.132-6.042.004-12.086.004-18.128.004H39.939c-2.229 0-2.8-.472-3.22-2.655a34502.855 34502.855 0 0 1-6.134-31.905l-2.513-13.1c-.705-3.693-1.434-7.511-2.17-11.262-.618-3.153-3.013-5.129-6.253-5.154a712.286 712.286 0 0 0-5.664-.019l-2.907.002-4.328.002c-.265-.02-.567 0-.842-.044-1.154-.182-1.98-1.107-1.961-2.199.016-1.048.798-1.927 1.903-2.137zm29.934 16.699l16.553.005c15.513.003 31.549.011 47.435-.044 1.471 0 2.465.365 2.958 1.082.505.734.476 1.832-.081 3.265l-.028.078H36.627l-.843-4.386zm47.109 8.457l-1.437 10.587H59.553l-1.436-10.587h24.776z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- sortBox -->
+<div class="sort-box hidden-sort-box">
+    <div class="no-padding-bottom-imp" ng-init="initCtrl()">
+        <div
+            class="card transparent-back w-95 mobile-card auto-height flex flex-col items-center content-evenly right-direction no-box-shadow no-padding-imp margin-center un-overflow">
+            <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)"
+                class="w-100 flex flex-col items-center" novalidate>
+
+                <div class="w-100 left-padding-4 right-padding-4 top-padding-6 bottom-padding-6 white-back flex flex-col items-center content-between dark-box-shadow-l-b
+                 z-index-1 bottom-margin-4">
+                    <div class="w-100 flex bottom-margin-3 wrap">
+                        <div class="col-xs-2 min-w-8em">
+                            <img src="../../../../assets/img/ui/mobile/moto.png" class="w-100 auto-height" alt="">
+                        </div>
+                        <div class="self-end bottom-margin-2 defult-title-color">روز تحویل غذا</div>
+                    </div>
+                    <div class="flex w-100 left-direction">
+                        <adm-dtp on-datechange="search(true)" id="taghvim" ng-model='searchDate'
+                            options='{calType: "jalali", format: "YYYY/MM/DD", multiple:false,freezeInput:true,autoClose:true,dtpType:"date"}'>
+                        </adm-dtp>
+                    </div>
+                </div>
+
+                <div
+                    class="w-100 left-padding-4 right-padding-4 top-padding-6 bottom-padding-6 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4">
+
+                    <div class="w-100 flex items-center">
+                        <div class="col-xs-2 min-w-8em">
+                            <img src="../../../../assets/img/ui/mobile/plate.png" class="w-100 auto-height" alt="">
+                        </div>
+                        <div class="bottom-margin-2 defult-title-color basis-lg m-w-fit left-padding-2 right-padding-2">
+                            ساعت تحویل غذا</div>
+                        <input ng-model="searchTime" readonly id="searchTime" type="text" name="timepicker"
+                            class="timepicker form-control newui__inputs full-width no-margin-imp font-bold left-direction font-large text-center m-w-5em" />
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="w-100 left-padding-4 right-padding-4 top-padding-6 bottom-padding-6 white-back flex flex-col items-center content-between dark-box-shadow-l-b bottom-margin-4">
+
+                    <div class="w-100 flex items-center">
+                        <div class="col-xs-2 min-w-8em">
+                            <img src="../../../../assets/img/ui/mobile/offer.png" class="w-100 auto-height" alt="">
+                        </div>
+                        <div class="bottom-margin-2 defult-title-color basis-xl m-w-fit left-padding-2 right-padding-2">
+                            نمایش غذاهای تخفیف دار
+                        </div>
+                        <div>
+                            <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
+                                <input ng-change="search()" ng-model="justOff" type="checkbox" id="justOff"
+                                    name="justOff" value="true">
+                                <span style="color: white"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="w-100 left-padding-4 right-padding-4 top-padding-6 bottom-padding-6 white-back flex flex-col content-between dark-box-shadow-l-b
+                 z-index-1 bottom-margin-4">
+                    <div class="bottom-margin-2 defult-title-color text-right right-margin-lg bottom-margin-4">بازه ی
+                        قیمت</div>
+                    <div class="left-direction left-padding-4 right-padding-4">
+                        <ion-slider id="range" type="double" grid="true" min="1000" max="70000" from="1000" to="70000"
+                            disable="false" step="1000">
+                        </ion-slider>
+                    </div>
+                </div>
+                <button ng-click="confirm($event)" type="button" style="width: auto"
+                    class="confirm_button confirm_yes btn redius-md">تایید</button>
+            </form>
+
+        </div>
+    </div>
+</div>  

@@ -1,0 +1,114 @@
+<div include-with-scope="page-top.html"></div>
+<div class="widgets mycontent" ng-init="initCtrl()" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="غذاها" ba-panel-class="with-scroll">
+                <div>
+                    <div class="form-group select-page-size-wrap " style="width: 100%;height: 60px">
+                        <!-- <div style="width: 20%;float: left">
+                            <div>
+                                <div style="width: 40%;float: right;margin-left: 20px">
+                                    تعداد
+                                </div>
+                                <div style="width: 50%;float: left">
+                                    <select class="form-control selectpicker" data-style="btn-primary" title="Rows on page"
+                                        selectpicker style="text-align:right;" ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div style="width: 100%;float: right; height: 100%; text-align: right;">
+                            <button style="margin-top: 15px;margin-right: 15px" class="btn btn-info btn-with-icon save-profile col-6-xs"
+                                ng-click="openModal('app/pages/admin/company/users/system-message-modal.html', 'md',item.id,$index)">ارسال
+                                پیام سیستمی</button>
+                        </div>
+                    </div>
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods">
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">
+                                            عملیات
+                                        </div>
+                                    </th>
+                                    <th st-sort="address.mobile">
+                                        <div class="newtable_header">
+                                            موبایل
+                                        </div>
+                                    </th>
+                                    <th st-sort="address.phone">
+                                        <div class="newtable_header">
+                                            تلفن
+                                        </div>
+                                    </th>
+                                    <th st-sort="personnelCode">
+                                        <div class="newtable_header">
+                                            کد پرسنلی
+                                        </div>
+                                    </th>
+                                    <th st-sort="name">
+                                        <div class="newtable_header">
+                                            نام
+                                        </div>
+                                    </th>
+                                    <th class="table-id" st-sort="id" st-sort-default="true">
+                                        <div class="newtable_header">
+                                            ردیف
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th><input style="width: 50%;display: inline-table" st-search="address.mobile"
+                                            placeholder="جستجو بر اساس موبایل" class="input-sm form-control search-input"
+                                            type="search" /></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th><input style="width: 50%;display: inline-table" st-search="name" placeholder="جستجو بر اساس نام"
+                                            class="input-sm form-control search-input" type="search" /></th>
+
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="{{$index}}" ng-repeat="item in companyUsers">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="btn btn-info editable-table-button btn-xs" ng-click="view(item.id)">مشاهده
+                                            </button>
+                                            <button class="btn btn-danger editable-table-button btn-xs" ng-click="openModal('app/pages/admin/company/users/change-pass-modal.html', 'md',item.id,$index)">رمز
+                                            </button>
+                                            <button class="btn btn-warning editable-table-button btn-xs" ng-click="orders(item.id)">سفارش
+                                            </button>
+                                            <button class="btn candy-back white-color editable-table-button btn-xs"
+                                                ng-click="financial(item.id)">مالی
+                                            </button>
+                                            <button class="btn btn-success editable-table-button btn-xs" ng-click="openModal('app/pages/admin/company/users/charge-modal.html', 'md',item.id,$index)">شارژ
+                                            </button>
+                                            <button class="btn btn-info editable-table-button btn-xs" ng-click="openModal('app/pages/admin/company/users/message-modal.html', 'md',item.id,$index)">پیام
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>{{item.address.mobile}}</td>
+                                    <td>{{item.address.phone}}</td>
+                                    <td>{{item.personnelCode}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

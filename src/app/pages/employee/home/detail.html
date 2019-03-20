@@ -1,0 +1,282 @@
+<div class="detail-stage" style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div class="par1" style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+        </div>
+        <div class="part2" style="height: 40%;padding-bottom: 9%">
+            <div class="food_detail_right">
+                <img src="{{food.imageAddress}}" style="height: 75%;object-fit: contain;width: 100%">
+
+            </div>
+            <div class="food_detail_left right-direction">
+                <div class="food_rate_wrapper flex" style="justify-content: space-between;">
+
+
+                </div>
+                <div style="position: relative;">
+                    <div style="width: 100%;max-height: 3.5em;overflow: auto;" class="food_detail_title">{{food.name}}</div>
+                </div>
+                <!--<div style="height: 48%;max-height: 48%;margin-top: 2%;" class="food_detail_desc">-->
+                <!--توضیحات-->
+                <!--</div>-->
+                <div>
+                    <div class="flex">
+                        <div class="food_detail_title">
+                            قیمت
+                        </div>
+                        <div class="food_detail_title" ng-class="{'is__off_white':food.price.preOrderPrice<food.price.foodPrice}" style="text-align: left">
+                            {{formatPrice(food.price.foodPrice)}} تومان
+                        </div>
+                    </div>
+                    <div ng-if="food.price.preOrderPrice<food.price.foodPrice" class="flex">
+                        <div class="food_detail_title">
+                            رزرو اکنون({{diffDaysForOff}}روزه)
+                        </div>
+                        <div class="food_detail_title" style="text-align: left">
+                            {{formatPrice(food.price.preOrderPrice)}} تومان
+                        </div>
+                    </div>
+                    <div ng-if="food.mealAverageCalorie" class="food_detail_title" style="font-size: x-small">کالری :
+                        {{food.mealAverageCalorie}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-100" style="position: relative;top:-26%">
+                <div class="food_detail_right">
+                    <div class="margin__top_10">
+                        <div style="width: 100%;float: right;text-align: center">
+                            <div class="food_detail_rates">متوسط کاربران</div>
+                            <div class="food_detail_rates">{{foodRate}}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--<div style="width: 25%;float: right">-->
+                        <!--<div class="food_detail_rates">ارزیابی کارافید</div>-->
+                        <!--<div class="food_detail_rates">4.7</div>-->
+                        <!--</div>-->
+                        <!--<div style="width: 25%;float: right">-->
+                        <!--<div class="food_detail_rates">هم ذائقه ها</div>-->
+                        <!--<div class="food_detail_rates">4.7</div>-->
+                        <!--</div>-->
+                        <!--<div style="width: 25%;float: right">-->
+                        <!--<div class="food_detail_rates">انجمن تجربه گراها</div>-->
+                        <!--<div class="food_detail_rates">4.9</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="food_detail_left">
+                    <div style="position: relative;">
+                        <div class="food_detail_qute">امتیازشما به این غذا</div>
+                        <div class="food_detail_stars text-left">
+                            <ul class="rating">
+                                <li ng-repeat="star in stars" ng-class="star" ng-click="myRate($index+1)">
+                                    &#8902
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="part3" style="overflow: auto;height: 50%;background: #e1e1e1;padding: 12% 15% 2%;">
+            <div ng-click="toggleComments()" class="margin__top_20 bottom-margin-lg">
+                <div id="comment_toggle_icon" style="background-image: url(/assets/img/ui/toggle-open.png);
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 5%;
+    height: 16px;
+    float: right;cursor: pointer;"></div>
+                <div style="float: right;font-size: small;color: #626262;width: 95%;text-align: right;cursor: pointer;">نظرات
+                    کاربران
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="food_comments" class="comments__wrapper">
+                <div ng-repeat="c in comments">
+                    <div class="comments__name">
+                        {{c.employee.name}}
+                    </div>
+                    <div class="comments__date">
+                        {{myFormatDate(c.date)}}
+                    </div>
+                    <div class="comments__text">
+                        {{c.comment}}
+                    </div>
+                </div>
+            </div>
+            <div style="padding-left: 5%;padding-right: 5%;width: 100%;">
+                <form novalidate ng-submit="forms.myform.$valid && addComments()" name="forms.myform" class="ui reply form">
+                    <div>
+                        <input type="text" ng-model="commentInDetail" id="commentInDetail" name="commentInDetail"
+                            required ng-maxlength="250" ng-minlength="2" placeholder="افزودن نظر شما" style="background: rgba(256,256,256,0.1);text-align: right;direction: rtl;color: #9d9d9d;border-radius: 16px;padding:10px;height: auto;font-size: 0.8em;" />
+                        <div class="error-message" ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                        <div class="error-message" ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.maxlength">
+                            حداکثر 250 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message" ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.minlength">
+                            حداقل 2 کاراکتر وارد کنید
+                        </div>
+                    </div>
+                    <div style="text-align: left;" class="button-wrapper">
+                        <button type="submit" style="width: 65px;height: 30px;" class="btn red__button btn-raised">ارسال
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="food_detail_footer">
+        <div style="width: 25%;    
+    text-align: center;cursor: pointer;display: block;min-width: 120px;"
+            ng-click="foodDetailOrder()">
+            <img src="/assets/img/ui/detail-basket.png" style="height: 32px;width: 32px;object-fit: contain" />
+            <div class="food__detail_date">سفارش {{dateToShowOnCards}}</div>
+            <div class="food__detail_date">ساعت {{timeToShowOnCards}}</div>
+        </div>
+        <div style="width: 75%;
+    text-align: center;display: block;">
+            <div style="text-align: right;margin-right: 4%;font-size: small;padding: 5px;min-width: 360px;">روزهای عرضه</div>
+            <div style="margin-right: 2%">
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(6)">شنبه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(6)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(0)">یکشنبه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(0)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(1)">دوشنبه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(1)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(2)">سه شنبه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(2)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(3)">چهارشنبه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(3)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(4)">پنجشنبه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(4)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+                <div class="food_detail_days">
+                    <div ng-class="getFoodDetailDaysClass(5)">جمعه</div>
+                    <div class="food_detail_days_time" ng-repeat="day in days.get(5)">
+                        {{formatMyTime(day.startTime)}} تا {{formatMyTime(day.endTime)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    .modal .modal-dialog {
+        height: 80% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    .modal-content {
+        min-height: 495px;
+    }
+
+    .food_detail_footer {
+        display: flex !important;
+    }
+
+    @media (max-width: 680px) {
+        .modal-content {
+            height: 100%;
+        }
+
+        .detail-stage {
+            overflow: auto;
+        }
+
+        .detail-stage .part2 {
+            height: 60% !important;
+            padding-bottom: 10px !important;
+        }
+
+        .detail-stage .part3 {
+            height: 50% !important;
+            transform: translateY(10px);
+            height: 60% !important;
+        }
+
+        .detail-stage .food_detail_footer {
+            top: 60%;
+        }
+
+        .detail-stage .food_detail_right {
+            width: 100%;
+            height: 36%;
+        }
+
+        .detail-stage .food_detail_left {
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        /* .detail-stage .food_detail_qute {
+            top: 1em;
+        } */
+        .detail-stage .food_detail_stars {
+            text-align: left;
+        }
+
+        .detail-stage .food_detail_title {
+            padding: 5px 8px 0px;
+            font-size: 0.9em;
+        }
+    }
+    @media (max-width: 1100px) and (max-height: 750px) {
+        .modal-dialog .modal-content{
+            height: 100%;
+        }
+        .modal-open .modal .modal-dialog{
+            height: 90% !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .modal-dialog {
+            width: 768px;
+        }
+    }
+
+    @media (max-height: 701px) {
+        .modal.fade .modal-dialog {
+            height: 95% !important;
+        }
+        .modal-content {
+            height: 100%;
+        }
+    }
+</style>

@@ -1,0 +1,293 @@
+<div class="modal-stage" style="position: relative;height: 100%;overflow: auto;">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+                <div class="confirm_header_title padding-md">
+                    <i class="ion-checkmark modal-icon"></i><span>{{employeePopupTitle}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="h-40" style="height: 50%;padding-bottom: 9%">
+
+        </div>
+        <div class="h-50" style="background: #e1e1e1;padding: 9% 15% 2%;">
+
+        </div>
+    </div>
+    <div class="food_detail_footer edit_emp_modal relative block" ng-init="colorizeBasedOnPage()">
+        <div class="panel-content">
+            <div>
+                <div style="position: absolute;width: 100%;left: 0;text-align: right;padding-left: 20px;padding-right: 20px;">
+                    <form name="myform" ng-submit="myform.$valid && saveOrUpdateUser(myform)" novalidate>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <input tabindex="1" ng-model="userInfo.name" ng-maxlength="70" type="text" class="confirm_input form-control"
+                                    name="myname" required id="myname" style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.myname.$dirty || submitted) && inputIsInvalid(myform.myname.$valid,'myname') && myform.myname.$error.maxlength">
+                                    حداکثر 70 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.myname.$dirty || submitted) && inputIsInvalid(myform.myname.$valid,'myname') && myform.myname.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="myname" class="col-sm-2 control-label">نام</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <input tabindex="3" type="tel" name="phone" ng-minlength="4" ng-maxlength="100"
+                                    required ng-model="userInfo.address.phone" class="confirm_input form-control" id="phone"
+                                    style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
+                                    حداکثر 100 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
+                                    حداقل 4 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="phone" class="col-sm-2 control-label">تلفن</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <input tabindex="2" ng-model="userInfo.personnelCode" ng-maxlength="50" type="text"
+                                    class="confirm_input form-control" name="code" required id="code" style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'code') && myform.code.$error.maxlength">
+                                    حداکثر 50 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'code') && myform.code.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="code" class="col-sm-2 control-label">کد پرسنلی</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <input tabindex="4" name="mobile" type="tel" ng-maxlength="11" ng-minlength="11"
+                                    required ng-model="userInfo.address.mobile" class="confirm_input form-control" id="mobile"
+                                    style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                                    حداکثر 11 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                                    حداقل 11 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="mobile" class="col-sm-2 control-label">موبایل</label>
+                        </div>
+                        <div ng-if="!userInfo.id" class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <input tabindex="5" ng-model="userInfo.user.username" ng-maxlength="60" ng-minlength="4"
+                                    type="text" class="confirm_input form-control" name="username" required id="username"
+                                    style="text-align:right;">
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.maxlength">
+                                    حداکثر 60 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.minlength">
+                                    حداقل 4 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="username" class="col-sm-2 control-label">نام کاربری</label>
+                        </div>
+                        <div ng-if="!userInfo.id" class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <input tabindex="6" name="pass" type="password" ng-maxlength="60" ng-minlength="8"
+                                    required ng-model="userInfo.user.password" class="confirm_input form-control" id="pass"
+                                    style="text-align:right;">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback"></i>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.maxlength">
+                                    حداکثر 60 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.minlength">
+                                    حداقل 8 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="pass" class="col-sm-2 control-label">کلمه عبور</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <textarea tabindex="7" ng-model="userInfo.address.address" ng-maxlength="250" required
+                                    class="confirm_input form-control" id="address" name="address" style="text-align:right;direction: rtl"></textarea>
+                                <div class="error-message" ng-show="(myform.address.$dirty || submitted) && inputIsInvalid(myform.address.$valid,'address') && myform.address.$error.maxlength">
+                                    حداکثر 250 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.address.$dirty || submitted) && inputIsInvalid(myform.address.$valid,'address') && myform.address.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="address" class="col-sm-2 control-label">آدرس</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <select ng-change="employeeLevelChanged(employeeLevel)" class="confirm_input form-control btn-primary"
+                                    ng-model="employeeLevel" data-style="btn-primary" selectpicker>
+                                    <option value="EMPLOYEE">کارمند</option>
+                                    <option value="MANAGER">مدیر میانی</option>
+                                    <option value="TOP_MANAGER">مدیر ارشد</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 no-padding-left control-label">سطح کارمند</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <adm-dtp id="birthdate" ng-model='birthdate' options='{calType: "jalali", format: "YYYY/MM/DD", multiple:false,freezeInput:true,autoClose:true,dtpType:"date"}'></adm-dtp>
+
+                            </div>
+                            <label for="birthdate" class="col-sm-2 control-label">تاریخ تولد</label>
+                        </div>
+
+                        <div>
+                            <div class="margin__top_10 text-left">
+                                <button ng-if="userInfo.id" type="submit" style="width: auto;" ng-class="{'confirm_blue_button' : !isInList}"
+                                    class="confirm_button confirm_yes btn">بروزرسانی</button>
+                                <button ng-if="!userInfo.id" type="submit" style="width: auto" ng-class="{'confirm_blue_button' : !isInList}"
+                                    class="confirm_button confirm_yes btn">ثبت</button>
+                                <button type="button" ng-click="$dismiss()" style="float: left;margin-bottom: 5px;"
+                                    class="confirm_button confirm_no btn"> بازگشت
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile__map_wrapper relative">
+        <div style="text-align: right;color: #575757">
+            محل شرکت
+        </div>
+        <div class="row profile__map">
+            <div id="map" style="height: 100%;width: 100%"></div>
+        </div>
+    </div>
+</div>
+<style>
+    @media (max-height: 800px) {
+        .modal .modal-dialog .profile__body {
+            height: 60% !important;
+        }
+
+        .food_detail_body .h-50 {
+            height: 90% !important;
+            max-height: 400px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .modal-content .food_detail_footer {
+            width: 85% !important;
+        }
+
+        .modal-content .profile__map_wrapper {
+            width: 85% !important;
+        }
+    }
+
+    .row.profile__map {
+        margin-left: 0 !important;
+    }
+
+    .food_detail_body .h-50 {
+        height: 40%;
+        max-height: 360px;
+        min-height: 340px;
+    }
+
+    .modal-open .modal {
+        height: 100%;
+    }
+    .modal .modal-dialog {
+        height: 91% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    .profile__map_wrapper {
+        top: 4.5em !important;
+        position: relative !important;
+        width: 90% !important;
+    }
+
+    .modal-content {
+        top: 0 !important;
+        height: 100% !important;
+    }
+
+    .profile__map_wrapper .profile__map {
+        height: 200px !important;
+    }
+
+    input[type="text"]:not([ng-click="openCalendar()"]),
+    input[type="tel"],
+    input[type="password"] {
+        height: 35px !important;
+    }
+
+    textarea.form-control {
+        height: 64px !important;
+    }
+
+    .btn-group.form-control {
+        height: 32px !important;
+    }
+
+    .modal-content .edit_emp_modal {
+        top: 3.5em;
+    }
+
+    .modal-content .food_detail_footer {
+        width: 90%;
+        height: 62%;
+        margin: auto;
+    }
+
+    @media (max-height: 800px) and (min-width: 1025px) {
+        .modal-content .newmodal_small_logo {
+            width: 64px;
+            height: 28px;
+        }
+    }
+
+    @media (min-height: 900px) {
+        /* .modal-stage {
+            overflow: hidden !important;
+        } */
+    }
+    *[name="myform"] .form-control {
+        min-height: unset !important;
+    }
+</style>
+
+<style ng-if="userInfo.id">
+    .modal .modal-dialog {
+        height: 80% !important;
+    }
+
+    .modal-content .food_detail_footer {
+        height: 56% !important;
+    }
+
+    .h-40 {
+        height: 45% !important;
+    }
+
+    .food_detail_body .h-50 {
+        height: 45% !important;
+    }
+</style>

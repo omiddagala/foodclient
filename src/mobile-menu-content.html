@@ -1,0 +1,157 @@
+<div class="card transparent-back w-100 mobile-card auto-height flex flex-col items-center 
+content-evenly right-direction no-box-shadow no-padding-imp no-margin-imp un-overflow">
+    <div class="w-100 relative top-padding-lg bottom-padding-lg back-a2cece flex
+         flex-col items-center content-evenly right-direction relative dark-box-shadow-l-b">
+        <div class="m-w-50 no-full-width bottom-vertical-align">
+            <img class="redius-xl w-100 img-responsive" src="{{myProfilePic}}" style="min-height: 36px">
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-4 right-4 pointer" ng-click="closeMenu()"
+            viewBox="-10 -10 60 60" width="30" height="30">
+            <path fill="#FFF" fill-rule="evenodd"
+                d="M20.496-.011l-3.614 3.616 14.296 14.327H-.003v5.127h31.181L16.857 37.362l3.639 3.641 20.495-20.506L20.496-.011z" />
+        </svg>
+    </div>
+    <div class="w-100 padding-4 white-back flex flex-col items-center dark-box-shadow-l-b z-index-1
+         bottom-margin-2">
+        <div class="flex w-100 content-between bottom-margin-2 flex-col-500 items-end-500 items-center">
+            <span class="margin-bottom-2-500">
+                {{username}}
+            </span>
+            <span class="margin-bottom-2-500">
+                {{formatPrice(userBalance)}} تومان
+            </span>
+        </div>  
+        <div class="flex w-100 content-between items-center bottom-margin-2 flex-col-500 items-end-500">
+            <span class="color-474747 font-xs margin-bottom-2-500">
+                کد پرسنلی:
+                <!-- {{personalCode}} -->
+                123454
+            </span>  
+            <span class="flex left-direction margin-bottom-2-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-5 -5 35 35" width="20"
+                    height="20">
+                    <path fill="#FFC700" fill-rule="evenodd"
+                        d="M15.309-.003l4.829 9.428 9.813 2.031-6.832 7.857 1.24 10.682-9.05-4.572-9.049 4.572L7.5 19.313.67 11.456l9.815-2.031 4.824-9.428" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-5 -5 35 35" width="20"
+                    height="20">
+                    <path fill="#FFC700" fill-rule="evenodd"
+                        d="M15.309-.003l4.829 9.428 9.813 2.031-6.832 7.857 1.24 10.682-9.05-4.572-9.049 4.572L7.5 19.313.67 11.456l9.815-2.031 4.824-9.428" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-5 -5 35 35" width="20"
+                    height="20">
+                    <path fill="#FFC700" fill-rule="evenodd"
+                        d="M15.309-.003l4.829 9.428 9.813 2.031-6.832 7.857 1.24 10.682-9.05-4.572-9.049 4.572L7.5 19.313.67 11.456l9.815-2.031 4.824-9.428" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-5 -5 35 35" width="20"
+                    height="20">
+                    <path fill="#bcbec0" fill-rule="evenodd"
+                        d="M15.309-.003l4.829 9.428 9.813 2.031-6.832 7.857 1.24 10.682-9.05-4.572-9.049 4.572L7.5 19.313.67 11.456l9.815-2.031 4.824-9.428" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-5 -5 35 35" width="20"
+                    height="20">
+                    <path fill="#bcbec0" fill-rule="evenodd"
+                        d="M15.309-.003l4.829 9.428 9.813 2.031-6.832 7.857 1.24 10.682-9.05-4.572-9.049 4.572L7.5 19.313.67 11.456l9.815-2.031 4.824-9.428" />
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div class="w-100 padding-4 white-back flex flex-col items-center">
+        <div ng-if='hasRole("EMPLOYEE") || hasRole("RESTAURANT") || hasRole("COMPANY")'
+            class="right-direction w-100 bottom-margin-4">
+            <a href="#/profile" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="0 0 50 50" width="25" height="25">
+                    <path fill="#A1A2A3" fill-rule="evenodd"
+                        d="M22.486.983C10.065.983-.016 11.291-.016 23.989c0 12.701 10.081 23.006 22.502 23.006S44.992 36.69 44.992 23.989C44.992 11.291 34.907.983 22.486.983zm0 6.904c3.738 0 6.751 3.08 6.751 6.9 0 3.819-3.013 6.901-6.751 6.901-3.734 0-6.748-3.082-6.748-6.901 0-3.82 3.014-6.9 6.748-6.9zm0 32.668c-5.624 0-10.597-2.945-13.498-7.41.065-4.576 8.998-7.085 13.498-7.085 4.479 0 13.436 2.509 13.502 7.085-2.9 4.465-7.875 7.41-13.502 7.41z" />
+                </svg>
+                <span class="fit-height">
+                    حساب کاربری
+                </span>
+            </a>
+        </div>
+        <div ng-if='hasRole("EMPLOYEE")' class="right-direction w-100 bottom-margin-4">
+            <a href="" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="0 0 50 50" width="25" height="25">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#A1A2A3" fill-rule="evenodd"
+                        d="M.005 43.994v-2.668L5.5 35.992V22.658c0-8.214 4.481-15.042 12.372-16.855V3.99c0-2.215 1.839-4 4.121-4 2.282 0 4.125 1.785 4.125 4v1.813c7.861 1.813 12.37 8.668 12.37 16.855v13.334l5.498 5.334v2.668H.005zm21.988 8c-3.05 0-5.496-2.4-5.496-5.333h10.99c0 2.933-2.469 5.333-5.494 5.333z" />
+                </svg>
+                <span class="fit-height">
+                    پیام ها
+                </span>
+            </a>
+        </div>
+        <div ng-if='hasRole("EMPLOYEE")' class="right-direction w-100 bottom-margin-4">
+            <a href="" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="0 0 50 50" width="25" height="25">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#A1A2A3" fill-rule="evenodd"
+                        d="M23.328 41.59l-3.289-2.97C8.362 28.108.653 21.177.653 12.669.653 5.739 6.139.292 13.122.292c3.946 0 7.735 1.823 10.206 4.704C25.798 2.115 29.583.292 33.53.292c6.984 0 12.472 5.447 12.472 12.377 0 8.508-7.709 15.439-19.389 25.974l-3.285 2.947z" />
+                </svg>
+                <span class="fit-height">
+                    مورد علاقه ها
+                </span>
+            </a>
+        </div>
+        <div ng-if='hasRole("EMPLOYEE")' class="right-direction w-100 bottom-margin-4">
+            <a href="#/profile" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="0 0 50 50" width="25" height="25">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#A1A2A3" fill-rule="evenodd"
+                        d="M42.213 31.051a2.33 2.33 0 0 1-1.626.659H26.189c-1.328 0-2.411-1.127-2.411-2.515v-5.596c0-1.388 1.083-2.515 2.411-2.515h14.398a2.361 2.361 0 0 1 1.626.66 2.56 2.56 0 0 1 .783 1.855v5.596c0 .736-.303 1.4-.783 1.856zm-10.979-4.989c0-.692-.54-1.256-1.208-1.256H29.223a1.2 1.2 0 0 0-.744.27 1.26 1.26 0 0 0-.463.986v.835c0 .694.543 1.257 1.207 1.257h.803c.668 0 1.208-.563 1.208-1.257v-.835zm8.023-6.723h-13.07a4.004 4.004 0 0 0-2.936 1.293 4.358 4.358 0 0 0-1.162 2.977V29.2c0 2.359 1.838 4.276 4.1 4.276h14.327v7.015c0 1.388-1.083 2.514-2.411 2.514H2.418c-1.332 0-2.417-1.126-2.417-2.514V12.476c0-.226.035-.448.087-.66.091-.337.244-.643.445-.912a2.39 2.39 0 0 1 1.89-.944h35.686c1.332 0 2.411 1.126 2.407 2.516v6.863h-1.259zM15.551 8.198l12.303-3.493 4.02-1.148c.212-.059.432-.089.638-.089 1.066 0 2.041.734 2.327 1.855l.754 2.875H15.551zm-7.844 0L23.046.28c1.196-.618 2.642-.106 3.237 1.135l.909 1.911-17.14 4.872H7.707z" />
+                </svg>
+                <span class="fit-height">
+                    کیف پول
+                </span>
+            </a>
+        </div>
+        <div class="right-direction w-100 bottom-margin-4" ng-if='hasRole("EMPLOYEE")'>
+            <a href="" class="text-right w-100 color-363636 flex items-center"> <!-- href="#/chargeAccount" -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="0 0 50 50" width="25" height="35">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#A1A2A3" fill-rule="evenodd"
+                        d="M51.524 32.73l-3.982 3.894v-5.096l1.397-1.347c.337-.335.427-.723.427-.924 0-.205-.051-.589-.391-.924L24.307 3.99a1.32 1.32 0 0 0-.94-.373c-.204 0-.594.063-.934.396l-7.662 7.588 12.544 12.441h-8.132l-8.474-8.421-1.786 1.706a1.305 1.305 0 0 0-.389.939c0 .203.048.622.389.955l4.822 4.821H8.579l-2.238-2.27c-1.947-1.92-1.947-5.089 0-7.007L19.852 1.434a4.99 4.99 0 0 1 3.515-1.438c1.28 0 2.545.481 3.518 1.438l24.672 24.347c1.947 1.917 1.908 5.027-.033 6.949zm-11.541-6.407a4.876 4.876 0 0 1 4.913 4.897v13.022H-.009V31.22c0-2.713 2.352-4.897 5.098-4.897h34.894zm4.913 23.747a4.9 4.9 0 0 1-4.913 4.925H5.089c-2.746 0-5.098-2.213-5.098-4.925v-.288h44.905v.288z" />
+                </svg>
+                <span class="fit-height">
+                    افزایش موجودی
+                </span>
+            </a>
+        </div>
+        <div ng-if='hasRole("EMPLOYEE") || hasRole("RESTAURANT")' class="right-direction w-100 bottom-margin-4">
+            <a href="#/reserve" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="5 0 50 50" width="35" height="25">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#F24545" fill-rule="evenodd"
+                        d="M31.851 5.593V2.225h-1.147c-.632 0-1.145-.499-1.145-1.113 0-.615.513-1.114 1.145-1.114h4.586c.633 0 1.146.499 1.146 1.114 0 .614-.513 1.113-1.146 1.113h-1.146v3.368c15.906.588 28.66 13.332 28.66 28.918H3.192c0-15.586 12.755-28.33 28.659-28.918zM16.546 17.5l.003.004c.424.437 1.117.454 1.589.065 3.865-3.205 8.677-5.058 13.75-5.297.618-.029 1.112-.505 1.111-1.105 0-.629-.539-1.151-1.184-1.121-5.613.256-10.933 2.307-15.2 5.857a1.088 1.088 0 0 0-.069 1.597zm-3.615 4.191a1.155 1.155 0 0 0 1.543-.286c.217-.288.44-.571.671-.848a1.08 1.08 0 0 0-.11-1.523l-.032-.027c-.473-.407-1.208-.367-1.606.11-.279.331-.545.669-.805 1.014-.373.496-.224 1.197.303 1.536l.036.024zm52.864 15.208c-.62 2.955-3.323 5.1-6.431 5.1H6.631c-3.106 0-5.81-2.145-6.43-5.1l-.203-.968h66.001l-.204.968z" />
+                </svg>
+                <span class="fit-height">
+                    مشاهده رزروها
+                </span>
+            </a>
+        </div>
+        <div class="right-direction w-100 bottom-margin-4" ng-if='hasRole("EMPLOYEE")'>
+            <a href="" ng-click="tutorial()" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="0 0 50 50" width="25" height="25">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#A1A2A3" fill-rule="evenodd" d="M22.677.673C10.163.673.003 10.775.003 23.224c0 12.447 10.16 22.55 22.674 22.55 12.518 0 22.677-10.103 22.677-22.55C45.354 10.775 35.195.673 22.677.673zm2.269 33.825h-4.537v-4.509h4.537v4.509zm0-9.02h-4.537v-13.53h4.537v13.53z"/>
+                </svg>
+                <span class="fit-height">
+                    راهنما
+                </span>
+            </a>
+        </div>
+        <div class="right-direction w-100 bottom-margin-4">
+            <a href="" ng-click="logout()" class="text-right w-100 color-363636 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"
+                    viewBox="-5 0 50 40" width="25" height="25">
+                    <path xmlns="http://www.w3.org/2000/svg" fill="#A1A2A3" fill-rule="evenodd"
+                        d="M0 15.75h28.148L15.218 3.177 18.502.004l18.505 17.997-18.505 17.996-3.26-3.173 12.906-12.575H0V15.75z" />
+                </svg>
+                <span class="fit-height">
+                    خروج
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

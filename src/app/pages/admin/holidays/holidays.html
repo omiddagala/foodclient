@@ -1,0 +1,170 @@
+<div include-with-scope="page-top.html"></div>
+<div class="widgets mycontent" ng-init="initCtrl()" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="تقویم تعطیلات" ba-panel-class="with-scroll">
+                <div>
+                    <div class="form-group a0 full-width flex items-center content-between">
+                        <!-- <div class="a1">
+                            <div>
+                                <div class="a2">
+                                    تعداد
+                                </div>
+                                <div class="a3">
+                                    <select class="form-control selectpicker" data-style="btn-primary" title="Rows on page"
+                                        selectpicker style="text-align:right;" ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="a4 fit-height" style="max-width: 250px; min-width: 150px;">
+                            <div class="a7">
+                                <select ng-change="holidayTypeChanged(holidayType)" class="form-control btn-primary"
+                                    ng-model="holidayType" data-style="btn-primary" selectpicker>
+                                    <option style="color: black" value="ramadan">رمضان</option>
+                                    <option style="color: black" value="vacation">تعطیلات رسمی</option>
+                                    <option style="color: black" value="karafeed">تعطیلات کارافید</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="width: fit-content;float: right;height: 100%;text-align: right;">
+                            <button ng-if="holidayType === 'ramadan'" style="margin-top: 15px;margin-right: 15px" class="btn btn-info btn-with-icon save-profile"
+                                ng-click="openModal('app/pages/admin/holidays/ramadan-modal.html', 'md',null,null)">افزودن</button>
+                            <button ng-if="holidayType !== 'ramadan'" style="margin-top: 15px;margin-right: 15px" class="btn btn-info btn-with-icon save-profile"
+                                ng-click="openModal('app/pages/admin/holidays/vacation-modal.html', 'md',null,null)">افزودن</button>
+                        </div>
+                    </div>
+                    <div class="horizontal-scroll">
+                        <table ng-if="holidayType === 'ramadan'" class="table" st-table="foods">
+                            <thead>
+                                <tr class="sortable">
+                                    <th>
+                                        <div class="newtable_header">
+                                            تا ساعت
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="newtable_header">
+                                            از ساعت
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="newtable_header">
+                                            تا تاریخ
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="newtable_header">
+                                            از تاریخ
+                                        </div>
+                                    </th>
+                                    <th id="triggerRamadan" class="table-id" st-sort="id" st-sort-default="true">
+                                        <div class="newtable_header">
+                                            ردیف
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in h">
+                                    <td>{{formatMyTime(item.endTime)}}</td>
+                                    <td>{{formatMyTime(item.startTime)}}</td>
+                                    <td style="direction: rtl">{{myFormatDate(item.endDate)}}</td>
+                                    <td style="direction: rtl">{{myFormatDate(item.startDate)}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <table ng-if="holidayType === 'vacation'" class="table" st-table="foods">
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">
+                                            عملیات
+                                        </div>
+                                    </th>
+                                    <th st-sort="date">
+                                        <div class="newtable_header">
+                                            تاریخ
+                                        </div>
+                                    </th>
+                                    <th class="table-id" st-sort="id" st-sort-default="true">
+                                        <div class="newtable_header">
+                                            ردیف
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in h">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="btn btn-danger editable-table-button btn-xs" ng-click="openModal('app/pages/admin/holidays/delete-modal.html', 'md',item.id,$index)">حذف
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td style="direction: rtl">{{myFormatDate(item.date)}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <table ng-if="holidayType === 'karafeed'" class="table" st-table="foods">
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">
+                                            عملیات
+                                        </div>
+                                    </th>
+                                    <th st-sort="date">
+                                        <div class="newtable_header">
+                                            تاریخ
+                                        </div>
+                                    </th>
+                                    <th class="table-id" st-sort="id" st-sort-default="true">
+                                        <div class="newtable_header">
+                                            ردیف
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in h">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="btn btn-danger editable-table-button btn-xs" ng-click="openModal('app/pages/admin/holidays/delete-modal.html', 'md',item.id,$index)">حذف
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td style="direction: rtl">{{myFormatDate(item.date)}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

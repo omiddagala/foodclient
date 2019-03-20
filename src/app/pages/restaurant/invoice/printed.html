@@ -1,0 +1,106 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 120px">
+                <div class="al-sidebar-list-link text-right defult-cursor">
+                    <div class="newmenu__search_title ">از تاریخ</div>
+                </div>
+
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item " style="padding: 16px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(fromDate,true)" id="from" ng-model='fromDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{fromDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 120px">
+                <div class="al-sidebar-list-link defult-cursor text-right">
+                    <div class="newmenu__search_title ">تا تاریخ</div>
+                </div>
+
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item " style="padding: 16px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(toDate,false)" id="to" ng-model='toDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{toDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div class="full-height">
+        <div class="" style="padding-left: 16px;padding-bottom: 25%;padding-top: 5%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">عملیات</div>
+                                    </th>
+                                    <th st-sort="totalPrice">
+                                        <div class="newtable_header">قیمت نهایی</div>
+                                    </th>
+                                    <th st-sort="taxAmount">
+                                        <div class="newtable_header">مالیات</div>
+                                    </th>
+                                    <th st-sort="deliveryPrice">
+                                        <div class="newtable_header">هزینه حمل</div>
+                                    </th>
+                                    <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in orders">
+                                    <td>
+                                        <div class="buttons ">
+                                            <button class="confirm_button confirm_yes btn padding-md" ng-click="printFactor(item)">چاپ
+                                            </button>
+                                            <button class="confirm_button confirm_yes btn padding-md" ng-click="viewFactor(item)">مشاهده
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>{{formatPrice(item.totalAmount)}}</td>
+                                    <td>{{item.totalTaxAmount + item.deliveryPriceTax}}</td>
+                                    <td>{{item.deliveryPrice}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 30px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        padding-left: 20px !important;
+    }
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>

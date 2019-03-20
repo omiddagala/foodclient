@@ -1,0 +1,66 @@
+<div class="add-row-editable-table">
+    <button class="confirm_button confirm_yes fit-width btn" ng-click="addDay()">افزودن</button>
+</div>
+<table class="table table-bordered table-hover table-condensed" style="margin-bottom: 300px">
+    <tr>
+        <td>عملیات</td>
+        <td>تا ساعت</td>
+        <td>از ساعت</td>
+        <td>تعداد</td>
+        <td>روز هفته</td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="day in food.availableDates" class="editable-row">
+        <td>
+            <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline"
+                  shown="inserted == day">
+                <button type="submit" ng-disabled="rowform.$waiting" ng-click="saveOrUpdateAvailableDate($index,day.id)"
+                        class="confirm_button confirm_yes fit-width btn padding-md no-margin-imp">
+                    ذخیره
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel();removeEmptyRow($index,day.id)"
+                        class="confirm_button confirm_no fit-width btn padding-md no-margin-imp">
+                    لغو
+                </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+                <button id='edit-{{$index}}' class="confirm_button confirm_yes fit-width btn padding-md no-margin-imp" ng-click="rowform.$show();enabled(rowform.$visible,'from-'+$index)">ویرایش</button>
+                <button class="confirm_button confirm_no fit-width btn padding-md no-margin-imp" ng-click="removeDay($index,day.id)">حذف</button>
+            </div>
+        </td>
+        <td class="select-td">
+            <input style="width: 196px;display: inline-table" e-required e-name="day.endTime" value="{{ showStatus('to-'+$index,day.endTime) }}" ng-disabled="!rowform.$visible" type="text" id="to-{{$index}}" class="form-control floating-label" placeholder="تا ساعت">
+        </td>
+        <td class="select-td">
+            <input style="width: 196px;display: inline-table" e-required e-name="day.startTime" value="{{ showStatus('from-'+$index,day.startTime) }}" ng-disabled="!rowform.$visible" type="text" id="from-{{$index}}" class="form-control floating-label" placeholder="از ساعت">
+        </td>
+        <td>
+        <span e-type="number" editable-text="day.count" id="count-{{$index}}" e-name="day.count" e-form="rowform" e-required>
+          {{ day.count}}
+        </span>
+        </td>
+        <td class="select-td">
+        <span id="dayOfWeek-{{$index}}" editable-select="day.dayOfWeek" e-name="day.dayOfWeek" e-form="rowform" e-selectpicker
+              e-ng-options="s.value as s.text for s in days">
+          {{ showDay(day) || '0'}}
+        </span>
+        </td>
+        <td>
+            {{$index+1}}
+        </td>
+    </tr>
+</table>
+<style>
+    .table{
+        min-width: 1000px;
+    }
+    .panel-title{
+        color: #575757;
+    }
+    .bootstrap-select.btn-group button.btn.btn-default {
+        background: #ffffff;
+    }
+    button.btn.dropdown-toggle.bs-placeholder.btn-default {
+        margin-top: 0 !important;
+    }
+</style>

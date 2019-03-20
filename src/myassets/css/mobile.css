@@ -1,0 +1,565 @@
+*[ui-view] {
+    width: 100% !important;
+    padding-top: 7.5em;
+    padding-bottom: 4em;
+    background-color: #f4f4f4 !important;
+}
+
+html body {
+    margin-right: 0 !important;
+}
+
+/* nav && tabs */
+
+.mobile-menu-selected {
+    fill: rgb(242, 69, 69) !important;
+}
+
+.mobile-menu-selected-text {
+    color: rgb(242, 69, 69) !important;
+}
+
+.ion-navicon {
+    color: #808285 !important;
+}
+
+.tab-nav.tabs {
+    background-color: #ebebeb !important;
+    background-image: none !important;
+    border: none !important;
+    height: fit-content !important;
+    justify-content: space-evenly !important
+}
+
+div.pane {  
+    padding-top: 7.5em;
+    padding-bottom: 4em;
+    height: auto !important;
+    overflow: auto !important;
+}
+
+/* login */
+
+.m-login-content {
+    transform: translateY(10%);
+    margin-bottom: 2em;
+}
+
+/* .menu-content.pane.menu-animated{
+    transform: none !important;
+} */
+
+/* foods && rest && reserves card List */
+
+.card {
+    cursor: default;
+}
+
+.article-mobile-list .card,
+.article-mobile-list .list-inset {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: unset;
+}
+
+.mobil-card-rate,
+.mobil-card-info {
+    position: absolute;
+    width: 29px;
+    height: 19px;
+    object-fit: contain;
+    border-radius: 3px;
+    background-color: #f44545;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    line-height: 22px;
+    top: -10px;
+    right: 5%;
+}
+
+.mobil-card-info {
+    right: unset;
+    left: 1em;
+    top: 1em;
+    background: unset !important;
+}
+
+.food-ingredients {
+    max-height: 2.2em;
+    /* overflow: auto; */
+}
+
+.mobil-card-img {
+    min-width: 30%;
+    max-width: 30%;
+}
+
+.mobile-card {
+    padding: 1em;
+    padding-top: 1.5em;
+    padding-left: 1.5em;
+}
+
+.card-img {
+    border-radius: .8em;
+}
+
+.card__restaurant__star {
+    width: 2em;
+    height: 2em;
+    background-size: 20px 20px;
+}
+
+.reserve-deliveryDate-hr::before {
+    background-color: rgb(162, 206, 206) !important;
+    width: 100% !important;
+    height: 3px !important;
+}
+
+.reserve-article .card {
+    padding: 1em;
+}
+
+.reserve-item-count {
+    width: 27px;
+    height: 27px;
+    line-height: 2.2;
+}
+
+.mobile-food-name {
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.comment-box {
+    min-height: 26px;
+}
+
+.comment-box-focused {
+    height: auto;
+    min-height: 92px;
+    padding-bottom: 2em !important;
+}
+
+/* profile-pag */
+
+.profile-pag {
+    margin-top: -5em;
+}
+
+/* color */
+
+.defult-title-color {
+    color: #1a4049;
+}
+
+.back-ebebeb {
+    background-color: #ebebeb !important;
+}
+
+.color-808285 {
+    color: #808285;
+}
+
+.color-black-imp {
+    color: black !important;
+}
+
+.color-2e6977 {
+    color: #2e6977 !important;
+}
+
+.color-319ab1 {
+    color: #319ab1 !important;
+}
+
+.color-b6b6b6 {
+    color: #b6b6b6 !important;
+}
+
+.color-363636 {
+    color: #363636 !important;
+}
+
+.color-9f9f9f {
+    color: #9f9f9f !important;
+}
+
+.color-828282 {
+    color: #828282 !important;
+}
+
+.color-b1b1b1 {
+    color: #b1b1b1 !important;
+}
+
+.color-474747 {
+    color: #474747 !important;
+}
+
+.color-363636 {
+    color: #363636 !important;
+}
+
+.color-939292 {
+    color: #939292 !important;
+}
+
+.color-e1e1e1 {
+    color: #e1e1e1 !important;
+}
+
+.color-f4f4f4 {
+    color: #f4f4f4 !important;
+}
+
+.color-9d9d9d {
+    color: #9d9d9d !important;
+}
+
+.color-white {
+    color: white !important;
+}
+
+/* back */
+
+.transparent-back {
+    background-color: transparent !important;
+}
+
+.back-ebebeb {
+    background-color: #ebebeb !important;
+}
+
+.back-e1e1e1 {
+    background-color: #e1e1e1 !important;
+}
+
+.back-f4f4f4 {
+    background-color: #f4f4f4 !important;
+}
+
+.back-e2eded {
+    background-color: #e2eded !important;
+}
+
+.back-a2cece {
+    background-color: #a2cece !important;
+}
+
+.back-f24545 {
+    background-color: #f24545 !important;
+}
+
+/* media */
+
+@media (min-width: 550px) {
+    .flex-col-xs {
+        flex-direction: row !important;
+    }
+    .self-baseline-xs {
+        align-self: center !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .card>div {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+    .card {
+        flex-wrap: wrap;
+        padding-left: 1em !important;
+    }
+    .profile-pag .card {
+        padding-left: 0 !important;
+    }
+    .mobil-card-info {
+        left: 1.5em;
+    }
+    .col-xs-6 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ionic [start] */
+
+input[type=text] {
+    padding-left: 12px !important;
+}
+
+body {
+    cursor: url('https://ionicframework.com/img/finger.png'), auto;
+}
+
+fader {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    z-index: -1;
+}
+
+ion-content.has-wallet {
+    top: 96px !important;
+}
+
+ion-wallet-select {
+    position: relative;
+    display: block;
+    top: 44px;
+    height: calc(0% - 96px);
+    transition: all .5s;
+    z-index: 10;
+}
+
+ion-wallet-select.shown {
+    height: calc(100% - 96px);
+}
+
+ion-wallet-select.hidden {
+    height: calc(0% - 96px);
+}
+
+ion-wallet-select wallet-content {
+    display: block;
+    overflow: hidden;
+    height: 100%;
+    background: #ccc;
+}
+
+ion-wallet-select wallet-content .item:first-child {
+    margin-top: 10px;
+}
+
+ion-wallet-select wallet-content .item:last-child {
+    margin-bottom: 64px;
+}
+
+.premium-bar {
+    transition: all .5s;
+}
+
+.premium-bar.shown {
+    opacity: 1;
+}
+
+.premium-bar.hidden {
+    opacity: 0;
+}
+
+.add-wallet {
+    background: #ccc !important;
+    bottom: -53px !important;
+    z-index: 1 !important;
+}
+
+.has-footer {
+    bottom: 70px;
+}
+
+.bar-footer {
+    z-index: 150;
+}
+
+.bar .title {
+    left: 0 !important;
+    right: 0 !important;
+}
+
+.scroll {
+    /* transform: none !important; */
+}
+
+.menu-content {
+    width: 50% !important;
+    max-width: 350px !important;
+}
+
+ion-list .card {
+    padding: 0 !important;
+}
+
+/* sortBox */
+
+.sort-box {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    height: -moz-fit-content;
+    min-height: 100vh;
+    /* background-color: red; */
+    z-index: 20;
+    top: 3em;
+    left: -100%;
+    transition: .15s;
+}
+
+.content-sort-visible {
+    bottom: 0 !important;
+}
+
+.footer-sort-visible {
+    display: none;
+}
+
+.ui-view-sort-visable {
+    /* height: 100vh; */
+    padding-bottom: 0;
+}
+
+.search-bar-box-sort-visable,
+.article-mobile-list-sort-visable {
+    display: none;
+}
+
+.hidden-sort-box {
+    /* display: none; */
+}
+
+.ADMdtpInput,
+.ADMdtp {
+    width: 100%;
+}
+
+.confirm-box-disable {
+    display: none;
+}
+
+.confirm-box {
+    position: fixed;
+    height: 150vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+    /* bottom: -25%; */
+    top: 0;
+    pointer-events: none;
+}
+
+.confirm-img {
+    max-width: 120px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scroll-content {
+    /* padding-top: 3em; */
+}
+
+.category-page {
+    margin-top: -3.5em;
+}
+
+.header-img {
+    margin-bottom: -50%;
+    margin-top: 2em;
+    /* margin-left: -6%; */
+}
+
+.header-animation {
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 6s;
+    animation-name: rotate;
+    animation-duration: 6s;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.detail-page {
+    margin-top: -3.5em;
+}
+
+.detail-page .hr::before {
+    background-color: #e0e0e0 !important;
+    box-shadow: 0px 0px 4px 0 #80808030;
+}
+
+.detail-page .mobil-card-info {
+    top: 2.5em;
+    left: 2.5em;
+}
+
+.detail-page .food-detail-left {}
+
+.detail-page .food-detail-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.detail-page .food_detail_qute {
+    background-image: url(/assets/img/ui/mobile/qote-red.png);
+    color: white;
+    line-height: 3;
+    font-size: 1em;
+    width: 100%;
+    height: 4em !important;
+}
+
+.detail-page .rating li {
+    font-size: 2.5em;
+}
+
+.detail-page .send-btn {
+    position: absolute;
+    bottom: .5em;
+    left: .5em;
+}
+
+.detail-page ul.rating {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hidden-tab {
+    /* display: none; */
+    /* height: 0 !important;
+    overflow: hidden; */
+}
+
+.tab-arrow {
+    transition: .6s;
+}
+
+.rotate {
+    transform: rotateZ(-90deg);
+}
+
+.detail-page .message-box {
+    background: rgba(256, 256, 256, 1) !important;
+    min-height: 5em !important;
+    padding-bottom: 2em !important;
+}
+.detail-page-footer{
+    margin-top: -4px;
+    z-index: 10;
+    background-color: #f44545 !important;
+}
+.comments__wrapper{
+    overflow-y: unset !important;
+    height: auto !important;
+}
+.card{
+    opacity: 1 !important;
+}
+.m-login-section{
+    height: 100vh;
+    margin-top: -7.5em;
+    margin-bottom: -4em;
+}
+/* ionic [end] */

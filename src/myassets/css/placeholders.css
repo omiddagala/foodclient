@@ -1,0 +1,62 @@
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    text-align: right;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    text-align: right;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    text-align: right;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: right;
+}
+
+.placeholder-color-for-desc::-webkit-input-placeholder {
+    color: #808080;
+}
+
+.placeholder-color-for-desc::-moz-placeholder {
+    color: #808080;
+}
+
+.placeholder-color-for-desc:-moz-placeholder {
+    color: #808080;
+}
+
+.placeholder-color-for-desc:-ms-input-placeholder {
+    color: #808080;
+}
+
+.place_color_for_emp_name::-webkit-input-placeholder {
+    color: #2e6977;
+}
+
+.place_color_for_emp_name::-moz-placeholder {
+    color: #2e6977;
+}
+
+.place_color_for_emp_name:-moz-placeholder {
+    color: #2e6977;
+}
+
+.place_color_for_emp_name:-ms-input-placeholder {
+    color: #2e6977;
+}
+.place_color_for_pers_code::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+.place_color_for_pers_code::-moz-placeholder {
+    color: #ffffff;
+}
+
+.place_color_for_pers_code:-moz-placeholder {
+    color: #ffffff;
+}
+
+.place_color_for_pers_code:-ms-input-placeholder {
+    color: #ffffff;
+}

@@ -1,0 +1,58 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 150px;">
+                <div class="al-sidebar-list-link text-right default-cursor" ng-click="addFood()">
+                    <img style="width: 88px" src="/assets/img/ui/add-employee.png">
+                    <div class="newmenu__search_title top-margin-lg bottom-margin-lg">افزودن غذا</div>
+                </div>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 150px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <img style="width: 65px" src="/assets/img/ui/search.png">
+                    <div class="newmenu__search_title top-margin-lg bottom-margin-lg">جستجو</div>
+                </div>
+
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px;padding-right: 0;">
+                        <div>
+                            <input ng-model="foodName" ng-change="searchFoodByName()" type="text" class="form-control place_color_for_emp_name"
+                                id="foodName" placeholder="نام">
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div class="full-height default-back">
+        <div style="background: #e2eded;padding-left: 16px;padding-top: 5%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div include-with-scope="app/pages/restaurant/foodlist/crud.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 30px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        padding-left: 20px !important;
+    }
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>

@@ -1,0 +1,38 @@
+<div include-with-scope="page-top.html"></div>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; height: 100%">
+        <ul class="al-sidebar-list sidebar__">
+        </ul>
+    </div>
+</aside>
+<div class="mycontent">
+    <div style="color: green;padding-top: 10%;text-align: center;">
+        حساب شما با موفقیت شارژ شد
+    </div>
+    <div style="text-align: center">
+        <button ng-click="locateFirstPage()" class="btn btn-with-icon save-profile confirm_yes confirm_button  padding-md fit-width">
+            <i class="ion-home"></i>خانه
+        </button>
+    </div>
+</div>
+<aside class="al-sidebar sabad__" ng-if="hasRole('EMPLOYEE')">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 90% !important;">
+        <ul id="sabad-side" class="al-sidebar-list" style="overflow:hidden;width: auto; height: 100%;padding-top: 0;">
+        </ul>
+    </div>
+</aside>
+<style ng-if="hasRole('COMPANY') || hasRole('SILVER_COMPANY')">
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-left: 12px !important;
+    }
+
+    .mycontent.widgets .row {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+</style>

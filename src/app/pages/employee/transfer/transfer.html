@@ -1,0 +1,127 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div class="confirm_header_title padding-md">
+                انتقال وجه
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body">
+        <form name="myform" ng-submit="myform.$valid && doTransfer(myform)" novalidate class="form-horizontal modal__form top-padding-lg"
+            ng-init="initCtrl()" ng-controller="transferCtrl">
+            <div class="form-group">
+                <label for="colNameToSearch" style="color: #575757" class="col-xs-12 col-sm-4 control-label top-margin-lg pull-right">کاربر
+                    مقصد</label>
+                <div class="col-xs-12  col-sm-8" style="margin-top: 10px;margin-bottom: 10px">
+                    <div class="btn-group bootstrap-select form-control btn-primary ng-pristine ng-untouched ng-valid ng-empty">
+
+                        <input ng-model="colNameToSearch" autocomplete="off" ng-change="searchColleagues()" type="text"
+                            class="form-control btn dropdown-toggle btn-primary" style="background: #ebebeb" id="colNameToSearch"
+                            placeholder="نام مورد نظر را تایپ و از لیست انتخاب کنید">
+                        <div class="dropdown-menu open" role="combobox" id="col-dropdown" style="max-height: 350px; overflow: hidden; min-height: 0px;background: #ebebeb; padding:0;">
+                            <ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 339px; overflow-y: auto; min-height: 0px;">
+                                <li ng-click="colSelected(col.id)" ng-repeat="col in colNames" style="background: #ebebeb"
+                                    data-original-index="{{$index + 1}}"><a tabindex="0" class="form-control"
+                                        data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span
+                                            class="text" id="col-{{$index+1}}">{{col.name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="error-message" ng-show="colNotSelected">
+                        لطفا نام موردنظر خود را از لیست انتخاب کنید
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="amount" style="color: #575757" class="col-xs-12 col-sm-4 control-label top-margin-lg pull-right">مبلغ
+                    مورد نظر</label>
+                <div class="col-xs-12  col-sm-8" style="margin-bottom: 10px">
+                    <input type="number" class="confirm_input form-control" ng-maxlength="11" required id="amount" name="amount"
+                        ng-model="amount" placeholder="به تومان">
+                    <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.maxlength">
+                        حداکثر 11 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="desc" style="color: #575757" class="col-xs-12 col-sm-4 control-label top-margin-lg pull-right">توضیحات</label>
+                <div class="col-xs-12  col-sm-8" style="margin-bottom: 10px">
+                    <textarea ng-maxlength="150" class="confirm_input form-control" name="desc" ng-model="desc" id="desc"
+                        style="height: 82px !important;"></textarea>
+                    <div class="error-message" ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
+                        حداکثر 150 کاراکتر وارد کنید
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="left-text">
+                    <button type="submit" class="confirm_button confirm_yes btn">انتقال</button>
+                    <button type="button" ng-click="$dismiss()" class="confirm_button confirm_no btn pull-left">
+                        بازگشت
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    /* @media (max-height: 800px) {
+        .modal .modal-dialog {
+            height: 70% !important;
+        }
+    } */
+    .modal .modal-dialog.modal-md {
+        height: 22em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .modal .modal-dialog .confirm_body {
+        top: 3.5em !important;
+        height: 18em;
+        margin: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 4em);
+    }
+
+    .modal__form {
+        display: block !important;
+
+    }
+
+    .btn-group .btn:hover,
+    .btn-group .btn:focus,
+    .btn-group .btn.focus {
+        color: #6b6b6b !important;
+    }
+
+    * input:-internal-autofill-previewed,
+    * input:-internal-autofill-selected,
+    * textarea:-internal-autofill-previewed,
+    * textarea:-internal-autofill-selected,
+    * select:-internal-autofill-previewed,
+    * select:-internal-autofill-selected {
+        background-color: rgb(136, 136, 136) !important;
+    }
+
+    .dropdown-menu>li>a {
+        margin-bottom: 0;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none;
+    }
+</style>

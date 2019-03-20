@@ -1,0 +1,111 @@
+<div style="position: relative;height: 100%;padding: 6px" class="white-back">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body relative" style="width: 100%">
+        <div class="full-width flex content-between">
+            <button type="button" class="close newmodal_close no-margin no-padding" ng-click="$dismiss()" aria-label="Close">
+                <img src="/assets/img/ui/redClose.png">
+            </button>
+            <div class="fit-width font-bold defult-red-color" style="line-height: 2;">
+                هدیه
+            </div>
+            <img src="/assets/img/ui/redLogo.png" class="fit-width">
+        </div>
+    </div>
+    <div class="confirm_body flex content-between w-90 margin-center no-margin defult-red-back" style="padding: 25px;">
+        <div class="col-xs-7 no-padding">
+            <img class="full-width" src="{{gift.imageAddress}}" alt="">
+        </div>
+        <div class="col-xs-5 center-text content-end flex flex-col">
+            <img class="fit-width margin-center" src="/assets/img/ui/shape-720.png" alt="">
+            <p class="white-color right-direction top-margin-md font-bold">{{gift.amount}} تومان</p>
+        </div>
+    </div>
+    <div class="col-12 right-direction">
+        <div class="full-width font-bold defult-red-color sender center-text">هدیه از طرف مدیر</div>
+        <div class="full-width font-bold header-color message center-text">{{gift.comment}}</div>
+
+    </div>
+</div>
+<style>
+    .modal .modal-dialog {
+        position: absolute;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+    }
+
+    .modal-content {
+        transform: unset !important;
+    }
+
+        .modal-content .confirm_body {
+            position: relative;
+        }
+
+    .full-width.flex.content-between {
+        padding: 8px 6px;
+    }
+
+    .modal .modal-dialog {
+        max-width: 628px;
+    }
+
+    .message {
+        line-height: 2;
+        padding: 10px 0 20px 0;
+        font-size: 1.5em;
+    }
+
+    .sender {
+        line-height: 2;
+        padding: 20px 0 10px 0;
+        font-size: 1.7em;
+    }
+
+    /* .modal-open .modal {
+            height: 100%;
+        }
+
+        .modal .modal-dialog {
+            height: 39em !important;
+            top: 50%;
+        transform: translateY(-50%) !important;
+        }
+
+        .modal-content {
+            height: 60%;
+            top: 20%;
+        }
+
+        .btn-group button.btn.btn-primary {
+            border-color: #dfdfdf !important;
+            background: #ebebeb !important;
+            height: 42px;
+        }
+
+        .open>.btn.dropdown-toggle.btn.btn-primary {
+            background: #ebebeb !important;
+            border-color: #ebebeb !important;
+            background-color: #ebebeb !important;
+        }
+
+        .confirm_input.form-control,
+        .bootstrap-select.form-control {
+            height: 42px !important;
+        }
+
+        @media (min-width: 768px) {
+            .modal-dialog {
+                width: 800px;
+            }
+        }
+        @media (max-width: 767px) {
+            .modal .modal-dialog {
+                height: 51em !important;
+            }
+            .row {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+        } */
+</style>

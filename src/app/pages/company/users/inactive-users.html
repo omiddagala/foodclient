@@ -1,0 +1,114 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 150px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 48px" src="/assets/img/ui/search.png">
+                    <div class="newmenu__search_title top-margin-lg">جستجو</div>
+                </div>
+
+                <ul class="al-sidebar-sublist top-margin-lg w-95 margin-left-auto"
+                    ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li ui-sref-active="selected"
+                        ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item">
+                        <div>
+                            <input ng-model="employeeName" ng-change="userSearch()" type="text"
+                                   class="form-control place_color_for_emp_name"
+                                   id="employeeName" placeholder="نام">
+                        </div>
+                        <div>
+                            <input ng-model="personnelCode" ng-change="userSearch()" type="text"
+                                   class="form-control place_color_for_pers_code"
+                                   style="background-color: #f44545;color: #ffffff"
+                                   id="personnelCode" placeholder="کد پرسنلی">
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div id="container" style="height: 100%;padding-left: 20px;padding-top: 5%;" class="active-employees-background widgets">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="horizontal-scroll">
+                    <table class="table" st-table="foods" refresh-table>
+                        <thead>
+                        <tr class="sortable ">
+                            <th>
+                                <div class="newtable_header">عملیات</div>
+                            </th>
+                            <th st-sort="address.mobile">
+                                <div class="newtable_header">موبایل</div>
+                            </th>
+                            <th st-sort="address.phone">
+                                <div class="newtable_header">تلفن</div>
+                            </th>
+                            <th st-sort="personnelCode">
+                                <div class="newtable_header">کد پرسنلی</div>
+                            </th>
+                            <th st-sort="name">
+                                <div class="newtable_header">نام</div>
+                            </th>
+                            <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr id="{{$index}}" ng-repeat="item in inactiveUsers">
+                            <td>
+                                <div class="buttons">
+                                    <button class="confirm_button confirm_yes btn btn"
+                                            ng-click="finance(item.id)">مالی
+                                    </button>
+                                    <button class="confirm_button confirm_yes btn"
+                                            ng-click="openModal('app/pages/company/users/delete-modal.html', 'md',item.id,$index)">
+                                        حذف
+                                    </button>
+                                    <button class="confirm_button confirm_yes btn"
+                                            ng-click="openModal('app/pages/company/users/settle-modal.html', 'md',item.id,$index)">
+                                        تسویه
+                                    </button>
+                                    <button class="confirm_button confirm_yes btn"
+                                            ng-click="openModal('app/pages/company/users/activate-modal.html', 'md',item.id,$index)">
+                                        فعال
+                                    </button>
+                                </div>
+                            </td>
+                            <td>{{item.address.mobile}}</td>
+                            <td>{{item.address.phone}}</td>
+                            <td>{{item.personnelCode}}</td>
+                            <td>{{item.name}}</td>
+                            <td class="table-id">{{$index+1}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div st-pagination="" st-items-by-page="smartTablePageSize"
+                                     st-displayed-pages="10"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-left: 12px !important;
+    }
+</style>

@@ -1,0 +1,296 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 150px;">
+                <div style="text-align: right;cursor: pointer;" class="al-sidebar-list-link" ng-click="addUsesr()">
+                    <img style="width: 48px" src="/assets/img/ui/add-employee.png">
+                    <div class="newmenu__search_title top-margin-lg">افزودن کارمند جدید</div>
+                </div>
+            </li>
+
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: fit-content">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 48px" src="/assets/img/ui/search.png">
+                    <div class="newmenu__search_title top-margin-lg">جستجو</div>
+                </div>
+
+                <ul class="al-sidebar-sublist top-margin-lg w-95 margin-left-auto" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item">
+                        <div>
+                            <input ng-model="employeeName" ng-change="userSearch()" type="text" class="form-control place_color_for_emp_name"
+                                id="employeeName" placeholder="نام">
+                        </div>
+                        <div>
+                            <input ng-model="personnelCode" ng-change="userSearch()" type="text" class="form-control place_color_for_pers_code"
+                                style="color: #ffffff" id="personnelCode" placeholder="کد پرسنلی">
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div id="container" style="height: 100%;" class="active-employees-background">
+        <div id="emp-table" style="background: #e2eded;padding-left: 16px;padding-top: 5%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                    </th>
+                                    <th st-sort="address.mobile">
+                                        <div class="newtable_header">موبایل</div>
+                                    </th>
+                                    <th st-sort="address.phone">
+                                        <div class="newtable_header">تلفن</div>
+                                    </th>
+                                    <th st-sort="personnelCode">
+                                        <div class="newtable_header">کد پرسنلی</div>
+                                    </th>
+                                    <th st-sort="name">
+                                        <div class="newtable_header">نام و نام خانوادگی</div>
+                                    </th>
+                                    <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="cursor: pointer" ng-click="showDetail(item,$index)" id="{{$index}}"
+                                    ng-repeat="item in companyUsers track by $index">
+                                    <td>
+                                        <div class="buttons buttons text-left">
+                                            <div class="newtable_operation_text">ویرایش</div>
+                                            <div class="newtable_operation_text">واریزیها</div>
+                                            <div class="newtable_operation_text">غیرفعال</div>
+                                            <div class="newtable_operation_text">شارژ</div>
+                                            <div class="newtable_operation_text">هدیه</div>
+                                        </div>
+                                    </td>
+                                    <td>{{item.address.mobile}}</td>
+                                    <td>{{item.address.phone}}</td>
+                                    <td>{{item.personnelCode}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="emp-detail" style="width: 100%;height: 100%;display: none">
+            <div style="width: 100%;height: 40%;background: #e2eded;display: table;color: #1a4049">
+                <div style="display: table-cell;vertical-align: middle;position: relative">
+                    <div style="width: 20%;float: right">
+                        <div class="employee_detail_image_wrapper" style="background-image: url('{{employee.detail.imageAddress}}');">
+                            <!--<img src="/assets/img/ui/photo-bottom.png"-->
+                            <!--style="width: 100px;height: 39px;position: absolute;bottom: 0">-->
+                        </div>
+                        <div class="margin__top_10" style="width: 100px;text-align: center;font-size: medium;font-weight: bold">
+                            {{employee.general.name}}
+                        </div>
+                    </div>
+                    <div style="width: 25%;float: right;text-align: right;padding-right: 50px" class="right-direction">
+                        <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">شماره پرسنلی :
+                            {{employee.general.personnelCode}}</div>
+                        <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">شماره تلفن :
+                            {{employee.general.address.phone}}</div>
+                        <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">{{employee.general.address.mobile}}</div>
+                    </div>
+                    <div style="width: 20%;float: right;text-align: right;">
+                        <div style="width: 100%">
+                            <div class="bottom-margin-md padding-md" style="width: 50%;float: right;color: #319ab1">
+                                مجموع هدایا
+                            </div>
+                            <div class="hide__text_overflow bottom-margin-md padding-md" style="width: 50%;float: left;">
+                                {{employee.detail.somOfGift}}
+                            </div>
+                        </div>
+                        <div style="width: 100%">
+                            <div class="bottom-margin-md padding-md" style="width: 50%;float: right;color: #319ab1">
+                                مجموع اعتبار
+                            </div>
+                            <div class="hide__text_overflow bottom-margin-md padding-md" style="width: 50%;float: left;">
+                                {{employee.detail.somOfPayedTillNow}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bio_wrapper">
+                        <div class="bio_title">Bio</div>
+                        <div class="bio_text food_detail_desc">
+                            <span ng-if="employee.detail.employeeInfo">{{employee.detail.employeeInfo.biography}}</span>
+                        </div>
+                    </div>
+                    <div style="position: absolute;bottom: 20px;left: 10%">
+                        <button type="button" style="width: auto;background-color: #6e8db0" ng-click="showList()" class="confirm_button confirm_yes btn">بازگشت
+                            به لیست
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="employee_detail_menu_container">
+                <div class="employee_detail_menu_wrapper">
+                    <div class="employee_detail_menu" ng-click="gift(employee.id)" ng-class="{'employee_active_menu':employeeActiveMenu==='gift'}">
+                        <div style="display: table-cell;vertical-align: middle">
+                            <img src="/assets/img/ui/gift.png" style="width: 42px;height: 42px" />
+                            <div class="margin__top_10" style="font-size: medium;font-weight: bold">هدیه</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee_detail_menu_wrapper">
+                    <div class="employee_detail_menu" ng-click="charge(employee.id)" ng-class="{'employee_active_menu':employeeActiveMenu==='charge'}">
+                        <div style="display: table-cell;vertical-align: middle">
+                            <img src="/assets/img/ui/charge.png" style="width: 42px;height: 42px" />
+                            <div class="margin__top_10" style="font-size: medium;font-weight: bold">شارژ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee_detail_menu_wrapper">
+                    <div class="employee_detail_menu" ng-disabled="hasRole('SILVER_COMPANY')" ng-click="inactivate(employee.id)"
+                        ng-class="{'employee_active_menu':employeeActiveMenu==='inactive'}">
+                        <div style="display: table-cell;vertical-align: middle">
+                            <img src="/assets/img/ui/deactive.png" style="width: 42px;height: 42px" />
+                            <div class="margin__top_10" style="font-size: medium;font-weight: bold">غیرفعال</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee_detail_menu_wrapper">
+                    <div class="employee_detail_menu" ng-click="finance(employee.id)">
+                        <div style="display: table-cell;vertical-align: middle">
+                            <img src="/assets/img/ui/payments.png" style="width: 42px;height: 42px" />
+                            <div class="margin__top_10" style="font-size: medium;font-weight: bold">واریزی ها</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee_detail_menu_wrapper">
+                    <div class="employee_detail_menu" ng-click="edit()" ng-class="{'employee_active_menu':employeeActiveMenu==='edit'}">
+                        <div style="display: table-cell;vertical-align: middle">
+                            <img src="/assets/img/ui/edit.png" style="width: 42px;height: 42px" />
+                            <div class="margin__top_10" style="font-size: medium;font-weight: bold">ویرایش</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 80%;height:31%;margin: 0 auto;padding-right: 4%;margin-bottom: 20%;margin-top: 3%;min-height: 230px;">
+                <form ng-if="employeeActiveMenu==='gift'" name="myform" ng-submit="myform.$valid && doGift(myform)"
+                    novalidate style="background-color: #f3f3f3;padding-bottom: 20px;height: 100%;">
+                    <div class="modal-body text-center">
+                        <div class="row">
+                            <div class="col-sm-4" ng-click="uploadGiftImage()">
+                                <img src="/assets/img/ui/camera.png" style="width: 16px;height: 16px;float: right;margin-left: 10px">
+                                <div style="color: #575757">اضافه کردن تصویر</div>
+                            </div>
+                            <input type="file" ng-show="false" id="uploadFile">
+                            <div class="col-sm-6">
+                                <input style="background-color: white" type="number" ng-maxlength="10" required name="amount"
+                                    ng-model="amount" class="form-control" id="amount">
+                                <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.maxlength">
+                                    حداکثر 10 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="amount" style="color: #575757" class="col-sm-2 control-label">مبلغ</label>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" name="desc" ng-maxlength="150" ng-model="desc" id="desc"
+                                    style="text-align:right;direction: rtl;background-color: white;resize: none"></textarea>
+                                <div class="error-message" ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
+                                    حداکثر 150 کاراکتر وارد کنید
+                                </div>
+                            </div>
+                            <label for="desc" style="color: #575757" class="col-sm-2 control-label">متن پیام</label>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div class="col-sm-6 col-xs-12 text-left">
+                                <button ng-click="openModal('app/pages/company/users/manager-gift-modal.html', 'lg')"
+                                    type="button" style="width: 8em;background-color: #6e8db0" class="confirm_button confirm_yes btn">پیش
+                                    نمایش
+                                </button>
+                                <button type="submit" style="float: left;width: 52px" class="confirm_button confirm_no btn">
+                                    تایید
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form ng-if="employeeActiveMenu==='charge'" name="cform" ng-submit="cform.$valid && doCharge(cform)"
+                    novalidate style="background-color: #f3f3f3;padding-bottom: 20px;height: 100%;">
+                    <div class="modal-body text-center">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-6">
+                                <input type="number" style="background-color: white" ng-maxlength="10" required name="camount"
+                                    ng-model="camount" class="form-control" id="camount">
+                                <div class="error-message" ng-show="(cform.camount.$dirty || submitted) && inputIsInvalid(cform.camount.$valid,'camount') && cform.camount.$error.maxlength">
+                                    حداکثر 10 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(cform.camount.$dirty || submitted) && inputIsInvalid(cform.camount.$valid,'camount') && cform.camount.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="camount" class="col-sm-2 control-label">مبلغ مورد نظر</label>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" name="cdesc" ng-maxlength="150" ng-model="cdesc" id="cdesc"
+                                    style="text-align:right;direction: rtl;background-color: white;resize: none"></textarea>
+                                <div class="error-message" ng-show="(cform.cdesc.$dirty || submitted) && inputIsInvalid(cform.cdesc.$valid,'desc') && cform.cdesc.$error.maxlength">
+                                    حداکثر 150 کاراکتر وارد کنید
+                                </div>
+                            </div>
+                            <label for="cdesc" class="col-sm-2 control-label">توضیحات</label>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div class="col-sm-8 text-left">
+                                <button type="submit" style="background-color: #6e8db0" class="confirm_button confirm_yes btn">ثبت
+                                </button>
+                                <button type="button" ng-click="$dismiss()" style="float: left;" class="confirm_button confirm_no btn">
+                                    بازگشت
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-left: 12px !important;
+        overflow-y: visible !important;
+    }
+
+</style>

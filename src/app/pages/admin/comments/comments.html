@@ -1,0 +1,130 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected"
+                style="height: 250px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 89px" src="/assets/img/ui/report-filter.png">
+                    <div class="newmenu__search_title top-padding-md">نوع کامنت</div>
+                </div>
+
+                <ul class="al-sidebar-sublist"
+                    style="display: block;">
+                    <li style="padding: 16px; padding-right: 0;"
+                        class="ba-sidebar-sublist-item">
+                        <div>
+                            <select ng-change="setCommentType(commentType)" class="form-control btn-primary" ng-model="commentType"
+                                    data-style="btn-primary" selectpicker>
+                                <option style="color: black" value="F">غذا</option>
+                                <option style="color: black" value="R">رستوران</option>
+                            </select>
+                        </div>
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div class="full-height default-back">
+        <div style="background: #e2eded;padding-left: 16px;padding-top: 5%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                            <tr class="sortable ">
+                                <th>
+                                    <div class="newtable_header">
+                                        عملیات
+                                    </div>
+                                </th>
+                                <th st-sort="date">
+                                    <div class="newtable_header">
+                                        تاریخ
+                                    </div>
+                                </th>
+                                <th st-sort="comment">
+                                    <div class="newtable_header">
+                                        نظر
+                                    </div>
+                                </th>
+                                <th st-sort="employee.name">
+                                    <div class="newtable_header">
+                                        نام کاربر
+                                    </div>
+                                </th>
+                                <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true">
+                                    <div class="newtable_header">
+                                        ردیف
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="{{$index}}" ng-repeat="item in comments">
+                                <td>
+                                    <div class="buttons">
+                                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="openModal('app/pages/admin/comments/reject-modal.html', 'md',item.id,$index)">رد
+                                        </button>
+                                        <button class="btn btn-success editable-table-button btn-xs" ng-click="openModal('app/pages/admin/comments/approve-modal.html', 'md',item.id,$index)">تایید
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>{{myFormatDate(item.date)}}</td>
+                                <td>{{item.comment}}</td>
+                                <td>{{item.employee.name}}</td>
+                                <td class="table-id">{{$index+1}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 30px !important;
+        margin-left: 20px !important;
+    }
+
+    
+    .mycontent {
+        margin-right: 328px !important;
+        margin-left: 12px !important;
+    }
+
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    @media (max-width: 1300px) and (min-width: 768px) {
+        .ng-scope .mycontent {
+            margin-top: -67px !important;
+            margin-right: 12px !important;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .al-sidebar {
+            display: none !important;
+        }
+    }
+</style>
+

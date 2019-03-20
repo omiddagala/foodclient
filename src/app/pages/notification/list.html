@@ -1,0 +1,61 @@
+<div include-with-scope="page-top.html"></div>
+<div class="mycontent" ng-init="initCtrl()">
+    <div class="widgets">
+        <div class="row">
+            <div class="col-md-12">
+                <div ba-panel ba-panel-title="کارمندان" ba-panel-class="with-scroll">
+                    <div class="horizontal-scroll">
+                        <div class="form-group select-page-size-wrap " style="width: 100%;height: 60px">
+                            <div style="width: 20%;float: left">
+                                <div>
+                                    <div style="width: 40%;float: right;margin-left: 20px">
+                                        تعداد
+                                    </div>
+                                    <div style="width: 50%;float: left">
+                                        <select class="form-control selectpicker" data-style="btn-primary"
+                                                title="Rows on page" selectpicker
+                                                style="text-align:right;"
+                                                ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table" st-table="foods">
+                            <thead>
+                            <tr class="sortable ">
+                                <th>عملیات</th>
+                                <th st-sort="accountStatus">وضعیت</th>
+                                <th st-sort="lastName">پیام</th>
+                                <th st-sort="firstName">تاریخ</th>
+                                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="{{$index}}" ng-repeat="item in messages">
+                                <td style="width: 260px;line-height: 45px">
+                                    <div class="buttons">
+                                        <button ng-if="!item.read" class="btn btn-warning editable-table-button btn-xs" ng-click="openModal('app/pages/notification/deactive-modal.html', 'md',item)">خواندم
+                                        </button>
+                                    </div>
+                                </td>
+                                <td style="line-height: 45px" ng-style="getStatusColor(item.read)">{{getStatus(item.read)}}</td>
+                                <td style="line-height: 45px">{{item.messageText}}</td>
+                                <td style="line-height: 45px">{{myFormatDate(item.date)}}</td>
+                                <td style="line-height: 45px" class="table-id">{{$index+1}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

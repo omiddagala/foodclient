@@ -1,0 +1,41 @@
+<div class="food_detail_body" style="width: 100%">
+    <div>
+        <div class="newmodal_close_header">
+            <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                <img src="/assets/img/ui/close.png">
+            </button>
+            <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+        </div>
+        <div class="confirm_header_title padding-md">
+        <i class="ion-flame modal-icon"></i><span>تغییر رمز عبور کاربر</span>
+        </div>
+    </div>
+</div>
+<div class="modal-content modal-fit">
+    <!-- <div class="modal-header bg-info">
+        <i class="ion-flame modal-icon"></i><span>تغییر رمز عبور کاربر</span>
+    </div> -->
+    <div class="modal-body text-center">
+        <div class="col-xs-12 no-padding flex-xs flex-col-reverse-xs bottom-margin-lg">
+            <!-- <div class="form-group col-xs-12 clearfix"> -->
+            <div class="col-sm-8 col-xs-12 no-padding">
+                <input type="password" class="form-control white-back-imp right-text" name="newPass" required id="newPass">
+            </div>
+            <label for="newPass" class="col-sm-4 col-xs-12 control-label white-color-imp">رمز عبور جدید</label>
+            <!-- </div> -->
+        </div>
+        <div class="col-xs-12 no-padding flex-xs flex-col-reverse-xs bottom-margin-lg" >
+            <!-- <div class="form-group col-xs-12 clearfix"> -->
+            <div class="col-sm-8 col-xs-12  no-padding">
+                <input name="newPass2" type="password" class="form-control white-back-imp right-text" id="newPass2">
+            </div>
+            <label for="newPass2" class="col-sm-4 col-xs-12 control-label white-color-imp">تکرار رمز عبور جدید</label>
+            <!-- </div> -->
+        </div>
+        <div class="remove-float"></div>
+    </div>
+    <div class="modal-footer remove-float left-text">
+        <button type="button" class="btn btn-info" ng-click="$dismiss()">لغو</button>
+        <button type="button" class="btn btn-info" ng-click="changePass()">ثبت</button>
+    </div>
+</div>

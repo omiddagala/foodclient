@@ -1,0 +1,93 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                ba-sidebar-toggling-item="item" style="height: 150px;">
+                <div style="text-align: right;cursor: pointer;" class="al-sidebar-list-link" ng-click="printAllPage()">
+                    <img style="width: 88px" src="/assets/img/ui/res-print-all.png">
+                    <div class="newmenu__search_title top-margin-lg-imp bottom-margin-lg-imp">چاپ فاکتورهای صفحه جاری</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="widgets mycontent" ng-init="initCtrl()">
+    <div style="height: 100%;background: #e2eded;">
+        <div style="background: #e2eded;padding-left: 16px;padding-top: 5%">
+            <audio id="myAudio">
+                <source src="myassets/audio/bell.mp3" type="audio/mp3">
+            </audio>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable ">
+                                    <th>
+                                        <div class="newtable_header">عملیات</div>
+                                    </th>
+                                    <th st-sort="totalPrice">
+                                        <div class="newtable_header">قیمت نهایی</div>
+                                    </th>
+                                    <th st-sort="taxAmount">
+                                        <div class="newtable_header">مالیات</div>
+                                    </th>
+                                    <th st-sort="deliveryPrice">
+                                        <div class="newtable_header">هزینه حمل</div>
+                                    </th>
+                                    <th st-sort="deliveryDate" st-sort-default="true">
+                                        <div class="newtable_header">تاریخ تحویل</div>
+                                    </th>
+                                    <th id="triggerSearch" class="table-id" st-sort="id"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in orders">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="confirm_button confirm_yes btn" ng-click="printFactor(item,$index)">چاپ
+                                            </button>
+                                            <button class="confirm_button confirm_yes btn" ng-click="viewFactor(item,$index)">مشاهده
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>{{formatPrice(item.totalAmount)}}</td>
+                                    <td>{{item.totalTaxAmount + item.deliveryPriceTax}}</td>
+                                    <td>{{item.deliveryPrice}}</td>
+                                    <td>{{myFormatDate(item.deliveryDate)}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 30px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        padding-left: 20px !important;
+    }
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>

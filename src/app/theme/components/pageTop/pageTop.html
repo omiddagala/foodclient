@@ -1,0 +1,57 @@
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+  <a href="#/dashboard" class="al-logo clearfix"><span>Blur</span>Admin</a>
+  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+  <div class="top-search">
+    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+    <input id="searchInput" type="text" placeholder="Search for...">
+  </div>
+
+  <div class="user-profile clearfix">
+    <div class="al-user-profile" uib-dropdown>
+      <a uib-dropdown-toggle class="profile-toggle-link">
+        <img ng-src="{{::( 'Nasta' | profilePicture )}}" class="img-responsive"> 
+      </a>
+      <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu style="z-index: 2">
+        <li><i class="dropdown-arr"></i></li>
+        <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
+        <li><a href><i class="fa fa-cog"></i>Settings</a></li>
+        <li><a href class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+      </ul>
+    </div>
+    <msg-center></msg-center>
+  </div>
+</div>
+
+<div class="menu-top clearfix" scroll-position="scrolled" ng-class="{'scrolled': scrolled}" max-height="50">
+    <a style="height: 42px;width: 72px;display: inline-table;padding-left: 0" class="al-sidebar-list-link ng-scope"
+       href="#/home">
+        <span class="ng-binding">خانه</span>
+        <i class="ion-android-home" style="margin-right: 0"></i>
+    </a>
+    <a style="height: 42px;width: 72px;display: inline-table;padding-left: 0" class="al-sidebar-list-link ng-scope"
+       href="#/report">
+        <span class="ng-binding">گزارش</span>
+        <i class="ion-android-home" style="margin-right: 0"></i>
+    </a>
+    <a style="height: 42px;width: 72px;display: inline-table;padding-left: 0" class="al-sidebar-list-link ng-scope"
+       href="#/myrestaurant">
+        <span class="ng-binding">رستوران</span>
+        <i class="ion-android-home" style="margin-right: 0"></i>
+    </a>
+    <a style="height: 42px;width: 72px;display: inline-table;padding-left: 0" class="al-sidebar-list-link ng-scope"
+       href="#/food">
+        <span class="ng-binding">تعریف غذا</span>
+        <i class="ion-android-home" style="margin-right: 0"></i>
+    </a>
+    <a style="height: 42px;width: 72px;display: inline-table;padding-left: 0" class="al-sidebar-list-link ng-scope"
+       href="#/reservs">
+        <span class="ng-binding">رزرو شده ها</span>
+        <i class="ion-android-home" style="margin-right: 0"></i>
+    </a>
+    <a style="height: 42px;width: 72px;display: inline-table;padding-left: 0" class="al-sidebar-list-link ng-scope"
+       href="#/contactus">
+        <span class="ng-binding">تماس با ما</span>
+        <i class="ion-android-home" style="margin-right: 0"></i>
+    </a>
+</div>

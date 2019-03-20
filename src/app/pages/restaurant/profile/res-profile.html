@@ -1,0 +1,282 @@
+<div class="full-height relative auto-overflow">
+    <input id="test" type="text" class="hidden" title="hi" />
+    <div class="food_detail_body full-width">
+        <div class="h-10">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+            <div class="confirm_header_title padding-md">
+                پروفایل
+            </div>
+        </div>
+        <div class="h-50 bottom-padding-10">
+        </div>
+        <div class="h-75">
+        </div>
+    </div>
+    <div class="profile__body h-60 relative block">
+        <div ng-controller="restaurantProfileCtrl" ng-init="initCtrl()" class="panel-content">
+            <div>
+                <div class="userpic no-border relative-lg margin-center-lg r-lg-0 absolute pointer">
+                    <img class="radius-50" ng-src="{{ restInfo.imageAddress }}" ng-click="uploadPicture()">
+                    <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="restInfo.imageAddress != 'assets/img/defaults/default-rest.png'"></i>
+                    <input type="file" ng-show="false" id="uploadFile">
+                </div>
+                <div class="absolute w-75 relative-lg text-right margin-center-lg full-width-lg l-0 top-margin-md-1200">
+                    <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)" novalidate>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" id="name"
+                                    placeholder="" value="{{restInfo.name}}">
+                            </div>
+                            <label for="name" class="col-sm-4 col-xs-12 control-label">نام</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" id="userName"
+                                    placeholder="" value="{{restInfo.userName}}">
+                            </div>
+                            <label for="userName" class="col-sm-4 col-xs-12 control-label">نام کاربری</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="number" ng-disabled="true" class="confirm_input form-control" id="inputOccupation"
+                                    placeholder="" value="{{restInfo.address.phone}}">
+                            </div>
+                            <label for="inputOccupation" class="col-sm-4 col-xs-12 control-label">تلفن</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="number" ng-disabled="true" class="confirm_input form-control" id="inputLastName"
+                                    placeholder="" value="{{restInfo.address.mobile}}">
+                            </div>
+                            <label for="inputLastName" class="col-sm-4 col-xs-12 control-label">موبایل</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" id="inputFirstName"
+                                    placeholder="" value="{{restInfo.address.address}}">
+                            </div>
+                            <label for="inputFirstName" class="col-sm-4 col-xs-12 control-label">آدرس</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="7" ng-disabled="true" ng-model="restInfo.managerMobile" type="text"
+                                    class="confirm_input form-control text-right" name="managerMobile" id="managerMobile">
+                            </div>
+                            <label for="managerMobile" class="col-sm-4 col-xs-12 control-label">موبایل مدیر رستوران</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="7" ng-model="restInfo.shebaOwnerName" type="text"
+                                    class="confirm_input form-control text-right" name="shebaOwnerName" id="shebaOwnerName">
+                            </div>
+                            <label for="shebaOwnerName" class="col-sm-4 col-xs-12 control-label">صاحب حساب شبا</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="10" type="text" ng-model="restInfo.nationalIdentity"
+                                    class="confirm_input form-control text-right" name="nationalIdentity" id="nationalIdentity">
+                            </div>
+                            <label for="nationalIdentity" class="col-sm-4 col-xs-12 right-direction control-label">شناسه
+                                ملی اقتصادی</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="10" type="text" ng-model="restInfo.managerName"
+                                    class="confirm_input form-control text-right white-color" name="managerName" id="managerName">
+                            </div>
+                            <label for="managerName" class="col-sm-4 col-xs-12 control-label right-direction">مدیریت
+                                رستوران</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="7" ng-model="restInfo.economyCode" type="text"
+                                    class="confirm_input form-control text-right" name="economyCode" id="economyCode">
+                            </div>
+                            <label for="economyCode" class="col-sm-4 col-xs-12 control-label">کد اقتصادی</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input ng-disabled="true" tabindex="7" ng-model="restInfo.shebaAccountNumber" type="text"
+                                    class="confirm_input form-control text-right" name="shebaAccountNumber" id="shebaAccountNumber">
+                            </div>
+                            <label for="shebaAccountNumber" class="col-sm-4 col-xs-12 control-label">شماره شبا</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-disabled="true" class="confirm_input form-control" ng-maxlength="10"
+                                    required id="deliveryPrice" name="deliveryPrice" ng-model="deliveryPrice"
+                                    placeholder="">
+                            </div>
+                            <label for="deliveryPrice" class="col-sm-4 col-xs-12 control-label">هزینه
+                                ارسال</label>
+                        </div>
+                        <div class="row form_input_margin flex-row-lg wrap-reverse-lg">
+                            <div class="col-lg-4 col-sm-3 col-xs-6 text-right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-disabled="true" ng-checked="!restInfo.hasTax" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio1" value="option1">
+                                    <span>ندارد</span>
+                                </label>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-xs-6 text-right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-disabled="true" ng-checked="restInfo.hasTax" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="option2">
+                                    <span>دارد</span>
+                                </label>
+                            </div>
+                            <label class="col-lg-5 col-sm-6 col-xs-12 control-label">مالیات</label>
+                        </div>
+                        <div class="row form_input_margin flex-row-lg wrap-reverse-lg">
+                            <div class="col-lg-4 col-sm-3 col-xs-6 text-right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-disabled="true" ng-checked="!restInfo.workAtVacation" type="radio" name="inlineRadioOptions2"
+                                        value="option3">
+                                    <span>ندارد</span>
+                                </label>
+                            </div>
+                            <div class="col-lg-3 col-sm-3 col-xs-6 text-right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-disabled="true" ng-checked="restInfo.workAtVacation" type="radio" name="inlineRadioOptions3"
+                                        value="option4">
+                                    <span>دارد</span>
+                                </label>
+                            </div>
+                            <label class="col-lg-5 col-sm-6 col-xs-12 control-label">سرویس دهی در روزهای تعطیل</label>
+                        </div>
+                        <div class="row form_input_margin flex-row-lg wrap-reverse-lg">
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="row clearfix">
+                                    <div class="col-xs-8 text-right">
+                                        <input type="text" ng-disabled="true" class="form-control center-text" id="toTime"
+                                            placeholder="">
+                                    </div>
+                                    <label for="toTime" class="col-xs-4 control-label text-right">تا ساعت</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="row clearfix">
+                                    <div class="col-xs-8 text-right">
+                                        <input type="text" ng-disabled="true" class="form-control center-text" id="fromTime"
+                                            placeholder="">
+                                    </div>
+                                    <label for="fromTime" class="col-xs-4 control-label text-right">از
+                                        ساعت</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12 text-right">
+                                <textarea ng-disabled="true" ng-model="restInfo.restaurantInfo.description" type="text"
+                                    ng-maxlength="250" class="confirm_input form-control" id="description" name="description"
+                                    placeholder=""></textarea>
+                            </div>
+                            <label for="description" class="col-sm-4 col-xs-12 control-label">توضیحات</label>
+                        </div>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12 margin__top_20">
+                                <button type="button" ng-click="$dismiss()" class="btn confirm_button confirm_no left-float">
+                                    بازگشت
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile__map_wrapper t-65">
+        <div class="restaurant-Location text-right ">
+            محل رستوران
+        </div>
+        <div class="row profile__map">
+            <div id="map" class="full-width"></div>
+        </div>
+    </div>
+    <div class="profile__map_wrapper t-80">
+        <div class="service-Location text-right">
+            محدوده سرویس دهی
+        </div>
+        <div class="row profile__map">
+            <div id="google-maps" class="full-width"></div>
+        </div>
+    </div>
+</div>
+<style>
+    @media (max-height: 800px) and (min-height: 601px) and (min-width: 1025px) {
+        .profile__map {
+            height: 200px !important;
+        }
+    }
+
+    @media (max-height: 601px) {
+        .profile__map {
+            height: 150px !important;
+        }
+    }
+
+    @media (max-height: 800px) {
+        .modal .modal-dialog .profile__body {
+            height: 60% !important;
+        }
+
+        .h-75 {
+            height: 100% !important;
+        }
+    }
+
+    .modal-open .modal {
+        height: 100%;
+    }
+
+    .modal .modal-dialog {
+        height: 90% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    .profile__map_wrapper {
+        top: 3.5em !important;
+        position: relative !important;
+    }
+
+    .modal-content {
+        top: 0 !important;
+        height: 100% !important;
+    }
+
+    .h-75 {
+        max-height: 570px;
+    }
+
+    .modal-content .profile__body {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    @media (max-height: 602px) {
+        .h-75 {
+            max-height: 470px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .profile__body {
+            width: 85% !important;
+        }
+
+        .profile__map_wrapper {
+            width: 85% !important;
+        }
+    }
+
+    .modal-content .profile__map {
+        margin-left: 0 !important;
+    }
+</style>

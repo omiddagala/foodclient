@@ -1,0 +1,46 @@
+<div class="horizontal-scroll">
+    <table class="table" st-table="foods" refresh-table>
+        <thead>
+        <tr class="sortable ">
+            <th>
+                <div class="newtable_header">عملیات</div>
+            </th>
+            <th>
+                <div class="newtable_header">امتیاز</div>
+            </th>
+            <th st-sort="price.foodPrice">
+                <div class="newtable_header">قیمت</div>
+            </th>
+            <th st-sort="name" class="no-padding-right">
+                <div class="newtable_header">نام</div>
+            </th>
+            <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in foods">
+            <td>
+                <div class="buttons">
+                    <button class="confirm_button confirm_yes btn" ng-click="edit(item.id)">ویرایش
+                    </button>
+                    <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/restaurant/foodlist/delete-modal.html', 'md',item,$index)">حذف
+                    </button>
+                    <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/restaurant/foodlist/finish-modal.html', 'md',item,$index)">اتمام
+                    </button>
+                </div>
+            </td>
+            <td>{{item.price.averageRate}}</td>
+            <td>{{formatPrice(item.price.foodPrice)}}</td>
+            <td>{{item.name}}</td>
+            <td class="table-id">{{$index+1}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7" class="text-center">
+                <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

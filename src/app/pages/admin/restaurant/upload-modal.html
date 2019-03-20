@@ -1,0 +1,43 @@
+<div class="food_detail_body" style="width: 100%">
+    <div>
+        <div class="newmodal_close_header">
+            <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                <img src="/assets/img/ui/close.png">
+            </button>
+            <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+        </div>
+        <div class="confirm_header_title padding-md">
+            <i class="ion-checkmark modal-icon"></i><span> بارگزاری فایل پرداخت</span>
+        </div>
+    </div>
+</div>
+<div class="modal-content modal-fit">
+    <!-- <div class="modal-header bg-danger">
+        <i class="ion-checkmark modal-icon"></i><span> بارگزاری فایل پرداخت</span>
+    </div> -->
+    <div class="modal-body text-center">
+        <div class="row no-margin-imp">
+            <div class="form-group row clearfix">
+                <div class="col-sm-9">
+                    <div class="white-color">
+                        <input type="file" id="uploadFile">
+                    </div>
+                    <div style="margin-top: 30px" class="left-text">
+                        <button type="button" class="btn btn-danger" ng-click="$dismiss()">لغو</button>
+                        <button type="button" class="btn btn-danger" ng-click="submitUploadedPaymentFile()">ارسال</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .modal .modal-dialog {
+        height: auto !important;
+    }
+    .modal .modal-dialog>.modal-content{
+        top: 50%;
+        transform: translateY(-50%);
+    }
+</style>

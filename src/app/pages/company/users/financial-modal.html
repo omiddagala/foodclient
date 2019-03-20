@@ -1,0 +1,65 @@
+<div class="modal-content" style="background: white">
+    <div class="modal-header bg-info">
+        <i class="ion-android-warning modal-icon"></i><span>جزییات سفارش</span>
+    </div>
+    <div class="modal-body text-center">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row clearfix">
+                    <div class="col-sm-6">
+                        <label id="resname">{{order.description}}</label>
+                    </div>
+                    <label for="resname" class="col-sm-6 control-label">توضیحات</label>
+                </div>
+                <div class="form-group row clearfix">
+                    <div class="col-sm-6">
+                        <label id="deliveryDate">{{myFormatDate(order.transactionDate)}}</label>
+                    </div>
+                    <label for="deliveryDate" class="col-sm-6 control-label">تاریخ سفارش</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row clearfix">
+                    <div class="col-sm-6">
+                        <label id="deliveryPrice">{{order.newBalance}}</label>
+                    </div>
+                    <label for="deliveryPrice" class="col-sm-6 control-label">موجودی جدید</label>
+                </div>
+
+                <div class="form-group row clearfix">
+                    <div class="col-sm-6">
+                        <label id="foodPriceAfterOff">{{order.previousBalance}}</label>
+                    </div>
+                    <label for="foodPriceAfterOff" class="col-sm-6 control-label">موجودی قبلی</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row clearfix">
+                    <div class="col-sm-6">
+                        <label id="totalPrice">{{order.transactionAmount}}</label>
+                    </div>
+                    <label for="totalPrice" class="col-sm-6 control-label">مبلغ تراکنش</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row clearfix">
+                    <div class="col-sm-6">
+                        <label id="taxAmount">{{getTransactionType(order.transactionTypeEnum)}}</label>
+                    </div>
+                    <label for="taxAmount" class="col-sm-6 control-label">نوع</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" ng-click="$dismiss()">بستن</button>
+    </div>
+</div>
+<style>
+    .form-group label{
+        color: black;
+    }
+</style>

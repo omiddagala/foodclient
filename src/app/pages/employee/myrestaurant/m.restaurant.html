@@ -1,0 +1,90 @@
+<!-- header & footer -->
+<!-- <div include-with-scope="mobile-page-top.html"></div> -->
+
+<!-- search-bar -->
+<div
+    class="bar search-bar-box bar-subheader bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height items-center left-direction">
+    <input type="text" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
+    <button type="button" class="btn btn-link fit-height fit-width line-height-initial no-padding-imp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewBox="-10 -10 60 60" width="35"
+            height="50">
+            <path fill="#808285" fill-rule="evenodd"
+                d="M37.394 37.342l-9.363-10.15c2.407-2.983 3.725-6.734 3.725-10.641 0-9.128-7.123-16.555-15.879-16.555-8.757 0-15.88 7.427-15.88 16.555 0 9.127 7.123 16.553 15.88 16.553 3.287 0 6.42-1.033 9.098-2.995l9.432 10.226c.395.427.926.662 1.493.662a2.02 2.02 0 0 0 1.436-.602 2.229 2.229 0 0 0 .058-3.053zM15.877 4.315c6.472 0 11.738 5.489 11.738 12.236 0 6.747-5.266 12.235-11.738 12.235-6.472 0-11.739-5.488-11.739-12.235 0-6.747 5.267-12.236 11.739-12.236z" />
+        </svg>
+    </button>
+</div>
+
+<!-- cardItem -->
+<div class="article-mobile-list" id="article-list-main" ng-init="ctrlInit()">
+    <div ng-repeat="rest in rests track by $index" ng-click="goToHome(rest.name)"
+        class="card white-back w-95 mobile-card auto-height flex items-center content-evenly right-direction relative pointer">
+        <img src="../../../../assets/img/ui/info.png" class="mobil-card-info pointer" alt="">
+        <div class="fit-width mobil-card-img full-height relative">
+            <div class="mobil-card-rate">{{rest.averageRate === 0 ? '-' : rest.averageRate}}</div>
+            <img src="{{rest.imageAddress}}" class="w-100 card-img">
+        </div>
+        <div class="full-width right-padding-lg left-padding-lg relative flex flex-col items-center content-evenly">
+            <div class="defult-color text-right font-bold w-100 font-xlg line-height-initial min-height-lg">
+                {{rest.name}}</div>
+            <div class="text-right flex items-center w-100 font-xlg line-height-initial min-height-lg">
+                <div class="card__restaurant__star"></div>
+                <div class="color-319ab1">
+                    {{rest.averageRate === 0 ? '-' : rest.averageRate}}
+                </div>
+            </div>  
+            <div class="text-right color-2e6977 w-100 min-height min-height-xs">{{rest.restaurantTypeInFarsi}}</div>
+        </div>
+    </div>
+</div>
+
+
+<!-- sortBox -->
+<div class="sort-box hidden-sort-box">
+    <div class="no-padding-bottom-imp" ng-init="initCtrl()">
+        <div
+            class="card transparent-back w-95 mobile-card auto-height flex flex-col items-center content-evenly right-direction no-box-shadow no-padding-imp margin-center un-overflow">
+            <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)"
+                class="w-100 flex flex-col items-center" novalidate>
+
+                <div class="w-100 left-padding-4 right-padding-4 top-padding-6 bottom-padding-6 white-back flex flex-col items-center content-between dark-box-shadow-l-b
+                     z-index-1 bottom-margin-4">
+                    <div class="w-100 flex bottom-margin-3 wrap">
+                        <div class="col-xs-2 min-w-8em">
+                            <img src="../../../../assets/img/ui/mobile/resSearch.png" class="w-100 auto-height" alt="">
+                        </div>
+                        <div class="self-end bottom-margin-2 defult-title-color">جستجوی رستوران</div>
+                    </div>
+                    <div class="flex w-100 left-direction">
+                        <input ng-model="resName" ng-change="search()" type="text" class="form-control" id="resName"
+                            placeholder="جستجو">
+                    </div>
+                </div>
+                <div class="w-100 left-padding-4 right-padding-4 top-padding-6 bottom-padding-6 white-back flex flex-col items-center content-between dark-box-shadow-l-b
+                     z-index-1 bottom-margin-4">
+                    <div class="w-100 flex bottom-margin-3 wrap">
+                        <div class="col-xs-2 min-w-8em">
+                            <img src="../../../../assets/img/ui/mobile/resType.png" class="w-100 auto-height" alt="">
+                        </div>
+                        <div class="self-end bottom-margin-2 defult-title-color">نوع رستوران</div>
+                    </div>
+                    <div class="flex w-100 left-direction">
+                        <ui-select multiple ng-model="selectedType" ng-disabled="false"
+                            ng-change="typeChanged($select.selected)" search-enabled="true" append-to-body="true"
+                            class="form-control ">
+                            <ui-select-match placeholder="انتخاب کنید">
+                                {{$item.label}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in restaurantTypes | filter: $select.search">
+                                {{item.label}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <button ng-click="confirm($event)" type="button" style="width: auto"
+                    class="confirm_button confirm_yes btn redius-md">تایید</button>
+            </form>
+
+        </div>
+    </div>
+</div>

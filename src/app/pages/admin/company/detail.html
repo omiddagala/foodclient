@@ -1,0 +1,252 @@
+<div include-with-scope="page-top.html"></div>
+<div class="mycontent" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div ba-panel ba-panel-class="profile-page">
+        <div ng-controller="companyDetailCtrl" ng-init="initCtrl()" class="panel-content">
+
+            <h3 class="with-line black-color-imp">اطلاعات شرکت</h3>
+
+            <div class="row" ng-if="restInfo.id">
+                <div class="col-sm-6 col-xs-12"></div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="userpic admin-userprice">
+                                <div class="userpic-wrapper" style="max-height: 100%;">
+                                    <img ng-src="{{ restInfo.imageAddress }}" ng-click="uploadPicture()">
+                                </div>
+                                <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="restInfo.imageAddress != 'assets/img/defaults/default-company.png'"></i>
+                                <a href class="change-userpic" ng-click="uploadPicture()">انتخاب عکس</a>
+                                <input type="file" ng-show="false" id="uploadFile">
+                            </div>
+                        </div>
+                        <label class="col-sm-4 col-xs-12 control-label">عکس</label>
+                    </div>
+                </div>
+            </div>
+
+            <form name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)" novalidate>
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="2" ng-model="restInfo.address.address" ng-maxlength="250" required
+                                    type="text" class="form-control" name="adr" id="adr" placeholder="">
+                                <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
+                                    حداکثر 250 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="adr" class="col-sm-4 col-xs-12 control-label">آدرس</label>
+                        </div>
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="4" ng-model="restInfo.address.mobile" ng-maxlength="11" ng-minlength="11"
+                                    required type="tel" class="form-control" id="mobile" name="mobile" placeholder="">
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                                    حداکثر 11 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                                    حداقل 11 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="mobile" class="col-sm-4 col-xs-12 control-label">موبایل</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="1" ng-model="restInfo.name" ng-maxlength="150" required name="name"
+                                    type="text" class="form-control" id="name">
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.maxlength">
+                                    حداکثر 150 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="name" class="col-sm-4 col-xs-12 control-label">نام</label>
+                        </div>
+
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="3" ng-model="restInfo.address.phone" ng-minlength="4" ng-maxlength="100" required type="tel"
+                                    class="form-control" id="phone" name="phone" placeholder="">
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
+                                    حداکثر 100 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
+                                    حداقل 4 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="phone" class="col-sm-4 col-xs-12 control-label">تلفن</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="!restInfo.id">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="6" ng-model="restInfo.password" ng-maxlength="60" ng-minlength="8"
+                                    required name="pass" type="password" class="form-control" id="pass" style="text-align:right;color: white">
+                                <i class="glyphicon glyphicon-eye-close form-control-feedback"></i>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.maxlength">
+                                    حداکثر 60 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.minlength">
+                                    حداقل 8 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="pass" class="col-sm-4 col-xs-12 control-label">کلمه عبور</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="5" ng-model="restInfo.userName" ng-maxlength="60"
+                                    ng-minlength="4" type="text" class="form-control" name="username" required id="username"
+                                    style="text-align:right;color: white">
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.maxlength">
+                                    حداکثر 60 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.minlength">
+                                    حداقل 4 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="username" class="col-sm-4 col-xs-12 control-label">نام کاربری</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="6" ng-model="restInfo.managerName" name="managerName" type="text"
+                                    class="form-control" id="managerName" style="text-align:right;color: white">
+                            </div>
+                            <label for="managerName" class="col-sm-4 col-xs-12 control-label">مدیریت شرکت</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="6" ng-model="restInfo.economyCode" name="economyCode" type="text"
+                                    class="form-control" id="economyCode" style="text-align:right;color: white">
+                            </div>
+                            <label for="economyCode" class="col-sm-4 col-xs-12 control-label">کد اقتصادی</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12" style="float: right">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="6" ng-model="restInfo.nationalIdentity" name="nationalIdentity" type="text"
+                                    class="form-control" id="nationalIdentity" style="text-align:right;color: white">
+                            </div>
+                            <label for="nationalIdentity" class="col-sm-4 col-xs-12 control-label">شناسه ملی اقتصادی</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12" style="float: right">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <select class="form-control btn-primary" ng-model="restInfo.companyType" data-style="btn-primary"
+                                    selectpicker>
+                                    <option style="color: black" ng-selected="true" value="GOLDEN">طلایی</option>
+                                    <option style="color: black" value="SILVER">نقره ای</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-4 col-xs-12 control-label">نوع شرکت</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12"></div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row flex-xs">
+                            <div class="col-md-3 col-xs-2" style="text-align: right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-click="setForceVAT(false)" ng-checked="!restInfo.forceVAT"
+                                           type="radio" name="inlineRadioOptions2" value="option3">
+                                    <span>لازم ندارد</span>
+                                </label>
+                            </div>
+                            <div class="col-md-3 col-xs-2" style="text-align: right">
+                                <label class="radio-inline custom-radio nowrap">
+                                    <input ng-click="setForceVAT(true)" ng-checked="restInfo.forceVAT" type="radio"
+                                           name="inlineRadioOptions3" value="option4">
+                                    <span>لازم دارد</span>
+                                </label>
+                            </div>
+                            <label class="col-md-6 col-xs-8 control-label">فاکتور رسمی</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row" style="text-align: center;height: 400px">
+                    <div style="width: 90%;display: inline-table;" ba-panel ba-panel-title="محل شرکت" class="viewport100">
+                        <div id="map" style="height: 100%;width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="row left-text" style="margin-top: 50px;height: 60px;">
+                    <button type="submit" class="btn btn-with-icon save-profile confirm_yes confirm_button  padding-md fit-width">
+                        <i class="ion-android-checkmark-circle"></i>ثبت
+                    </button>
+                    <button type="button" ng-click="goBack()" class="btn btn-with-icon save-profile confirm_button confirm_no padding-md">
+                        <i class="ion-android-arrow-back"></i>بازگشت
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    form input {
+        color: black !important;
+    }
+
+    .form-control {
+        height: 32px !important;
+    }
+
+    .userpic {
+        padding-bottom: 8px;
+    }
+    .error-message {
+        top: 0;
+        right: 25% !important;
+        padding: 10px;
+    }
+    .btn.confirm_yes{
+        margin-bottom: 12px !important;
+    }
+    .panel > .panel-heading>h3{
+        color: black;
+        text-align: right;
+    }  
+    .userpic a.change-userpic {
+        bottom: 8px !important;
+    } 
+</style>
