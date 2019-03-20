@@ -10,6 +10,7 @@
 
     /** @ngInject */
     function ProfilePageCtrl($scope, fileReader, $filter, $http, localStorageService, $state, $rootScope, toastrConfig, toastr) {
+        $rootScope.currentMobileActiveMenu = "profile";
 
         $scope.initCtrl = function () {
             $scope.submitted = false;

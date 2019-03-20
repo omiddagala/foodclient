@@ -1192,6 +1192,9 @@ nav.ng-scope {
 .font-xxs {
     font-size: 0.6em !important;
 }
+.font-xxxs {
+    font-size: 0.5em !important;
+}
 
 .font-bold {
     font-weight: bold !important;
@@ -1402,7 +1405,48 @@ nav.ng-scope {
 .auto-height {
     height: auto !important;
 }
-
+.m-h-1{
+    max-height: .25em !important;
+}
+.m-h-2{
+    max-height: .5em !important;
+}
+.m-h-3{
+    max-height: .75em !important;
+}
+.m-h-4{
+    max-height: 1em !important;
+}
+.m-h-5{
+    max-height: 1.5em !important;
+}
+.m-h-6{
+    max-height: 2em !important;
+}
+.m-h-7{
+    max-height: 2.5em !important;
+}
+.m-h-8{
+    max-height: 3em !important;
+}
+.m-h-9{
+    max-height: 3.5em !important;
+}
+.m-h-10{
+    max-height: 4em !important;
+}
+.m-h-11{
+    max-height: 4.5em !important;
+}
+.m-h-12{
+    max-height: 5em !important;
+}
+.m-h-13{
+    max-height: 5.5em !important;
+}
+.m-h-14{
+    max-height: 6em !important;
+}
 .fit-height {
     height: fit-content;
     height: -moz-fit-content;

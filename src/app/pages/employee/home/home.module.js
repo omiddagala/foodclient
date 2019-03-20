@@ -819,8 +819,9 @@
             var t = $('#taghvim').find('input').val();
             $("#dateForOrder").val(t);
             $scope.loadContent(false, true);
-            if ($scope.isMobile()) {
-                $scope.searchBox(e);
+            if ($rootScope.isMobile()) {
+                debugger;
+                //$scope.searchBox(e);
             }
         };
         $scope.confirm = function (e) {

@@ -562,4 +562,7 @@ ion-list .card {
     margin-top: -7.5em;
     margin-bottom: -4em;
 }
+#food_comments{
+    z-index: 9999;
+}
 /* ionic [end] */
