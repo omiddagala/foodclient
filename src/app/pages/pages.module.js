@@ -362,6 +362,9 @@
                 });
         };
 
+        $rootScope.isMobile = function () { //تشخیص موبایل 
+            return window.innerWidth <= 992;
+        };
         $rootScope.locateFirstPage = function () {
             if (jQuery.inArray("EMPLOYEE", $rootScope.roles) > -1) {
                 if($rootScope.isMobile()){
@@ -787,9 +790,6 @@
             return !/[~`!\s#$%\^&*()+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
         };
 
-        $rootScope.isMobile = function () { //تشخیص موبایل 
-            return window.innerWidth <= 992;
-        };
         //// for ionic nav        
         $rootScope.canRender = function (item) {
             if (window.location.hash == "#/profile" && (!item || item == 'search-bar')) {
