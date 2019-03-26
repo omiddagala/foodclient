@@ -22,7 +22,7 @@
 
     function detailCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
         $rootScope.pageTitle = 'جزئیات غذا';
-        console.log($rootScope.mobileFoodDetail);
+        // console.log($rootScope.mobileFoodDetail);
         $('.hidden-tab').hide();
         // if (!$rootScope.mobileFoodDetail) {
         //     // window.location.assign('/#home');

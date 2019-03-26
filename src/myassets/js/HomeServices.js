@@ -416,7 +416,7 @@ function getArticlePageMain(page, $scope, $compile, $parse, day, data) {
     //     pageElement.appendChild(getArticleMain($scope, $compile, $parse, temparray));
     // }
     //vahid seraj updated code (1397.09.29) ---------------- [start]
-    debugger;
+    // debugger;
     var foodCards = getArticleMain($scope, $compile, $parse, data);
     //pageElement.appendChild(foodCards);
 

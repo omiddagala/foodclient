@@ -1,7 +1,7 @@
 *[ui-view] {
     width: 100% !important;
     padding-top: 7.5em;
-    padding-bottom: 4em;
+    /* padding-bottom: 4em; */
     background-color: #f4f4f4 !important;
 }
 
@@ -23,6 +23,10 @@ html body {
     color: #808285 !important;
 }
 
+.hidden-first {
+    display: none !important;
+}
+
 .tab-nav.tabs {
     background-color: #ebebeb !important;
     background-image: none !important;
@@ -31,7 +35,7 @@ html body {
     justify-content: space-evenly !important
 }
 
-div.pane {  
+div.pane {
     padding-top: 7.5em;
     padding-bottom: 4em;
     height: auto !important;
@@ -91,8 +95,8 @@ div.pane {
 }
 
 .mobil-card-img {
-    min-width: 30%;
-    max-width: 30%;
+    min-width: 40%;
+    max-width: 40%;
 }
 
 .mobile-card {
@@ -263,7 +267,7 @@ div.pane {
     }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 450px) {
     .card>div {
         width: 100% !important;
         min-width: 100% !important;
@@ -282,6 +286,9 @@ div.pane {
     .col-xs-6 {
         width: 100% !important;
         max-width: 100% !important;
+    }
+    .card-img {
+        border-radius: .4em;
     }
 }
 
@@ -340,7 +347,9 @@ ion-wallet-select wallet-content .item:first-child {
 ion-wallet-select wallet-content .item:last-child {
     margin-bottom: 64px;
 }
-
+.is__off_white{
+    text-decoration-color: inherit !important;
+}
 .premium-bar {
     transition: all .5s;
 }
@@ -501,6 +510,7 @@ ion-list .card {
     flex-direction: column;
     width: 100%;
 }
+
 .detail-page .food_detail_qute {
     background-image: url(/assets/img/ui/mobile/qote-red.png);
     color: white;
@@ -545,24 +555,39 @@ ion-list .card {
     min-height: 5em !important;
     padding-bottom: 2em !important;
 }
-.detail-page-footer{
+
+.detail-page-footer {
     margin-top: -4px;
     z-index: 10;
     background-color: #f44545 !important;
 }
-.comments__wrapper{
+
+.comments__wrapper {
     overflow-y: unset !important;
     height: auto !important;
 }
-.card{
+
+.card {
     opacity: 1 !important;
 }
-.m-login-section{
+
+.m-login-section {
     height: 100vh;
     margin-top: -7.5em;
     margin-bottom: -4em;
 }
-#food_comments{
+
+#food_comments {
     z-index: 9999;
 }
+
+.ui-select-multiple.ui-select-bootstrap>div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ui-select-multiple.ui-select-bootstrap>div span {
+    color: white !important;
+}
+
 /* ionic [end] */

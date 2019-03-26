@@ -142,7 +142,7 @@
             });
         };
         $scope.toggleSidebar = function (e) {
-            console.log(this);
+            // console.log(this);
             $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanding');
             window.setTimeout(function () {
                 $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanded');

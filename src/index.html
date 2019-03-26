@@ -131,11 +131,11 @@
 
             <ion-side-menus>
 
-                <fader ng-if="canRender('fader')"></fader>
+                <fader class="hidden-first" ng-if="canRender('fader')"></fader>
 
                 <ion-side-menu side="left" width="{{width()}}" can-drag-menu>
                     <ion-header-bar ng-if="canRender('header')" class="flex content-between back-ebebeb">
-                        <button menu-close class="transparent-back fit-width no-border">
+                        <button class="transparent-back fit-width no-border" ng-click="openMenu($event)" menu-close>
                             <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
                                 viewBox="0 -10 65 65" width="30" height="30">
                                 <path fill="#808285" fill-rule="evenodd"
@@ -150,8 +150,23 @@
                                     d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z" />
                             </svg>
                         </button>
+                        <!-- search-bar -->
+                        <div ng-if="canRender('search-bar')"
+                            class="bar bar-subheader search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height items-center left-direction">
+                            <input type="text" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right"
+                                placeholder="جستجوی غذا">
+                            <button type="button"
+                                class="btn btn-link fit-height fit-width line-height-initial no-padding-imp">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
+                                    viewbox="-10 -10 60 60" width="35" height="50">
+                                    <path fill="#808285" fill-rule="evenodd"
+                                        d="M37.394 37.342l-9.363-10.15c2.407-2.983 3.725-6.734 3.725-10.641 0-9.128-7.123-16.555-15.879-16.555-8.757 0-15.88 7.427-15.88 16.555 0 9.127 7.123 16.553 15.88 16.553 3.287 0 6.42-1.033 9.098-2.995l9.432 10.226c.395.427.926.662 1.493.662a2.02 2.02 0 0 0 1.436-.602 2.229 2.229 0 0 0 .058-3.053zM15.877 4.315c6.472 0 11.738 5.489 11.738 12.236 0 6.747-5.266 12.235-11.738 12.235-6.472 0-11.739-5.488-11.739-12.235 0-6.747 5.267-12.236 11.739-12.236z" />
+                                </svg>
+                            </button>
+                        </div>
                     </ion-header-bar>
                     <ion-content ng-class="canRender() ? 'has-footer back-f4f4f4' : 'back-f4f4f4'">
+
                         <div style="overflow: auto;width: calc(100% - 14px);" ui-view autoscroll="true"
                             autoscroll-body-top></div>
                     </ion-content>
@@ -160,7 +175,7 @@
                         <a ng-class="$rootScope.currentMobileActiveMenu == 'reserve' ? '':''"
                             class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
                             ng-click="mobileMenuClicked($event)" href="#/reserve">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 130 130"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130"
                                 width="50" height="35">
                                 <path fill="#6D6E71"
                                     ng-class="currentMobileActiveMenu == 'reserve' ? 'mobile-menu-selected':''"
@@ -172,7 +187,7 @@
                         </a>
                         <a class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
                             ng-click="mobileMenuClicked($event)" href="#/myrestaurant">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 130 130"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130"
                                 width="50" height="35">
                                 <path fill="#6D6E71"
                                     ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected':''"
@@ -185,7 +200,7 @@
                         </a>
                         <a class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
                             ng-click="mobileMenuClicked($event)" href="#/category">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewBox="-10 -10 140 140"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 140 140"
                                 width="50" height="35">
                                 <path fill="#6D6E71" fill-rule="evenodd"
                                     ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected':''"
@@ -201,7 +216,7 @@
                 </ion-side-menu>
 
                 <!-- بخش منو -->
-                <ion-side-menu-content class="menu-content" ng-if="canRender('menu')">
+                <ion-side-menu-content class="menu-content hidden-first" ng-if="canRender('menu')">
                     <!--برای قسمت header -->
                     <!-- <ion-header-bar class="bar-balanced">
                         <h1 class="title title-right">

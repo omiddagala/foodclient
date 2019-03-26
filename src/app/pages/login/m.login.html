@@ -34,16 +34,22 @@
                     </div>
                 </div>
             </div>
-            <div   class="form-group bottom-margin-md-imp top-margin-md no-margin-right no-margin-left right-text col-xs-12">
+            <div class="form-group bottom-margin-md-imp top-margin-md no-margin-right no-margin-left right-text col-xs-12 no-float">
                 <a class="defult-color font-xs" href="#/forget">رمز عبور را فراموش کرده ام</a>
             </div>
-            <div class="inline-block w-100 center-text">
+            <div id="captcha_container" style="direction: ltr"></div>
+            <span class="msg-error error " style="color: rgba(26, 64, 73, 0.36);font-size: 0.8em;margin-bottom: 10px"></span>
+            <div class="inline-block w-100 center-text top-margin-lg">
                 <button type="submit" class="confirm_button confirm_yes btn no-margin-left redius-md">
                     ورود
                 </button>
             </div>
         </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=loadCaptcha&render=explicit" async defer></script>
     </div>
 </section>
 <style>
+    *[ui-view]{
+        height: 100vh;
+    }
 </style>

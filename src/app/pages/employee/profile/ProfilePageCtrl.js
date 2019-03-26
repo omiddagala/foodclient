@@ -12,6 +12,7 @@
     function ProfilePageCtrl($scope, fileReader, $filter, $http, localStorageService, $state, $rootScope, toastrConfig, toastr) {
         $rootScope.currentMobileActiveMenu = "profile";
 
+        $rootScope.pageTitle = 'حساب کاربری';
         $scope.initCtrl = function () {
             $scope.submitted = false;
             setTimeout(function () {
@@ -38,7 +39,7 @@
                 $http.post("https://demoapi.karafeed.com/pepper/v1/employee/getProfileData", null, httpOptions)
                     .success(function (data, status, headers, config) {
                         $scope.employee = data;
-                        console.log(data);
+                        // console.log(data);
                         if ($scope.employee.employeeInfo === null){
                             $scope.employee.employeeInfo = {
                                 gender: "FEMALE"

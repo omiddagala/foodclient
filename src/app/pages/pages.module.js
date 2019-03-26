@@ -76,10 +76,10 @@
         .directive("fader", function ($timeout, $ionicGesture, $ionicSideMenuDelegate) {
             if (!window.isMobile()) {
                 return {
-            require:'stTable',
+                    require: 'stTable',
                     restrict: "A",
-            link:function(scope,elem,attr,table){
-                scope.$on("refreshMyTable", function() {
+                    link: function (scope, elem, attr, table) {
+                        scope.$on("refreshMyTable", function () {
                             table.tableState().pagination.start = 0;
                             table.pipe(table.tableState());
                         });
@@ -142,6 +142,11 @@
         })
         .controller('MainCtrl', function ($scope, $window, $ionicSideMenuDelegate, $ionicGesture, $rootScope) {
             if (window.isMobile()) {
+
+                // close menu in first loading
+                ionic.Platform.ready(function () {
+                    $ionicSideMenuDelegate.toggleLeft();
+                });
                 $scope.width = function () {
                     return $window.innerWidth;
                 };
@@ -152,11 +157,6 @@
                 $scope.closeMenu = function () {
                     $ionicSideMenuDelegate.toggleLeft();
                 };
-
-                // close menu in first loading
-                ionic.Platform.ready(function () {
-                    $ionicSideMenuDelegate.toggleLeft();
-                });
 
                 $scope.searchBox = function (e) {
                     var thisItem = $(e.currentTarget);
@@ -183,6 +183,12 @@
                             $(ionSideMenu).find('ion-footer-bar').removeClass('footer-sort-visible');
                         }, 50);
                     }
+                }
+
+                //open menu 
+                $scope.openMenu = function (e) {
+                    $(e.currentTarget).closest('ion-side-menus').find('ion-side-menu-content').removeClass('hidden-first');
+                    $(e.currentTarget).closest('ion-side-menus').find('fader').removeClass('hidden-first');
                 }
             }
         });
@@ -241,83 +247,83 @@
                     url: "co-reports",
                     img: "assets/img/ui/menu/co-reports.png",
                     title: "گزارشات"
-                },{
+                }, {
                         url: "app/pages/company/charge-all/charge.html",
                         img: "assets/img/ui/menu/co-chargeall.png",
                         title: "شارژ همه",
                         isModal: true
-                },{
+                    }, {
                         url: "co-financial",
                         img: "assets/img/ui/menu/co-financial.png",
                         title: "مالی"
-                },{
+                    }, {
                         url: "co-inactive-users",
                         img: "assets/img/ui/menu/inactive-users.png",
                         title: "کارمندان غیرفعال"
-                },{
+                    }, {
                         url: "co-active-users",
                         img: "assets/img/ui/menu/active-users.png",
                         title: "کارمندان فعال"
                     })
             }
-            if ($rootScope.hasRole("ADMIN_EMPLOYEE")){
+            if ($rootScope.hasRole("ADMIN_EMPLOYEE")) {
                 $rootScope.mainMenus.push({
                     url: "ad-co-users",
                     img: "assets/img/theme/icon/karafeedIcon/employee.png",
                     title: "کارمندان"
                 })
             }
-            if ($rootScope.hasRole("MASTER_ADMIN")){
+            if ($rootScope.hasRole("MASTER_ADMIN")) {
                 $rootScope.mainMenus.push({
                     url: "comments",
                     img: "assets/img/theme/icon/karafeedIcon/comment.png",
                     title: "نظرات"
-                },{
+                }, {
                         url: "holidays",
                         img: "assets/img/theme/icon/karafeedIcon/vacation.png",
                         title: "تعطیلات"
-                },{
+                    }, {
                         url: "ad-reports",
                         img: "assets/img/theme/icon/karafeedIcon/report.png",
                         title: "گزارشات"
-                },{
+                    }, {
                         url: "admin-cheque",
                         img: "assets/img/theme/icon/karafeedIcon/cheque.png",
                         title: "مالی کارافید"
                     })
             }
-            if ($rootScope.hasRole("ADMIN_RESTAURANT")){
+            if ($rootScope.hasRole("ADMIN_RESTAURANT")) {
                 $rootScope.mainMenus.push({
                     url: "ad-invoice",
                     img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
                     title: "فاکتورهای صادرنشده"
-                },{
+                }, {
                         url: "rest-cheque",
                         img: "assets/img/theme/icon/karafeedIcon/cheque.png",
                         title: "مالی رستوران"
-                },{
+                    }, {
                         url: "rest-list",
                         img: "assets/img/theme/icon/karafeedIcon/restaurant.png",
                         title: "رستوران ها"
                     })
             }
-            if ($rootScope.hasRole("ADMIN_COMPANY")){
+            if ($rootScope.hasRole("ADMIN_COMPANY")) {
                 $rootScope.mainMenus.push({
                     url: "co-list",
                     img: "assets/img/theme/icon/karafeedIcon/company.png",
                     title: "کمپانی ها"
                 })
             }
-            if ($rootScope.hasRole("EMPLOYEE")){
+            if ($rootScope.hasRole("EMPLOYEE")) {
                 $rootScope.mainMenus.push({
                     url: "user-financial",
                     img: "assets/img/ui/menu/fin.png",
                     title: "مالی"
-                },{
+                }, {
                         url: "myrestaurant",
                         img: "assets/img/ui/menu/restaurant.png",
                         title: "رستوران"
-                },{
+                    }, {
                         url: "home",
                         img: "assets/img/ui/menu/reserve.png",
                         title: "رزرو غذا"
@@ -358,8 +364,12 @@
 
         $rootScope.locateFirstPage = function () {
             if (jQuery.inArray("EMPLOYEE", $rootScope.roles) > -1) {
-                $location.path("/home");
-                $rootScope.currentActiveMenu = "home";
+                if($rootScope.isMobile()){
+                    $location.path("/category");
+                }else{
+                    $location.path("/home");
+                    $rootScope.currentActiveMenu = "home";
+                }
             } else if (jQuery.inArray("RESTAURANT", $rootScope.roles) > -1) {
                 $location.path("/invoice");
                 $rootScope.currentActiveMenu = "invoice";
@@ -676,8 +686,8 @@
                 size: size
             });
         };
-        $rootScope.menuClicked = function (m,isModal) {
-            if (isModal){
+        $rootScope.menuClicked = function (m, isModal) {
+            if (isModal) {
                 $rootScope.openModal(m, 'md')
             } else {
                 $rootScope.currentActiveMenu = m;
@@ -744,26 +754,26 @@
         $rootScope.restaurantTypes = [{
             label: "ایرانی",
             value: "IRANIAN"
-        },{
+        }, {
             label: "فرنگی",
             value: "FOREIGN"
-        },{
+        }, {
             label: "فست فود",
             value: "FASTFOOD"
-        },{
+        }, {
             label: "رژیمی",
             value: "DIET"
-        },{
+        }, {
             label: "دریای",
             value: "SEA"
         }];
-        $rootScope.getRestaurantTypeByNames = function(n) {
+        $rootScope.getRestaurantTypeByNames = function (n) {
             var types = [];
             if (!n)
                 return;
             n = n.split(",");
-            $.each($rootScope.restaurantTypes,function (i, v) {
-                $.each(n,function (j, k) {
+            $.each($rootScope.restaurantTypes, function (i, v) {
+                $.each(n, function (j, k) {
                     if (v.value === k)
                         types.push(v);
                 })
@@ -773,7 +783,7 @@
         $rootScope.scrollIsAtEnd = function (e) {
             return e.scrollTop() + e.height() >= e.prop('scrollHeight') - 5;
         };
-        $rootScope.isValid = function(str) {
+        $rootScope.isValid = function (str) {
             return !/[~`!\s#$%\^&*()+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
         };
 
@@ -782,10 +792,11 @@
         };
         //// for ionic nav        
         $rootScope.canRender = function (item) {
-            if (window.location.hash == "#/profile" && !item) {
+            if (window.location.hash == "#/profile" && (!item || item == 'search-bar')) {
                 return false;
-            }
-            else if (window.location.hash == "#/profile" && (item == 'header' || item == 'fader' || item == 'menu')) {
+            } else if ((window.location.hash == "#/category" || window.location.hash == "#/detail") && item == 'search-bar') {
+                return false;
+            } else if (window.location.hash == "#/profile" && (item == 'header' || item == 'fader' || item == 'menu')) {
                 return true;
             } else if (window.location.hash == "#/login") {
                 return false;
@@ -797,7 +808,6 @@
         ////
         var username = $rootScope.username;
         // var stars =  star in mobile menu
-
 
     }
 

@@ -199,7 +199,6 @@
             var searchedDate = $('#dateForOrder').val();
             var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
             moment.loadPersian({ dialect: 'persian-modern' });
-            if (!$rootScope.isMobile()) {
                 var time = $("#searchTime").val().replace(/\s/g, '');
                 $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
                 var m = $rootScope.dateToOrder.format('LLLL');
@@ -207,7 +206,6 @@
                 $rootScope.timeToShowOnCards = time;
                 var today = moment.utc(new Date());
                 $scope.diffDaysForOff = $rootScope.dateToOrder.diff(today, 'days');
-            }
         };
 
         //vahid seraj updated code. (1397.09.29) ------------- [start]
@@ -820,7 +818,7 @@
             $("#dateForOrder").val(t);
             $scope.loadContent(false, true);
             if ($rootScope.isMobile()) {
-                debugger;
+                // debugger;
                 //$scope.searchBox(e);
             }
         };
