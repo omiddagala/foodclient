@@ -24,6 +24,7 @@
         $rootScope.pageTitle = 'رزروها';
         $scope.reserves = {};
         $rootScope.currentMobileActiveMenu = "reserve";
+        $rootScope.mydays = [];
         $scope.orderList = function () {
             
             var t = $('#taghvim').text();

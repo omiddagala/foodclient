@@ -35,7 +35,7 @@
         $rootScope.toPrice = 1000000;
         $rootScope.pageTitle = 'رزرو غذا';
         $scope.headerImg = $rootScope.foodType === "ALL" ? '' : $rootScope.foodType;
-        $scope.headerImgSrc = $scope.headerImg != '' ? '../../../../assets/img/ui/mobile/' + $scope.headerImg + '.png' : '';
+        $scope.headerImgSrc = $scope.headerImg !== '' ? '../../../../assets/img/ui/mobile/' + $scope.headerImg + '.png' : '';
         $rootScope.mobileFoodDetail = {};
 
         $scope.$on('$locationChangeStart', function () {
@@ -157,17 +157,14 @@
         };
 
         $scope.homeInit = function () {
-            if (window.isMobile() && $rootScope.selectedCategory) {
-                $scope.search();
-            }
-            if ($rootScope.employee_params)
+            if ($rootScope.employee_params && !$rootScope.isMobile())
                 $location.search($rootScope.employee_params);
             $rootScope.empPageNum = 0;
             $scope.commentPageNum = 0;
             $rootScope.enableScroll = false;
             $rootScope.enableCommentScroll = true;
+            $rootScope.foods = [];
             setTimeout(function () {
-                $rootScope.foods = [];
                 tomorrow = new Date();
                 tomorrow.setDate(tomorrow.getDate() + 1);
                 initClock();
@@ -227,6 +224,7 @@
                 .then(function (data, status, headers, config) {
                     setTimeout(function () {
                         $scope.restNames = data.data;
+                        $scope.$apply();
                     }, 1000);
                 }).catch(function (err) {
                 });
@@ -1055,29 +1053,31 @@
             }
         };
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
-            $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'));
-            var currentElem = $($event.currentTarget);
-            var productCard = currentElem.parent();
-            var floatImage = productCard.find(".card__image");
-            var position = productCard.offset();
+            if (!$rootScope.isMobile()) {
+                $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);
+                var currentElem = $($event.currentTarget);
+                var productCard = currentElem.parent();
+                var floatImage = productCard.find(".card__image");
+                var position = productCard.offset();
 
-            $("body").append('<div class="floating-cart"></div>');
-            var cart = $('div.floating-cart');
-            floatImage.clone().appendTo(cart);
-            $(cart).css({
-                'top': position.top + 'px',
-                "left": position.left + 'px'
-            }).fadeIn("slow").addClass('moveToCart').css("top", (currentElem.offset().top - (currentElem.offset().top - $(".newsabad__text").offset().top)) + "px");
-            setTimeout(function () {
-                $("body").addClass("MakeFloatingCart");
-            }, 800);
-            setTimeout(function () {
-                $('div.floating-cart').remove();
-                $("body").removeClass("MakeFloatingCart");
-                $scope.createOrderCart(food.name, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, true);
-            }, 1000);
-            return false;
+                $("body").append('<div class="floating-cart"></div>');
+                var cart = $('div.floating-cart');
+                floatImage.clone().appendTo(cart);
+                $(cart).css({
+                    'top': position.top + 'px',
+                    "left": position.left + 'px'
+                }).fadeIn("slow").addClass('moveToCart').css("top", (currentElem.offset().top - (currentElem.offset().top - $(".newsabad__text").offset().top)) + "px");
+                setTimeout(function () {
+                    $("body").addClass("MakeFloatingCart");
+                }, 800);
+                setTimeout(function () {
+                    $('div.floating-cart').remove();
+                    $("body").removeClass("MakeFloatingCart");
+                    $scope.createOrderCart(food.name, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, true);
+                }, 1000);
+                return false;
+            }
         };
     }
     // check width for mobile

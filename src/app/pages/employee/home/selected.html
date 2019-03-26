@@ -63,23 +63,23 @@
                             </div>
                         </div>
                         <div class="remove-float"></div>
-                    </div>
-                    <form novalidate ng-if="showDetails" ng-submit="validateSubmitMin($index) && validateSubmitMax($index) && addFoodDesc(myday.id,$index)"
-                        class="ui reply form">
-                        <div class="field white-back bottom-padding-lg">
+                        <form novalidate ng-if="showDetails" ng-submit="validateSubmitMin($index) && validateSubmitMax($index) && addFoodDesc(myday.id,$index)"
+                              class="ui reply form">
+                            <div class="field white-back bottom-padding-lg">
                             <textarea id="orderDesc_{{$index}}" name="orderDesc_{{$index}}" placeholder="توضیحات"
-                                descindex="{{$index}}" onkeyup="validateDesc(event)" class="placeholder-color-for-desc text-right right-directioon no-border no-resize">{{myday.desc}}</textarea>
-                            <div class="error-message hidden" id="max_{{$index}}">
-                                حداکثر 250 کاراکتر وارد کنید
+                                      descindex="{{$index}}" onkeyup="validateDesc(event)" class="placeholder-color-for-desc text-right right-directioon no-border no-resize">{{myday.desc}}</textarea>
+                                <div class="error-message hidden" id="max_{{$index}}">
+                                    حداکثر 250 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message hidden" id="min_{{$index}}">
+                                    حداقل 2 کاراکتر وارد کنید
+                                </div>
+                                <button type="submit" class="btn red__button btn-raised left-margin-lg pull-left">ارسال
+                                </button>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="error-message hidden" id="min_{{$index}}">
-                                حداقل 2 کاراکتر وارد کنید
-                            </div>
-                            <button type="submit" class="btn red__button btn-raised left-margin-lg pull-left">ارسال
-                            </button>
-                            <div class="clearfix"></div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
                 <div class="remove-float"></div>
             </div>
