@@ -98,7 +98,7 @@
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
             var params = {
-                id: $scope.mobileFoodDetail.id
+                id: $rootScope.mobileFoodDetail.id
             };
             $http.post("https://demoapi.karafeed.com/pepper/v1/food/getFoodAvailableDates", params, httpOptions)
                 .success(function (data, status, headers, config) {
@@ -158,7 +158,7 @@
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
             var params = {
-                foodId: $scope.mobileFoodDetail.id,
+                foodId: $rootScope.mobileFoodDetail.id,
                 comment: $('#commentInDetail').val()
             };
             $http.post("https://demoapi.karafeed.com/pepper/v1/foodComment/add", params, httpOptions)
@@ -183,7 +183,7 @@
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
             var params = {
-                id: $scope.mobileFoodDetail.id,
+                id: $rootScope.mobileFoodDetail.id,
                 pageableDTO: {
                     page: $scope.commentPageNum,
                     size: 10,
@@ -222,7 +222,7 @@
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
             var params = {
-                id: $scope.mobileFoodDetail.id
+                id: $rootScope.mobileFoodDetail.id
             };
             $http.post("https://demoapi.karafeed.com/pepper/v1/employee/lastRate", params, httpOptions)
                 .success(function (data, status, headers, config) {
@@ -232,23 +232,28 @@
                     $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
                 });
         };
-        
-        $scope.setDateForCardsAndDetail = function () {
-            var searchedDate = $('#dateForOrder').val();
-            var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
-            moment.loadPersian({ dialect: 'persian-modern' });
-            if ($rootScope.isMobile()) {
-                var time = $("#searchTime").val().replace(/\s/g, '');
-                $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
-                
-                var m = $rootScope.dateToOrder.format('LLLL');
-                $rootScope.dateToShowOnCards = m.split(" ").slice(0, 3).join(" ");
-                $rootScope.timeToShowOnCards = time;
-                var today = moment.utc(new Date());
-                $scope.diffDaysForOff = $rootScope.dateToOrder.diff(today, 'days');
-            }
+        $scope.orderFood = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var params = {
+                date: $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'),
+                foodId: $rootScope.mobileFoodDetail.id
+            };
+            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/order", params, httpOptions)
+                .success(function (data, status, headers, config) {
+                    $rootScope.userBalance = data.availableBalanceAmount;
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                    stopLoading();
+                }).catch(function (err) {
+                setTimeout(function () {
+                    $scope.loadOrders();
+                }, 2000);
+                $rootScope.handleError(params, "/employee/order", err, httpOptions);
+            });
         };
-        $scope.setDateForCardsAndDetail();
 
         $scope.cleanComments();
         $scope.fetchComments();
