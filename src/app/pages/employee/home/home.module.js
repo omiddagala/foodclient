@@ -196,13 +196,13 @@
             var searchedDate = $('#dateForOrder').val();
             var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
             moment.loadPersian({ dialect: 'persian-modern' });
-                var time = $("#searchTime").val().replace(/\s/g, '');
-                $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
-                var m = $rootScope.dateToOrder.format('LLLL');
-                $rootScope.dateToShowOnCards = m.split(" ").slice(0, 3).join(" ");
-                $rootScope.timeToShowOnCards = time;
-                var today = moment.utc(new Date());
-                $scope.diffDaysForOff = $rootScope.dateToOrder.diff(today, 'days');
+            var time = $("#searchTime").val().replace(/\s/g, '');
+            $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
+            var m = $rootScope.dateToOrder.format('LLLL');
+            $rootScope.dateToShowOnCards = m.split(" ").slice(0, 3).join(" ");
+            $rootScope.timeToShowOnCards = time;
+            var today = moment.utc(new Date());
+            $scope.diffDaysForOff = $rootScope.dateToOrder.diff(today, 'days');
         };
 
         //vahid seraj updated code. (1397.09.29) ------------- [start]
@@ -1053,6 +1053,7 @@
             }
         };
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
+            //$scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'));
             if (!$rootScope.isMobile()) {
                 $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);

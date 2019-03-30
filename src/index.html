@@ -137,26 +137,35 @@
                     <ion-header-bar ng-if="canRender('header')" class="flex content-between back-ebebeb">
                         <button class="transparent-back fit-width no-border" ng-click="openMenu($event)" menu-close>
                             <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
-                                viewBox="0 -10 65 65" width="30" height="30">
+                                viewbox="0 -10 65 65" width="30" height="30">
                                 <path fill="#808285" fill-rule="evenodd"
                                     d="M.557 38.539c0 1.925 1.315 3.5 2.923 3.5h52.601c1.608 0 2.923-1.575 2.923-3.5s-1.315-3.5-2.923-3.5H3.48c-1.608 0-2.923 1.575-2.923 3.5zm0-17.5c0 1.925 1.315 3.5 2.923 3.5h52.601c1.608 0 2.923-1.575 2.923-3.5s-1.315-3.5-2.923-3.5H3.48c-1.608 0-2.923 1.575-2.923 3.5zm0-17.5c0 1.925 1.315 3.501 2.923 3.501h52.601c1.608 0 2.923-1.576 2.923-3.501 0-1.925-1.315-3.5-2.923-3.5H3.48C1.872.039.557 1.614.557 3.539z" />
                             </svg>
                         </button>
                         <h1 class="title transparent-back color-363636 center-text">{{pageTitle}}</h1>
-                        <button class="transparent-back fit-width no-border" ng-click="searchBox($event)">
+
+                        <button class="transparent-back fit-width no-border" ng-if="canRender('sort-btn')" ng-click="goBack()">
                             <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
-                                viewBox="-10 -10 80 80" width="30" height="30">
+                                viewbox="0 -50 600 600" width="30" height="30">
                                 <path fill="#808285" fill-rule="evenodd"
-                                    d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z" />
+                                    d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" />
                             </svg>
                         </button>
+
                         <!-- search-bar -->
                         <div ng-if="canRender('search-bar')"
                             class="bar bar-subheader search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height items-center left-direction">
+                            <button class="transparent-back fit-width no-border" id="sort-btn" ng-click="sortBox()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
+                                    viewbox="-10 -10 80 80" width="30" height="30">
+                                    <path fill="#808285" fill-rule="evenodd"
+                                        d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z" />
+                                </svg>
+                            </button>
                             <input type="text" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right"
                                 placeholder="جستجوی غذا">
                             <button type="button"
-                                class="btn btn-link fit-height fit-width line-height-initial no-padding-imp">
+                                class="btn btn-link fit-height fit-width line-height-initial no-padding-imp search-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
                                     viewbox="-10 -10 60 60" width="35" height="50">
                                     <path fill="#808285" fill-rule="evenodd"
@@ -328,7 +337,7 @@
     <script src="myassets/js/wickedpicker.min.js"></script>
     <script src="myassets/js/ionic.bundle.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUh1zYu9a6v0k0gRob7Sy6oV_vcsu0SfY"></script>
-    <script type='text/javascript'>
+    <script>
         var captchaContainer = null;
         var loadCaptcha = function () {
             captchaContainer = grecaptcha.render('captcha_container', {

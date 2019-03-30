@@ -276,7 +276,7 @@
             var ionSideMenu = $(e.currentTarget).closest('ion-side-menus');
             $(ionSideMenu).find('ion-side-menu .confirm-box').removeClass('confirm-box-disable');
             window.setTimeout(function () {
-                $scope.searchBox(e);
+                $rootScope.sortBox();
                 $(ionSideMenu).find('ion-side-menu .confirm-box').addClass('confirm-box-disable');
             }, 600);
         }

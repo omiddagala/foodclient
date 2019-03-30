@@ -1169,7 +1169,9 @@ nav.ng-scope {
 .font-sm {
     font-size: small;
 }
-
+.font-xl{
+    font-size: 1.3em !important;
+}
 .font-lg {
     font-size: 1.1em !important;
 }
@@ -1942,9 +1944,6 @@ ba-sidebar.expanded .al-sidebar,
     background-color: #ebebeb !important;
 }
 
-.btn-group button.btn.btn-primary {
-    /* background-color: #FFF; */
-}
 
 @media (max-height: 800px) {
     .profile__body {

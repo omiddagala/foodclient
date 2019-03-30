@@ -24,14 +24,14 @@
         $rootScope.pageTitle = 'جزئیات غذا';
         // console.log($rootScope.mobileFoodDetail);
         $('.hidden-tab').hide();
-        // if (!$rootScope.mobileFoodDetail) {
-        //     // window.location.assign('/#home');
-        //     var home = window.location.href.replace("detail", "home");
-        //     home = replaceUrlParam(home, "r", name);
-        //     window.location.href = home;
-        //     $rootScope.currentActiveMenu = "home";
-        //     return;
-        // }
+        if (!$rootScope.mobileFoodDetail) {
+            window.location.assign('/#category');
+            //     var home = window.location.href.replace("detail", "home");
+            //     home = replaceUrlParam(home, "r", name);
+            //     window.location.href = home;
+            //     $rootScope.currentActiveMenu = "home";
+            //     return;
+        }
         $scope.loadYourLastRateToThisFood = function () {
 
             var token = localStorageService.get("my_access_token");
@@ -51,7 +51,7 @@
 
 
         };
-  
+
         $scope.myRate = function (rate) {
             startLoading();
             $scope.updateStar(rate);
@@ -215,7 +215,7 @@
                     $rootScope.handleError(params, "/foodComment/getFoodComments", err, httpOptions);
                 });
         };
-        
+
         $scope.loadYourLastRateToThisFood = function () {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -248,12 +248,32 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                setTimeout(function () {
-                    $scope.loadOrders();
-                }, 2000);
-                $rootScope.handleError(params, "/employee/order", err, httpOptions);
-            });
+                    setTimeout(function () {
+                        $scope.loadOrders();
+                    }, 2000);
+                    $rootScope.handleError(params, "/employee/order", err, httpOptions);
+                });
         };
+
+        $scope.setDateForCardsAndDetail = function () {
+            var searchedDate = $('#dateForOrder').val();
+            var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
+            moment.loadPersian({ dialect: 'persian-modern' });
+            if ($rootScope.isMobile()) {
+                try {
+                    var time = $("#searchTime").val().replace(/\s/g, '');
+                    $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');    
+                    var m = $rootScope.dateToOrder.format('LLLL');
+                    $rootScope.dateToShowOnCards = m.split(" ").slice(0, 3).join(" ");
+                    $rootScope.timeToShowOnCards = time;
+                    var today = moment.utc(new Date());
+                    $scope.diffDaysForOff = $rootScope.dateToOrder.diff(today, 'days');
+                } catch (error) {
+                    window.location.assign('/#category');
+                }
+            }
+        };
+        $scope.setDateForCardsAndDetail();
 
         $scope.cleanComments();
         $scope.fetchComments();

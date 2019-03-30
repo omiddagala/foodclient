@@ -1,6 +1,6 @@
 *[ui-view] {
     width: 100% !important;
-    padding-top: 7.5em;
+    padding-top: 9em;
     /* padding-bottom: 4em; */
     background-color: #f4f4f4 !important;
 }
@@ -381,10 +381,6 @@ ion-wallet-select wallet-content .item:last-child {
     right: 0 !important;
 }
 
-.scroll {
-    /* transform: none !important; */
-}
-
 .menu-content {
     width: 50% !important;
     max-width: 350px !important;
@@ -427,9 +423,6 @@ ion-list .card {
     display: none;
 }
 
-.hidden-sort-box {
-    /* display: none; */
-}
 
 .ADMdtpInput,
 .ADMdtp {
@@ -459,12 +452,11 @@ ion-list .card {
     transform: translateX(-50%);
 }
 
-.scroll-content {
-    /* padding-top: 3em; */
-}
-
 .category-page {
     margin-top: -3.5em;
+}
+.reserve-page {
+    margin-top: -5.5em;
 }
 
 .header-img {
@@ -503,8 +495,6 @@ ion-list .card {
     left: 2.5em;
 }
 
-.detail-page .food-detail-left {}
-
 .detail-page .food-detail-content {
     display: flex;
     flex-direction: column;
@@ -536,11 +526,6 @@ ion-list .card {
     justify-content: center;
 }
 
-.hidden-tab {
-    /* display: none; */
-    /* height: 0 !important;
-    overflow: hidden; */
-}
 
 .tab-arrow {
     transition: .6s;
@@ -589,5 +574,18 @@ ion-list .card {
 .ui-select-multiple.ui-select-bootstrap>div span {
     color: white !important;
 }
-
+.sort-btn{
+    width: 50px;
+    height: 31px;;
+}
+.search-btn:hover{
+    transform: unset !important;
+}
+body{
+    font-size: 12px !important;
+}
+.food-count-box{
+    margin-right: auto;
+    margin-left: 10px;
+}
 /* ionic [end] */

@@ -140,9 +140,8 @@
                 }
             }
         })
-        .controller('MainCtrl', function ($scope, $window, $ionicSideMenuDelegate, $ionicGesture, $rootScope) {
+        .controller('MainCtrl', function ($scope, $window, $ionicSideMenuDelegate, $ionicGesture, $rootScope, $ionicHistory) {
             if (window.isMobile()) {
-
                 // close menu in first loading
                 ionic.Platform.ready(function () {
                     $ionicSideMenuDelegate.toggleLeft();
@@ -157,11 +156,16 @@
                 $scope.closeMenu = function () {
                     $ionicSideMenuDelegate.toggleLeft();
                 };
-
-                $scope.searchBox = function (e) {
-                    var thisItem = $(e.currentTarget);
+                $scope.goBack = function () {
+                    window.history.go(-1);
+                    // $ionicHistory.goBack(-1);
+                    // $ionicHistory.backView();
+                };
+                $rootScope.sortBox = function () {
+                    var thisItem = $('#sort-btn');
                     var ionSideMenu = $(thisItem).closest('ion-side-menu');
                     if ($(ionSideMenu).find('[ui-view] .sort-box').hasClass('hidden-sort-box')) {
+                        thisItem.closest('.search-bar-box').hide();
                         $(thisItem).find('path').addClass('mobile-menu-selected');
                         $rootScope.title = $rootScope.pageTitle;
                         $rootScope.pageTitle = 'مرتب سازی';
@@ -172,6 +176,7 @@
                         $(ionSideMenu).find('ion-content').addClass('content-sort-visible');
                         $(ionSideMenu).find('ion-footer-bar').addClass('footer-sort-visible');
                     } else {
+                        thisItem.closest('.search-bar-box').show(200);
                         $(thisItem).find('path').removeClass('mobile-menu-selected');
                         $rootScope.pageTitle = $rootScope.title;
                         $(ionSideMenu).find('[ui-view] .sort-box').addClass('hidden-sort-box').removeClass('left-0-imp');
@@ -367,9 +372,9 @@
         };
         $rootScope.locateFirstPage = function () {
             if (jQuery.inArray("EMPLOYEE", $rootScope.roles) > -1) {
-                if($rootScope.isMobile()){
+                if ($rootScope.isMobile()) {
                     $location.path("/category");
-                }else{
+                } else {
                     $location.path("/home");
                     $rootScope.currentActiveMenu = "home";
                 }
@@ -794,7 +799,9 @@
         $rootScope.canRender = function (item) {
             if (window.location.hash == "#/profile" && (!item || item == 'search-bar')) {
                 return false;
-            } else if ((window.location.hash == "#/category" || window.location.hash == "#/detail") && item == 'search-bar') {
+            } else if ((window.location.hash == "#/category" || window.location.hash == "#/detail" || window.location.hash == "#/reserve") && item == 'search-bar') {
+                return false;
+            } else if (window.location.hash == "#/category" && item == 'sort-btn') {
                 return false;
             } else if (window.location.hash == "#/profile" && (item == 'header' || item == 'fader' || item == 'menu')) {
                 return true;
@@ -811,8 +818,9 @@
 
     }
 
-    function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-
+    function routeConfig($urlRouterProvider, baSidebarServiceProvider, $ionicConfigProvider) {
+        $ionicConfigProvider.views.forwardCache(true);
+        
         baSidebarServiceProvider.addStaticItem({
             title: 'Pages',
             icon: 'ion-document',
