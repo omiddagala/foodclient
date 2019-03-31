@@ -819,16 +819,14 @@
             $("#dateForOrder").val(t);
             $scope.loadContent(false, true);
             if ($rootScope.isMobile()) {
-                // debugger;
-                //$scope.searchBox(e);
             }
         };
         $scope.confirm = function (e) {
             var ionSideMenu = $(e.currentTarget).closest('ion-side-menus');
             $(ionSideMenu).find('ion-side-menu .confirm-box').removeClass('confirm-box-disable');
             window.setTimeout(function () {
-                $scope.searchBox(e);
                 $(ionSideMenu).find('ion-side-menu .confirm-box').addClass('confirm-box-disable');
+                $rootScope.sortBox();
                 $rootScope.empPageNum = 0;
                 $scope.loadContent(false, true);
             }, 600);

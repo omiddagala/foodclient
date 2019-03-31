@@ -1,6 +1,5 @@
 <!-- search-bar -->
-<!-- <div
-    class="bar bar-subheader search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height items-center left-direction">
+<div class="bar bar-subheader stick-search-bar search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height left-direction">
     <button class="transparent-back fit-width no-border sort-btn" ng-click="sortBox($event)">
         <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewBox="-10 -10 80 80" width="30"
             height="30">
@@ -8,7 +7,7 @@
                 d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z" />
         </svg>
     </button>
-    <input type="text" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
+    <input type="text" ng-change="search()" id="foodName" name="foodName" ng-model="foodName" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
     <button type="button" class="btn btn-link fit-height fit-width line-height-initial no-padding-imp search-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewbox="-10 -10 60 60" width="35"
             height="50">
@@ -16,7 +15,7 @@
                 d="M37.394 37.342l-9.363-10.15c2.407-2.983 3.725-6.734 3.725-10.641 0-9.128-7.123-16.555-15.879-16.555-8.757 0-15.88 7.427-15.88 16.555 0 9.127 7.123 16.553 15.88 16.553 3.287 0 6.42-1.033 9.098-2.995l9.432 10.226c.395.427.926.662 1.493.662a2.02 2.02 0 0 0 1.436-.602 2.229 2.229 0 0 0 .058-3.053zM15.877 4.315c6.472 0 11.738 5.489 11.738 12.236 0 6.747-5.266 12.235-11.738 12.235-6.472 0-11.739-5.488-11.739-12.235 0-6.747 5.267-12.236 11.739-12.236z" />
         </svg>
     </button>
-</div> -->
+</div>
 
 <!-- cardItem -->
 <div class="article-mobile-list" id="article-list-main" ng-init="homeInit()">
@@ -60,7 +59,7 @@
 
 <!-- sortBox -->
 <div class="sort-box hidden-sort-box">
-    <div class="no-padding-bottom-imp" ng-init="initCtrl()">
+    <div class="no-padding-bottom-imp">
         <div
             class="card transparent-back w-95 mobile-card auto-height flex flex-col items-center content-evenly right-direction no-box-shadow no-padding-imp margin-center un-overflow">
             <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)"
@@ -134,3 +133,8 @@
         </div>
     </div>
 </div>
+<style>
+    .view-padding-top {
+        padding-top: 44px;
+    }
+</style>

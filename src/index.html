@@ -113,6 +113,11 @@
             margin-left: 12px !important;
         }
     </style>
+    <style>
+        .overflow-scroll .scroll{
+            height: unset !important;
+        }
+    </style>
 </head>
 <!--  -->
 
@@ -124,7 +129,7 @@
     <!--<page-top></page-top>-->
 
     <!--<content-top></content-top>-->
-    <div ng-if="!isMobile()" style="height: 100%;overflow: auto;width: calc(100% - 14px);" class="padding-9em" ui-view
+    <div ng-if="!isMobile()" style="height: 100%;overflow: auto;width: calc(100% - 14px);" class="padding-44" ui-view
          autoscroll="true"
          autoscroll-body-top></div>
 
@@ -153,32 +158,10 @@
                                   d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/>
                         </svg>
                     </button>
-
-                    <!-- search-bar -->
-                    <div ng-if="canRender('search-bar')"
-                         class="bar bar-subheader search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height items-center left-direction">
-                        <button class="transparent-back fit-width no-border" id="sort-btn" ng-click="sortBox()">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
-                                 viewbox="-10 -10 80 80" width="30" height="30">
-                                <path fill="#808285" fill-rule="evenodd"
-                                      d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z"/>
-                            </svg>
-                        </button>
-                        <input type="text" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right"
-                               placeholder="جستجوی غذا">
-                        <button type="button"
-                                class="btn btn-link fit-height fit-width line-height-initial no-padding-imp search-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
-                                 viewbox="-10 -10 60 60" width="35" height="50">
-                                <path fill="#808285" fill-rule="evenodd"
-                                      d="M37.394 37.342l-9.363-10.15c2.407-2.983 3.725-6.734 3.725-10.641 0-9.128-7.123-16.555-15.879-16.555-8.757 0-15.88 7.427-15.88 16.555 0 9.127 7.123 16.553 15.88 16.553 3.287 0 6.42-1.033 9.098-2.995l9.432 10.226c.395.427.926.662 1.493.662a2.02 2.02 0 0 0 1.436-.602 2.229 2.229 0 0 0 .058-3.053zM15.877 4.315c6.472 0 11.738 5.489 11.738 12.236 0 6.747-5.266 12.235-11.738 12.235-6.472 0-11.739-5.488-11.739-12.235 0-6.747 5.267-12.236 11.739-12.236z"/>
-                            </svg>
-                        </button>
-                    </div>
                 </ion-header-bar>
                 <ion-content ng-class="canRender() ? 'has-footer back-f4f4f4' : 'back-f4f4f4'">
 
-                    <div ui-view ng-class="currentMobileActiveMenu == 'feedgram-post' ? '':'padding-9em'"
+                    <div ui-view class="view-padding-top"
                          style="height: 100%"></div>
                 </ion-content>
                 <ion-footer-bar ng-if="canRender()"

@@ -3,6 +3,9 @@
     height: 100%;
     background-color: #f4f4f4 !important;
 }
+.padding-44{
+    padding-top: 44px;
+}
 .padding-9em{
     padding-top: 9em;
 }
@@ -455,9 +458,6 @@ ion-list .card {
 
 .category-page {
     margin-top: -3.5em;
-}
-.reserve-page {
-    margin-top: -5.5em;
 }
 
 .header-img {

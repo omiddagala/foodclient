@@ -24,9 +24,9 @@
         $rootScope.pageTitle = 'رزروها';
         $scope.reserves = {};
         $rootScope.currentMobileActiveMenu = "reserve";
-        $rootScope.mydays = [];
+        $scope.mydays = [];
         $scope.orderList = function () {
-            
+
             var t = $('#taghvim').text();
             moment.locale('fa');
             moment.loadPersian({dialect: 'persian-modern'});
@@ -35,7 +35,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 pageableDTO: {
@@ -44,7 +44,7 @@
                     "size": 1000,
                     "sortBy": "deliveryDate"
                 }
-            };  
+            };
             $http.post("https://demoapi.karafeed.com/pepper/v1/employee/getOrderList", params, httpOptions).success(function (data, status, headers, config) {
                 var map = new HashMap();
                 for (var i = 0; i < data.length; i++) {
@@ -72,6 +72,7 @@
                         data[i].totalContainerPrice = 0;
                         data[i].totalTaxAmount = 0;
                         data[i].totalAmount = 0;
+                        data[i].show = true;
                         for (var k = 0; k < data[i].foodOrders.length; k++) {
                             data[i].totalContainerPrice += data[i].foodOrders[k].containerPrice;
                             data[i].totalTaxAmount += data[i].foodOrders[k].taxAmount;
@@ -83,16 +84,41 @@
                         map.set(data[i].deliveryDate, newVal);
                     }
                 }
-                $rootScope.mydays = map.values();
+                $scope.mydays = map.values();
                 $scope.reserves = data;
                 stopLoading();
             }).catch(function (err) {
                 $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
             });
         };
+        var delayTimer;
+        $scope.search = function () {
+            clearTimeout(delayTimer);
+            delayTimer = setTimeout(function () {
+                startLoading();
+                $.each($scope.mydays, function (index, day) {
+                    $.each(day.restaurants, function (index, res) {
+                        res.show = false;
+                        if (res.restaurant.name.includes($scope.searchText)) {
+                            res.show = true;
+                        } else {
+                            $.each(res.foodOrders, function (index, order) {
+                                if (order.food.name.includes($scope.searchText)) {
+                                    res.show = true;
+                                }
+                            });
+                        }
+                    });
+                });
+                $scope.$apply();
+                setTimeout(function () {
+                    stopLoading();
+                }, 1000);
+            }, 1000);
+        };
         $scope.myFormatDate = function (d) {
             moment.locale('fa');
-            moment.loadPersian({ dialect: 'persian-modern' });
+            moment.loadPersian({dialect: 'persian-modern'});
             return moment.utc(d).format('LLLL');
         };
         $scope.getDayOfWeek = function (d) {
@@ -132,11 +158,11 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    setTimeout(function () {
-                        // $scope.loadOrders();
-                    }, 2000);
-                    $rootScope.handleError(params, "/employee/order", err, httpOptions);
-                });
+                setTimeout(function () {
+                    // $scope.loadOrders();
+                }, 2000);
+                $rootScope.handleError(params, "/employee/order", err, httpOptions);
+            });
         };
         $scope.productPlus = function ($event, isNotPlusButton) {
             var product = $($event.currentTarget).closest('.mobile-card');
@@ -171,11 +197,11 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/cancelOrderByOrderDTO", err, httpOptions);
-                    //$scope.loadOrders();
-                });
+                $rootScope.handleError(params, "/employee/cancelOrderByOrderDTO", err, httpOptions);
+                //$scope.loadOrders();
+            });
         };
-        
+
         $scope.cancelAllFood = function (foodId, localId, date) {//change this
             startLoading();
             var token = localStorageService.get("my_access_token");
@@ -193,14 +219,14 @@
                     // $scope.loadOrders();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/cancelOrderByOrderDTOList", err, httpOptions);
-                    // $scope.loadOrders();
-                });
+                $rootScope.handleError(params, "/employee/cancelOrderByOrderDTOList", err, httpOptions);
+                // $scope.loadOrders();
+            });
         };
         $scope.productDel = function ($event) {
             var product = $($event.currentTarget).closest('.mobile-card');
             $scope.cancelAllFood(product.find("#foodID").text(), product.attr("id"), product.data("orderdate"));
-            product.hide('blind', { direction: 'left' }, 500, function () {
+            product.hide('blind', {direction: 'left'}, 500, function () {
                 product.remove();
                 if ($('.product').length == 0) {
                     $('.cart-container .cart').hide();
@@ -244,7 +270,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var product = $($event.currentTarget).closest('.mobile-card');
             var date = product.data("orderdate");
@@ -267,8 +293,8 @@
                     $rootScope.foods = data;
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
+            });
         };
 
         $scope.cancelDessert = function () {
@@ -302,7 +328,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 id: id,
@@ -313,8 +339,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
+            });
         };
 
         $scope.showSubmit = function (e) {

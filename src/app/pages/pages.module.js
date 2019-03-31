@@ -167,7 +167,7 @@
                     // $ionicHistory.backView();
                 };
                 $rootScope.sortBox = function () {
-                    var thisItem = $('#sort-btn');
+                    var thisItem = $('.sort-btn');
                     var ionSideMenu = $(thisItem).closest('ion-side-menu');
                     if ($(ionSideMenu).find('[ui-view] .sort-box').hasClass('hidden-sort-box')) {
                         thisItem.closest('.search-bar-box').hide();
@@ -176,7 +176,6 @@
                         $rootScope.pageTitle = 'مرتب سازی';
                         $(ionSideMenu).find('[ui-view] .sort-box').removeClass('hidden-sort-box').addClass('left-0-imp');
                         $(ionSideMenu).find('ion-content [ui-view]').addClass('ui-view-sort-visable');
-                        $(ionSideMenu).find('ion-content [ui-view] .search-bar-box').addClass('search-bar-box-sort-visable');
                         $(ionSideMenu).find('ion-content [ui-view] .article-mobile-list').addClass('article-mobile-list-sort-visable');
                         $(ionSideMenu).find('ion-content').addClass('content-sort-visible');
                         $(ionSideMenu).find('ion-footer-bar').addClass('footer-sort-visible');
@@ -187,7 +186,6 @@
                         $(ionSideMenu).find('[ui-view] .sort-box').addClass('hidden-sort-box').removeClass('left-0-imp');
                         window.setTimeout(function () {
                             $(ionSideMenu).find('ion-content [ui-view]').removeClass('ui-view-sort-visable');
-                            $(ionSideMenu).find('ion-content [ui-view] .search-bar-box').removeClass('search-bar-box-sort-visable');
                             $(ionSideMenu).find('ion-content [ui-view] .article-mobile-list').removeClass('article-mobile-list-sort-visable');
                             $(ionSideMenu).find('ion-content').removeClass('content-sort-visible');
                             $(ionSideMenu).find('ion-footer-bar').removeClass('footer-sort-visible');

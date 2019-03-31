@@ -2105,3 +2105,7 @@ ba-sidebar.expanded .al-sidebar,
     justify-content: center;
     align-items: center;
 }
+.stick-search-bar {
+    position: sticky !important;
+    top: 45px !important;
+}
