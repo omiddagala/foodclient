@@ -152,8 +152,8 @@
                         }
                     }
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "foodSearch/find", err, httpOptions);
-                });
+                $rootScope.handleError(params, "foodSearch/find", err, httpOptions);
+            });
         };
 
         $scope.homeInit = function () {
@@ -187,7 +187,8 @@
                     slider.on("change", function () {
                         $rootScope.fromPrice = $(this).data("from");
                         $rootScope.toPrice = $(this).data("to");
-                        $scope.search()
+                        if (!$rootScope.isMobile())
+                            $scope.search()
                     });
             }, 1500);
         };
@@ -195,7 +196,7 @@
         $scope.setDateForCardsAndDetail = function () {
             var searchedDate = $('#dateForOrder').val();
             var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
-            moment.loadPersian({ dialect: 'persian-modern' });
+            moment.loadPersian({dialect: 'persian-modern'});
             var time = $("#searchTime").val().replace(/\s/g, '');
             $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
             var m = $rootScope.dateToOrder.format('LLLL');
@@ -227,7 +228,7 @@
                         $scope.$apply();
                     }, 1000);
                 }).catch(function (err) {
-                });
+            });
         }
 
         $scope.resName_changed = function (r) {
@@ -263,10 +264,10 @@
                         $http.post("https://demoapi.karafeed.com/pepper/v1/employee/setGiftVisited", {"id": $scope.gift.id}, httpOptions)
                             .then(function (data, status, headers, config) {
                             }).catch(function (err) {
-                            });
+                        });
                     }
                 }).catch(function (err) {
-                });
+            });
         }
 
         $scope.getGiftType = function (type) {
@@ -297,14 +298,16 @@
                 minutesInterval: 30, //Change interval for minutes, defaults to 1
             };
             timepicker = $('.timepicker').wickedpicker(options);
-            var st = $('#searchTime');
-            lastTime = t;
-            st.change(function () {
-                if (lastTime !== st.val()) {
-                    $scope.search();
-                    lastTime = st.val();
-                }
-            });
+            if (!$rootScope.isMobile()) {
+                var st = $('#searchTime');
+                lastTime = t;
+                st.change(function () {
+                    if (lastTime !== st.val()) {
+                        $scope.search();
+                        lastTime = st.val();
+                    }
+                });
+            }
         }
 
         var delayTimer;
@@ -395,8 +398,8 @@
                     }
                     $scope.days = m;
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/food/getFoodAvailableDates", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/food/getFoodAvailableDates", err, httpOptions);
+            });
         };
 
 
@@ -416,8 +419,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/rate", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/rate", err, httpOptions);
+            });
         };
 
         $scope.updateStar = function (s) {
@@ -442,8 +445,8 @@
                     $scope.foodRate = data.rate === 0 ? "-" : data.rate;
                     $scope.updateStar(data.rate);
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
+            });
         };
 
         $scope.getPersianDay = function (d) {
@@ -487,7 +490,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 foodId: $scope.food.id,
@@ -498,8 +501,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodComment/add", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodComment/add", err, httpOptions);
+            });
         };
 
         $scope.cleanComments = function () {
@@ -553,8 +556,8 @@
                     }
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodComment/getFoodComments", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodComment/getFoodComments", err, httpOptions);
+            });
         };
 
         $scope.open = function (page, size) {
@@ -616,11 +619,11 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    setTimeout(function () {
-                        $scope.loadOrders();
-                    }, 2000);
-                    $rootScope.handleError(params, "/employee/order", err, httpOptions);
-                });
+                setTimeout(function () {
+                    $scope.loadOrders();
+                }, 2000);
+                $rootScope.handleError(params, "/employee/order", err, httpOptions);
+            });
         };
 
         $scope.cancelFood = function (foodId, date) {
@@ -639,9 +642,9 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/cancelOrderByOrderDTO", err, httpOptions);
-                    $scope.loadOrders();
-                });
+                $rootScope.handleError(params, "/employee/cancelOrderByOrderDTO", err, httpOptions);
+                $scope.loadOrders();
+            });
         };
 
         $scope.cancelAllFood = function (foodId, localId, date) {
@@ -661,9 +664,9 @@
                     $scope.loadOrders();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/cancelOrderByOrderDTOList", err, httpOptions);
-                    $scope.loadOrders();
-                });
+                $rootScope.handleError(params, "/employee/cancelOrderByOrderDTOList", err, httpOptions);
+                $scope.loadOrders();
+            });
         };
 
         $scope.foodTypeChanged = function (t) {
@@ -705,8 +708,8 @@
                     }
                     $scope.renderTodaysReserves();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
+            });
         };
 
         $scope.createOrderCart = function (name, day, id, resId, foodType, restName, addedLocally) {
@@ -805,8 +808,8 @@
                     $rootScope.foods = data;
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
+            });
         };
 
         $scope.cancelDessert = function () {
@@ -826,6 +829,8 @@
             window.setTimeout(function () {
                 $scope.searchBox(e);
                 $(ionSideMenu).find('ion-side-menu .confirm-box').addClass('confirm-box-disable');
+                $rootScope.empPageNum = 0;
+                $scope.loadContent(false, true);
             }, 600);
         }
 
@@ -886,8 +891,8 @@
                     stopLoading();
                     $scope.open('app/pages/employee/home/selected.html', 'lg');
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
+            });
         };
 
         $scope.foodDetailOrder = function () {
@@ -984,8 +989,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
+            });
         };
         $scope.validateSubmitMin = function (index) {
             var desc = $("#orderDesc_" + index).val();
@@ -1053,7 +1058,6 @@
             }
         };
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
-            //$scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'));
             if (!$rootScope.isMobile()) {
                 $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);
@@ -1081,11 +1085,13 @@
             }
         };
     }
+
     // check width for mobile
     checkWidth();
     window.onresize = function () {
         checkWidth();
     }
+
     function checkWidth() {
         if ((window.innerWidth > window.innerHeight - 50) && window.isMobile()) {
             console.log('ismobile');

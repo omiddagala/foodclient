@@ -255,26 +255,6 @@
                 });
         };
 
-        $scope.setDateForCardsAndDetail = function () {
-            var searchedDate = $('#dateForOrder').val();
-            var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
-            moment.loadPersian({ dialect: 'persian-modern' });
-            if ($rootScope.isMobile()) {
-                try {
-                    var time = $("#searchTime").val().replace(/\s/g, '');
-                    $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');    
-                    var m = $rootScope.dateToOrder.format('LLLL');
-                    $rootScope.dateToShowOnCards = m.split(" ").slice(0, 3).join(" ");
-                    $rootScope.timeToShowOnCards = time;
-                    var today = moment.utc(new Date());
-                    $scope.diffDaysForOff = $rootScope.dateToOrder.diff(today, 'days');
-                } catch (error) {
-                    window.location.assign('/#category');
-                }
-            }
-        };
-        $scope.setDateForCardsAndDetail();
-
         $scope.cleanComments();
         $scope.fetchComments();
     }

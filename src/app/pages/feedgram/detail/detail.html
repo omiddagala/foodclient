@@ -1,0 +1,90 @@
+    <div class = "item item-avatar">
+        <img style="width:40px;float: right;position: initial" src = "https://storage.karafeed.com/d212d7e4-9f48-41bb-8d06-258f09351b26.jpeg">
+        <div style="float: right;line-height: 40px">omid javaheri</div>
+    </div>
+
+    <div class = "item item-body">
+        <img class = "full-image" src = "assets/img/defaults/default-food.png">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget
+        pharetra tortor. Proin quis eros imperdiet, facilisis nisi in, tincidunt orci.
+        Nam tristique elit massa, quis faucibus augue finibus ac.
+    </div>
+
+    <div class="white-back w-100 mobile-card auto-height flex items-center content-evenly right-direction relative" style="">
+        <div class="fit-width mobil-card-img full-height relative">
+            <img src="https://storage.karafeed.com//67251847-7af0-47a1-85b5-628907c4384a.png" class="w-100 card-img">
+        </div>
+        <div class="full-width right-padding-lg left-padding-lg relative flex flex-col items-center content-evenly">
+            <div class="defult-color text-right font-bold w-100 font-large line-height-initial min-height-lg ng-binding">
+                ghorme sabzi</div>
+            <div class="text-right flex items-center w-100 font-large line-height-initial min-height-lg">
+                <div class="color-2e6977 pointer ng-binding" ng-click="goToRestaurantPage(food.restaurant.name)">
+                    restaurant</div>
+                <div class="card__restaurant__star"></div>
+                <div class="color-319ab1 ng-binding">
+                    5
+                </div>
+            </div>
+            <div class="food-detail-left w-100">
+                <div class="food-detail-content">
+                    <div class="food_detail_stars text-right">
+                        <ul class="rating color-e1e1e1">
+                            <li ng-repeat="star in stars" ng-class="star" ng-click="myRate($index+1)">
+                                &#8902
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+            class="defult-color text-right flex flex-col font-bold w-100 font-large line-height-initial min-height-lg">
+        <div class="food_detail_title font-xxs color-939292 w-100 text-right pointer"
+             ng-click="showTab($event)">
+            <i class="icon ion-chevron-left color-319ab1 tab-arrow"></i>
+            نظرات کاربران
+        </div>
+        <div class="w-100 flex wrap hidden-tab full-height top-margin-lg-imp">
+            <div id="food_comments" class="w-100 auto-overflow m-h-13">
+                <div class="col-xs-12 hr flex flex-col" style="">
+                    <div class="color-939292 w-100 right-text font-xxs ng-binding">
+                        employee
+                    </div>
+                    <!-- <div class="comments__date">
+                        {{myFormatDate(c.date)}}
+                    </div> -->
+                    <div class="color-b6b6b6 w-100 right-text font-xxxs ng-binding">
+                        ewfdefe
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 top-margin-lg">
+                <form novalidate ng-submit="forms.myform.$valid && addComments()" name="forms.myform"
+                      class="ui reply form">
+                    <div class="reelative">
+                                    <textarea type="text" ng-model="commentInDetail" id="commentInDetail"
+                                              name="commentInDetail" required ng-maxlength="250" ng-minlength="2"
+                                              placeholder="افزودن نظر شما"
+                                              class="right-direction redius-lg color-9d9d9d right-text font-xs padding-3 message-box no-resize"></textarea>
+                        <div class="error-message"
+                             ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.required">
+                            پر کردن این فیلد اجباریست
+                        </div>
+                        <div class="error-message"
+                             ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.maxlength">
+                            حداکثر 250 کاراکتر وارد کنید
+                        </div>
+                        <div class="error-message"
+                             ng-show="(forms.myform.commentInDetail.$dirty || submitted) && inputIsInvalid(forms.myform.commentInDetail.$valid,'commentInDetail') && forms.myform.commentInDetail.$error.minlength">
+                            حداقل 2 کاراکتر وارد کنید
+                        </div>
+                        <button type="submit"
+                                class="confirm_button confirm_yes btn redius-md send-btn">ارسال
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

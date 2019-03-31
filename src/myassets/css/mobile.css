@@ -1,10 +1,11 @@
 *[ui-view] {
     width: 100% !important;
-    padding-top: 9em;
-    /* padding-bottom: 4em; */
+    height: 100%;
     background-color: #f4f4f4 !important;
 }
-
+.padding-9em{
+    padding-top: 9em;
+}
 html body {
     margin-right: 0 !important;
 }

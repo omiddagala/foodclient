@@ -47,12 +47,12 @@ ul.rating {
     transition: height 200ms;
 }
 
-#password+.glyphicon {
+#password + .glyphicon {
     cursor: pointer;
     pointer-events: all;
 }
 
-#pass+.glyphicon {
+#pass + .glyphicon {
     cursor: pointer;
     pointer-events: all;
 }
@@ -160,6 +160,7 @@ nav.ng-scope {
     .admin-menu-top {
         display: none;
     }
+
     .admin-content.mycontent.ng-scope {
         margin-top: -67px !important;
         margin-right: 0;
@@ -461,6 +462,7 @@ nav.ng-scope {
 .bottom-margin-4-imp {
     margin-bottom: 1em !important;
 }
+
 .bottom-margin-4 {
     margin-bottom: 2em;
 }
@@ -500,6 +502,7 @@ nav.ng-scope {
 .no-padding-bottom {
     padding-bottom: 0;
 }
+
 .no-padding-bottom-imp {
     padding-bottom: 0 !important;
 }
@@ -579,6 +582,7 @@ nav.ng-scope {
 .left-padding-sm-imp {
     padding-left: 4px !important;
 }
+
 .padding-1 {
     padding: .25em !important;
 }
@@ -626,6 +630,7 @@ nav.ng-scope {
 .right-padding-4 {
     padding-right: 1em !important;
 }
+
 .right-padding-5 {
     padding-right: 1.5em !important;
 }
@@ -641,6 +646,7 @@ nav.ng-scope {
 .right-padding-8 {
     padding-right: 3em !important;
 }
+
 .bottom-padding-1 {
     padding-bottom: .25em !important;
 }
@@ -664,6 +670,7 @@ nav.ng-scope {
 .bottom-padding-6 {
     padding-bottom: 2em !important;
 }
+
 .top-padding-1 {
     padding-top: .25em !important;
 }
@@ -990,9 +997,11 @@ nav.ng-scope {
 .left-0 {
     left: 0;
 }
+
 .left-0-imp {
     left: 0 !important;
 }
+
 .left-1 {
     left: .25em;
 }
@@ -1008,6 +1017,7 @@ nav.ng-scope {
 .left-4 {
     left: 1em;
 }
+
 .right-1 {
     right: .25em;
 }
@@ -1169,9 +1179,11 @@ nav.ng-scope {
 .font-sm {
     font-size: small;
 }
-.font-xl{
+
+.font-xl {
     font-size: 1.3em !important;
 }
+
 .font-lg {
     font-size: 1.1em !important;
 }
@@ -1191,9 +1203,11 @@ nav.ng-scope {
 .font-xs {
     font-size: 0.8em !important;
 }
+
 .font-xxs {
     font-size: 0.6em !important;
 }
+
 .font-xxxs {
     font-size: 0.5em !important;
 }
@@ -1407,48 +1421,63 @@ nav.ng-scope {
 .auto-height {
     height: auto !important;
 }
-.m-h-1{
+
+.m-h-1 {
     max-height: .25em !important;
 }
-.m-h-2{
+
+.m-h-2 {
     max-height: .5em !important;
 }
-.m-h-3{
+
+.m-h-3 {
     max-height: .75em !important;
 }
-.m-h-4{
+
+.m-h-4 {
     max-height: 1em !important;
 }
-.m-h-5{
+
+.m-h-5 {
     max-height: 1.5em !important;
 }
-.m-h-6{
+
+.m-h-6 {
     max-height: 2em !important;
 }
-.m-h-7{
+
+.m-h-7 {
     max-height: 2.5em !important;
 }
-.m-h-8{
+
+.m-h-8 {
     max-height: 3em !important;
 }
-.m-h-9{
+
+.m-h-9 {
     max-height: 3.5em !important;
 }
-.m-h-10{
+
+.m-h-10 {
     max-height: 4em !important;
 }
-.m-h-11{
+
+.m-h-11 {
     max-height: 4.5em !important;
 }
-.m-h-12{
+
+.m-h-12 {
     max-height: 5em !important;
 }
-.m-h-13{
+
+.m-h-13 {
     max-height: 5.5em !important;
 }
-.m-h-14{
+
+.m-h-14 {
     max-height: 6em !important;
 }
+
 .fit-height {
     height: fit-content;
     height: -moz-fit-content;
@@ -1547,19 +1576,24 @@ nav.ng-scope {
 .m-w-50 {
     max-width: 50% !important;
 }
+
 .m-w-70 {
     max-width: 70% !important;
 }
+
 .m-w-5em {
     max-width: 5em !important;
 }
-.m-w-fit{
+
+.m-w-fit {
     max-width: fit-content;
     max-width: -moz-fit-content;
 }
-.min-w-8em{
+
+.min-w-8em {
     min-width: 8em;
 }
+
 .fit-width {
     width: -moz-fit-content;
     width: fit-content;
@@ -1627,12 +1661,15 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 50%;
     }
+
     .basis-sm {
         flex-basis: 60%
     }
+
     .basis-md {
         flex-basis: 70%;
     }
+
     .basis-lg {
         flex-basis: 80%
     }
@@ -1654,12 +1691,15 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 30%;
     }
+
     .basis-sm {
         flex-basis: 40%
     }
+
     .basis-md {
         flex-basis: 50%;
     }
+
     .basis-lg {
         flex-basis: 60%
     }
@@ -1669,12 +1709,15 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 20%;
     }
+
     .basis-sm {
         flex-basis: 30%
     }
+
     .basis-md {
         flex-basis: 40%;
     }
+
     .basis-lg {
         flex-basis: 50%
     }
@@ -1684,12 +1727,15 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 10%;
     }
+
     .basis-sm {
         flex-basis: 20%
     }
+
     .basis-md {
         flex-basis: 30%;
     }
+
     .basis-lg {
         flex-basis: 40%
     }
@@ -1699,41 +1745,53 @@ ba-sidebar.expanded .al-sidebar,
     .form_input_margin {
         flex-direction: column-reverse;
     }
-    .form_input_margin>div {
+
+    .form_input_margin > div {
         padding: 0;
     }
-    .form_input_margin>label {
+
+    .form_input_margin > label {
         padding: 0;
         margin-bottom: 10px;
     }
+
     .flex-xs {
         display: flex;
     }
+
     .flex-col-reverse-xs {
         flex-direction: column-reverse;
     }
+
     .flex-col-xs {
         flex-direction: column;
     }
+
     .self-baseline-xs {
         align-self: baseline !important;
     }
+
     .text-right-xs {
         text-align: right !important;
     }
+
     .flex-row-reverse-xs {
         flex-direction: row-reverse;
     }
+
     .col-6-xs {
         width: 45%;
     }
+
     .col-4-xs {
         width: 28%;
     }
+
     .modal-content {
         top: 50% !important;
         transform: translateY(-50%)
     }
+
     .al-sidebar-sublist.time {
         height: auto !important;
         width: 100% !important;
@@ -1745,66 +1803,84 @@ ba-sidebar.expanded .al-sidebar,
         margin-right: 0;
         margin-left: 0;
     }
+
     ba-sidebar {
         display: none !important;
     }
+
     .al-sidebar {
         display: none !important;
     }
+
     .menu-top {
         display: none;
     }
+
     .grid_sidebar__wrapper {
         margin-top: 105px;
     }
+
     .margin-center-lg {
         margin-left: auto;
         margin-right: auto;
     }
+
     .relative-lg {
         position: relative;
     }
+
     .r-lg-0 {
         right: 0 !important;
     }
+
     .top-margin-md-1200 {
         margin-top: 8px !important;
     }
+
     .fit-width-lg {
         width: -moz-fit-content !important;
         width: fit-content !important;
     }
+
     .full-width-lg {
         width: 100%;
     }
+
     .flex-row-lg {
         flex-direction: row !important;
     }
+
     .wrap-reverse-lg {
         flex-wrap: wrap-reverse;
     }
+
     .no-top-margin-lg {
         margin-top: 0 !important;
     }
 }
 
-@media (max-width:496px) {
+@media (max-width: 496px) {
     .dtp-ig {
         display: none;
     }
+
     .col-6-xs {
         width: 90%;
     }
+
     .col-4-xs {
         width: 90%;
     }
-    .flex-col-500{
+
+    .flex-col-500 {
         flex-direction: column !important;
     }
-    .items-end-500{
+
+    .items-end-500 {
         align-items: end !important;
     }
-    .margin-bottom-2-500{
+
+    .margin-bottom-2-500 {
         margin-block-start: .5em;
     }
 }
@@ -1944,7 +2020,6 @@ ba-sidebar.expanded .al-sidebar,
     background-color: #ebebeb !important;
 }
 
-
 @media (max-height: 800px) {
     .profile__body {
         height: 100% !important;
@@ -1959,3 +2034,74 @@ ba-sidebar.expanded .al-sidebar,
 }
 
 /* ........................ modal styles .................. [end] */
+.feedgram-co-workers-container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    margin: 25px;
+}
+
+.feedgram-circle {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 50%;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.feedgram-icons {
+    width: 50%;
+    float: right;
+    background-size: contain;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+.feedgram-posts {
+    background-image: url(/assets/img/ui/mobile/feedgram-pen.png);
+}
+
+.feedgram-followers {
+    background-image: url(/assets/img/ui/mobile/feedgram-followers.png);
+}
+
+.feedgram-camera {
+    background-image: url('/assets/img/ui/mobile/feedgram-camera.png');
+    height: 35px;
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.feedgram-follow {
+    background-image: url('/assets/img/ui/mobile/feedgram-follow.png');
+    height: 35px;
+    background-size: contain;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.feedgram-post-container {
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+    background-color: #000000;
+    opacity: .68;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

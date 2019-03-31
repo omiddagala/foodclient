@@ -70,7 +70,12 @@
         'BlurAdmin.pages.charge-account',
         'BlurAdmin.pages.ad-reports',
         'BlurAdmin.pages.success-payment',
-        'BlurAdmin.pages.failed-payment'
+        'BlurAdmin.pages.failed-payment',
+        'BlurAdmin.pages.feedgram-list',
+        'BlurAdmin.pages.feedgram-detail',
+        'BlurAdmin.pages.feedgram-co',
+        'BlurAdmin.pages.feedgram-profile',
+        'BlurAdmin.pages.feedgram-post'
     ])
         .run(runFirst).config(routeConfig)
         .directive("fader", function ($timeout, $ionicGesture, $ionicSideMenuDelegate) {
@@ -807,10 +812,15 @@
                 return true;
             } else if (window.location.hash == "#/login") {
                 return false;
+            } else if (window.location.hash == "#/feedgram-post") {
+                return false;
             } else {
                 return true;
             }
-        }
+        };
+        $rootScope.showFeedgramTab = function () {
+            return $rootScope.currentMobileActiveMenu && $rootScope.currentMobileActiveMenu.includes("feedgram");
+        };
 
         ////
         var username = $rootScope.username;
