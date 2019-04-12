@@ -68,7 +68,7 @@
             var param = {
                 value: $("#desc").val()
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/financial/createAdminIncomeCheque", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/financial/createAdminIncomeCheque", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -91,7 +91,7 @@
             var param = {
                 value: $("#desc").val()
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/financial/createAdminTaxCheque", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/financial/createAdminTaxCheque", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

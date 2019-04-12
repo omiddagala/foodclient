@@ -42,7 +42,7 @@
                     var httpOptions = {
                         headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                     };
-                    $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/findById", id, httpOptions)
+                    $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/findById", id, httpOptions)
                         .then(function (data, status, headers, config) {
                             stopLoading();
                             $scope.restInfo = data.data.restaurant;
@@ -133,7 +133,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/addOrUpdate", $scope.restInfo, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/addOrUpdate", $scope.restInfo, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.restInfo = data.data.restaurant;
@@ -309,7 +309,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/removeProfileImage", $scope.restInfo.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/removeProfileImage", $scope.restInfo.id, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $scope.restInfo.imageAddress = data;
@@ -384,7 +384,7 @@
                 "image": img.substring(img.indexOf(",") + 1),
                 "postfix": postfix
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/uploadProfileImage", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/uploadProfileImage", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.restInfo.imageAddress = data;
                     stopLoading();

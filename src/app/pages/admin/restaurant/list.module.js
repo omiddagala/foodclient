@@ -59,7 +59,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'name'
                 }
             };
-            return $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/findByName", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/findByName", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.rests = data.data.list;
@@ -101,7 +101,7 @@
                 id : $scope.item,
                 message: $("#desc").val()
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/sendSMS", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/sendSMS", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -125,7 +125,7 @@
             var param = {
                 value: $("#desc").val()
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/sendSystemMessageToAll", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/sendSystemMessageToAll", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -142,7 +142,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/deActiveRestaurant", $scope.item.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/deActiveRestaurant", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.item.accountStatus = 'DELETE';
@@ -160,7 +160,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/activeRestaurant", $scope.item.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/activeRestaurant", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.item.accountStatus = 'ACTIVE';
@@ -184,7 +184,7 @@
                 id: $scope.item.id,
                 password: $('#newPass').val()
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/resetRestaurantPassword", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/resetRestaurantPassword", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -225,7 +225,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/delete", $scope.item.id, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/delete", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.rests.splice($scope.itemIndex, 1);
                     if ($scope.rests.length === 0){
@@ -250,7 +250,7 @@
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
                 var param = {value:e.target.result.substring(e.target.result.indexOf(",") + 1)};
-                $http.post("https://demoapi.karafeed.com/pepper/v1/financial/setPaidCheques", param, httpOptions)
+                $http.post("http://127.0.0.1:9000/v1/financial/setPaidCheques", param, httpOptions)
                     .success(function (data, status, headers, config) {
                         stopLoading();
                         $uibModalStack.dismissAll();
@@ -267,7 +267,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/financial/getRestaurantsChequeFile", null, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/financial/getRestaurantsChequeFile", null, httpOptions)
                 .success(function (data, status, headers, config) {
                     mydownload(data,'payment.txt','plain/text');
                     stopLoading();
@@ -282,7 +282,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/updateDB", null, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/updateDB", null, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");

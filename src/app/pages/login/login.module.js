@@ -21,7 +21,7 @@
             // if (window.isMobile()) {
             //     $('.msg-error').text('');
             //     startLoading();
-            //     $http.post("https://demoapi.karafeed.com/security/google/captcha", { value: response })
+            //     $http.post("http://127.0.0.1:9000/security/google/captcha", { value: response })
             //         .success(function (data, status, headers, config) {
             //             if (data) {
             //                 var params = {
@@ -41,7 +41,7 @@
             //                     showMessage(toastrConfig, toastr, "خطا", "لطفا در فیلد نام کاربری از کاراکترهای مجاز استفاده کنید", "error");
             //                     return;
             //                 }
-            //                 $http.post("https://demoapi.karafeed.com/security/oauth/token", jQuery.param(params), httpOptions)
+            //                 $http.post("http://127.0.0.1:9000/security/oauth/token", jQuery.param(params), httpOptions)
             //                     .success(function (data, status, headers, config) {
             //                         stopLoading();
             //                         var jwt = parseJwt(data.access_token);
@@ -77,7 +77,7 @@
                 } else {
                     $('.msg-error').text('');
                     startLoading();
-                    $http.post("https://demoapi.karafeed.com/security/google/captcha", { value: response })
+                    $http.post("http://127.0.0.1:9000/google/captcha", { value: response })
                         .success(function (data, status, headers, config) {
                             if (data) {
                                 var params = {
@@ -97,7 +97,7 @@
                                     showMessage(toastrConfig, toastr, "خطا", "لطفا در فیلد نام کاربری از کاراکترهای مجاز استفاده کنید", "error");
                                     return;
                                 }
-                                $http.post("https://demoapi.karafeed.com/security/oauth/token", jQuery.param(params), httpOptions)
+                                $http.post("http://127.0.0.1:9000/oauth/token", jQuery.param(params), httpOptions)
                                     .success(function (data, status, headers, config) {
                                         stopLoading();
                                         var jwt = parseJwt(data.access_token);
@@ -116,13 +116,13 @@
                                             showMessage(toastrConfig, toastr, "خطا", "نام کاربری یا رمز عبور اشتباه می باشد", "error");
                                             return;
                                         }
-                                        $rootScope.handleError(params, "/security/oauth/token", err, httpOptions);
+                                        $rootScope.handleError(params, "/oauth/token", err, httpOptions);
                                     });
                             } else {
                                 $('.msg-error').text("احراز هویت با خطا مواجه شد");
                             }
                         }).catch(function (err) {
-                            $rootScope.handleError({ value: response }, "/security/google/captcha", err, null);
+                            $rootScope.handleError({ value: response }, "/google/captcha", err, null);
                         });
                 }
             // }

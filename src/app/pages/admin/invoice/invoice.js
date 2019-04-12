@@ -68,7 +68,7 @@
                 "size": pagination.number,
                 "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
             };
-            return $http.post("https://demoapi.karafeed.com/pepper/v1/adminRestaurantManagementRest/getUnFactoredOrders", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/getUnFactoredOrders", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.orders = data.data.list;
                     if (!$rootScope.numOfAllFactors){
@@ -121,7 +121,7 @@
                 "comment": $('#desc').val(),
                 "orderId": $rootScope.factor.id
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

@@ -53,7 +53,7 @@
                 "transferAmount": $scope.amount, // $('#amount').val(),
                 "employeeLevel": $scope.employeeLevel
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/company/chargeActiveEmployees", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/company/chargeActiveEmployees", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");

@@ -36,7 +36,7 @@
                 var httpOptions = {
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
-                $http.post("https://demoapi.karafeed.com/pepper/v1/employee/getProfileData", null, httpOptions)
+                $http.post("http://127.0.0.1:9000/v1/employee/getProfileData", null, httpOptions)
                     .success(function (data, status, headers, config) {
                         $scope.employee = data;
                         // console.log(data);
@@ -62,7 +62,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/removeProfileImage", null, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/removeProfileImage", null, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $scope.employee.imageAddress = data;
@@ -134,7 +134,7 @@
                 "image": img.substring(img.indexOf(",") + 1),
                 "postfix": postfix
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/uploadProfileImage", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/uploadProfileImage", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.myProfilePic = data;
                     $scope.employee.imageAddress = data;
@@ -155,7 +155,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/edit", $scope.employee, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/edit", $scope.employee, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");

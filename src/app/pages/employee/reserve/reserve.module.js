@@ -45,7 +45,7 @@
                     "sortBy": "deliveryDate"
                 }
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/getOrderList", params, httpOptions).success(function (data, status, headers, config) {
+            $http.post("http://127.0.0.1:9000/v1/employee/getOrderList", params, httpOptions).success(function (data, status, headers, config) {
                 var map = new HashMap();
                 for (var i = 0; i < data.length; i++) {
                     var existVal = map.get(data[i].deliveryDate);
@@ -152,7 +152,7 @@
                 date: date,
                 foodId: foodId
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/order", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/order", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.userBalance = data.availableBalanceAmount;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
@@ -191,7 +191,7 @@
                 date: date,
                 foodId: foodId
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/cancelOrderByOrderDTO", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/cancelOrderByOrderDTO", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.userBalance = data.availableBalanceAmount;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
@@ -212,7 +212,7 @@
                 date: date,
                 foodId: foodId
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/cancelOrderByOrderDTOList", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/cancelOrderByOrderDTOList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.userBalance = data.availableBalanceAmount;
@@ -286,7 +286,7 @@
                 },
                 "restaurantId": resId
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/foodSearch/getRestaurantDDA", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/foodSearch/getRestaurantDDA", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.isMainFood = false;
                     $rootScope.empPageNum = 0;
@@ -334,7 +334,7 @@
                 id: id,
                 comment: desc
             };
-            $http.post("https://demoapi.karafeed.com/pepper/v1/employee/addOrderDescription", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/addOrderDescription", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();

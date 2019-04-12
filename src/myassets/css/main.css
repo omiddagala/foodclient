@@ -2109,3 +2109,6 @@ ba-sidebar.expanded .al-sidebar,
     position: sticky !important;
     top: 45px !important;
 }
+a:hover{
+    text-decoration:unset !important;
+}
