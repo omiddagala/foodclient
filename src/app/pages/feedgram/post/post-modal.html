@@ -1,0 +1,57 @@
+<ion-modal-view>
+    <ion-content>
+        <div style="width: 100%;height: 100%;background-image: url('{{postImage}}');background-size: 100% 100%;background-repeat: no-repeat;position: relative">
+            <form novalidate ng-submit="forms.myform.$valid && postFeed()" name="forms.myform"
+                  class="ui reply form w-100" style="position: absolute;height: 40px;bottom: 0">
+                <button type="submit"
+                        style="position: absolute;
+    bottom: 40px;
+    width: 60px;
+    left: 40px;
+    z-index: 1;
+    background-image: url(/assets/img/ui/mobile/feedgram-post-button.png);
+    height: 60px;
+    border-radius: 50%;
+    border-style: none;
+    background-size: contain;"></button>
+                <div class="feedgram-post-container">
+                    <input type="text" ng-model="desc" id="desc"
+                           style="background: transparent;color: white;direction: rtl"
+                           name="desc" required ng-maxlength="250" ng-minlength="2"
+                           placeholder="افزودن نظر شما"/>
+                    <div class="error-message"
+                         ng-show="(forms.myform.desc.$dirty || submitted) && inputIsInvalid(forms.myform.desc.$valid,'desc') && forms.myform.desc.$error.required">
+                        پر کردن این فیلد اجباریست
+                    </div>
+                    <div class="error-message"
+                         ng-show="(forms.myform.desc.$dirty || submitted) && inputIsInvalid(forms.myform.desc.$valid,'desc') && forms.myform.desc.$error.maxlength">
+                        حداکثر 250 کاراکتر وارد کنید
+                    </div>
+                    <div class="error-message"
+                         ng-show="(forms.myform.desc.$dirty || submitted) && inputIsInvalid(forms.myform.desc.$valid,'desc') && forms.myform.desc.$error.minlength">
+                        حداقل 2 کاراکتر وارد کنید
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-modal-view>
+
+<style>
+    .modal-open .modal {
+        height: 100% !important;
+        min-height: 100% !important;
+        bottom: 0;
+        top: 0;
+    }
+
+    .modal-backdrop {
+        background-color: black;
+    }
+
+    .modal {
+        top: 0 !important;
+        min-height: 100% !important;
+    }
+</style>

@@ -337,7 +337,9 @@
 .margin__bottom_30 {
     margin-bottom: 30px;
 }
-
+.padding-top-30{
+    padding-top: 30px;
+}
 .back__info_icon {
     float: right;
     display: inline-block;

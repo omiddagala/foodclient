@@ -810,8 +810,6 @@
                 return true;
             } else if (window.location.hash == "#/login") {
                 return false;
-            } else if (window.location.hash == "#/feedgram-post") {
-                return false;
             } else {
                 return true;
             }
