@@ -34,6 +34,7 @@
 
         $scope.getAllEmployees = function(){
             startLoading();
+            reset();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
