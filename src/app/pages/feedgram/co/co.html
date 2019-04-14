@@ -1,16 +1,13 @@
 <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
     <div class="tabs">
-        <a class="tab-item active" ng-click="getAllEmployees()">
-            <i class="icon ion-home"></i>
-            Test
+        <a class="tab-item active" id="1" ng-click="getAllEmployees('1')">
+            همکاران
         </a>
-        <a class="tab-item" ng-click="getFollowers()">
-            <i class="icon ion-star"></i>
-            Favorites
+        <a class="tab-item" id="2" ng-click="getFollowers('2')">
+            دنبال کننده ها
         </a>
-        <a class="tab-item" ng-click="getFollowings()">
-            <i class="icon ion-gear-a"></i>
-            Settings
+        <a class="tab-item" id="3" ng-click="getFollowings('3')">
+            دنبال شوندگان
         </a>
     </div>
 </div>
@@ -35,5 +32,11 @@
 <style>
     .view-padding-top {
         padding-top: 100px;
+    }
+    .tabs-striped.tabs-background-positive .tabs {
+        background-color: rgb(243, 94, 94) !important;
+    }
+    .tabs-background-positive .tabs, .tabs-background-positive>.tabs{
+        border-color: black !important;
     }
 </style>
