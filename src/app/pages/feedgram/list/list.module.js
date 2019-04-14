@@ -43,7 +43,7 @@
             };
             $http.post("http://127.0.0.1:9000/v1/feedgram/employee/getPostList", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    $scope.posts = data.data;
+                    $scope.posts = data;
                     stopLoading();
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/feedgram/employee/post", err, httpOptions);
