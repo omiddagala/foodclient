@@ -2055,6 +2055,7 @@ ba-sidebar.expanded .al-sidebar,
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
 }
 
 .feedgram-icons {
@@ -2089,8 +2090,8 @@ ba-sidebar.expanded .al-sidebar,
     height: 35px;
     background-size: contain;
     position: absolute;
-    left: 0;
-    bottom: 10px;
+    left: 10px;
+    bottom: 15px;
     background-repeat: no-repeat;
     background-position-x: center;
 }

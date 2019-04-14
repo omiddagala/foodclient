@@ -1,85 +1,25 @@
-<div class="feedgram-co-workers-container">
-    <div ng-click="goToProfile()">
-        <div class="feedgram-circle" style="background-image: url('assets/img/ui/mobile/food.png')">
-        </div>
-        <div>omid javaheri</div>
-        <div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">11</div>
-                <div class="feedgram-icons feedgram-posts"></div>
-            </div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">15</div>
-                <div class="feedgram-icons feedgram-followers"></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="feedgram-circle" style="background-image: url('assets/img/ui/mobile/food.png')">
-        </div>
-        <div>omid javaheri</div>
-        <div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">11</div>
-                <div class="feedgram-icons feedgram-posts"></div>
-            </div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">15</div>
-                <div class="feedgram-icons feedgram-followers"></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="feedgram-circle" style="background-image: url('assets/img/ui/mobile/food.png')">
-        </div>
-        <div>omid javaheri</div>
-        <div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">11</div>
-                <div class="feedgram-icons feedgram-posts"></div>
-            </div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">15</div>
-                <div class="feedgram-icons feedgram-followers"></div>
-            </div>
-        </div>
+<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+    <div class="tabs">
+        <a class="tab-item active" ng-click="getAllEmployees()">
+            <i class="icon ion-home"></i>
+            Test
+        </a>
+        <a class="tab-item" ng-click="getFollowers()">
+            <i class="icon ion-star"></i>
+            Favorites
+        </a>
+        <a class="tab-item" ng-click="getFollowings()">
+            <i class="icon ion-gear-a"></i>
+            Settings
+        </a>
     </div>
 </div>
-<div class="feedgram-co-workers-container">
-    <div>
-        <div class="feedgram-circle" style="background-image: url('assets/img/ui/mobile/food.png')">
+<div class="feedgram-co-workers-container" ng-repeat="co in colleagues">
+    <div style="position: relative" ng-repeat="item in co">
+        <div class="feedgram-circle" ng-click="goToProfile()" style="background-image: url({{item.imageAddress}})">
         </div>
-        <div>omid javaheri</div>
-        <div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">11</div>
-                <div class="feedgram-icons feedgram-posts"></div>
-            </div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">15</div>
-                <div class="feedgram-icons feedgram-followers"></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="feedgram-circle" style="background-image: url('assets/img/ui/mobile/food.png')">
-        </div>
-        <div>omid javaheri</div>
-        <div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">11</div>
-                <div class="feedgram-icons feedgram-posts"></div>
-            </div>
-            <div style="width: 50%;float: right">
-                <div style="float: right">15</div>
-                <div class="feedgram-icons feedgram-followers"></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="feedgram-circle" style="background-image: url('assets/img/ui/mobile/food.png')">
-        </div>
-        <div>omid javaheri</div>
+        <div ng-if="!item.following" ng-click="follow(item.id)" class="w-20 feedgram-follow"></div>
+        <div style="text-align: center">{{item.name}}</div>
         <div>
             <div style="width: 50%;float: right">
                 <div style="float: right">11</div>
@@ -94,6 +34,6 @@
 </div>
 <style>
     .view-padding-top {
-        padding-top: 44px;
+        padding-top: 100px;
     }
 </style>
