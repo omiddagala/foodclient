@@ -2039,28 +2039,23 @@ ba-sidebar.expanded .al-sidebar,
 
 /* ........................ modal styles .................. [end] */
 .feedgram-co-workers-container {
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
     margin: 25px;
 }
 
 .feedgram-circle {
-    width: 100px;
+    width: 80%;
     height: 100px;
-    display: flex;
-    flex-wrap: wrap;
     border-radius: 50%;
-    overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
+    margin: 0 auto;
+    display: table;
 }
 
 .feedgram-icons {
     width: 50%;
-    float: right;
     background-size: contain;
     height: 16px;
     background-repeat: no-repeat;
@@ -2090,8 +2085,8 @@ ba-sidebar.expanded .al-sidebar,
     height: 35px;
     background-size: contain;
     position: absolute;
-    left: 10px;
-    bottom: 15px;
+    left: 20px;
+    bottom: 20px;
     background-repeat: no-repeat;
     background-position-x: center;
 }

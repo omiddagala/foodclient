@@ -14,20 +14,20 @@
         </a>
     </div>
 </div>
-<div class="feedgram-co-workers-container" ng-repeat="co in colleagues">
-    <div style="position: relative" ng-repeat="item in co">
+<div class="feedgram-co-workers-container">
+    <div style="position: relative" class="w-33 right-float" ng-repeat="item in colleagues">
         <div class="feedgram-circle" ng-click="goToProfile()" style="background-image: url({{item.imageAddress}})">
         </div>
         <div ng-if="!item.following" ng-click="follow(item.id)" class="w-20 feedgram-follow"></div>
         <div style="text-align: center">{{item.name}}</div>
         <div>
             <div style="width: 50%;float: right">
-                <div style="float: right">11</div>
-                <div class="feedgram-icons feedgram-posts"></div>
+                <div class="feedgram-icons feedgram-posts left-float"></div>
+                <div class="left-float">11</div>
             </div>
             <div style="width: 50%;float: right">
-                <div style="float: right">15</div>
-                <div class="feedgram-icons feedgram-followers"></div>
+                <div class="feedgram-icons feedgram-followers left-float"></div>
+                <div class="left-float">15</div>
             </div>
         </div>
     </div>
