@@ -1,6 +1,6 @@
 <div class="w-100 top-padding-lg bottom-padding-lg back-a2cece flex flex-col items-center content-evenly right-direction relative dark-box-shadow-l-b">
     <div style="position: relative" class="m-w-50 no-full-width bottom-vertical-align">
-        <img class="redius-xl w-100" ng-src="/assets/img/defaults/default-menu.png" ng-click="uploadPicture()">
+        <img class="redius-xl w-100" src="{{info.owner.imageAddress}}" ng-click="uploadPicture()">
         <div class="w-100 feedgram-camera"></div>
         <div class="w-20 feedgram-follow"></div>
     </div>
@@ -10,27 +10,25 @@
 </div>
 <div style="padding: 20px">
     <div class="w-50" style="float: right">
-        omid javaheri
+        {{info.owner.name}}
     </div>
     <div class="w-50" style="float: left">
         <div style="width: 30%;float: right">
-            <div style="float: right">11</div>
+            <div style="float: right">{{info.commentCount}}</div>
             <div class="feedgram-icons feedgram-posts"></div>
         </div>
         <div style="width: 30%;float: right">
-            <div style="float: right">15</div>
+            <div style="float: right">{{info.followingCount}}</div>
             <div class="feedgram-icons feedgram-followers"></div>
         </div>
         <div style="width: 30%;float: right">
-            <div style="float: right">18</div>
+            <div style="float: right">{{info.followersCount}}</div>
             <div class="feedgram-icons feedgram-followers"></div>
         </div>
     </div>
 </div>
 <div style="text-align: center;padding: 20px">
-    همکاران عزیز. اغلب اوقات من ترجیح می دهم سر به تن هیچکدامتان
-    نباشد. اما غذاهای خوشمزه برای چند دقیقه ای باعث مهار این احساس
-    توفنده می شود. حالا دیگه خود دانید.
+    {{info.description}}
 </div>
 <div>
     <div>
