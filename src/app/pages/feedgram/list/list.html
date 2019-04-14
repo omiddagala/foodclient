@@ -1,4 +1,4 @@
-<div ng-repeat="post in posts" class = "card" style="padding-left: unset !important;" ng-click="goToDetail()">
+<div ng-repeat="post in posts" class = "card" style="padding-left: unset !important;" ng-click="goToDetail(post.id)">
     <div class = "item-body">
         <img class = "w-70" src = "{{post.imageAddress}}">
     </div>

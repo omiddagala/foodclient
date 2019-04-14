@@ -20,7 +20,7 @@
             });
     }
 
-    function feedgramListCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, $state) {
+    function feedgramListCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, $location) {
         $rootScope.pageTitle = 'فیدگرام';
         $rootScope.currentMobileActiveMenu = "feedgram";
         $scope.page = 0;
@@ -50,8 +50,8 @@
             });
         },700);
 
-        $scope.goToDetail = function () {
-            $state.go("feedgram-detail");
+        $scope.goToDetail = function (id) {
+            $location.path('/feedgram-detail').search({id: id});
         }
 
     }

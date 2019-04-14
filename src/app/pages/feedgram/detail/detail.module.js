@@ -24,6 +24,29 @@
         $rootScope.pageTitle = 'جزییات';
         $rootScope.currentMobileActiveMenu = "feedgram";
 
+        setTimeout(function () {
+            $scope.loadDetail();
+        },700);
+
+        $scope.loadDetail = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var params = {
+                "id": $location.search().id
+            };
+            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/getPostDetails", params, httpOptions)
+                .success(function (data, status, headers, config) {
+                    $scope.detail = data;
+                    $scope.updateStar(data.food.rateCount);
+                    stopLoading();
+                }).catch(function (err) {
+                $rootScope.handleError(params, "/feedgram/employee/getPostDetails", err, httpOptions);
+            });
+        };
+
         $scope.showTab = function (e) {
             var thisTab = $(e.currentTarget);
             var tabArrow = $(thisTab).find('.tab-arrow');
@@ -44,8 +67,6 @@
                 });
             }
         };
-
-        $scope.updateStar(3);
 
     }
 })();

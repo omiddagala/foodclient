@@ -1,14 +1,12 @@
 <div class="item item-avatar">
     <img style="width:40px;float: right;position: initial"
-         src="https://storage.karafeed.com/d212d7e4-9f48-41bb-8d06-258f09351b26.jpeg">
-    <div style="float: right;line-height: 40px">omid javaheri</div>
+         src="{{detail.owner.imageAddress}}">
+    <div style="float: right;line-height: 40px">{{detail.owner.name}}</div>
 </div>
 <hr align="center">
 <div class="item item-body">
-    <img class="full-image" src="assets/img/defaults/default-food.png">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget
-    pharetra tortor. Proin quis eros imperdiet, facilisis nisi in, tincidunt orci.
-    Nam tristique elit massa, quis faucibus augue finibus ac.
+    <img class="full-image" src="{{detail.imageAddress}}">
+    {{detail.description}}
 </div>
 <hr align="center">
 <div class="white-back w-100 mobile-card auto-height flex items-center content-evenly right-direction relative"
@@ -18,15 +16,15 @@
     </div>
     <div class="full-width right-padding-lg left-padding-lg relative flex flex-col items-center content-evenly">
         <div class="defult-color text-right font-bold w-100 font-large line-height-initial min-height-lg ng-binding">
-            ghorme sabzi
+            {{detail.food.name}}
         </div>
         <div class="text-right flex items-center w-100 font-large line-height-initial min-height-lg">
             <div class="color-2e6977 pointer ng-binding" ng-click="goToRestaurantPage(food.restaurant.name)">
-                restaurant
+                {{detail.food.restaurant.name}}
             </div>
             <div class="card__restaurant__star"></div>
             <div class="color-319ab1 ng-binding">
-                5
+                {{detail.food.restaurant.rateCount}}
             </div>
         </div>
         <div class="food-detail-left w-100">
