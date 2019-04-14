@@ -78,48 +78,47 @@
         'BlurAdmin.pages.feedgram-post'
     ])
         .run(runFirst).config(routeConfig)
-        .directive("fader", function ($timeout, $ionicGesture, $ionicSideMenuDelegate) {
-            if (!window.isMobile()) {
-                return {
-                    require: 'stTable',
-                    restrict: "A",
-                    link: function (scope, elem, attr, table) {
-                        scope.$on("refreshMyTable", function () {
-                            table.tableState().pagination.start = 0;
-                            table.pipe(table.tableState());
-                        });
-                    }
+        .directive("refreshTable", function () {
+            return {
+                require: 'stTable',
+                restrict: "A",
+                link: function (scope, elem, attr, table) {
+                    scope.$on("refreshMyTable", function () {
+                        table.tableState().pagination.start = 0;
+                        table.pipe(table.tableState());
+                    });
                 }
-            } else {
-                return {
-                    restrict: 'E',
-                    require: '^ionSideMenus',
-                    scope: true,
-                    link: function ($scope, $element, $attr, sideMenuCtrl) {
-                        $ionicGesture.on('tap', function (e) {
-                            $ionicSideMenuDelegate.toggleLeft(true);
-                        }, $element);
-                        $ionicGesture.on('dragleft', function (e) {
-                            sideMenuCtrl._handleDrag(e);
-                            e.gesture.srcEvent.preventDefault();
-                        }, $element);
-                        $ionicGesture.on('dragright', function (e) {
-                            sideMenuCtrl._handleDrag(e);
-                            e.gesture.srcEvent.preventDefault();
-                        }, $element);
-                        $ionicGesture.on('release', function (e) {
-                            sideMenuCtrl._endDrag(e);
-                        }, $element);
-                        $scope.sideMenuDelegate = $ionicSideMenuDelegate;
-                        $scope.$watch('sideMenuDelegate.getOpenRatio()', function (ratio) {
-                            if (Math.abs(ratio) < 1) {
-                                $element[0].style.zIndex = "1";
-                                $element[0].style.opacity = 0.7 - Math.abs(ratio);
-                            } else {
-                                $element[0].style.zIndex = "-1";
-                            }
-                        });
-                    }
+            }
+        })
+        .directive("fader", function ($timeout, $ionicGesture, $ionicSideMenuDelegate) {
+            return {
+                restrict: 'E',
+                require: '^ionSideMenus',
+                scope: true,
+                link: function ($scope, $element, $attr, sideMenuCtrl) {
+                    $ionicGesture.on('tap', function (e) {
+                        $ionicSideMenuDelegate.toggleLeft(true);
+                    }, $element);
+                    $ionicGesture.on('dragleft', function (e) {
+                        sideMenuCtrl._handleDrag(e);
+                        e.gesture.srcEvent.preventDefault();
+                    }, $element);
+                    $ionicGesture.on('dragright', function (e) {
+                        sideMenuCtrl._handleDrag(e);
+                        e.gesture.srcEvent.preventDefault();
+                    }, $element);
+                    $ionicGesture.on('release', function (e) {
+                        sideMenuCtrl._endDrag(e);
+                    }, $element);
+                    $scope.sideMenuDelegate = $ionicSideMenuDelegate;
+                    $scope.$watch('sideMenuDelegate.getOpenRatio()', function (ratio) {
+                        if (Math.abs(ratio) < 1) {
+                            $element[0].style.zIndex = "1";
+                            $element[0].style.opacity = 0.7 - Math.abs(ratio);
+                        } else {
+                            $element[0].style.zIndex = "-1";
+                        }
+                    });
                 }
             }
         })
@@ -221,34 +220,34 @@
                     img: "assets/img/ui/menu/res-reports.png",
                     title: "گزارشات"
                 }, {
-                        url: "rest-cheque-report",
-                        img: "assets/img/ui/menu/res-incomes.png",
-                        title: "واریزی ها"
-                    }, {
-                        url: "food",
-                        img: "assets/img/ui/menu/res-menu.png",
-                        title: "منو"
-                    }, {
-                        url: "rest-financial",
-                        img: "assets/img/ui/menu/res-finance.png",
-                        title: "مالی"
-                    }, {
-                        url: "total-res-orders",
-                        img: "assets/img/ui/menu/res-total.png",
-                        title: "تجمیعی"
-                    }, {
-                        url: "res-orders",
-                        img: "assets/img/ui/menu/res-orders.png",
-                        title: "سفارشات"
-                    }, {
-                        url: "res-printed",
-                        img: "assets/img/ui/menu/res-printed.png",
-                        title: "فاکتورهای چاپ شده"
-                    }, {
-                        url: "invoice",
-                        img: "assets/img/ui/menu/res-factors.png",
-                        title: "فاکتورها"
-                    })
+                    url: "rest-cheque-report",
+                    img: "assets/img/ui/menu/res-incomes.png",
+                    title: "واریزی ها"
+                }, {
+                    url: "food",
+                    img: "assets/img/ui/menu/res-menu.png",
+                    title: "منو"
+                }, {
+                    url: "rest-financial",
+                    img: "assets/img/ui/menu/res-finance.png",
+                    title: "مالی"
+                }, {
+                    url: "total-res-orders",
+                    img: "assets/img/ui/menu/res-total.png",
+                    title: "تجمیعی"
+                }, {
+                    url: "res-orders",
+                    img: "assets/img/ui/menu/res-orders.png",
+                    title: "سفارشات"
+                }, {
+                    url: "res-printed",
+                    img: "assets/img/ui/menu/res-printed.png",
+                    title: "فاکتورهای چاپ شده"
+                }, {
+                    url: "invoice",
+                    img: "assets/img/ui/menu/res-factors.png",
+                    title: "فاکتورها"
+                })
             }
             if ($rootScope.hasRole("COMPANY")) {
                 $rootScope.mainMenus.push({
@@ -256,23 +255,23 @@
                     img: "assets/img/ui/menu/co-reports.png",
                     title: "گزارشات"
                 }, {
-                        url: "app/pages/company/charge-all/charge.html",
-                        img: "assets/img/ui/menu/co-chargeall.png",
-                        title: "شارژ همه",
-                        isModal: true
-                    }, {
-                        url: "co-financial",
-                        img: "assets/img/ui/menu/co-financial.png",
-                        title: "مالی"
-                    }, {
-                        url: "co-inactive-users",
-                        img: "assets/img/ui/menu/inactive-users.png",
-                        title: "کارمندان غیرفعال"
-                    }, {
-                        url: "co-active-users",
-                        img: "assets/img/ui/menu/active-users.png",
-                        title: "کارمندان فعال"
-                    })
+                    url: "app/pages/company/charge-all/charge.html",
+                    img: "assets/img/ui/menu/co-chargeall.png",
+                    title: "شارژ همه",
+                    isModal: true
+                }, {
+                    url: "co-financial",
+                    img: "assets/img/ui/menu/co-financial.png",
+                    title: "مالی"
+                }, {
+                    url: "co-inactive-users",
+                    img: "assets/img/ui/menu/inactive-users.png",
+                    title: "کارمندان غیرفعال"
+                }, {
+                    url: "co-active-users",
+                    img: "assets/img/ui/menu/active-users.png",
+                    title: "کارمندان فعال"
+                })
             }
             if ($rootScope.hasRole("ADMIN_EMPLOYEE")) {
                 $rootScope.mainMenus.push({
@@ -287,18 +286,18 @@
                     img: "assets/img/theme/icon/karafeedIcon/comment.png",
                     title: "نظرات"
                 }, {
-                        url: "holidays",
-                        img: "assets/img/theme/icon/karafeedIcon/vacation.png",
-                        title: "تعطیلات"
-                    }, {
-                        url: "ad-reports",
-                        img: "assets/img/theme/icon/karafeedIcon/report.png",
-                        title: "گزارشات"
-                    }, {
-                        url: "admin-cheque",
-                        img: "assets/img/theme/icon/karafeedIcon/cheque.png",
-                        title: "مالی کارافید"
-                    })
+                    url: "holidays",
+                    img: "assets/img/theme/icon/karafeedIcon/vacation.png",
+                    title: "تعطیلات"
+                }, {
+                    url: "ad-reports",
+                    img: "assets/img/theme/icon/karafeedIcon/report.png",
+                    title: "گزارشات"
+                }, {
+                    url: "admin-cheque",
+                    img: "assets/img/theme/icon/karafeedIcon/cheque.png",
+                    title: "مالی کارافید"
+                })
             }
             if ($rootScope.hasRole("ADMIN_RESTAURANT")) {
                 $rootScope.mainMenus.push({
@@ -306,14 +305,14 @@
                     img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
                     title: "فاکتورهای صادرنشده"
                 }, {
-                        url: "rest-cheque",
-                        img: "assets/img/theme/icon/karafeedIcon/cheque.png",
-                        title: "مالی رستوران"
-                    }, {
-                        url: "rest-list",
-                        img: "assets/img/theme/icon/karafeedIcon/restaurant.png",
-                        title: "رستوران ها"
-                    })
+                    url: "rest-cheque",
+                    img: "assets/img/theme/icon/karafeedIcon/cheque.png",
+                    title: "مالی رستوران"
+                }, {
+                    url: "rest-list",
+                    img: "assets/img/theme/icon/karafeedIcon/restaurant.png",
+                    title: "رستوران ها"
+                })
             }
             if ($rootScope.hasRole("ADMIN_COMPANY")) {
                 $rootScope.mainMenus.push({
@@ -328,14 +327,14 @@
                     img: "assets/img/ui/menu/fin.png",
                     title: "مالی"
                 }, {
-                        url: "myrestaurant",
-                        img: "assets/img/ui/menu/restaurant.png",
-                        title: "رستوران"
-                    }, {
-                        url: "home",
-                        img: "assets/img/ui/menu/reserve.png",
-                        title: "رزرو غذا"
-                    })
+                    url: "myrestaurant",
+                    img: "assets/img/ui/menu/restaurant.png",
+                    title: "رستوران"
+                }, {
+                    url: "home",
+                    img: "assets/img/ui/menu/reserve.png",
+                    title: "رزرو غذا"
+                })
             }
         };
         $rootScope.loadMenus();
@@ -355,7 +354,7 @@
         $rootScope.loadBalance = function (url, isEmployee) {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             $http.post(url, null, httpOptions)
                 .success(function (data, status, headers, config) {
@@ -366,8 +365,8 @@
                         $rootScope.userBalance = data.balanceAmount;
                     }
                 }).catch(function (err) {
-                    $rootScope.handleError(null, url, err, httpOptions);
-                });
+                $rootScope.handleError(null, url, err, httpOptions);
+            });
         };
 
         $rootScope.isMobile = function () { //تشخیص موبایل 
@@ -405,7 +404,7 @@
         $rootScope.loadProfileImage = function () {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             $http.post("http://127.0.0.1:9000/v1/general/getProfileImage", null, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -418,7 +417,7 @@
                         $rootScope.myProfilePic = "assets/img/defaults/default-menu.png";
                     }
                 }).catch(function (err) {
-                });
+            });
         };
         if (!token || !$rootScope.roles) {
             if (location.hash !== '#/forget')
@@ -465,14 +464,14 @@
         };
         $rootScope.myFormatDate = function (d) {
             moment.locale('fa');
-            moment.loadPersian({ dialect: 'persian-modern' });
+            moment.loadPersian({dialect: 'persian-modern'});
             return moment.utc(d).format('LLLL');
         };
         $rootScope.newNotifications = function () {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 "direction": "DESC",
@@ -485,8 +484,8 @@
                     stopLoading();
                     $rootScope.notifications = data.data;
                 }).catch(function (err) {
-                    $rootScope.handleError(param, "/message/getNewMessages", err, httpOptions);
-                });
+                $rootScope.handleError(param, "/message/getNewMessages", err, httpOptions);
+            });
         };
 
         $rootScope.inputIsInvalid = function (inputIsValid, inputId) {
@@ -685,7 +684,7 @@
                 $http.post("http://127.0.0.1:9000/v1/log/insert", p, h)
                     .then(function (data, status, headers, config) {
                     }).catch(function (err) {
-                    });
+                });
             } else {
                 showMessage(toastrConfig, toastr, "خطا", err.data.message, "error");
             }
@@ -826,7 +825,7 @@
 
     function routeConfig($urlRouterProvider, baSidebarServiceProvider, $ionicConfigProvider) {
         $ionicConfigProvider.views.forwardCache(true);
-        
+
         baSidebarServiceProvider.addStaticItem({
             title: 'Pages',
             icon: 'ion-document',
