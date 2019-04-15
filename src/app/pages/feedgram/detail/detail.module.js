@@ -23,6 +23,7 @@
     function feedgramDetailCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
         $rootScope.pageTitle = 'جزییات';
         $rootScope.currentMobileActiveMenu = "feedgram";
+        $('.hidden-tab').hide();
 
         setTimeout(function () {
             $scope.loadDetail();
