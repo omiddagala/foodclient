@@ -1,7 +1,6 @@
 *[ui-view] {
     width: 100% !important;
-    height: 100%;
-    background-color: #f4f4f4 !important;
+    background-color: #f4f4f4;
 }
 .padding-44{
     padding-top: 44px;

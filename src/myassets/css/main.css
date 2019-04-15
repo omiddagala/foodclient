@@ -1147,18 +1147,18 @@ nav.ng-scope {
 
 .hr {
     position: relative;
-    margin-bottom: 1em !important;
+    margin-bottom: 1em;
 }
 
 .hr::before {
     position: absolute;
     display: inline-block;
-    height: 2px;
+    height: 1px;
     content: " ";
     text-shadow: none;
-    background-color: #999;
-    width: 98%;
-    bottom: -.5em;
+    background-color: #d2d0d0;
+    width: 92%;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }

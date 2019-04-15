@@ -1,14 +1,12 @@
-<div class="item item-avatar">
+<div class="item item-avatar hr">
     <img style="width:40px;float: right;position: initial"
          src="{{detail.owner.imageAddress}}">
     <div style="float: right;line-height: 40px">{{detail.owner.name}}</div>
 </div>
-<hr align="center">
-<div class="item item-body">
+<div class="item item-body hr">
     <img class="full-image" src="{{detail.imageAddress}}">
     {{detail.description}}
 </div>
-<hr align="center">
 <div class="white-back w-100 mobile-card auto-height flex items-center content-evenly right-direction relative"
      style="">
     <div class="fit-width mobil-card-img full-height relative">
@@ -93,5 +91,14 @@
 <style>
     .view-padding-top {
         padding-top: 44px;
+    }
+    *[ui-view]{
+        background-color: white !important;
+    }
+    .item, .item.item-light {
+        border-color: white !important;
+    }
+    .hr {
+        margin-bottom: 0 !important;
     }
 </style>
