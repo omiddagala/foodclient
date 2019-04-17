@@ -1066,6 +1066,9 @@ nav.ng-scope {
 .no-overflow {
     overflow: hidden;
 }
+.no-overflow-imp {
+    overflow: hidden !important;
+}
 
 .z-index-1 {
     z-index: 1 !important;
@@ -2107,8 +2110,12 @@ ba-sidebar.expanded .al-sidebar,
 }
 .stick-search-bar {
     position: sticky !important;
-    top: 45px !important;
+    top: 44px !important;
 }
 a:hover{
     text-decoration:unset !important;
+}
+.article-mobile-list{
+    overflow: auto;
+    max-height: 80vh;
 }
