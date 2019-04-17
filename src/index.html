@@ -21,7 +21,7 @@
     <!-- endinject -->
     <!-- endbuild -->
     <style ng-if="hasRole('SILVER_COMPANY')">
-        .modal-dialog > .modal-content {
+        .modal-dialog>.modal-content {
             background: #378bd3 !important;
         }
 
@@ -41,12 +41,12 @@
             height: 150px !important;
         }
 
-        ul.dropdown-menu > li > a:hover {
+        ul.dropdown-menu>li>a:hover {
             background-color: #378bd3 !important;
         }
     </style>
     <style ng-if="hasRole('COMPANY')">
-        .modal-dialog > .modal-content {
+        .modal-dialog>.modal-content {
             background: #378bd3 !important;
         }
 
@@ -66,12 +66,12 @@
             height: 150px !important;
         }
 
-        ul.dropdown-menu > li > a:hover {
+        ul.dropdown-menu>li>a:hover {
             background-color: #378bd3 !important;
         }
     </style>
     <style ng-if="hasRole('MASTER_ADMIN')">
-        .panel > .panel-heading > h3 {
+        .panel>.panel-heading>h3 {
             color: black;
             text-align: right !important;
         }
@@ -117,58 +117,59 @@
 <!--  -->
 
 <body>
-<div class="body-bg"></div>
-<div class="monitor-container"></div>
-<main class="main-stage" style="height: 100%; background-color: rgb(255, 255, 255);"
-      ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
-    <!--<page-top></page-top>-->
+    <div class="body-bg"></div>
+    <div class="monitor-container"></div>
+    <main class="main-stage" style="height: 100%; background-color: rgb(255, 255, 255);"
+        ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
+        <!--<page-top></page-top>-->
 
-    <!--<content-top></content-top>-->
-    <div ng-if="!isMobile()" style="height: 100%;overflow: auto;width: calc(100% - 14px);" class="padding-44" ui-view
-         autoscroll="true"
-         autoscroll-body-top></div>
+        <!--<content-top></content-top>-->
+        <div ng-if="!isMobile()" style="height: 100%;overflow: auto;width: calc(100% - 14px);" class="padding-44"
+            ui-view autoscroll="true" autoscroll-body-top></div>
 
-    <div ng-controller="MainCtrl" ng-if="isMobile()" class="right-direction">
+        <div ng-controller="MainCtrl" ng-if="isMobile()" class="right-direction">
 
-        <ion-side-menus>
+            <ion-side-menus>
 
-            <fader class="hidden-first" ng-if="canRender('fader')"></fader>
+                <fader class="hidden-first" ng-if="canRender('fader')"></fader>
 
-            <ion-side-menu side="left" width="{{width()}}" can-drag-menu>
-                <ion-header-bar ng-if="canRender('header')" class="flex content-between back-ebebeb">
-                    <button class="transparent-back fit-width no-border" ng-click="openMenu($event)" menu-close>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
-                             viewbox="0 -10 65 65" width="30" height="30">
-                            <path fill="#808285" fill-rule="evenodd"
-                                  d="M.557 38.539c0 1.925 1.315 3.5 2.923 3.5h52.601c1.608 0 2.923-1.575 2.923-3.5s-1.315-3.5-2.923-3.5H3.48c-1.608 0-2.923 1.575-2.923 3.5zm0-17.5c0 1.925 1.315 3.5 2.923 3.5h52.601c1.608 0 2.923-1.575 2.923-3.5s-1.315-3.5-2.923-3.5H3.48c-1.608 0-2.923 1.575-2.923 3.5zm0-17.5c0 1.925 1.315 3.501 2.923 3.501h52.601c1.608 0 2.923-1.576 2.923-3.501 0-1.925-1.315-3.5-2.923-3.5H3.48C1.872.039.557 1.614.557 3.539z"/>
-                        </svg>
-                    </button>
-                    <h1 class="title transparent-back color-363636 center-text">{{pageTitle}}</h1>
+                <ion-side-menu side="left" width="{{width()}}" can-drag-menu>
+                    <ion-header-bar ng-if="canRender('header')" class="flex content-between back-ebebeb">
+                        <button class="transparent-back fit-width no-border" ng-click="openMenu($event)" menu-close>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
+                                viewbox="0 -10 65 65" width="30" height="30">
+                                <path fill="#808285" fill-rule="evenodd"
+                                    d="M.557 38.539c0 1.925 1.315 3.5 2.923 3.5h52.601c1.608 0 2.923-1.575 2.923-3.5s-1.315-3.5-2.923-3.5H3.48c-1.608 0-2.923 1.575-2.923 3.5zm0-17.5c0 1.925 1.315 3.5 2.923 3.5h52.601c1.608 0 2.923-1.575 2.923-3.5s-1.315-3.5-2.923-3.5H3.48c-1.608 0-2.923 1.575-2.923 3.5zm0-17.5c0 1.925 1.315 3.501 2.923 3.501h52.601c1.608 0 2.923-1.576 2.923-3.501 0-1.925-1.315-3.5-2.923-3.5H3.48C1.872.039.557 1.614.557 3.539z" />
+                            </svg>
+                        </button>
+                        <h1 class="title transparent-back color-363636 center-text">{{pageTitle}}</h1>
 
-                    <button class="transparent-back fit-width no-border" ng-if="canRender('sort-btn')"
+                        <button class="transparent-back fit-width no-border" ng-if="canRender('sort-btn')"
                             ng-click="goBack()">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
-                             viewbox="0 -50 600 600" width="30" height="30">
-                            <path fill="#808285" fill-rule="evenodd"
-                                  d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/>
-                        </svg>
-                    </button>
-                </ion-header-bar>
-                <ion-content ng-class="canRender() ? 'has-footer back-f4f4f4' : 'back-f4f4f4'">
-
-                    <div ui-view class="view-padding-top"></div>
-                </ion-content>
-                <ion-footer-bar ng-if="canRender()"
-                                class="tabs-positive tabs-icon-top flex content-between fit-height-imp left-direction">
-                    <a class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/feedgram-list">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             class="unset-position" viewbox="-10 -10 130 130"
-                             width="50" height="35"
-                             preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
-                               fill="#000000" stroke="none">
-                                <path ng-class="currentMobileActiveMenu == 'feedgram' ? 'mobile-menu-selected':''" fill-rule="evenodd" d="M180 863 c-66 -24 -144 -106 -164 -173 -24 -79 -23 -436 1 -506 22
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
+                                viewbox="0 -50 600 600" width="30" height="30">
+                                <path fill="#808285" fill-rule="evenodd"
+                                    d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" />
+                            </svg>
+                        </button>
+                    </ion-header-bar>
+                    <ion-content ng-class="canRender() ? 'has-footer back-f4f4f4 no-overflow-imp' : 'back-f4f4f4 no-overflow-imp'">
+                        <div ui-view class="view-padding-top"></div>
+                        <!-- on-scroll="scrolling()"
+                            on-scroll-complete="scrollComplete()"-->
+                        <!-- <ion-infinite-scroll on-infinite="onInfinite()" distance="5%">
+                        </ion-infinite-scroll> -->
+                    </ion-content>
+                    <ion-footer-bar ng-if="canRender()"
+                        class="tabs-positive tabs-icon-top flex content-between fit-height-imp left-direction">
+                        <a class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/feedgram-list">
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="unset-position"
+                                viewbox="-10 -10 130 130" width="50" height="35" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                    stroke="none">
+                                    <path ng-class="currentMobileActiveMenu == 'feedgram' ? 'mobile-menu-selected':''"
+                                        fill-rule="evenodd" d="M180 863 c-66 -24 -144 -106 -164 -173 -24 -79 -23 -436 1 -506 22
 -66 101 -145 167 -167 70 -24 457 -25 536 -1 71 21 150 98 174 172 26 77 20
 400 -8 452 -35 66 -77 109 -130 135 -112 55 -224 40 -314 -40 -127 -115 -128
 -305 0 -420 77 -69 166 -90 263 -60 27 8 51 12 54 10 11 -12 -31 -77 -61 -95
@@ -181,28 +182,31 @@ c-24 0 -63 -8 -88 -16z m80 -57 c0 -19 -8 -27 -34 -36 -78 -25 -125 -95 -126
 74 23 126 81 178 103 93 270 65 346 -57 l30 -49 3 -181 c3 -147 0 -187 -13
 -222 -20 -53 -90 -119 -141 -133 -23 -6 -133 -11 -259 -11 -246 0 -270 6 -332
 71 -58 62 -63 86 -63 319 0 233 5 257 63 319 33 34 99 70 130 71 11 0 17 -8
-17 -24z"/>
-                                <path ng-class="currentMobileActiveMenu == 'feedgram' ? 'mobile-menu-selected':''" d="M565 695 c-152 -53 -154 -276 -3 -339 73 -30 131 -17 190 44 37 38
+17 -24z" />
+                                    <path ng-class="currentMobileActiveMenu == 'feedgram' ? 'mobile-menu-selected':''"
+                                        d="M565 695 c-152 -53 -154 -276 -3 -339 73 -30 131 -17 190 44 37 38
 48 58 53 95 14 88 -46 180 -132 204 -48 14 -59 13 -108 -4z m108 -49 c49 -21
 79 -59 84 -108 10 -103 -97 -180 -187 -133 -49 25 -70 62 -70 120 0 60 24 99
-74 121 40 17 59 17 99 0z"/>
-                                <path ng-class="currentMobileActiveMenu == 'feedgram' ? 'mobile-menu-selected':''" d="M592 574 c-15 -10 -22 -25 -22 -49 0 -62 71 -87 109 -39 27 34 26 50
+74 121 40 17 59 17 99 0z" />
+                                    <path ng-class="currentMobileActiveMenu == 'feedgram' ? 'mobile-menu-selected':''"
+                                        d="M592 574 c-15 -10 -22 -25 -22 -49 0 -62 71 -87 109 -39 27 34 26 50
 -4 79 -28 29 -51 31 -83 9z m56 -52 c2 -7 -3 -12 -12 -12 -9 0 -16 7 -16 16 0
-17 22 14 28 -4z"/>
-                            </g>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="currentMobileActiveMenu =='feedgram'? 'mobile-menu-selected-text':''">فیدگرام</span>
-                    </a>
-                    <a ng-if="showFeedgramTab()" class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/feedgram-post">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             class="unset-position" viewbox="-10 -10 130 130"
-                             width="50" height="35"
-                             preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
-                               fill="#000000" stroke="none">
-                                <path ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''" d="M384 830 c-28 -11 -35 -23 -54 -94 -19 -69 -40 -86 -40 -32 0 46 -19
+17 22 14 28 -4z" />
+                                </g>
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="currentMobileActiveMenu =='feedgram'? 'mobile-menu-selected-text':''">فیدگرام</span>
+                        </a>
+                        <a ng-if="showFeedgramTab()"
+                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/feedgram-post">
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="unset-position"
+                                viewbox="-10 -10 130 130" width="50" height="35" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                    stroke="none">
+                                    <path
+                                        ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''"
+                                        d="M384 830 c-28 -11 -35 -23 -54 -94 -19 -69 -40 -86 -40 -32 0 46 -19
 56 -107 56 -82 0 -113 -17 -113 -61 0 -19 -5 -29 -15 -29 -8 0 -23 -10 -35
 -22 -19 -21 -20 -34 -20 -283 0 -249 1 -262 20 -283 20 -21 29 -22 192 -22
 166 0 173 -1 227 -27 48 -23 69 -27 146 -28 78 0 98 4 149 28 51 23 71 27 152
@@ -217,30 +221,37 @@ m400 -52 c19 -29 32 -108 18 -108 -5 0 -36 12 -68 28 -51 23 -71 27 -149 27
 c-110 -144 -110 -322 0 -466 l24 -32 -85 0 -86 0 -3 118 c-2 96 -6 117 -18
 117 -12 0 -16 -21 -18 -118 l-3 -118 -37 3 -37 3 -3 250 c-1 137 0 255 3 262
 3 10 41 13 146 13 l141 0 -24 -32z m667 -233 l0 -260 -67 -3 -68 -3 40 58 c39
-58 70 149 70 208 0 59 -31 150 -70 208 l-40 58 68 -3 67 -3 0 -260z"/>
-                                <path ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''" d="M520 621 c-76 -23 -158 -99 -181 -167 -16 -50 -16 -128 0 -178 17
+58 70 149 70 208 0 59 -31 150 -70 208 l-40 58 68 -3 67 -3 0 -260z" />
+                                    <path
+                                        ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''"
+                                        d="M520 621 c-76 -23 -158 -99 -181 -167 -16 -50 -16 -128 0 -178 17
 -48 82 -121 132 -147 72 -36 194 -38 187 -1 -2 13 -16 16 -68 17 -80 1 -146
 35 -188 97 -24 37 -27 51 -27 123 0 72 3 86 27 123 41 61 109 97 183 97 92 -1
 158 -42 201 -125 23 -45 24 -143 1 -187 -21 -40 -22 -63 -2 -63 29 0 59 79 60
-155 0 59 -5 78 -30 124 -59 107 -188 164 -295 132z"/>
-                                <path ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''" d="M717 184 c-14 -14 -7 -35 11 -32 9 2 17 10 17 17 0 16 -18 25 -28 15z"/>
-                                <path ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''" d="M90 540 c-30 -30 -27 -83 6 -109 15 -12 34 -21 44 -21 10 0 29 9 44
+155 0 59 -5 78 -30 124 -59 107 -188 164 -295 132z" />
+                                    <path
+                                        ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''"
+                                        d="M717 184 c-14 -14 -7 -35 11 -32 9 2 17 10 17 17 0 16 -18 25 -28 15z" />
+                                    <path
+                                        ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected':''"
+                                        d="M90 540 c-30 -30 -27 -83 6 -109 15 -12 34 -21 44 -21 10 0 29 9 44
 21 52 41 23 129 -44 129 -17 0 -39 -9 -50 -20z m78 -51 c3 -28 -16 -43 -43
--33 -15 6 -21 45 -8 58 16 16 48 1 51 -25z"/>
-                            </g>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected-text':''">ثبت تجربه</span>
-                    </a>
-                    <a ng-if="showFeedgramTab()" class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/feedgram-co">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             class="unset-position" viewbox="-10 -10 130 130"
-                             width="50" height="35"
-                             preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
-                               fill="#000000" stroke="none">
-                                <path fill-rule="evenodd" ng-class="currentMobileActiveMenu =='feedgram-co'? 'mobile-menu-selected':''" d="M399 877 c-21 -14 -47 -28 -59 -32 -12 -4 -46 -29 -76 -56 -30 -27
+-33 -15 6 -21 45 -8 58 16 16 48 1 51 -25z" />
+                                </g>
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected-text':''">ثبت
+                                تجربه</span>
+                        </a>
+                        <a ng-if="showFeedgramTab()"
+                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/feedgram-co">
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="unset-position"
+                                viewbox="-10 -10 130 130" width="50" height="35" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                    stroke="none">
+                                    <path fill-rule="evenodd"
+                                        ng-class="currentMobileActiveMenu =='feedgram-co'? 'mobile-menu-selected':''" d="M399 877 c-21 -14 -47 -28 -59 -32 -12 -4 -46 -29 -76 -56 -30 -27
 -60 -49 -67 -49 -33 0 -54 -44 -60 -125 -7 -84 6 -140 45 -197 31 -45 26 -51
 -93 -92 -25 -9 -56 -27 -69 -41 l-22 -24 83 -83 c249 -247 565 -236 833 28
 l59 58 -31 26 c-18 15 -58 34 -89 44 -32 10 -64 23 -70 28 -17 14 -16 38 1 57
@@ -260,21 +271,22 @@ l59 58 -31 26 c-18 15 -58 34 -89 44 -32 10 -64 23 -70 28 -17 14 -16 38 1 57
 -17 -66 8 -88 11 -11 50 -30 84 -41 70 -24 82 -34 64 -55 -9 -11 -19 -9 -57
 15 -25 16 -78 41 -117 56 -39 15 -80 35 -90 45 -19 17 -18 18 8 49 14 17 29
 44 32 58 3 15 12 40 21 56 11 20 14 44 10 84 -3 30 -3 68 0 83 5 28 6 28 40
-14 20 -8 38 -15 41 -15z"/>
-                            </g>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="currentMobileActiveMenu =='feedgram-co'? 'mobile-menu-selected-text':''">همکاران</span>
-                    </a>
-                    <a ng-if="showFeedgramTab()" class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/feedgram-profile">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             class="unset-position" viewbox="-10 -10 130 130"
-                             width="50" height="35"
-                             preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)"
-                               fill="#000000" stroke="none">
-                                <path ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected':''" d="M340 873 c-14 -11 -46 -30 -73 -41 -58 -26 -71 -54 -58 -124 6 -38 5
+14 20 -8 38 -15 41 -15z" />
+                                </g>
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="currentMobileActiveMenu =='feedgram-co'? 'mobile-menu-selected-text':''">همکاران</span>
+                        </a>
+                        <a ng-if="showFeedgramTab()"
+                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/feedgram-profile">
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="unset-position"
+                                viewbox="-10 -10 130 130" width="50" height="35" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#000000"
+                                    stroke="none">
+                                    <path
+                                        ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected':''"
+                                        d="M340 873 c-14 -11 -46 -30 -73 -41 -58 -26 -71 -54 -58 -124 6 -38 5
 -57 -5 -77 -17 -33 -17 -39 1 -74 8 -16 19 -46 25 -67 6 -22 22 -52 35 -68 34
 -41 33 -83 -2 -108 -16 -11 -71 -36 -123 -57 -52 -21 -106 -47 -120 -58 l-25
 -21 45 -39 c25 -22 77 -55 115 -74 218 -109 429 -79 630 90 l30 25 -25 20
@@ -287,192 +299,194 @@ c-14 11 -68 36 -120 57 -52 20 -107 46 -122 58 -35 26 -36 67 -3 107 13 16 29
 -51 -153 -79 -233 -87 -110 -11 -241 26 -332 93 -46 33 -48 37 -31 49 10 7 54
 27 99 44 107 41 146 78 146 138 0 35 -6 52 -30 79 -17 18 -30 42 -30 53 0 11
 -8 35 -17 55 -14 29 -15 41 -5 68 8 22 9 50 3 85 -7 48 -6 56 12 73 12 10 29
-19 38 19 10 0 31 11 46 25 31 27 89 33 158 14z"/>
-                            </g>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected-text':''">پروفایل</span>
-                    </a>
-                    <a ng-if="!showFeedgramTab()" ng-class="$rootScope.currentMobileActiveMenu == 'reserve' ? '':''"
-                       class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/reserve">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130"
-                             width="50" height="35">
-                            <path fill="#6D6E71"
-                                  ng-class="currentMobileActiveMenu == 'reserve' ? 'mobile-menu-selected':''"
-                                  fill-rule="evenodd"
-                                  d="M106.448 25.464c-1.998 9.313-4.062 18.946-6.074 28.423-.922 4.352-3.314 6.292-7.758 6.292H44.165l.537 2.789 16.253.002c11.63.002 23.462.003 35.133.03.914.001 2.277.116 3.546.65 2.869 1.212 4.459 4.249 3.87 7.388-.584 3.124-3.13 5.364-6.331 5.569-.74.044-1.472.036-2.351.024l-.141-.001c1.338 3.323.87 6.343-1.437 9.216-1.516 1.887-3.611 2.629-5.46 3.108l-.255.036-2.394-.091a1.478 1.478 0 0 0-.234-.09c-3.88-.778-6.632-3.693-7.186-7.61-.209-1.475-.026-2.927.578-4.498H57.656c1.299 3.308.815 6.306-1.477 9.148-1.526 1.9-3.619 2.635-5.462 3.105l-2.411.038-.137-.055c-.184-.075-.288-.118-.314-.124-3.885-.778-6.639-3.692-7.199-7.61-.212-1.463-.026-2.904.608-4.57-.661 0-1.276.004-1.895-.006-3.672-.063-6.276-2.21-6.968-5.745-.833-4.251-1.659-8.571-2.466-12.787l-8.174-42.593c-.302-1.575-.593-1.812-2.214-1.815l-4.218-.004c-2.712-.004-5.426-.008-8.134.001-2.242 0-3.872-.621-4.988-1.902-.656-.755-1.105-1.635-1.54-2.487-.21-.399-.359-.693-.521-.98l-.102-.181-.048-.295V5.597l.15-.206C1.342 1.717 3.64.018 7.41.016l3.819-.011c2.998-.012 6.104-.017 9.16.021 7.348.088 13.397 5.227 14.707 12.496.162.904.343 1.814.521 2.7l.233 1.173h63.842l.621.107c.919.189 1.856.383 2.716.795 2.935 1.421 4.211 4.473 3.419 8.167zm-4.101-6.754c-.684-.328-1.489-.495-2.343-.673l-.463-.088-64.977.014-.484-2.435c-.18-.895-.365-1.817-.528-2.729C32.377 6.28 26.956 1.672 20.371 1.594a558.268 558.268 0 0 0-9.136-.022l-3.823.011c-3.071.003-4.786 1.274-5.734 4.251l-.115.246v1.556c.173.311.308.573.439.831.452.883.856 1.677 1.387 2.286.799.917 2.045 1.363 3.804 1.363 2.72-.007 5.426-.004 8.141-.001l4.213.005c2.364.003 3.31.782 3.751 3.085l8.175 42.596c.806 4.213 1.633 8.53 2.466 12.781.557 2.837 2.494 4.426 5.454 4.478.616.007 1.228.004 1.887.006l2.392-.006-.509 1.11c-.89 1.964-1.16 3.393-.959 4.81.47 3.241 2.742 5.653 5.941 6.293.158.028.296.083.459.149l1.913-.011c1.407-.381 3.2-1.004 4.444-2.544 2.003-2.49 2.352-5.009 1.1-7.926l-.768-1.806h25.432l-.609 1.294c-.785 1.657-1.055 3.103-.849 4.551.458 3.237 2.734 5.649 5.937 6.291.151.029.28.074.407.126l1.834.025c1.615-.424 3.371-1.057 4.575-2.555 2.006-2.498 2.352-5.015 1.093-7.922l-.79-1.893 2.523.012c.837.012 1.528.019 2.234-.02 2.468-.161 4.431-1.885 4.882-4.294.452-2.408-.755-4.735-2.938-5.655-1.029-.435-2.168-.527-2.941-.529-11.669-.026-23.503-.027-35.083-.028l-17.59-.002-1.143-5.924h50.349c3.71 0 5.455-1.415 6.227-5.05 2.013-9.479 4.077-19.113 6.074-28.426.648-3.03-.265-5.312-2.57-6.426zm-.193 7.427l-.567.08H36.116l-1.126-5.876 17.208.004c15.232.006 30.986.014 46.587-.041 1.728 0 2.921.472 3.56 1.405.645.944.648 2.266.005 3.928l-.196.5zM41.168 65.229c.277 1.434.499 1.614 1.971 1.614l52.749.01c.52-.01 1.028 0 1.57.115a2.943 2.943 0 0 1 2.304 2.778c.034 1.335-.891 2.541-2.201 2.868-.568.141-1.146.153-1.645.153l-17.81.006H40.025c-2.573-.001-3.455-.73-3.937-3.247l-8.492-44.215a2216.35 2216.35 0 0 0-2.132-11.061c-.539-2.751-2.548-4.408-5.375-4.43a641.24 641.24 0 0 0-5.549-.018l-7.136.002c-.416-.004-.672-.01-.933-.053-1.523-.237-2.61-1.476-2.587-2.946.023-1.404 1.05-2.58 2.506-2.856a3.65 3.65 0 0 1 .704-.064 71.71 71.71 0 0 0 2.744-.001l1.324-.013c2.882-.017 6.146-.035 9.317.046 5.497.146 9.72 3.733 10.759 9.139 1.773 9.202 3.545 18.56 5.264 27.612l4.666 24.561zm8.305 9.858a4.99 4.99 0 0 1 3.555 1.51 4.945 4.945 0 0 1 1.446 3.554 4.981 4.981 0 0 1-1.537 3.527 5.004 5.004 0 0 1-3.556 1.433c-2.723-.049-4.931-2.295-4.938-5.008a4.964 4.964 0 0 1 1.474-3.551 5.006 5.006 0 0 1 3.556-1.465zm36.951 0c1.381 0 2.634.508 3.583 1.429a4.968 4.968 0 0 1 1.528 3.519c.019 1.323-.496 2.585-1.448 3.557a5.013 5.013 0 0 1-3.568 1.519 4.969 4.969 0 0 1-3.522-1.461 4.994 4.994 0 0 1-1.492-3.559c.004-2.713 2.209-4.956 4.919-5.004zM36.572 28.62h18.046l1.663 11.989H38.842l-2.27-11.989zm2.733 14.408h17.292l1.809 13.2H41.813l-2.508-13.2zM83.107 28.65l-1.622 11.969H58.599L56.98 28.65h26.127zm-3.766 27.617H60.752l-1.815-13.208h22.195l-1.791 13.208zm19.377-13.245l-1.903 9.064a41.669 41.669 0 0 1-.391 1.777c-.377 1.517-1.39 2.398-2.787 2.415-1.615.022-3.214.028-4.839.028l-7.134-.011 1.816-13.273h15.238zM85.456 28.621h16.349L99.247 40.63H83.811l1.645-12.009z"/>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="currentMobileActiveMenu == 'reserve' ? 'mobile-menu-selected-text':''">رزروها</span>
-                    </a>
-                    <a ng-if="!showFeedgramTab()" class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/myrestaurant">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130"
-                             width="50" height="35">
-                            <path fill="#6D6E71"
-                                  ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected':''"
-                                  fill-rule="evenodd"
-                                  d="M77.896 50.137v30.609c0 4.55-3.71 8.251-8.27 8.251H21.325a8.213 8.213 0 0 1-5.849-2.42 8.199 8.199 0 0 1-2.419-5.842l.04-30.568C5.641 46.388.891 38.744.891 30.338c0-12.269 9.999-22.251 22.291-22.251 1.228 0 2.511.163 3.844.41 4.463-5.194 11.07-8.5 18.446-8.5 7.377 0 13.985 3.306 18.446 8.5 1.334-.247 2.618-.41 3.845-.41 12.291 0 22.291 9.982 22.291 22.251 0 8.379-4.731 16.01-12.158 19.799zM67.763 9.742c-1.014 0-2.138.121-3.543.38l-.938.174-.621-.722C58.335 4.538 52.068 1.65 45.472 1.65c-6.597 0-12.861 2.888-17.188 7.924l-.623.722-.938-.174c-1.405-.26-2.53-.381-3.541-.381-11.376.001-20.635 9.24-20.635 20.597 0 7.789 4.331 14.822 11.3 18.355l.908.459-.001 1.016-.039 30.57a6.557 6.557 0 0 0 1.932 4.671 6.577 6.577 0 0 0 4.678 1.935h48.301c3.645 0 6.613-2.96 6.613-6.598V49.125l.902-.46c6.943-3.541 11.256-10.564 11.256-18.327 0-11.358-9.257-20.596-20.634-20.596zm7.334 37.246a1.67 1.67 0 0 0-.303.157 2.007 2.007 0 0 0-.93 1.42 1.84 1.84 0 0 0-.022.34V68.77H17.125l.027-19.838a2.052 2.052 0 0 0-.34-1.17 2.031 2.031 0 0 0-.921-.751C9.24 44.108 4.944 37.57 4.944 30.338c0-10.039 8.181-18.205 18.238-18.205.393 0 .808.047 1.215.079a24.058 24.058 0 0 0-3.242 12.058c0 1.118.906 2.022 2.027 2.022a2.024 2.024 0 0 0 2.026-2.022c0-11.154 9.092-20.228 20.265-20.228s20.264 9.074 20.264 20.228c0 1.118.906 2.022 2.026 2.022 1.12 0 2.026-.904 2.026-2.022 0-4.391-1.19-8.501-3.241-12.058.406-.032.821-.079 1.215-.079 10.058 0 18.236 8.166 18.236 18.205 0 7.206-4.277 13.736-10.902 16.65zm-44.27 6.339c-2.171-2.642-5.619-7.925-5.619-10.852a2.025 2.025 0 0 0-2.026-2.023 2.024 2.024 0 0 0-2.027 2.023c0 5.312 5.869 12.604 6.539 13.42a2.032 2.032 0 0 0 2.854.281c.863-.71.987-1.984.279-2.849zm16.671-10.852a2.023 2.023 0 0 0-2.025-2.023c-1.12 0-2.026.905-2.026 2.023v12.136c0 1.119.906 2.023 2.026 2.023a2.022 2.022 0 0 0 2.025-2.023V42.475zm20.265-2.023c-1.12 0-2.026.905-2.026 2.023 0 2.917-3.448 8.205-5.621 10.854a2.023 2.023 0 0 0 1.567 3.305c.587 0 1.166-.253 1.569-.739.667-.816 6.537-8.108 6.537-13.42a2.023 2.023 0 0 0-2.026-2.023zm6.079 32.364v7.93a4.217 4.217 0 0 1-4.216 4.207H21.325a4.196 4.196 0 0 1-2.982-1.234 4.183 4.183 0 0 1-1.234-2.979l.012-7.924h56.721z"/>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected-text':''">رستوران
+19 38 19 10 0 31 11 46 25 31 27 89 33 158 14z" />
+                                </g>
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected-text':''">پروفایل</span>
+                        </a>
+                        <a ng-if="!showFeedgramTab()" ng-class="$rootScope.currentMobileActiveMenu == 'reserve' ? '':''"
+                            class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/reserve">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130"
+                                width="50" height="35">
+                                <path fill="#6D6E71"
+                                    ng-class="currentMobileActiveMenu == 'reserve' ? 'mobile-menu-selected':''"
+                                    fill-rule="evenodd"
+                                    d="M106.448 25.464c-1.998 9.313-4.062 18.946-6.074 28.423-.922 4.352-3.314 6.292-7.758 6.292H44.165l.537 2.789 16.253.002c11.63.002 23.462.003 35.133.03.914.001 2.277.116 3.546.65 2.869 1.212 4.459 4.249 3.87 7.388-.584 3.124-3.13 5.364-6.331 5.569-.74.044-1.472.036-2.351.024l-.141-.001c1.338 3.323.87 6.343-1.437 9.216-1.516 1.887-3.611 2.629-5.46 3.108l-.255.036-2.394-.091a1.478 1.478 0 0 0-.234-.09c-3.88-.778-6.632-3.693-7.186-7.61-.209-1.475-.026-2.927.578-4.498H57.656c1.299 3.308.815 6.306-1.477 9.148-1.526 1.9-3.619 2.635-5.462 3.105l-2.411.038-.137-.055c-.184-.075-.288-.118-.314-.124-3.885-.778-6.639-3.692-7.199-7.61-.212-1.463-.026-2.904.608-4.57-.661 0-1.276.004-1.895-.006-3.672-.063-6.276-2.21-6.968-5.745-.833-4.251-1.659-8.571-2.466-12.787l-8.174-42.593c-.302-1.575-.593-1.812-2.214-1.815l-4.218-.004c-2.712-.004-5.426-.008-8.134.001-2.242 0-3.872-.621-4.988-1.902-.656-.755-1.105-1.635-1.54-2.487-.21-.399-.359-.693-.521-.98l-.102-.181-.048-.295V5.597l.15-.206C1.342 1.717 3.64.018 7.41.016l3.819-.011c2.998-.012 6.104-.017 9.16.021 7.348.088 13.397 5.227 14.707 12.496.162.904.343 1.814.521 2.7l.233 1.173h63.842l.621.107c.919.189 1.856.383 2.716.795 2.935 1.421 4.211 4.473 3.419 8.167zm-4.101-6.754c-.684-.328-1.489-.495-2.343-.673l-.463-.088-64.977.014-.484-2.435c-.18-.895-.365-1.817-.528-2.729C32.377 6.28 26.956 1.672 20.371 1.594a558.268 558.268 0 0 0-9.136-.022l-3.823.011c-3.071.003-4.786 1.274-5.734 4.251l-.115.246v1.556c.173.311.308.573.439.831.452.883.856 1.677 1.387 2.286.799.917 2.045 1.363 3.804 1.363 2.72-.007 5.426-.004 8.141-.001l4.213.005c2.364.003 3.31.782 3.751 3.085l8.175 42.596c.806 4.213 1.633 8.53 2.466 12.781.557 2.837 2.494 4.426 5.454 4.478.616.007 1.228.004 1.887.006l2.392-.006-.509 1.11c-.89 1.964-1.16 3.393-.959 4.81.47 3.241 2.742 5.653 5.941 6.293.158.028.296.083.459.149l1.913-.011c1.407-.381 3.2-1.004 4.444-2.544 2.003-2.49 2.352-5.009 1.1-7.926l-.768-1.806h25.432l-.609 1.294c-.785 1.657-1.055 3.103-.849 4.551.458 3.237 2.734 5.649 5.937 6.291.151.029.28.074.407.126l1.834.025c1.615-.424 3.371-1.057 4.575-2.555 2.006-2.498 2.352-5.015 1.093-7.922l-.79-1.893 2.523.012c.837.012 1.528.019 2.234-.02 2.468-.161 4.431-1.885 4.882-4.294.452-2.408-.755-4.735-2.938-5.655-1.029-.435-2.168-.527-2.941-.529-11.669-.026-23.503-.027-35.083-.028l-17.59-.002-1.143-5.924h50.349c3.71 0 5.455-1.415 6.227-5.05 2.013-9.479 4.077-19.113 6.074-28.426.648-3.03-.265-5.312-2.57-6.426zm-.193 7.427l-.567.08H36.116l-1.126-5.876 17.208.004c15.232.006 30.986.014 46.587-.041 1.728 0 2.921.472 3.56 1.405.645.944.648 2.266.005 3.928l-.196.5zM41.168 65.229c.277 1.434.499 1.614 1.971 1.614l52.749.01c.52-.01 1.028 0 1.57.115a2.943 2.943 0 0 1 2.304 2.778c.034 1.335-.891 2.541-2.201 2.868-.568.141-1.146.153-1.645.153l-17.81.006H40.025c-2.573-.001-3.455-.73-3.937-3.247l-8.492-44.215a2216.35 2216.35 0 0 0-2.132-11.061c-.539-2.751-2.548-4.408-5.375-4.43a641.24 641.24 0 0 0-5.549-.018l-7.136.002c-.416-.004-.672-.01-.933-.053-1.523-.237-2.61-1.476-2.587-2.946.023-1.404 1.05-2.58 2.506-2.856a3.65 3.65 0 0 1 .704-.064 71.71 71.71 0 0 0 2.744-.001l1.324-.013c2.882-.017 6.146-.035 9.317.046 5.497.146 9.72 3.733 10.759 9.139 1.773 9.202 3.545 18.56 5.264 27.612l4.666 24.561zm8.305 9.858a4.99 4.99 0 0 1 3.555 1.51 4.945 4.945 0 0 1 1.446 3.554 4.981 4.981 0 0 1-1.537 3.527 5.004 5.004 0 0 1-3.556 1.433c-2.723-.049-4.931-2.295-4.938-5.008a4.964 4.964 0 0 1 1.474-3.551 5.006 5.006 0 0 1 3.556-1.465zm36.951 0c1.381 0 2.634.508 3.583 1.429a4.968 4.968 0 0 1 1.528 3.519c.019 1.323-.496 2.585-1.448 3.557a5.013 5.013 0 0 1-3.568 1.519 4.969 4.969 0 0 1-3.522-1.461 4.994 4.994 0 0 1-1.492-3.559c.004-2.713 2.209-4.956 4.919-5.004zM36.572 28.62h18.046l1.663 11.989H38.842l-2.27-11.989zm2.733 14.408h17.292l1.809 13.2H41.813l-2.508-13.2zM83.107 28.65l-1.622 11.969H58.599L56.98 28.65h26.127zm-3.766 27.617H60.752l-1.815-13.208h22.195l-1.791 13.208zm19.377-13.245l-1.903 9.064a41.669 41.669 0 0 1-.391 1.777c-.377 1.517-1.39 2.398-2.787 2.415-1.615.022-3.214.028-4.839.028l-7.134-.011 1.816-13.273h15.238zM85.456 28.621h16.349L99.247 40.63H83.811l1.645-12.009z" />
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="currentMobileActiveMenu == 'reserve' ? 'mobile-menu-selected-text':''">رزروها</span>
+                        </a>
+                        <a ng-if="!showFeedgramTab()"
+                            class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/myrestaurant">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130"
+                                width="50" height="35">
+                                <path fill="#6D6E71"
+                                    ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected':''"
+                                    fill-rule="evenodd"
+                                    d="M77.896 50.137v30.609c0 4.55-3.71 8.251-8.27 8.251H21.325a8.213 8.213 0 0 1-5.849-2.42 8.199 8.199 0 0 1-2.419-5.842l.04-30.568C5.641 46.388.891 38.744.891 30.338c0-12.269 9.999-22.251 22.291-22.251 1.228 0 2.511.163 3.844.41 4.463-5.194 11.07-8.5 18.446-8.5 7.377 0 13.985 3.306 18.446 8.5 1.334-.247 2.618-.41 3.845-.41 12.291 0 22.291 9.982 22.291 22.251 0 8.379-4.731 16.01-12.158 19.799zM67.763 9.742c-1.014 0-2.138.121-3.543.38l-.938.174-.621-.722C58.335 4.538 52.068 1.65 45.472 1.65c-6.597 0-12.861 2.888-17.188 7.924l-.623.722-.938-.174c-1.405-.26-2.53-.381-3.541-.381-11.376.001-20.635 9.24-20.635 20.597 0 7.789 4.331 14.822 11.3 18.355l.908.459-.001 1.016-.039 30.57a6.557 6.557 0 0 0 1.932 4.671 6.577 6.577 0 0 0 4.678 1.935h48.301c3.645 0 6.613-2.96 6.613-6.598V49.125l.902-.46c6.943-3.541 11.256-10.564 11.256-18.327 0-11.358-9.257-20.596-20.634-20.596zm7.334 37.246a1.67 1.67 0 0 0-.303.157 2.007 2.007 0 0 0-.93 1.42 1.84 1.84 0 0 0-.022.34V68.77H17.125l.027-19.838a2.052 2.052 0 0 0-.34-1.17 2.031 2.031 0 0 0-.921-.751C9.24 44.108 4.944 37.57 4.944 30.338c0-10.039 8.181-18.205 18.238-18.205.393 0 .808.047 1.215.079a24.058 24.058 0 0 0-3.242 12.058c0 1.118.906 2.022 2.027 2.022a2.024 2.024 0 0 0 2.026-2.022c0-11.154 9.092-20.228 20.265-20.228s20.264 9.074 20.264 20.228c0 1.118.906 2.022 2.026 2.022 1.12 0 2.026-.904 2.026-2.022 0-4.391-1.19-8.501-3.241-12.058.406-.032.821-.079 1.215-.079 10.058 0 18.236 8.166 18.236 18.205 0 7.206-4.277 13.736-10.902 16.65zm-44.27 6.339c-2.171-2.642-5.619-7.925-5.619-10.852a2.025 2.025 0 0 0-2.026-2.023 2.024 2.024 0 0 0-2.027 2.023c0 5.312 5.869 12.604 6.539 13.42a2.032 2.032 0 0 0 2.854.281c.863-.71.987-1.984.279-2.849zm16.671-10.852a2.023 2.023 0 0 0-2.025-2.023c-1.12 0-2.026.905-2.026 2.023v12.136c0 1.119.906 2.023 2.026 2.023a2.022 2.022 0 0 0 2.025-2.023V42.475zm20.265-2.023c-1.12 0-2.026.905-2.026 2.023 0 2.917-3.448 8.205-5.621 10.854a2.023 2.023 0 0 0 1.567 3.305c.587 0 1.166-.253 1.569-.739.667-.816 6.537-8.108 6.537-13.42a2.023 2.023 0 0 0-2.026-2.023zm6.079 32.364v7.93a4.217 4.217 0 0 1-4.216 4.207H21.325a4.196 4.196 0 0 1-2.982-1.234 4.183 4.183 0 0 1-1.234-2.979l.012-7.924h56.721z" />
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected-text':''">رستوران
                                 ها</span>
-                    </a>
-                    <a ng-if="!showFeedgramTab()" class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                       ng-click="mobileMenuClicked($event)" href="#/category">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 140 140"
-                             width="50" height="35">
-                            <path fill="#6D6E71" fill-rule="evenodd"
-                                  ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected':''"
-                                  d="M123.746 88.999H16.934C7.972 88.999.681 81.706.681 72.747a2.322 2.322 0 0 1 2.323-2.321h7.004c.804-31.797 26.309-57.554 58.01-58.761V4.641h-2.321a2.324 2.324 0 0 1-2.324-2.322 2.324 2.324 0 0 1 2.324-2.322h9.287a2.321 2.321 0 0 1 0 4.644h-2.321v7.024c31.704 1.207 57.206 26.964 58.01 58.761h7.004a2.318 2.318 0 0 1 2.322 2.321c0 8.959-7.294 16.252-16.253 16.252zM70.34 13.259c-31.824 0-57.815 25.445-58.695 57.055h3.013c.88-29.958 25.51-54.066 55.682-54.066s54.802 24.108 55.682 54.066h3.012c-.879-31.61-26.872-57.055-58.694-57.055zm.001 10.028c-.001-1.31-1.089-2.399-2.397-2.339a50.864 50.864 0 0 0-30.785 12.216c-.992.849-1.036 2.378-.142 3.33l.006.008c.858.912 2.264.949 3.217.134a46.238 46.238 0 0 1 27.853-11.045c1.252-.061 2.249-1.051 2.248-2.304zM33.957 39.694l-.066-.058c-.955-.85-2.445-.764-3.251.228a50.455 50.455 0 0 0-1.631 2.117c-.755 1.032-.453 2.495.612 3.201l.073.049c1.03.683 2.395.402 3.126-.594.439-.6.894-1.19 1.36-1.769.778-.962.701-2.353-.223-3.174zM138.15 72.275a.665.665 0 0 0-.473-.195H3.004c-.37 0-.667.3-.667.667 0 8.05 6.547 14.598 14.597 14.598h106.812c8.05 0 14.599-6.548 14.599-14.598a.66.66 0 0 0-.195-.472zm-14.404 12.08H16.934c-5.606 0-10.297-3.995-11.376-9.286h129.563c-1.078 5.291-5.769 9.286-11.375 9.286z"/>
-                        </svg>
-                        <span class="color-808285 line-height-1"
-                              ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected-text':''">غذاها</span>
-                    </a>
-                </ion-footer-bar>
-                <div class="confirm-box confirm-box-disable">
-                    <img src="./assets/img/ui/mobile/confirm.png" class="confirm-img" alt="">
-                </div>
-            </ion-side-menu>
+                        </a>
+                        <a ng-if="!showFeedgramTab()"
+                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/category">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 140 140"
+                                width="50" height="35">
+                                <path fill="#6D6E71" fill-rule="evenodd"
+                                    ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected':''"
+                                    d="M123.746 88.999H16.934C7.972 88.999.681 81.706.681 72.747a2.322 2.322 0 0 1 2.323-2.321h7.004c.804-31.797 26.309-57.554 58.01-58.761V4.641h-2.321a2.324 2.324 0 0 1-2.324-2.322 2.324 2.324 0 0 1 2.324-2.322h9.287a2.321 2.321 0 0 1 0 4.644h-2.321v7.024c31.704 1.207 57.206 26.964 58.01 58.761h7.004a2.318 2.318 0 0 1 2.322 2.321c0 8.959-7.294 16.252-16.253 16.252zM70.34 13.259c-31.824 0-57.815 25.445-58.695 57.055h3.013c.88-29.958 25.51-54.066 55.682-54.066s54.802 24.108 55.682 54.066h3.012c-.879-31.61-26.872-57.055-58.694-57.055zm.001 10.028c-.001-1.31-1.089-2.399-2.397-2.339a50.864 50.864 0 0 0-30.785 12.216c-.992.849-1.036 2.378-.142 3.33l.006.008c.858.912 2.264.949 3.217.134a46.238 46.238 0 0 1 27.853-11.045c1.252-.061 2.249-1.051 2.248-2.304zM33.957 39.694l-.066-.058c-.955-.85-2.445-.764-3.251.228a50.455 50.455 0 0 0-1.631 2.117c-.755 1.032-.453 2.495.612 3.201l.073.049c1.03.683 2.395.402 3.126-.594.439-.6.894-1.19 1.36-1.769.778-.962.701-2.353-.223-3.174zM138.15 72.275a.665.665 0 0 0-.473-.195H3.004c-.37 0-.667.3-.667.667 0 8.05 6.547 14.598 14.597 14.598h106.812c8.05 0 14.599-6.548 14.599-14.598a.66.66 0 0 0-.195-.472zm-14.404 12.08H16.934c-5.606 0-10.297-3.995-11.376-9.286h129.563c-1.078 5.291-5.769 9.286-11.375 9.286z" />
+                            </svg>
+                            <span class="color-808285 line-height-1"
+                                ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected-text':''">غذاها</span>
+                        </a>
+                    </ion-footer-bar>
+                    <div class="confirm-box confirm-box-disable">
+                        <img src="./assets/img/ui/mobile/confirm.png" class="confirm-img" alt="">
+                    </div>
+                </ion-side-menu>
 
-            <!-- بخش منو -->
-            <ion-side-menu-content class="menu-content hidden-first" ng-if="canRender('menu')">
-                <!--برای قسمت header -->
-                <!-- <ion-header-bar class="bar-balanced">
+                <!-- بخش منو -->
+                <ion-side-menu-content class="menu-content hidden-first" ng-if="canRender('menu')">
+                    <!--برای قسمت header -->
+                    <!-- <ion-header-bar class="bar-balanced">
                     <h1 class="title title-right">
                         <i class="ion-cloud"></i>
                          Go Cloud
                         </h1>
                 </ion-header-bar>   -->
-                <!--اگر header , footer دارد ion-content این کلاس هارا باید داشته باشد -->
-                <!-- <ion-content class="has-footer has-wallet">-->
-                <ion-content>
-                    <ion-list>
-                        <div include-with-scope="mobile-menu-content.html"></div>
-                    </ion-list>
-                </ion-content>
-                <!--برای قسمت footer -->
-                <!-- <ion-footer-bar class="bar-energized premium-bar" ng-class="isWalletShown?'hidden':'shown'">
+                    <!--اگر header , footer دارد ion-content این کلاس هارا باید داشته باشد -->
+                    <!-- <ion-content class="has-footer has-wallet">-->
+                    <ion-content class="no-overflow-imp">
+                        <ion-list>
+                            <div include-with-scope="mobile-menu-content.html"></div>
+                        </ion-list>
+                    </ion-content>
+                    <!--برای قسمت footer -->
+                    <!-- <ion-footer-bar class="bar-energized premium-bar" ng-class="isWalletShown?'hidden':'shown'">
                     <h1 class="title">GO PREMIUM</h1>
                  </ion-footer-bar> -->
-            </ion-side-menu-content>
-            <!-- بخش منو -->
+                </ion-side-menu-content>
+                <!-- بخش منو -->
 
-        </ion-side-menus>
-    </div>
-    <!--<footer class="al-footer clearfix">-->
-    <!--<div class="al-footer-right">Created with <i class="ion-heart"></i></div>-->
-    <!--<div class="al-footer-main clearfix">-->
-    <!--<div class="al-copy">Blur Admin 2016</div>-->
-    <!--<ul class="al-share clearfix">-->
-    <!--<li><i class="socicon socicon-facebook"></i></li>-->
-    <!--<li><i class="socicon socicon-twitter"></i></li>-->
-    <!--<li><i class="socicon socicon-google"></i></li>-->
-    <!--<li><i class="socicon socicon-github"></i></li>-->
-    <!--</ul>-->
+            </ion-side-menus>
+        </div>
+        <!--<footer class="al-footer clearfix">-->
+        <!--<div class="al-footer-right">Created with <i class="ion-heart"></i></div>-->
+        <!--<div class="al-footer-main clearfix">-->
+        <!--<div class="al-copy">Blur Admin 2016</div>-->
+        <!--<ul class="al-share clearfix">-->
+        <!--<li><i class="socicon socicon-facebook"></i></li>-->
+        <!--<li><i class="socicon socicon-twitter"></i></li>-->
+        <!--<li><i class="socicon socicon-google"></i></li>-->
+        <!--<li><i class="socicon socicon-github"></i></li>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <!--</footer>-->
+
+    </main>
+
+    <!--<div id="preloader" ng-show="!$pageFinishedLoading">-->
+    <!--<div></div>-->
     <!--</div>-->
-    <!--</footer>-->
+    <!--<div id="service-loading" style="display: none">-->
+    <!--<div></div>-->
+    <!--</div>-->
 
-</main>
-
-<!--<div id="preloader" ng-show="!$pageFinishedLoading">-->
-<!--<div></div>-->
-<!--</div>-->
-<!--<div id="service-loading" style="display: none">-->
-<!--<div></div>-->
-<!--</div>-->
-
-<div ng-show="!$pageFinishedLoading" class="loading-background2">
-    <img style="position: absolute;top: 50%;left: 50%;
+    <div ng-show="!$pageFinishedLoading" class="loading-background2">
+        <img style="position: absolute;top: 50%;left: 50%;
    width: 200px;
    height: 200px;
    margin-top: -100px; /* Half the height */
    margin-left: -100px;" src="assets/img/loading.gif">
-</div>
-<div id="cube-preload" style="display: none;z-index: 999999;" class="loading-background">
-    <img style="position: absolute;
+    </div>
+    <div id="cube-preload" style="display: none;z-index: 999999;" class="loading-background">
+        <img style="position: absolute;
    top: 50%;
    left: 50%;
    width: 200px;
    height: 200px;
    margin-top: -100px; /* Half the height */
    margin-left: -100px;" src="assets/img/loading.gif">
-</div>
+    </div>
 
 
-<!-- build:js(src) scripts/vendor.js -->
-<!-- bower:js -->
-<!-- run `gulp inject` to automatically populate bower script dependencies -->
-<!-- endbower -->
-<!-- endbuild -->
-<script type="text/javascript" src="smart-table.min.js"></script>
-<link rel="stylesheet" href="myassets/css/newcard.css"/>
-<link rel="stylesheet" href="myassets/css/content.css"/>
-<link rel="stylesheet" href="ADM-dateTimePicker.css"/>
-<link rel="stylesheet" href="myassets/css/card.css"/>
-<link rel="stylesheet" href="myassets/css/normalize.css"/>
-<link rel="stylesheet" href="myassets/css/pattern.css"/>
-<link rel="stylesheet" type="text/css" href="myassets/css/search-main.css"/>
-<link rel="stylesheet" type="text/css" href="myassets/css/search.css"/>
-<link rel="stylesheet" href="myassets/css/semantic.min.css"/>
-<!--invoice-->
-<link rel="stylesheet" href="myassets/css/invoice.css"/>
-<link rel="stylesheet" href="myassets/css/ng-rateit.css"/>
-<link rel="stylesheet" href="myassets/css/main.css"/>
-<link rel="stylesheet" href="myassets/css/print.min.css"/>
-<link rel="stylesheet" href="myassets/css/walkthrough/jquery.pagewalkthrough.min.css"/>
-<link rel="stylesheet" href="myassets/css/flipclock.css"/>
-<link rel="stylesheet" href="myassets/css/wickedpicker.min.css"/>
-<link rel="stylesheet" href="myassets/css/placeholders.css"/>
-<link ng-if="isMobile()" rel="stylesheet" href="myassets/css/ionic.min.css"/>
-<link ng-if="isMobile()" rel="stylesheet" href="myassets/css/mobile.css"/>
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script type="text/javascript" src="smart-table.min.js"></script>
+    <link rel="stylesheet" href="myassets/css/newcard.css" />
+    <link rel="stylesheet" href="myassets/css/content.css" />
+    <link rel="stylesheet" href="ADM-dateTimePicker.css" />
+    <link rel="stylesheet" href="myassets/css/card.css" />
+    <link rel="stylesheet" href="myassets/css/normalize.css" />
+    <link rel="stylesheet" href="myassets/css/pattern.css" />
+    <link rel="stylesheet" type="text/css" href="myassets/css/search-main.css" />
+    <link rel="stylesheet" type="text/css" href="myassets/css/search.css" />
+    <link rel="stylesheet" href="myassets/css/semantic.min.css" />
+    <!--invoice-->
+    <link rel="stylesheet" href="myassets/css/invoice.css" />
+    <link rel="stylesheet" href="myassets/css/ng-rateit.css" />
+    <link rel="stylesheet" href="myassets/css/main.css" />
+    <link rel="stylesheet" href="myassets/css/print.min.css" />
+    <link rel="stylesheet" href="myassets/css/walkthrough/jquery.pagewalkthrough.min.css" />
+    <link rel="stylesheet" href="myassets/css/flipclock.css" />
+    <link rel="stylesheet" href="myassets/css/wickedpicker.min.css" />
+    <link rel="stylesheet" href="myassets/css/placeholders.css" />
+    <link ng-if="isMobile()" rel="stylesheet" href="myassets/css/ionic.min.css" />
+    <link ng-if="isMobile()" rel="stylesheet" href="myassets/css/mobile.css" />
 
-<script src="ADM-dateTimePicker.min.js"></script>
-<script src="myassets/js/ScrollToPlugin.min.js"></script>
-<!--comments-->
-<script src="myassets/js/semantic.min.js"></script>
-<script src="myassets/js/jalali-moment.js"></script>
-<script src="myassets/js/angular-local-storage.min.js"></script>
-<script src="myassets/js/ng-rateit.min.js"></script>
-<script src="myassets/js/common-services.js"></script>
-<script src="myassets/js/hashmap.js"></script>
-<script src="myassets/js/jquery-clock-timepicker.min.js"></script>
-<!--resize image libs-->
-<script src="myassets/js/jquery.canvasResize.js"></script>
-<script src="myassets/js/canvasResize.js"></script>
-<script src="myassets/js/binaryajax.js"></script>
-<script src="myassets/js/exif.js"></script>
-<script src="myassets/js/reports.js"></script>
-<script src="myassets/js/jquery.pagewalkthrough.min.js"></script>
-<script src="myassets/js/flipclock.min.js"></script>
-<script src="myassets/js/wickedpicker.min.js"></script>
-<script src="myassets/js/ionic.bundle.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUh1zYu9a6v0k0gRob7Sy6oV_vcsu0SfY"></script>
-<script>
-    var captchaContainer = null;
-    var loadCaptcha = function () {
-        captchaContainer = grecaptcha.render('captcha_container', {
-            'sitekey': '6LdovlsUAAAAAMYE1ecIK-8rqnoh1SQZDzChdT8W',
-            'callback': function (response) {
+    <script src="ADM-dateTimePicker.min.js"></script>
+    <script src="myassets/js/ScrollToPlugin.min.js"></script>
+    <!--comments-->
+    <script src="myassets/js/semantic.min.js"></script>
+    <script src="myassets/js/jalali-moment.js"></script>
+    <script src="myassets/js/angular-local-storage.min.js"></script>
+    <script src="myassets/js/ng-rateit.min.js"></script>
+    <script src="myassets/js/common-services.js"></script>
+    <script src="myassets/js/hashmap.js"></script>
+    <script src="myassets/js/jquery-clock-timepicker.min.js"></script>
+    <!--resize image libs-->
+    <script src="myassets/js/jquery.canvasResize.js"></script>
+    <script src="myassets/js/canvasResize.js"></script>
+    <script src="myassets/js/binaryajax.js"></script>
+    <script src="myassets/js/exif.js"></script>
+    <script src="myassets/js/reports.js"></script>
+    <script src="myassets/js/jquery.pagewalkthrough.min.js"></script>
+    <script src="myassets/js/flipclock.min.js"></script>
+    <script src="myassets/js/wickedpicker.min.js"></script>
+    <script src="myassets/js/ionic.bundle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUh1zYu9a6v0k0gRob7Sy6oV_vcsu0SfY"></script>
+    <script>
+        var captchaContainer = null;
+        var loadCaptcha = function () {
+            captchaContainer = grecaptcha.render('captcha_container', {
+                'sitekey': '6LdovlsUAAAAAMYE1ecIK-8rqnoh1SQZDzChdT8W',
+                'callback': function (response) {
 
-            }
-        });
-    };
-</script>
+                }
+            });
+        };
+    </script>
 
-<!--<script src="myassets/js/search.js"></script>-->
+    <!--<script src="myassets/js/search.js"></script>-->
 
 
-<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-<!-- inject:js -->
-<!-- js files will be automatically insert here -->
-<!-- endinject -->
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
 
-<!-- inject:partials -->
-<!-- angular templates will be automatically converted in js and inserted here -->
-<!-- endinject -->
-<!-- endbuild -->
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
 
 </body>
 

@@ -44,7 +44,7 @@
                     restaurantType: $location.search().resT ? $location.search().resT : "",
                     pageableDTO: {
                         page: $rootScope.resPageNum,
-                        size: 16,
+                        size: $rootScope.isMobile() ? 8 : 16,
                         direction: 0,
                         sortBy: "name"
                     }
@@ -61,12 +61,12 @@
                     restaurantType: selectedTypes ? selectedTypes.join(",") : "",
                     pageableDTO: {
                         page: $rootScope.resPageNum,
-                        size: 16,
+                        size: $rootScope.isMobile() ? 8 : 16,
                         direction: 0,
                         sortBy: "name"
                     }
                 };
-                if (isSearch) {
+                if (isSearch && !$rootScope.isMobile()) {
                     $location.search('resN', params.value);
                     $location.search('resT', params.restaurantType);
                 }
@@ -104,6 +104,8 @@
             setTimeout(function () {
                 $scope.rests = [];
                 $scope.loadContent(true, false);
+                
+                if (!$rootScope.isMobile()) {
                 $('.main-stage > div').scroll(function () {
                     if ($rootScope.scrollIsAtEnd($('.main-stage > div'))) {
                         if ($rootScope.resEnableScroll) {
@@ -112,6 +114,16 @@
                         }
                     }
                 });
+            } else {
+                $('.article-mobile-list').scroll(function () {
+                    if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
+                        if ($rootScope.resEnableScroll) {                            
+                            $rootScope.resEnableScroll = false;
+                            $scope.loadContent(false, false);
+                        }
+                    }
+                });
+            }
             }, 700);
         };
         var selectedTypes = [];
