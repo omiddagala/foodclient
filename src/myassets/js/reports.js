@@ -39,7 +39,7 @@ function myview(data) {
 }
 
 function prepareFactorToPrint(item,$rootScope) {
-    var param = '<div style="page-break-after:always>' +
+    var param = '<div class="myprint" style="page-break-after:always;">' +
         '<h6 style="margin-bottom: 10px !important;' +
         'text-align: center;">'+item.restaurant.name+'</h6>' +
         '<h6 style="margin-bottom: 10px !important;' +
@@ -138,7 +138,8 @@ function prepareFactorToPrint(item,$rootScope) {
             '</div>' +
             '</div>';
         }
-        param += '</div>';
+        param += '</div>' +
+            '<style>@page  {size: 8cm 100%}</style>';
     return param;
 }
 

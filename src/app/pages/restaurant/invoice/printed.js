@@ -83,7 +83,6 @@
         };
 
         $scope.dateChanged = function (date, isFromDate) {
-            startLoading();
             if (isFromDate) {
                 $scope.fromDate = date;
             } else {
