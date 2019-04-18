@@ -98,6 +98,8 @@
                                             </button>
                                             <button class="btn btn-info editable-table-button btn-xs" ng-click="openModal('app/pages/admin/restaurant/message-modal.html', 'md',item.id,$index)">پیام
                                             </button>
+                                            <button class="btn btn-info editable-table-button btn-xs" ng-click="menu(item.id)">منو
+                                            </button>
                                         </div>
                                     </td>
                                     <td ng-style="getStatusColor(item.accountStatus)">{{getStatus(item.accountStatus)}}</td>

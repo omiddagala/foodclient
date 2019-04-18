@@ -21,13 +21,11 @@
         <tr ng-repeat="item in foods">
             <td>
                 <div class="buttons">
-                    <button ng-if="!isKarafeedRestaurant(restaurantLevel)" class="confirm_button confirm_yes btn" ng-click="edit(item.id)">ویرایش
+                    <button class="confirm_button confirm_yes btn" ng-click="edit(item.id)">ویرایش
                     </button>
-                    <button ng-if="isKarafeedRestaurant(restaurantLevel)" class="confirm_button confirm_yes btn" ng-click="edit(item.id)">مشاهده
+                    <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/delete-modal.html', 'md',item,$index)">حذف
                     </button>
-                    <button ng-if="!isKarafeedRestaurant(restaurantLevel)" class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/restaurant/foodlist/delete-modal.html', 'md',item,$index)">حذف
-                    </button>
-                    <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/restaurant/foodlist/finish-modal.html', 'md',item,$index)">اتمام
+                    <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/finish-modal.html', 'md',item,$index)">اتمام
                     </button>
                 </div>
             </td>

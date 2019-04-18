@@ -219,6 +219,10 @@
             $state.go("rest-detail");
         };
 
+        $scope.menu = function(id){
+            $location.path("/admin-food").search("id",id);
+        };
+
         $scope.removeRest = function () {
             startLoading();
             var token = localStorageService.get("my_access_token");
