@@ -2119,3 +2119,6 @@ a:hover{
     overflow: auto;
     max-height: 80vh;
 }
+label{
+    direction: rtl;
+}
