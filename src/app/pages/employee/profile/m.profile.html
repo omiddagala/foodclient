@@ -125,15 +125,15 @@
                             class="transparent-back black-color" id="phone" name="phone"
                             ng-model="employee.address.phone">
                         <div class="error-message"
-                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                            ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
                             حداکثر 11 کاراکتر وارد کنید
                         </div>
                         <div class="error-message"
-                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                            ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
                             حداقل 11 کاراکتر وارد کنید
                         </div>
                         <div class="error-message"
-                            ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                            ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
                             پر کردن این فیلد اجباریست
                         </div>
                     </div>
