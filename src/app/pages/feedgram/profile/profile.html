@@ -1,67 +1,71 @@
-<div class="w-100 top-padding-lg bottom-padding-lg back-a2cece flex flex-col items-center content-evenly right-direction relative dark-box-shadow-l-b">
-    <div style="position: relative" class="m-w-50 no-full-width bottom-vertical-align">
-        <img class="redius-xl w-100" src="{{info.owner.imageAddress}}" ng-click="uploadPicture()">
-        <div class="w-100 feedgram-camera"></div>
-        <div class="w-20 feedgram-follow"></div>
-    </div>
-    <!-- <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="employee.imageAddress !== 'assets/img/defaults/default-mobile-employee.png'"></i> -->
-    <img ng-click="editModal.show()" src="../../../../assets/img/ui/mobile/edit.png" class="absolute top-4 left-4 w-5" alt="">
-    <input type="file" ng-show="false" id="uploadFile">
-</div>
-<div style="padding: 20px">
-    <div class="w-50" style="float: right">
-        {{info.owner.name}}
-    </div>
-    <div class="w-50" style="float: left">
-        <div style="width: 30%;float: right">
-            <div style="float: right">{{info.commentCount}}</div>
-            <div class="feedgram-icons feedgram-posts"></div>
-        </div>
-        <div style="width: 30%;float: right">
-            <div style="float: right">{{info.followingCount}}</div>
-            <div class="feedgram-icons feedgram-followers"></div>
-        </div>
-        <div style="width: 30%;float: right">
-            <div style="float: right">{{info.followersCount}}</div>
-            <div class="feedgram-icons feedgram-followers"></div>
-        </div>
-    </div>
-</div>
-<div style="text-align: center;padding: 20px">
-    {{info.description}}
-</div>
 <div>
-    <div>
-        <div class="w-50" style="float: right;padding: .5px">
-            <img src="/assets/img/defaults/default-food.png" class="w-100">
+    <div class="w-100 top-padding-lg bottom-padding-lg back-a2cece flex flex-col items-center content-evenly right-direction relative dark-box-shadow-l-b">
+        <div style="position: relative" class="m-w-50 no-full-width bottom-vertical-align">
+            <img class="redius-xl w-100" src="{{info.owner.imageAddress}}" ng-click="uploadPicture()">
+            <div class="w-100 feedgram-camera"></div>
+            <div class="w-20 feedgram-follow"></div>
         </div>
-        <div class="w-50" style="float: left;padding: .5px">
-            <img src="/assets/img/defaults/default-food.png" class="w-100">
+        <!-- <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="employee.imageAddress !== 'assets/img/defaults/default-mobile-employee.png'"></i> -->
+        <img ng-click="editModal.show()" src="../../../../assets/img/ui/mobile/edit.png"
+             class="absolute top-4 left-4 w-5" alt="">
+        <input type="file" ng-show="false" id="uploadFile">
+    </div>
+    <div style="padding: 20px">
+        <div class="w-50" style="float: right">
+            {{info.owner.name}}
+        </div>
+        <div class="w-50" style="float: left">
+            <div style="width: 30%;float: right">
+                <div style="float: right">{{info.commentCount}}</div>
+                <div class="feedgram-icons feedgram-posts"></div>
+            </div>
+            <div style="width: 30%;float: right">
+                <div style="float: right">{{info.followingCount}}</div>
+                <div class="feedgram-icons feedgram-followers"></div>
+            </div>
+            <div style="width: 30%;float: right">
+                <div style="float: right">{{info.followersCount}}</div>
+                <div class="feedgram-icons feedgram-followers"></div>
+            </div>
         </div>
     </div>
+    <div style="text-align: center;padding: 20px">
+        {{info.description}}
+    </div>
     <div>
-        <div class="w-65" style="float: right;padding: .5px">
-            <img src="/assets/img/defaults/default-food.png" class="w-100">
-        </div>
-        <div class="w-35" style="float: left">
-            <div class="h-50" style="padding: .5px">
+        <div>
+            <div class="w-50" style="float: right;padding: .5px">
                 <img src="/assets/img/defaults/default-food.png" class="w-100">
             </div>
-            <div class="h-50" style="padding: .5px">
+            <div class="w-50" style="float: left;padding: .5px">
                 <img src="/assets/img/defaults/default-food.png" class="w-100">
+            </div>
+        </div>
+        <div>
+            <div class="w-65" style="float: right;padding: .5px">
+                <img src="/assets/img/defaults/default-food.png" class="w-100">
+            </div>
+            <div class="w-35" style="float: left">
+                <div class="h-50" style="padding: .5px">
+                    <img src="/assets/img/defaults/default-food.png" class="w-100">
+                </div>
+                <div class="h-50" style="padding: .5px">
+                    <img src="/assets/img/defaults/default-food.png" class="w-100">
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <style>
     div {
         vertical-align: bottom !important;
     }
+
     .view-padding-top {
         padding-top: 44px;
     }
-    .feedgram-icons{
+
+    .feedgram-icons {
         background-position-x: left !important;
     }
 </style>
