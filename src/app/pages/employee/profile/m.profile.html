@@ -126,11 +126,11 @@
                             ng-model="employee.address.phone">
                         <div class="error-message"
                             ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
-                            حداکثر 11 کاراکتر وارد کنید
+                            حداکثر 100 کاراکتر وارد کنید
                         </div>
                         <div class="error-message"
                             ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
-                            حداقل 11 کاراکتر وارد کنید
+                            حداقل 100 کاراکتر وارد کنید
                         </div>
                         <div class="error-message"
                             ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
