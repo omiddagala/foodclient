@@ -456,7 +456,8 @@ ion-list .card {
 }
 
 .category-page {
-    margin-top: -3.5em;
+    /* margin-top: -3.5em; */
+    padding-top: 20px;
 }
 
 .header-img {

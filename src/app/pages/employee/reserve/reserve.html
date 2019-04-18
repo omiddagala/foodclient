@@ -17,7 +17,7 @@
     </button>
 </div>
 <!-- cardItem -->
-<div ng-init="orderList()">
+<div ng-init="orderList()" class="scroll-class1">
     <div class="article-mobile-list reserve-article">
         <div ng-repeat="myday in mydays" id="d-{{$index}}">
             <div ng-repeat="res in myday.restaurants" id="r-{{$parent.$index + '-' + $index}}" ng-if="res.show"
