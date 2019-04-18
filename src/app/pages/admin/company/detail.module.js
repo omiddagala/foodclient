@@ -45,6 +45,7 @@
                         .then(function (data, status, headers, config) {
                             stopLoading();
                             $scope.restInfo = data.data;
+                            $scope.selectedRest = data.data.restaurants;
                             prepareMapForLocation();
                         }).catch(function (err) {
                         $rootScope.handleError(id, "/adminCompanyManagementRest/findById", err, httpOptions);
@@ -101,6 +102,49 @@
                 $rootScope.handleError($scope.restInfo, "/adminCompanyManagementRest/addOrUpdateCompany", err, httpOptions);
             });
 
+        };
+
+        var delayTimer;
+        $scope.searchRestaurants = function (s) {
+            clearTimeout(delayTimer);
+            delayTimer = setTimeout(function () {
+                startLoading();
+                var token = localStorageService.get("my_access_token");
+                var httpOptions = {
+                    headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                };
+                var param = {
+                    "value": s,
+                    "pageableDTO": {
+                        "direction": 'ASC',
+                        "page": 0,
+                        "size": 15,
+                        "sortBy": 'name'
+                    }
+                };
+                $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/findByName",
+                    param,
+                    httpOptions)
+                    .success(function (data, status, headers, config) {
+                        $scope.rests = data.list;
+                        stopLoading();
+                    }).catch(function (err) {
+                    stopLoading();
+                    if (err.status === 401) {
+                        $rootScope.logout();
+                    }
+                });
+            }, 1000);
+        };
+        $scope.restChanged = function (a) {
+            $scope.restInfo.rests = a;
+            $scope.restInfo.rests = jQuery.map($scope.restInfo.rests, function (v, i) {
+                return v.id;
+            });
+        };
+
+        $scope.setRestrictionType = function (w) {
+            $scope.restInfo.restrictionType = w;
         };
 
         $scope.setForceVAT = function (v) {
