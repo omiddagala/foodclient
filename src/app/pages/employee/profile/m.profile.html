@@ -96,7 +96,7 @@
                             d="M22.003.009C9.848.009-.005 9.853-.005 21.997c0 12.145 9.853 21.989 22.008 21.989 12.154 0 22.007-9.844 22.007-21.989C44.01 9.853 34.157.009 22.003.009zM35.308 30.83c-.645.644-2.527 2.626-5.356 2.626-2.83 0-9.567-2.3-13.156-5.887-3.59-3.587-6.778-7.225-7.531-10.534-.752-3.312-.651-4.808.275-6.172 0 0 1.51-2.633 2.738-2.783 1.23-.152 2.812-.152 3.238.651.427.802 2.335 5.469 2.335 5.469s.327.803-.175 1.58-1.631 1.907-1.631 1.907-.628.802 0 1.655c.628.852 1.6 2.42 3.614 4.43 2.013 2.013 5.875 3.446 5.875 3.446s.552.075.905-.276c.35-.351 2.259-2.734 2.259-2.734s.612-.789 1.63-.326c1.018.464 5.423 2.659 5.423 2.659s.515.188.515.966c0 .777-.314 2.68-.958 3.323z" />
                     </svg>
 
-                    <div class="w-100">
+                    <div class="w-100 relative">
                         <input type="tel" class="transparent-back black-color" ng-maxlength="11" ng-minlength="11"
                             required name="mobile" ng-model="employee.address.mobile" id="mobile">
                         <div class="error-message"
@@ -120,7 +120,7 @@
                         <path fill="#A1A2A3" fill-rule="evenodd"
                             d="M22.003.009C9.848.009-.005 9.853-.005 21.997c0 12.145 9.853 21.989 22.008 21.989 12.154 0 22.007-9.844 22.007-21.989C44.01 9.853 34.157.009 22.003.009zM35.308 30.83c-.645.644-2.527 2.626-5.356 2.626-2.83 0-9.567-2.3-13.156-5.887-3.59-3.587-6.778-7.225-7.531-10.534-.752-3.312-.651-4.808.275-6.172 0 0 1.51-2.633 2.738-2.783 1.23-.152 2.812-.152 3.238.651.427.802 2.335 5.469 2.335 5.469s.327.803-.175 1.58-1.631 1.907-1.631 1.907-.628.802 0 1.655c.628.852 1.6 2.42 3.614 4.43 2.013 2.013 5.875 3.446 5.875 3.446s.552.075.905-.276c.35-.351 2.259-2.734 2.259-2.734s.612-.789 1.63-.326c1.018.464 5.423 2.659 5.423 2.659s.515.188.515.966c0 .777-.314 2.68-.958 3.323z" />
                     </svg>
-                    <div class="w-100">
+                    <div class="w-100 relative">
                         <input type="tel" ng-minlength="4" ng-maxlength="100" required
                             class="transparent-back black-color" id="phone" name="phone"
                             ng-model="employee.address.phone">
@@ -145,7 +145,7 @@
                         <path fill="#A1A2A3" fill-rule="evenodd"
                             d="M21.493 42.999c-11.876 0-21.506-9.627-21.506-21.504 0-11.876 9.63-21.504 21.506-21.504s21.503 9.628 21.503 21.504c0 11.877-9.627 21.504-21.503 21.504zm.51-37.04c-5.545-.172-10.177 4.185-10.349 9.729-.217 7.081 9.39 21.344 9.39 21.344s10.47-13.642 10.689-20.724c.171-5.544-4.184-10.178-9.73-10.349zm-5.044 9.357a4.755 4.755 0 1 1 9.503.295 4.755 4.755 0 0 1-9.503-.295z" />
                     </svg>
-                    <div class="w-100">
+                    <div class="w-100 relative">
                         <input ng-disabled="true" type="text" ng-maxlength="150" required
                             class="transparent-back black-color" name="adr" id="adr"
                             ng-model="employee.address.address">
@@ -167,9 +167,9 @@
                 <div class="color-319ab1 w-100 text-right font-xl line-height-initial bottom-margin-4">
                     Bio
                 </div>
-                <textarea class="w-100 no-resize" name="desc" ng-maxlength="500"
+                <textarea class="w-100 no-resize transparent-back" name="desc" ng-maxlength="500"
                     ng-model="employee.employeeInfo.biography" id="desc"
-                    placeholder="و دنیای شغلی شما چه آب و رنگی دارد؟" class="transparent-back"></textarea>
+                    placeholder="و دنیای شغلی شما چه آب و رنگی دارد؟"></textarea>
                 <div class="error-message"
                     ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
                     حداکثر 500 کاراکتر وارد کنید
@@ -312,7 +312,7 @@
                             <option class="black-color" value="MEN">مرد</option>
                         </select>
                     </div>
-                    <div class="col-xs-6 flex flex-col-xs top-margin-lg">
+                    <div class="col-xs-6 flex flex-col-xs top-margin-lg relative">
                         <label
                             class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">سن</label>
 
