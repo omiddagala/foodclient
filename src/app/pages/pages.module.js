@@ -714,6 +714,7 @@
                 p = p.toString();
                 return p.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
             }
+            return 0;
         };
         $rootScope.getTransactionType = function (type) {
             switch (type) {
