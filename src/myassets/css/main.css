@@ -47,12 +47,12 @@ ul.rating {
     transition: height 200ms;
 }
 
-#password + .glyphicon {
+#password+.glyphicon {
     cursor: pointer;
     pointer-events: all;
 }
 
-#pass + .glyphicon {
+#pass+.glyphicon {
     cursor: pointer;
     pointer-events: all;
 }
@@ -71,8 +71,7 @@ label.control-label {
 
 /*.............. global ........*/
 
-.form-control,
-.form-control:focus {
+.form-control, .form-control:focus {
     border: 1px solid #ccc !important;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
@@ -95,8 +94,7 @@ label.control-label {
     background: #c7c7c7;
 }
 
-.total-amount .paypal__item-name,
-.total-amount .paypal__item-price {
+.total-amount .paypal__item-name, .total-amount .paypal__item-price {
     margin-bottom: 10px;
     padding: 10px;
 }
@@ -160,7 +158,6 @@ nav.ng-scope {
     .admin-menu-top {
         display: none;
     }
-
     .admin-content.mycontent.ng-scope {
         margin-top: -67px !important;
         margin-right: 0;
@@ -795,8 +792,7 @@ nav.ng-scope {
 
 /*------------box shadow---------------*/
 
-.no-box-shadow:focus,
-.no-box-shadow {
+.no-box-shadow:focus, .no-box-shadow {
     box-shadow: none !important;
 }
 
@@ -1066,6 +1062,7 @@ nav.ng-scope {
 .no-overflow {
     overflow: hidden;
 }
+
 .no-overflow-imp {
     overflow: hidden !important;
 }
@@ -1261,9 +1258,7 @@ nav.ng-scope {
     border-radius: 100%;
 }
 
-.no-text-decoration,
-.no-text-decoration:hover,
-.no-text-decoration:focus {
+.no-text-decoration, .no-text-decoration:hover, .no-text-decoration:focus {
     text-decoration: none;
 }
 
@@ -1634,19 +1629,12 @@ nav.ng-scope {
     margin-bottom: 0;
 }
 
-ba-sidebar.expanding,
-ba-sidebar.expanding .al-sidebar,
-.al-sidebar.sabad__.expanding,
-.al-sidebar.sabad__.expanding .sabad,
-#mySearchSidebar.expanding {
+ba-sidebar.expanding, ba-sidebar.expanding .al-sidebar, .al-sidebar.sabad__.expanding, .al-sidebar.sabad__.expanding .sabad, #mySearchSidebar.expanding {
     display: block !important;
     width: 0;
 }
 
-ba-sidebar.expanded .al-sidebar,
-.al-sidebar.sabad__.expanded,
-.al-sidebar.sabad__.expanding .sabad,
-#mySearchSidebar.expanded {
+ba-sidebar.expanded .al-sidebar, .al-sidebar.sabad__.expanded, .al-sidebar.sabad__.expanding .sabad, #mySearchSidebar.expanded {
     width: 50vw;
 }
 
@@ -1654,9 +1642,7 @@ ba-sidebar.expanded .al-sidebar,
     min-width: 10em;
 }
 
-.btn:hover,
-.btn:focus,
-.btn.focus {
+.btn:hover, .btn:focus, .btn.focus {
     color: white !important;
 }
 
@@ -1668,15 +1654,12 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 50%;
     }
-
     .basis-sm {
         flex-basis: 60%
     }
-
     .basis-md {
         flex-basis: 70%;
     }
-
     .basis-lg {
         flex-basis: 80%
     }
@@ -1698,15 +1681,12 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 30%;
     }
-
     .basis-sm {
         flex-basis: 40%
     }
-
     .basis-md {
         flex-basis: 50%;
     }
-
     .basis-lg {
         flex-basis: 60%
     }
@@ -1716,15 +1696,12 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 20%;
     }
-
     .basis-sm {
         flex-basis: 30%
     }
-
     .basis-md {
         flex-basis: 40%;
     }
-
     .basis-lg {
         flex-basis: 50%
     }
@@ -1734,15 +1711,12 @@ ba-sidebar.expanded .al-sidebar,
     .basis-xs {
         flex-basis: 10%;
     }
-
     .basis-sm {
         flex-basis: 20%
     }
-
     .basis-md {
         flex-basis: 30%;
     }
-
     .basis-lg {
         flex-basis: 40%
     }
@@ -1752,53 +1726,41 @@ ba-sidebar.expanded .al-sidebar,
     .form_input_margin {
         flex-direction: column-reverse;
     }
-
-    .form_input_margin > div {
+    .form_input_margin>div {
         padding: 0;
     }
-
-    .form_input_margin > label {
+    .form_input_margin>label {
         padding: 0;
         margin-bottom: 10px;
     }
-
     .flex-xs {
         display: flex;
     }
-
     .flex-col-reverse-xs {
         flex-direction: column-reverse;
     }
-
     .flex-col-xs {
         flex-direction: column;
     }
-
     .self-baseline-xs {
         align-self: baseline !important;
     }
-
     .text-right-xs {
         text-align: right !important;
     }
-
     .flex-row-reverse-xs {
         flex-direction: row-reverse;
     }
-
     .col-6-xs {
         width: 45%;
     }
-
     .col-4-xs {
         width: 28%;
     }
-
     .modal-content {
         top: 50% !important;
         transform: translateY(-50%)
     }
-
     .al-sidebar-sublist.time {
         height: auto !important;
         width: 100% !important;
@@ -1810,57 +1772,44 @@ ba-sidebar.expanded .al-sidebar,
         margin-right: 0;
         margin-left: 0;
     }
-
     ba-sidebar {
         display: none !important;
     }
-
     .al-sidebar {
         display: none !important;
     }
-
     .menu-top {
         display: none;
     }
-
     .grid_sidebar__wrapper {
         margin-top: 105px;
     }
-
     .margin-center-lg {
         margin-left: auto;
         margin-right: auto;
     }
-
     .relative-lg {
         position: relative;
     }
-
     .r-lg-0 {
         right: 0 !important;
     }
-
     .top-margin-md-1200 {
         margin-top: 8px !important;
     }
-
     .fit-width-lg {
         width: -moz-fit-content !important;
         width: fit-content !important;
     }
-
     .full-width-lg {
         width: 100%;
     }
-
     .flex-row-lg {
         flex-direction: row !important;
     }
-
     .wrap-reverse-lg {
         flex-wrap: wrap-reverse;
     }
-
     .no-top-margin-lg {
         margin-top: 0 !important;
     }
@@ -1870,23 +1819,18 @@ ba-sidebar.expanded .al-sidebar,
     .dtp-ig {
         display: none;
     }
-
     .col-6-xs {
         width: 90%;
     }
-
     .col-4-xs {
         width: 90%;
     }
-
     .flex-col-500 {
         flex-direction: column !important;
     }
-
     .items-end-500 {
         align-items: end !important;
     }
-
     .margin-bottom-2-500 {
         margin-block-start: .5em;
     }
@@ -1902,10 +1846,7 @@ ba-sidebar.expanded .al-sidebar,
     color: white !important;
 }
 
-.white-color-hover:hover,
-.white-color-hover:focus,
-.white-color-hover:active,
-.white-color-hover:active:focus {
+.white-color-hover:hover, .white-color-hover:focus, .white-color-hover:active, .white-color-hover:active:focus {
     color: white
 }
 
@@ -1975,17 +1916,11 @@ ba-sidebar.expanded .al-sidebar,
     background-color: gray;
 }
 
-.gray-back-hover:hover,
-.gray-back-hover:focus,
-.gray-back-hover:active,
-.gray-back-hover:active:focus {
+.gray-back-hover:hover, .gray-back-hover:focus, .gray-back-hover:active, .gray-back-hover:active:focus {
     background-color: gray !important;
 }
 
-.candy-back-hover:hover,
-.candy-back-hover:focus,
-.candy-back-hover:active,
-.candy-back-hover:active:focus {
+.candy-back-hover:hover, .candy-back-hover:focus, .candy-back-hover:active, .candy-back-hover:active:focus {
     background-color: #f44545 !important;
 }
 
@@ -2012,8 +1947,7 @@ ba-sidebar.expanded .al-sidebar,
     transform: translateY(3.5em);
 }
 
-.modal-fit .modal-body,
-.modal-fit .modal-footer {
+.modal-fit .modal-body, .modal-fit .modal-footer {
     background-color: white !important;
 }
 
@@ -2021,8 +1955,7 @@ ba-sidebar.expanded .al-sidebar,
     color: #575757 !important;
 }
 
-.modal-fit .modal-body form textarea,
-.modal-fit .modal-body input {
+.modal-fit .modal-body form textarea, .modal-fit .modal-body input {
     color: #575757 !important;
     background-color: #ebebeb !important;
 }
@@ -2041,6 +1974,7 @@ ba-sidebar.expanded .al-sidebar,
 }
 
 /* ........................ modal styles .................. [end] */
+
 .feedgram-co-workers-container {
     margin: 25px;
 }
@@ -2108,14 +2042,35 @@ ba-sidebar.expanded .al-sidebar,
     justify-content: center;
     align-items: center;
 }
+
 .stick-search-bar {
     position: sticky !important;
     top: 44px !important;
 }
-a:hover{
-    text-decoration:unset !important;
+
+a:hover {
+    text-decoration: unset !important;
 }
-.article-mobile-list{
+
+/* .article-mobile-list { 
     overflow: auto;
-    max-height: 80vh;
+    max-height: calc(80vh - 72px);
+} */
+[ui-view] > div.scroll-class1 { /* وقتی در صفحه هم سرچ بار داریم و هم فوتر */
+    overflow: auto;
+    max-height: calc(100vh - 184px);
+}
+[ui-view] > div.scroll-class2 { /* وقتی در صفحه نه سرچ بار داریم و نه فوتر */
+    overflow: auto;
+    max-height: calc(100vh - 5em);
+    margin-top: 0 !important;
+}
+[ui-view] > div.scroll-class3 { /* وقتی در صفحه سرچ بار نداریم ولی فوتر داریم */
+    overflow: auto;
+    max-height: calc(100vh - 116px);
+    margin-top: 0 !important;
+}
+
+label {
+    direction: rtl;
 }

@@ -1,21 +1,21 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.fooddetail', [])
+    angular.module('BlurAdmin.pages.admin-fooddetail', [])
         .config(routeConfig)
-        .controller('fooddetailCtrl', detailCtrl);
+        .controller('adminFooddetailCtrl', adminFooddetailCtrl);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('fooddetail', {
-                url: '/fooddetail',
-                templateUrl: 'app/pages/restaurant/fooddetail/detail.html',
-                controller: 'fooddetailCtrl'
+            .state('admin-fooddetail', {
+                url: '/admin-fooddetail',
+                templateUrl: 'app/pages/admin/restaurant/fooddetail/detail.html',
+                controller: 'adminFooddetailCtrl'
             });
     }
 
-    function detailCtrl($scope, $filter, editableOptions, editableThemes, $location, $state, $http, $rootScope, localStorageService, toastrConfig, toastr) {
+    function adminFooddetailCtrl($scope, $filter, editableOptions, editableThemes, $location, $state, $http, $rootScope, localStorageService, toastrConfig, toastr) {
         $scope.initCtrl = function () {
             $scope.submitted = false;
             setTimeout(function () {
@@ -36,19 +36,20 @@
                 });
             }, 1000);
             $scope.foodid = $location.search().foodid;
-            $scope.restaurantLevel = $location.search().t;
+            // in add food that food.restaurant.restaurantLevel is not available
+            $scope.restaurantLevel = $location.search().l;
             if ($scope.foodid) {
                 startLoading();
                 var token = localStorageService.get("my_access_token");
                 var httpOptions = {
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
-                return $http.post("http://127.0.0.1:9000/v1/restaurant/food/getFoodById", $scope.foodid, httpOptions)
+                return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/getFoodById", {id: $scope.foodid}, httpOptions)
                     .then(function (data, status, headers, config) {
                         $scope.food = data.data;
                         stopLoading();
                     }).catch(function (err) {
-                        $rootScope.handleError($scope.foodid, "/restaurant/food/getFoodById", err, httpOptions);
+                        $rootScope.handleError($scope.foodid, "/adminRestaurantManagementRest/getFoodById", err, httpOptions);
                     });
             } else {
                 $scope.food = {
@@ -62,11 +63,13 @@
                         containerPrice: 0,
                         dailyDiscountRate: 0,
                         oneDayPreOrderDiscountRate: 0,
+                    },
+                    restaurant: {
+                        id : $location.search().id
                     }
                 }
             }
         };
-
         $scope.saveOrUpdateFood = function (form) {
             $scope.submitted = true;
             if (!form.$valid) {
@@ -77,7 +80,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/addFood", $scope.food, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/addFood", $scope.food, httpOptions)
                 .then(function (data, status, headers, config) {
                     if (!$scope.foodid)
                         $scope.food = data.data;
@@ -85,7 +88,7 @@
                     stopLoading();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError($scope.food, "/restaurant/food/addFood", err, httpOptions);
+                    $rootScope.handleError($scope.food, "/adminRestaurantManagementRest/addFood", err, httpOptions);
                 });
         };
 
@@ -106,7 +109,7 @@
                 id: dayId,
                 startTime: $('#from-' + index).val().replace(':', '')
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/addFoodAvailableDate", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/addFoodAvailableDate", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.food.availableDates = data.data;
                     stopLoading();
@@ -115,7 +118,7 @@
                     setTimeout(function () {
                         $('#edit-' + index).click();
                     }, 100);
-                    $rootScope.handleError(param, "/restaurant/food/addFoodAvailableDate", err, httpOptions);
+                    $rootScope.handleError(param, "/adminRestaurantManagementRest/addFoodAvailableDate", err, httpOptions);
                 });
         };
 
@@ -181,13 +184,13 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/deleteFoodAvailableDate", dayId, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/deleteFoodAvailableDate", dayId, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.food.availableDates.splice(index, 1);
                     stopLoading();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError(dayId, "/restaurant/food/deleteFoodAvailableDate", err, httpOptions);
+                    $rootScope.handleError(dayId, "/adminRestaurantManagementRest/deleteFoodAvailableDate", err, httpOptions);
                 });
         };
 
@@ -300,7 +303,7 @@
         }
 
         $scope.goBack = function () {
-            $state.go("food");
+            $location.path("/admin-food");
         };
 
         editableOptions.theme = 'bs3';

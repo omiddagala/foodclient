@@ -1,21 +1,21 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.myfood', [])
+    angular.module('BlurAdmin.pages.admin-food', [])
         .config(routeConfig)
-        .controller('foodCtrl', foodCtrl);
+        .controller('adminFoodCtrl', adminFoodCtrl);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('food', {
-                url: '/food',
-                templateUrl: 'app/pages/restaurant/foodlist/food.html',
-                controller: 'foodCtrl'
+            .state('admin-food', {
+                url: '/admin-food',
+                templateUrl: 'app/pages/admin/restaurant/foodlist/food.html',
+                controller: 'adminFoodCtrl'
             });
     }
 
-    function foodCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, $rootScope, localStorageService, $location, $uibModalStack, $uibModal, toastrConfig, toastr) {
+    function adminFoodCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, $rootScope, localStorageService, $location, $uibModalStack, $uibModal, toastrConfig, toastr) {
         $scope.smartTablePageSize = 50;
         var preventTwiceLoad = true;
 
@@ -50,6 +50,7 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
+                "id" : $location.search().id,
                 "value": $scope.foodName,
                 "pageableDTO": {
                     "direction": sort.reverse ? 'DESC' : 'ASC',
@@ -58,14 +59,14 @@
                     "sortBy": sort.predicate ? sort.predicate : 'name'
                 }
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/foodList", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/foodList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.foods = data.data.list;
                     $scope.restaurantLevel = data.data.restaurantLevel;
                     return data.data;
                 }).catch(function (err) {
-                    $rootScope.handleError(param, "/restaurant/food/foodList", err, httpOptions);
+                    $rootScope.handleError(param, "/adminRestaurantManagementRest/foodList", err, httpOptions);
                 });
 
         };
@@ -89,11 +90,11 @@
         };
 
         $scope.edit = function (foodid) {
-            $location.path('/fooddetail').search({foodid: foodid,t: $scope.restaurantLevel});
+            $location.path('/admin-fooddetail').search({id: $location.search().id,foodid: foodid,l: $scope.restaurantLevel});
         };
 
         $scope.addFood = function () {
-            $location.path("/fooddetail").search({t: $scope.restaurantLevel});
+            $location.path("/admin-fooddetail").search({id: $location.search().id,l: $scope.restaurantLevel});
         };
 
         $scope.removeFood = function () {
@@ -102,7 +103,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/deleteFood", $scope.item.id, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/deleteFood", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.foods.splice($scope.itemIndex, 1);
                     if ($scope.foods.length === 0) {
@@ -111,7 +112,7 @@
                     $uibModalStack.dismissAll();
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError($scope.item.id, "/restaurant/food/deleteFood", err, httpOptions);
+                    $rootScope.handleError($scope.item.id, "/adminRestaurantManagementRest/deleteFood", err, httpOptions);
                 });
         };
 

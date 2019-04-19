@@ -140,7 +140,11 @@
                     if (data.length > 0) {
                         $scope.setDateForCardsAndDetail();
                         if (params.pageableDTO.page === 0) {
-                            $rootScope.foods = data;
+                            $rootScope.foods = [];
+                            setTimeout(function () {
+                                $rootScope.foods = data;
+                                $rootScope.$apply();
+                            },200);
                         } else {
                             $.merge($rootScope.foods, data);
                         }
@@ -327,6 +331,9 @@
         $scope.search = function (dateChanged) {
             clearTimeout(delayTimer);
             delayTimer = setTimeout(function () {
+                $('.main-stage > div').animate({
+                    scrollTop: 0
+                }, 'fast');
                 $rootScope.empPageNum = 0;
                 var t = $('#taghvim').find('input').val();
                 $("#dateForOrder").val(t);

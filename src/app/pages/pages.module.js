@@ -75,7 +75,9 @@
         'BlurAdmin.pages.feedgram-detail',
         'BlurAdmin.pages.feedgram-co',
         'BlurAdmin.pages.feedgram-profile',
-        'BlurAdmin.pages.feedgram-post'
+        'BlurAdmin.pages.feedgram-post',
+        'BlurAdmin.pages.admin-food',
+        'BlurAdmin.pages.admin-fooddetail'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -818,6 +820,9 @@
             return $rootScope.currentMobileActiveMenu && $rootScope.currentMobileActiveMenu.includes("feedgram");
         };
 
+        $rootScope.isKarafeedRestaurant = function (level) {
+            return level && level.toLowerCase().indexOf("karafeed") >= 0;
+        };
         ////
         var username = $rootScope.username;
         // var stars =  star in mobile menu

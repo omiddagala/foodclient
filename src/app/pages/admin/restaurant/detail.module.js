@@ -154,6 +154,10 @@
             $scope.restInfo.workAtVacation = w;
         };
 
+        $scope.setRestaurantIsKarafeed = function(k){
+            $scope.restInfo.restaurantLevel = k
+        };
+
         var poly;
 
         function prepareMapForDeliveryZone(points) {

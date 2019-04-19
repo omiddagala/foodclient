@@ -1,30 +1,32 @@
-<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
-    <div class="tabs">
-        <a class="tab-item active" id="1" ng-click="getAllEmployees('1')">
-            همکاران
-        </a>
-        <a class="tab-item" id="2" ng-click="getFollowers('2')">
-            دنبال کننده ها
-        </a>
-        <a class="tab-item" id="3" ng-click="getFollowings('3')">
-            دنبال شوندگان
-        </a>
-    </div>
-</div>
-<div class="feedgram-co-workers-container">
-    <div style="position: relative" class="w-33 right-float" ng-repeat="item in colleagues">
-        <div class="feedgram-circle" ng-click="goToProfile()" style="background-image: url({{item.imageAddress}})">
+<div>
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+        <div class="tabs">
+            <a class="tab-item active" id="1" ng-click="getAllEmployees('1')">
+                همکاران
+            </a>
+            <a class="tab-item" id="2" ng-click="getFollowers('2')">
+                دنبال کننده ها
+            </a>
+            <a class="tab-item" id="3" ng-click="getFollowings('3')">
+                دنبال شوندگان
+            </a>
         </div>
-        <div ng-if="!item.following" ng-click="follow(item.id)" class="w-20 feedgram-follow"></div>
-        <div style="text-align: center">{{item.name}}</div>
-        <div>
-            <div style="width: 50%;float: right">
-                <div class="feedgram-icons feedgram-posts left-float"></div>
-                <div class="left-float">11</div>
+    </div>
+    <div class="feedgram-co-workers-container">
+        <div style="position: relative" class="w-33 right-float" ng-repeat="item in colleagues">
+            <div class="feedgram-circle" ng-click="goToProfile()" style="background-image: url({{item.imageAddress}})">
             </div>
-            <div style="width: 50%;float: right">
-                <div class="feedgram-icons feedgram-followers left-float"></div>
-                <div class="left-float">15</div>
+            <div ng-if="!item.following" ng-click="follow(item.id)" class="w-20 feedgram-follow"></div>
+            <div style="text-align: center">{{item.name}}</div>
+            <div>
+                <div style="width: 50%;float: right">
+                    <div class="feedgram-icons feedgram-posts left-float"></div>
+                    <div class="left-float">11</div>
+                </div>
+                <div style="width: 50%;float: right">
+                    <div class="feedgram-icons feedgram-followers left-float"></div>
+                    <div class="left-float">15</div>
+                </div>
             </div>
         </div>
     </div>
@@ -33,10 +35,12 @@
     .view-padding-top {
         padding-top: 100px;
     }
+
     .tabs-striped.tabs-background-positive .tabs {
         background-color: rgb(243, 94, 94) !important;
     }
-    .tabs-background-positive .tabs, .tabs-background-positive>.tabs{
+
+    .tabs-background-positive .tabs, .tabs-background-positive > .tabs {
         border-color: black !important;
     }
 </style>
