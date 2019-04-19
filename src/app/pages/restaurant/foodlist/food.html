@@ -5,7 +5,7 @@
 <aside id="mySearchSidebar" class="al-sidebar">
     <div class="slimScrollDiv grid_sidebar__wrapper">
         <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
-            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+            <li ng-if="!isKarafeedRestaurant(restaurantLevel)" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
                 ba-sidebar-toggling-item="item" style="height: 150px;">
                 <div class="al-sidebar-list-link text-right default-cursor" ng-click="addFood()">
                     <img style="width: 88px" src="/assets/img/ui/add-employee.png">

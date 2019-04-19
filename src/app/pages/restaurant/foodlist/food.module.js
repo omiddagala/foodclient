@@ -89,11 +89,11 @@
         };
 
         $scope.edit = function (foodid) {
-            $location.path('/fooddetail').search({foodid: foodid});
+            $location.path('/fooddetail').search({foodid: foodid,t: $scope.restaurantLevel});
         };
 
         $scope.addFood = function () {
-            $state.go("fooddetail");
+            $location.path("/fooddetail").search({t: $scope.restaurantLevel});
         };
 
         $scope.removeFood = function () {

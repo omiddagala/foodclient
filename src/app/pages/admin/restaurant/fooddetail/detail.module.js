@@ -35,20 +35,24 @@
                     return false;
                 });
             }, 1000);
-            startLoading();
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/getFoodById", $location.search().foodid, httpOptions)
-                .then(function (data, status, headers, config) {
-                    $scope.food = data.data;
-                    stopLoading();
-                }).catch(function (err) {
-                    $rootScope.handleError($scope.foodid, "/adminRestaurantManagementRest/getFoodById", err, httpOptions);
-                });
+            $scope.foodid = $location.search().foodid;
+            // in add food that food.restaurant.restaurantLevel is not available
+            $scope.restaurantLevel = $location.search().l;
+            if ($scope.foodid) {
+                startLoading();
+                var token = localStorageService.get("my_access_token");
+                var httpOptions = {
+                    headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+                };
+                return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/getFoodById", {id: $scope.foodid}, httpOptions)
+                    .then(function (data, status, headers, config) {
+                        $scope.food = data.data;
+                        stopLoading();
+                    }).catch(function (err) {
+                        $rootScope.handleError($scope.foodid, "/adminRestaurantManagementRest/getFoodById", err, httpOptions);
+                    });
+            }
         };
-
         $scope.saveOrUpdateFood = function (form) {
             $scope.submitted = true;
             if (!form.$valid) {
@@ -99,10 +103,6 @@
                     }, 100);
                     $rootScope.handleError(param, "/adminRestaurantManagementRest/addFoodAvailableDate", err, httpOptions);
                 });
-        };
-
-        $scope.setRestaurantIsKarafeed = function(k){
-            $scope.food.restaurant.restaurantLevel = k
         };
 
         $scope.days = [
@@ -286,7 +286,7 @@
         }
 
         $scope.goBack = function () {
-            $state.go("food");
+            $location.path("/admin-food");
         };
 
         editableOptions.theme = 'bs3';

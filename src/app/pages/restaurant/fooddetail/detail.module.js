@@ -36,6 +36,7 @@
                 });
             }, 1000);
             $scope.foodid = $location.search().foodid;
+            $scope.restaurantLevel = $location.search().t;
             if ($scope.foodid) {
                 startLoading();
                 var token = localStorageService.get("my_access_token");
@@ -49,22 +50,6 @@
                     }).catch(function (err) {
                         $rootScope.handleError($scope.foodid, "/restaurant/food/getFoodById", err, httpOptions);
                     });
-            } else {
-                $scope.food = {
-                    id: null,
-                    name: null,
-                    foodType: 'IRANIAN',
-                    mealAverageCalorie: 0,
-                    availableDates: [],
-                    price: {
-                        foodPrice: 0,
-                        containerPrice: 0,
-                        dailyDiscountRate: 0,
-                        oneDayPreOrderDiscountRate: 0,
-                        sevenDaysPreOrderDiscountRate: 0,
-                        threeDaysPreOrderDiscountRate: 0
-                    }
-                }
             }
         };
 

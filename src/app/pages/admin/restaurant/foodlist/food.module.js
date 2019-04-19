@@ -63,6 +63,7 @@
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.foods = data.data.list;
+                    $scope.restaurantLevel = data.data.restaurantLevel;
                     return data.data;
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/adminRestaurantManagementRest/foodList", err, httpOptions);
@@ -89,11 +90,11 @@
         };
 
         $scope.edit = function (foodid) {
-            $location.path('/admin-fooddetail').search({foodid: foodid});
+            $location.path('/admin-fooddetail').search({id: $location.search().id,foodid: foodid,l: $scope.restaurantLevel});
         };
 
         $scope.addFood = function () {
-            $state.go("admin-fooddetail");
+            $location.path("/admin-fooddetail").search({l: $scope.restaurantLevel});
         };
 
         $scope.removeFood = function () {

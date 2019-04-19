@@ -54,7 +54,7 @@
                         <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-9">
                                 <input tabindex="1" ng-model="food.name" ng-maxlength="70" ng-minlength="2" type="text"
-                                    class="form-control right-text" name="name" required id="name" ng-disabled="isKarafeedRestaurant(food.restaurant.restaurantLevel)">
+                                    class="form-control right-text" name="name" required id="name" ng-disabled="isKarafeedRestaurant(restaurantLevel)">
                                 <div class="error-message" ng-show="(myform.name.$dirty || submitted) && inputIsInvalid(myform.name.$valid,'name') && myform.name.$error.maxlength">
                                     حداکثر 70 کاراکتر وارد کنید
                                 </div>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-9">
-                                <textarea ng-disabled="isKarafeedRestaurant(food.restaurant.restaurantLevel)" tabindex="3" rows="2" ng-model="food.ingredients" ng-maxlength="250" class="form-control fit-height-imp no-resize text-right right-direction"
+                                <textarea ng-disabled="isKarafeedRestaurant(restaurantLevel)" tabindex="3" rows="2" ng-model="food.ingredients" ng-maxlength="250" class="form-control fit-height-imp no-resize text-right right-direction"
                                     name="ingredients" id="ingredients"></textarea>
                                 <div class="error-message" ng-show="(myform.ingredients.$dirty || submitted) && inputIsInvalid(myform.ingredients.$valid,'ingredients') && myform.ingredients.$error.maxlength">
                                     حداکثر 250 کاراکتر وارد کنید
@@ -81,7 +81,7 @@
                     <div class="col-sm-6 col-xs-12">
                         <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-9">
-                                <select ng-disabled="isKarafeedRestaurant(food.restaurant.restaurantLevel)" tabindex="2" class="form-control btn-primary" ng-model="food.foodType"
+                                <select ng-disabled="isKarafeedRestaurant(restaurantLevel)" tabindex="2" class="form-control btn-primary" ng-model="food.foodType"
                                     data-style="btn-primary" selectpicker>
                                     <option class="black-color" value="IRANIAN">ایرانی</option>
                                     <option class="black-color" value="FAST_FOOD">فست فود</option>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-9">
-                                <input ng-disabled="isKarafeedRestaurant(food.restaurant.restaurantLevel)" tabindex="4" type="number" ng-maxlength="15" name="calories" ng-model="food.mealAverageCalorie"
+                                <input ng-disabled="isKarafeedRestaurant(restaurantLevel)" tabindex="4" type="number" ng-maxlength="15" name="calories" ng-model="food.mealAverageCalorie"
                                     class="form-control right-text" id="calories">
                                 <div class="error-message" ng-show="(myform.calories.$dirty || submitted) && inputIsInvalid(myform.calories.$valid,'calories') && myform.calories.$error.maxlength">
                                     حداکثر 15 کاراکتر وارد کنید
@@ -107,7 +107,7 @@
                 <h3 class="with-line header-color">هزینه ها</h3>
                 <div class="row flex wrap">
                     <div class="col-sm-6 col-xs-12">
-                        <div ng-if="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="!isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.foodPrice"
                                        name="price" class="form-control text-right" id="price">
@@ -123,7 +123,7 @@
                             </div>
                             <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">قیمت</label>
                         </div>
-                        <div ng-if="isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input ng-disabled="true" tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.oneDayPreOrderBuyPrice"
                                        name="oneDayPreOrderBuyPrice" class="form-control text-right" id="oneDayPreOrderBuyPrice">
@@ -139,7 +139,7 @@
                             </div>
                             <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">قیمت</label>
                         </div>
-                        <div ng-if="isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input ng-disabled="true" tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.karafeedBenefit"
                                        name="karafeedBenefit" class="form-control text-right" id="karafeedBenefit">
@@ -155,7 +155,7 @@
                             </div>
                             <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">سهم کارافید(به تومان)</label>
                         </div>
-                        <div ng-if="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="!isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="6" type="number" ng-maxlength="2" min="0" required ng-model="food.price.dailyDiscountRate"
                                        class="form-control text-right" name="dailyPreorder" id="dailyPreorder">
@@ -176,7 +176,7 @@
                     <div class="col-sm-6 col-xs-12">
                         <div class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
-                                <input ng-disabled="isKarafeedRestaurant(food.restaurant.restaurantLevel)" tabindex="7" type="number" ng-maxlength="15" min="0" required ng-model="food.price.containerPrice"
+                                <input ng-disabled="isKarafeedRestaurant(restaurantLevel)" tabindex="7" type="number" ng-maxlength="15" min="0" required ng-model="food.price.containerPrice"
                                        class="form-control text-right" name="containerPrice" id="containerPrice">
                                 <div class="error-message" ng-show="(myform.containerPrice.$dirty || submitted) && inputIsInvalid(myform.containerPrice.$valid,'containerPrice') && myform.containerPrice.$error.maxlength">
                                     حداکثر 15 کاراکتر وارد کنید
@@ -190,7 +190,7 @@
                             </div>
                             <label for="containerPrice" class="col-sm-6 control-label">هزینه ظرف</label>
                         </div>
-                        <div ng-if="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="!isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="8" type="number" ng-maxlength="2" min="0" required ng-model="food.price.oneDayPreOrderDiscountRate"
                                        class="form-control text-right" name="oneDayPreorder" id="oneDayPreorder">
@@ -211,10 +211,10 @@
                     </div>
                 </div>
                 <div class="margin__top_10 margin__bottom_20 left-text">
-                    <button ng-if="food.id && !isKarafeedRestaurant(food.restaurant.restaurantLevel)" type="submit" class=" btn confirm_button confirm_yes padding-md fit-width no-margin-imp">
+                    <button ng-if="food.id && !isKarafeedRestaurant(restaurantLevel)" type="submit" class=" btn confirm_button confirm_yes padding-md fit-width no-margin-imp">
                         بروزرسانی غذا
                     </button>
-                    <button ng-if="!food.id && !isKarafeedRestaurant(food.restaurant.restaurantLevel)" type="submit" class="btn confirm_button confirm_yes padding-md fit-width no-margin-imp">
+                    <button ng-if="!food.id && !isKarafeedRestaurant(restaurantLevel)" type="submit" class="btn confirm_button confirm_yes padding-md fit-width no-margin-imp">
                         ثبت غذا
                     </button>
                     <button type="button" ng-click="goBack()" class="btn confirm_button confirm_no padding-md fit-width no-margin-imp">

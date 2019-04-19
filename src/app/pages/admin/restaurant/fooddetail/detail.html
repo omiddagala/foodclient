@@ -107,28 +107,7 @@
                 <h3 class="with-line header-color">هزینه ها</h3>
                 <div class="row flex wrap">
                     <div class="col-sm-6 col-xs-12">
-                        <div class="form-group row flex-xs">
-                            <label class="col-md-6 col-xs-8 control-label right-float">رستوران کارافیدی است</label>
-                            <div class="col-md-3 col-xs-2" style="text-align: right">
-                                <label class="radio-inline custom-radio nowrap">
-                                    <input ng-click="setRestaurantIsKarafeed('KARAFEED')" ng-checked="isKarafeedRestaurant(food.restaurant.restaurantLevel)"
-                                           type="radio" name="inlineRadioOptions2" value="option3">
-                                    <span>بله</span>
-                                </label>
-                            </div>
-                            <div class="col-md-3 col-xs-2" style="text-align: right">
-                                <label class="radio-inline custom-radio nowrap">
-                                    <input ng-click="setRestaurantIsKarafeed('GOOD')" ng-checked="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" type="radio"
-                                           name="inlineRadioOptions3" value="option4">
-                                    <span>خیر</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div ng-if="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="!isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.foodPrice"
                                     name="price" class="form-control text-right" id="price">
@@ -144,7 +123,7 @@
                             </div>
                             <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">قیمت</label>
                         </div>
-                        <div ng-if="isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.oneDayPreOrderBuyPrice"
                                     name="oneDayPreOrderBuyPrice" class="form-control text-right" id="oneDayPreOrderBuyPrice">
@@ -158,9 +137,9 @@
                                     پر کردن این فیلد اجباریست
                                 </div>
                             </div>
-                            <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">قیمت</label>
+                            <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">قیمت خرید</label>
                         </div>
-                        <div ng-if="isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="5" type="number" ng-maxlength="15" min="0" required ng-model="food.price.karafeedBenefit"
                                     name="karafeedBenefit" class="form-control text-right" id="karafeedBenefit">
@@ -176,7 +155,7 @@
                             </div>
                             <label for="price" class="col-sm-6 control-label bottom-margin-lg-imp">سهم کارافید(به تومان)</label>
                         </div>
-                        <div ng-if="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="!isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="6" type="number" ng-maxlength="2" min="0" required ng-model="food.price.dailyDiscountRate"
                                     class="form-control text-right" name="dailyPreorder" id="dailyPreorder">
@@ -211,7 +190,7 @@
                             </div>
                             <label for="containerPrice" class="col-sm-6 control-label">هزینه ظرف</label>
                         </div>
-                        <div ng-if="!isKarafeedRestaurant(food.restaurant.restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
+                        <div ng-if="!isKarafeedRestaurant(restaurantLevel)" class="form-group row clearfix flex flex-row-reverse flex-col-reverse-xs">
                             <div class="col-sm-6">
                                 <input tabindex="8" type="number" ng-maxlength="2" min="0" required ng-model="food.price.oneDayPreOrderDiscountRate"
                                     class="form-control text-right" name="oneDayPreorder" id="oneDayPreorder">
