@@ -76,7 +76,11 @@
                     stopLoading();
                     if (data.list.length > 0) {
                         if (params.pageableDTO.page === 0){
-                            $scope.rests = data.list;
+                            $scope.rests = [];
+                            setTimeout(function () {
+                                $scope.rests = data.list;
+                                $scope.$apply();
+                            },200);
                         } else {
                             $.merge($scope.rests, data.list);
                         }
@@ -147,6 +151,9 @@
         $scope.search = function () {
             clearTimeout(delayTimer);
             delayTimer = setTimeout(function () {
+                $('.main-stage > div').animate({
+                    scrollTop: 0
+                }, 'fast');
                 $rootScope.resPageNum = 0;
                 $scope.loadContent(false, true)
             }, 1000);
