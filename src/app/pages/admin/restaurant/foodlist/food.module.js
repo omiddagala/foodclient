@@ -94,7 +94,7 @@
         };
 
         $scope.addFood = function () {
-            $location.path("/admin-fooddetail").search({l: $scope.restaurantLevel});
+            $location.path("/admin-fooddetail").search({id: $location.search().id,l: $scope.restaurantLevel});
         };
 
         $scope.removeFood = function () {

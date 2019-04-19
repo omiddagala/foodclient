@@ -51,6 +51,23 @@
                     }).catch(function (err) {
                         $rootScope.handleError($scope.foodid, "/adminRestaurantManagementRest/getFoodById", err, httpOptions);
                     });
+            } else {
+                $scope.food = {
+                    id: null,
+                    name: null,
+                    foodType: 'IRANIAN',
+                    mealAverageCalorie: 0,
+                    availableDates: [],
+                    price: {
+                        foodPrice: 0,
+                        containerPrice: 0,
+                        dailyDiscountRate: 0,
+                        oneDayPreOrderDiscountRate: 0,
+                    },
+                    restaurant: {
+                        id : $location.search().id
+                    }
+                }
             }
         };
         $scope.saveOrUpdateFood = function (form) {
@@ -186,7 +203,7 @@
         $scope.addDay = function () {
             $scope.inserted = {
                 id: null,
-                dayOfWeek: null,
+                dayOfWeek: 6,
                 count: 0,
                 startTime: '00:00',
                 endTime: '23:59'
