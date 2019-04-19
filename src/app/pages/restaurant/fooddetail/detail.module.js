@@ -50,6 +50,20 @@
                     }).catch(function (err) {
                         $rootScope.handleError($scope.foodid, "/restaurant/food/getFoodById", err, httpOptions);
                     });
+            } else {
+                $scope.food = {
+                    id: null,
+                    name: null,
+                    foodType: 'IRANIAN',
+                    mealAverageCalorie: 0,
+                    availableDates: [],
+                    price: {
+                        foodPrice: 0,
+                        containerPrice: 0,
+                        dailyDiscountRate: 0,
+                        oneDayPreOrderDiscountRate: 0,
+                    }
+                }
             }
         };
 
@@ -177,8 +191,8 @@
                 });
         };
 
-        $scope.removeEmptyRow = function(index,id){
-            if (!id){
+        $scope.removeEmptyRow = function (index, id) {
+            if (!id) {
                 $scope.food.availableDates.splice(index, 1);
             }
         };
@@ -186,7 +200,7 @@
         $scope.addDay = function () {
             $scope.inserted = {
                 id: null,
-                dayOfWeek: null,
+                dayOfWeek: 6,
                 count: 0,
                 startTime: '00:00',
                 endTime: '23:59'
@@ -222,23 +236,23 @@
                 var file = this.files[0];
                 if (!file)
                     return;
-                if(!file.type || $.inArray(file.type.substr(file.type.indexOf("/") + 1), ['png','jpg','jpeg']) === -1) {
+                if (!file.type || $.inArray(file.type.substr(file.type.indexOf("/") + 1), ['png', 'jpg', 'jpeg']) === -1) {
                     showMessage(toastrConfig, toastr, "خطا", "لطفا فایل عکس آپلود کنید", "error");
                     return;
                 }
                 startLoading();
                 img.onload = function () {
-                    if (this.width > 1600){
+                    if (this.width > 1600) {
                         showMessage(toastrConfig, toastr, "خطا", "عرض عکس باید کمتر از ۱۶۰۰ پیکسل باشد", "error");
                         stopLoading();
                         return;
                     }
-                    if (this.height>1600){
+                    if (this.height > 1600) {
                         showMessage(toastrConfig, toastr, "خطا", "ارتفاع عکس باید کمتر از ۱۶۰۰ پیکسل باشد", "error");
                         stopLoading();
                         return;
                     }
-                    if (!(this.width > this.height)){
+                    if (!(this.width > this.height)) {
                         showMessage(toastrConfig, toastr, "خطا", "لطفا عکس با قالب مستطیلی انتخاب کنید", "error");
                         stopLoading();
                         return;
@@ -250,7 +264,7 @@
                         quality: 80,
                         //rotate: 90,
                         callback: function (data, width, height) {
-                            if ((4 * Math.ceil((data.length / 3))*0.5624896334383812)/1000 > 600){
+                            if ((4 * Math.ceil((data.length / 3)) * 0.5624896334383812) / 1000 > 600) {
                                 showMessage(toastrConfig, toastr, "خطا", "حجم فایل زیاد است", "error");
                                 stopLoading();
                                 return;
