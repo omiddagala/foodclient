@@ -32,7 +32,7 @@ function myview(data) {
 
     var win = window.open("#","_blank");
     var title = "my tab title";
-    win.document.write('<html><title>'+ title +'</title><body style="margin-top: 0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">');
+    win.document.write('<html><title>'+ title +'</title><body style="margin: 0px !important;padding: 0 !important;">');
     win.document.write(objbuilder);
     win.document.write('</body></html>');
     jQuery(win.document);
@@ -40,114 +40,111 @@ function myview(data) {
 
 function prepareFactorToPrint(item,$rootScope) {
     var param = '<div class="myprint" style="page-break-after:always;">' +
-        '<h6 style="margin-bottom: 10px !important;' +
-        'text-align: center;">'+item.restaurant.name+'</h6>' +
-        '<h6 style="margin-bottom: 10px !important;' +
-        'text-align: center;">'+item.restaurant.address.address+'</h6>' +
-        '<h6 style="margin-bottom: 10px !important;' +
-        'text-align: center;">'+item.restaurant.address.phone+'</h6>' +
+        '<h5 style="text-align: center;font-size: medium;direction: rtl">'+item.restaurant.name+'</h5>' +
+        '<h5 style="text-align: center;font-size: medium;direction: rtl">'+item.restaurant.address.address+'</h5>' +
+        '<h5 style="text-align: center;font-size: medium;direction: rtl">'+item.restaurant.address.phone+'</h5>' +
         '<div style="list-style: none;">' +
         '<div>' +
         '<div style="animation-delay: 1.5s;height: 20px;border-bottom:1px solid black;border-bottom-width:thin' +
         'border-bottom: 2px dashed black !important;font-size: small;border-top: 0;list-style-type: none;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 25%;text-align: left;"> قیمت </span>' +
-        '<span style="color: black;font-weight: 300;width: 25%;text-align: center"> تخفیف </span>' +
-        '<span style="color: black;font-weight: 300;width: 50%;text-align: right;float: right;"> نام غذا </span>' +
+        '<div style="float: left;letter-spacing: 1px;color: black;width: 30%;text-align: left;font-size: medium"> قیمت </div>' +
+        '<div style="float:left;color: black;font-weight: 300;width: 30%;text-align: center;font-size: medium"> تخفیف </div>' +
+        '<span style="color: black;font-weight: 300;width: 40%;text-align: right;float: right;font-size: medium;direction: rtl"> نام غذا </span>' +
         '</div>' +
         '</div>';
     for (var i = 0; i < item.foodOrders.length; i++) {
         param += '<div>' +
             '<div style="animation-delay: 1.5s;overflow: auto;' +
-            'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;list-style-type: none;">' +
-            '<span style="float: left;letter-spacing: 1px;color: black;width: 25%;text-align: left;">' + $rootScope.formatPrice(item.foodOrders[i].foodPriceAfterOff) + '</span>' +
-            '<span style="letter-spacing: 1px;color: black;width: 25%;text-align: center;">' + $rootScope.formatPrice(item.foodOrders[i].foodOriginalPrice - item.foodOrders[i].foodPriceAfterOff) + '</span>' +
-            '<span style="color: black;font-weight: 300;width: 50%;text-align: right;float: right;">' + item.foodOrders[i].food.name + '</span>' +
+            'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;list-style-type: none;line-height: 30px">' +
+            '<div style="float: left;letter-spacing: 1px;color: black;width: 30%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodPriceAfterOff) + '</div>' +
+            '<div style="float:left;letter-spacing: 1px;color: black;width: 30%;text-align: center;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodOriginalPrice - item.foodOrders[i].foodPriceAfterOff) + '</div>' +
+            '<div style="color: black;font-weight: 300;width: 40%;text-align: right;float: right;font-size: medium">' + item.foodOrders[i].food.name + '</div>' +
             '</div>' +
             '</div>'
     }
     param += '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;list-style-type: none;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;">'+$rootScope.formatPrice(item.totalContainerPrice)+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;">ظرف</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;list-style-type: none;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">'+$rootScope.formatPrice(item.totalContainerPrice)+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">ظرف</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="overflow: auto;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;list-style-type: none;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;">'+(item.totalTaxAmount + item.deliveryPriceTax)+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;">مالیات</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;list-style-type: none;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">'+(item.totalTaxAmount + item.deliveryPriceTax)+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">مالیات</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="overflow: auto;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;list-style-type: none;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;">'+$rootScope.formatPrice(item.deliveryPrice)+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;">هزینه حمل</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;list-style-type: none;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">'+$rootScope.formatPrice(item.deliveryPrice)+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">هزینه حمل</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div ' +
-        'style="animation-delay: 1.5s;overflow: auto;list-style-type: none;font-size: x-small;border-top: 0;margin-bottom: 0;border-top: 1px solid black !important;border-bottom: none !important;">' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;">مجموع</span><span ' +
-        'style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;">'+item.totalAmount+'</span>' +
+        'style="animation-delay: 1.5s;overflow: auto;list-style-type: none;font-size: x-small;border-top: 0;margin-bottom: 0;border-top: 1px solid black !important;border-bottom: none !important;line-height: 30px">' +
+        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">مجموع</span><span ' +
+        'style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">'+item.totalAmount+'</span>' +
         '</div>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;">'+item.employee.company.name+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;">مشتری</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+item.employee.company.name+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">مشتری</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;">'+item.employee.name+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;">تحویل گیرنده</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+item.employee.name+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">تحویل گیرنده</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;">'+item.employee.address.address+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;">آدرس</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+item.employee.address.address+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">آدرس</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;">'+item.employee.address.phone+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;">شماره</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+item.employee.address.phone+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">شماره</span>' +
         '</div>' +
         '</div>' +
         '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;">'+$rootScope.myFormatDate(item.deliveryDate)+'</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;">زمان تحویل</span>' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+$rootScope.myFormatDate(item.deliveryDate)+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">زمان تحویل</span>' +
         '</div>' +
         '</div>';
         if (item.description) {
             param += '<div>' +
             '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-            'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;">' +
-            '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;">' + item.description + '</span>' +
-            '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;">توضیحات</span>' +
+            'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+            '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.description + '</span>' +
+            '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">توضیحات</span>' +
             '</div>' +
             '</div>';
         }
-        param += '</div>' +
-            '<style>@page  {size: 8cm 100%}</style>';
+        param += '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 30px">کارافید</div>' +
+            '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 10px">02126712337</div>' +
+            '</div>';
     return param;
 }
 
 function printFactor(param) {
-    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    var mywindow = window.open('', 'PRINT', 'height=auto,width=8cm');
     mywindow.document.write('<html><head><title></title>');
-    mywindow.document.write('</head><body >');
-    mywindow.document.write('<h1></h1>');
+    mywindow.document.write('</head><body style="padding: 0 !important;margin: 0 !important;">');
     mywindow.document.write(param);
     mywindow.document.write('</body></html>');
 
