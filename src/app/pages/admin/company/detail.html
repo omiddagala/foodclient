@@ -238,9 +238,17 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="3" ng-model="restInfo.minExtraHourForPreOrder"
+                                       type="number"
+                                       class="form-control" id="minExtraHourForPreOrder" name="minExtraHourForPreOrder" placeholder="">
+                            </div>
+                            <label class="col-sm-4 col-xs-12 control-label">محدودیت سفارش دهی کارمندان(ساعت)</label>
+                        </div>
                     </div>
                     <div class="col-sm-6 col-xs-12">
-                        <div class="form-group row flex-xs">
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
                             <div class="col-md-3 col-xs-2" style="text-align: right">
                                 <label class="radio-inline custom-radio nowrap">
                                     <input ng-click="setRestrictionType('RESTAURANT_LIST')"
