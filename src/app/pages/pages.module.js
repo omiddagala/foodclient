@@ -77,7 +77,8 @@
         'BlurAdmin.pages.feedgram-profile',
         'BlurAdmin.pages.feedgram-post',
         'BlurAdmin.pages.admin-food',
-        'BlurAdmin.pages.admin-fooddetail'
+        'BlurAdmin.pages.admin-fooddetail',
+        'BlurAdmin.pages.admin-orders'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -306,6 +307,10 @@
                     url: "ad-invoice",
                     img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
                     title: "فاکتورهای صادرنشده"
+                },{
+                    url: "ad-orders",
+                    img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
+                    title: "سفارشات"
                 }, {
                         url: "rest-cheque",
                         img: "assets/img/theme/icon/karafeedIcon/cheque.png",
@@ -762,6 +767,24 @@
                     return "دریافت هدیه تشویقی از شرکت";
                 case 'BANK_TRANSFER_TO_GIFT_WALLET':
                     return "شارژ موجودی هدیه";
+            }
+        };
+        $rootScope.getFoodOrderStatus = function (status) {
+            switch (status) {
+                case 'NORMAL':
+                    return "نرمال";
+                case 'FACTOR':
+                    return "فاکتورشده";
+                case 'CHARGE_USER_BY_COMPANY':
+                    return "کنسل بوسیله رستوران";
+                case 'PAYED_TO_RESTAURANT':
+                    return "پرداخت شده به رستوران";
+                case 'RESTAURANT_MISTAKE':
+                    return "لغو:اشتباه رستوران";
+                case 'SYSTEM_ERROR':
+                    return "لغو:اشتباه سیستم";
+                case 'OTHER':
+                    return "لغو:سایر";
             }
         };
         $rootScope.restaurantTypes = [{

@@ -125,6 +125,13 @@ function prepareFactorToPrint(item,$rootScope) {
         '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+$rootScope.myFormatDate(item.deliveryDate)+'</span>' +
         '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">زمان تحویل</span>' +
         '</div>' +
+        '</div>' +
+        '<div>' +
+        '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
+        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">kf-'+item.id+'</span>' +
+        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">شماره فاکتور</span>' +
+        '</div>' +
         '</div>';
         if (item.description) {
             param += '<div>' +

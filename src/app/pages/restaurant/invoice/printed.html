@@ -52,10 +52,7 @@
                                         <div class="newtable_header">قیمت نهایی</div>
                                     </th>
                                     <th st-sort="taxAmount">
-                                        <div class="newtable_header">مالیات</div>
-                                    </th>
-                                    <th st-sort="deliveryPrice">
-                                        <div class="newtable_header">هزینه حمل</div>
+                                        <div class="newtable_header">شماره فاکتور</div>
                                     </th>
                                     <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
                                 </tr>
@@ -71,8 +68,7 @@
                                         </div>
                                     </td>
                                     <td>{{formatPrice(item.totalAmount)}}</td>
-                                    <td>{{item.totalTaxAmount + item.deliveryPriceTax}}</td>
-                                    <td>{{item.deliveryPrice}}</td>
+                                    <td>kf-{{item.id}}</td>
                                     <td class="table-id">{{$index+1}}</td>
                                 </tr>
                             </tbody>

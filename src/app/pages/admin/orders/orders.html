@@ -1,0 +1,144 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                style="height: 285px">
+                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
+                    <img style="width: 89px" src="/assets/img/ui/report-filter.png">
+                </div>
+
+                <ul class="al-sidebar-sublist" style="display: block;">
+                    <li style="padding: 15px; padding-right: 0;" ui-sref-active="selected" ba-sidebar-toggling-item="subitem"
+                        class="ba-sidebar-sublist-item">
+                        <div>
+                            <input ng-model="factorNumber" type="text" class="form-control" id="factorNumber" name="factorNumber"
+                                   placeholder="شماره فاکتور">
+                        </div>
+                    </li>
+                    <li style="text-align: center !important;">
+                        <button ng-click="searchByOrderGroup()" type="button" style="width: auto" class="confirm_button confirm_yes btn">جستجو
+                        </button>
+                    </li>
+                    <li ng-show="orders.length > 0" style="text-align: center !important;">
+                        <button ng-click="cancelOrderGroup()" type="button" style="width: auto" class="confirm_button confirm_yes btn">لغو همه سفارشات
+                        </button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="mycontent widgets" style="background: #e2eded;padding-left: 16px;padding-bottom: 25%;padding-top: 5%">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="horizontal-scroll">
+                <table class="table" st-table="foods" refresh-table>
+                    <thead>
+                    <tr class="sortable ">
+                        <th>
+                            <div class="newtable_header">
+                                عملیات
+                            </div>
+                        </th>
+                        <th st-sort="totalPrice">
+                            <div class="newtable_header">
+                                قیمت
+                            </div>
+                        </th>
+                        <th st-sort="employee.name">
+                            <div class="newtable_header">
+                                نام تحویل گیرنده
+                            </div>
+                        </th>
+                        <th st-sort="taxAmount">
+                            <div class="newtable_header">
+                                شماره تحویل گیرنده
+                            </div>
+                        </th>
+                        <th st-sort="containerPrice">
+                            <div class="newtable_header">
+                                شماره رستوران
+                            </div>
+                        </th>
+                        <th st-sort="deliveryPrice">
+                            <div class="newtable_header">
+                                نام رستوران
+                            </div>
+                        </th>
+                        <th st-sort="foodOrderStatus">
+                            <div class="newtable_header">
+                                وضعیت سفارش
+                            </div>
+                        </th>
+                        <th st-sort="deliveryDate">
+                            <div class="newtable_header">
+                                تاریخ تحویل
+                            </div>
+                        </th>
+                        <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true">
+                            <div class="newtable_header">
+                                ردیف
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in orders">
+                        <td>
+                            <div class="buttons">
+                                <button ng-show="item.foodOrderStatus === 'NORMAL'" class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/invoice/cancel-modal.html', 'md',item,$index)">لغو
+                                    غذا
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{item.totalPrice}}</td>
+                        <td>{{item.employee.name}}</td>
+                        <td>{{item.employee.address.phone}}</td>
+                        <td>{{item.restaurant.address.phone}}</td>
+                        <td>{{item.restaurant.name}}</td>
+                        <td ng-style="getStatusColor(item.foodOrderStatus)">{{getFoodOrderStatus(item.foodOrderStatus)}}</td>
+                        <td>{{myFormatDate(item.deliveryDate)}}</td>
+                        <td class="table-id">{{$index+1}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="12" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-right: 328px !important;
+        margin-left: 12px !important;
+    }
+
+    @media (max-width: 1300px) and (min-width: 768px) {
+        .ng-scope .mycontent {
+            margin-top: -67px !important;
+            margin-right: 12px !important;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .al-sidebar {
+            display: none !important;
+        }
+    }
+</style>
