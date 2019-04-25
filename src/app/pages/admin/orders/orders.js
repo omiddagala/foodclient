@@ -35,7 +35,7 @@
                     direction: sort.reverse ? 'DESC' : 'ASC',
                     page: pagination.start / pagination.number,
                     size: pagination.number,
-                    sortBy: sort.predicate ? sort.predicate : 'name'
+                    sortBy: sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
             return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getOrderById", param, httpOptions)
