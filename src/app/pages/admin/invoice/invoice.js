@@ -87,7 +87,7 @@
         };
 
         $scope.opneModal = function (page, size, item) {
-            $rootScope.factor = item;
+            $rootScope.order = item;
             $scope.submitted = false;
             var m = $uibModal.open({
                 animation: true,

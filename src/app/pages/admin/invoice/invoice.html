@@ -43,17 +43,22 @@
                                 </th>
                                 <th st-sort="taxAmount">
                                     <div class="newtable_header">
-                                        شماره تحویل گیرنده
+                                        تلفن تحویل گیرنده
                                     </div>
                                 </th>
                                 <th st-sort="containerPrice">
                                     <div class="newtable_header">
-                                        شماره رستوران
+                                        تلفن رستوران
                                     </div>
                                 </th>
                                 <th st-sort="deliveryPrice">
                                     <div class="newtable_header">
                                         نام رستوران
+                                    </div>
+                                </th>
+                                <th st-sort="containerPrice">
+                                    <div class="newtable_header">
+                                        شماره فاکتور
                                     </div>
                                 </th>
                                 <th st-sort="deliveryDate">
@@ -75,13 +80,17 @@
                                         <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/invoice/cancel-modal.html', 'md',item,$index)">لغو
                                             غذا
                                         </button>
+                                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/invoice/invoice-modal.html', 'md',item,$index)">
+                                            مشاهده
+                                        </button>
                                     </div>
                                 </td>
                                 <td>{{item.totalPrice}}</td>
                                 <td>{{item.employee.name}}</td>
                                 <td>{{item.employee.address.phone}}</td>
-                                <td>{{item.restaurant.address.phone}}</td>
-                                <td>{{item.restaurant.name}}</td>
+                                <td>{{item.food.restaurant.address.phone}}</td>
+                                <td>{{item.food.restaurant.name}}</td>
+                                <td>kf-{{item.orderGroup.id}}</td>
                                 <td>{{myFormatDate(item.deliveryDate)}}</td>
                                 <td class="table-id">{{$index+1}}</td>
                             </tr>

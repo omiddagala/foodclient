@@ -40,7 +40,7 @@
             };
             return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getOrderById", param, httpOptions)
                 .then(function (data, status, headers, config) {
-                    $scope.orders = data.data;
+                    $scope.orders = data.data.list;
                     stopLoading();
                     return data.data;
                 }).catch(function (err) {
@@ -49,7 +49,7 @@
         };
 
         $scope.opneModal = function (page, size, item) {
-            $rootScope.factor = item;
+            $rootScope.order = item;
             var m = $uibModal.open({
                 animation: true,
                 templateUrl: page,
