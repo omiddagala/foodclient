@@ -7,40 +7,9 @@
         <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
             <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
                 style="height: 285px">
-                <div style="text-align: right;cursor: default" class="al-sidebar-list-link">
-                    <img style="width: 89px" src="/assets/img/ui/report-filter.png">
-                </div>
-
                 <ul class="al-sidebar-sublist" style="display: block;">
-                    <li style="padding: 15px; padding-right: 0;" ui-sref-active="selected" ba-sidebar-toggling-item="subitem"
-                        class="ba-sidebar-sublist-item">
-                        <div>
-                            <input ng-model="factorNumber" type="text" class="form-control" id="factorNumber" name="factorNumber"
-                                   placeholder="شماره فاکتور">
-                        </div>
-                    </li>
-                    <li style="padding: 15px; padding-right: 0;" ui-sref-active="selected" ba-sidebar-toggling-item="subitem"
-                        class="ba-sidebar-sublist-item">
-                        <div class="a5 col-xs-12 defult-color bottom-margin-lg top-margin-lg">
-                            از تاریخ
-                        </div>
-                        <div class="a6 right-float">
-                            <adm-dtp on-datechange="dateChanged(fromDate,true)" id="from" ng-model='fromDate'
-                                     options='{calType: "jalali", format: "YYYY/MM/DD hh:mm",default:"{{fromDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"datetime",autoClose:true}'></adm-dtp>
-                        </div>
-                    </li>
-                    <li style="padding: 15px; padding-right: 0;" ui-sref-active="selected" ba-sidebar-toggling-item="subitem"
-                        class="ba-sidebar-sublist-item">
-                        <div class="a5 col-xs-12 defult-color bottom-margin-lg top-margin-lg">
-                            تا تاریخ
-                        </div>
-                        <div class="a6 right-float">
-                            <adm-dtp on-datechange="dateChanged(toDate,false)" id="to" ng-model='toDate'
-                                     options='{calType: "jalali", format: "YYYY/MM/DD hh:mm",default:"{{toDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"datetime",autoClose:true}'></adm-dtp>
-                        </div>
-                    </li>
-                    <li style="text-align: center !important;">
-                        <button ng-click="searchByOrderGroup()" type="button" style="width: auto;margin-top: 15px" class="confirm_button confirm_yes btn">جستجو
+                    <li ng-show="orders.length > 0" style="text-align: center !important;">
+                        <button ng-click="cancelOrderGroup()" type="button" style="width: auto" class="confirm_button confirm_yes btn">لغو همه سفارشات
                         </button>
                     </li>
                 </ul>
@@ -59,6 +28,11 @@
                         <th>
                             <div class="newtable_header">
                                 عملیات
+                            </div>
+                        </th>
+                        <th st-sort="totalPrice">
+                            <div class="newtable_header">
+                                قیمت
                             </div>
                         </th>
                         <th st-sort="employee.name">
@@ -83,7 +57,7 @@
                         </th>
                         <th st-sort="foodOrderStatus">
                             <div class="newtable_header">
-                                شماره فاکتور
+                                وضعیت سفارش
                             </div>
                         </th>
                         <th st-sort="deliveryDate">
@@ -102,16 +76,20 @@
                     <tr ng-repeat="item in orders">
                         <td>
                             <div class="buttons">
-                                <button class="btn btn-danger editable-table-button btn-xs" ng-click="goToDetail(item.id)">
-                                    جزییات
+                                <button ng-show="item.foodOrderStatus === 'NORMAL'" class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/orders/cancel-modal.html', 'md',item,$index)">لغو
+                                    غذا
+                                </button>
+                                <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/orders/order-modal.html', 'md',item,$index)">
+                                    مشاهده
                                 </button>
                             </div>
                         </td>
+                        <td>{{item.totalPrice}}</td>
                         <td>{{item.employee.name}}</td>
                         <td>{{item.employee.address.phone}}</td>
-                        <td>{{item.restaurant.address.phone}}</td>
-                        <td>{{item.restaurant.name}}</td>
-                        <td>kf-{{item.id}}</td>
+                        <td>{{item.food.restaurant.address.phone}}</td>
+                        <td>{{item.food.restaurant.name}}</td>
+                        <td ng-style="getStatusColor(item.foodOrderStatus)">{{getFoodOrderStatus(item.foodOrderStatus)}}</td>
                         <td>{{myFormatDate(item.deliveryDate)}}</td>
                         <td class="table-id">{{$index+1}}</td>
                     </tr>

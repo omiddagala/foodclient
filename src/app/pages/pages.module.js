@@ -78,7 +78,8 @@
         'BlurAdmin.pages.feedgram-post',
         'BlurAdmin.pages.admin-food',
         'BlurAdmin.pages.admin-fooddetail',
-        'BlurAdmin.pages.admin-orders'
+        'BlurAdmin.pages.admin-orders',
+        'BlurAdmin.pages.admin-order'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {

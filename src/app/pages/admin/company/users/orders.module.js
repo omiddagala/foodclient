@@ -18,7 +18,7 @@
     function adminCompanyUserOrders($scope, $filter, editableOptions, editableThemes, $state, $rootScope,$q, $http, localStorageService, $location, $uibModal, $timeout,$uibModalStack, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
         $scope.fromDate = moment(new Date()).format('jYYYY/jM/jD HH:mm');
-        $scope.toDate = moment(new Date()).add('days', 30).format('jYYYY/jM/jD HH:mm');
+        $scope.toDate = moment(new Date()).add('days', 1).format('jYYYY/jM/jD HH:mm');
         var id;
         $scope.cancelReason = 'RESTAURANT_MISTAKE';
         var preventTwiceLoad = true;
