@@ -22,6 +22,14 @@ html body {
     color: rgb(242, 69, 69) !important;
 }
 
+.mobile-menu-selected-text-f {
+    color: white !important;
+}
+
+.mobile-menu-unselected-text-f {
+    color: #939393 !important;
+}
+
 .ion-navicon {
     color: #808285 !important;
 }
