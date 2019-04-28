@@ -20,11 +20,17 @@
             });
     }
 
-    function reserveCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
+    function reserveCtrl($scope, $compile, $ionicModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
         $rootScope.pageTitle = 'رزروها';
         $scope.reserves = {};
         $rootScope.currentMobileActiveMenu = "reserve";
         $scope.mydays = [];
+        $ionicModal.fromTemplateUrl('app/pages/employee/reserve/dda-modal.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+        }).then(function (modal) {
+            $scope.ddaModal = modal;
+        });
         $scope.orderList = function () {
 
             var t = $('#taghvim').text();
@@ -267,16 +273,12 @@
         };
 
 
-        $scope.dessert = function ($event, resId) {
+        $scope.dessert = function (resId, date) {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            var product = $($event.currentTarget).closest('.mobile-card');
-            var date = product.data("orderdate");
-            var datetime = moment.utc(date, 'YYYY-MM-DDTHH:mmZ').format('jYYYY/jM/jD HH:mm');
-            $("#dateForOrder").val(datetime);
             var params = {
                 "date": date,
                 "pageableDTO": {
@@ -289,9 +291,8 @@
             };
             $http.post("http://127.0.0.1:9000/v1/foodSearch/getRestaurantDDA", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    $rootScope.isMainFood = false;
-                    $rootScope.empPageNum = 0;
-                    $rootScope.foods = data;
+                    $scope.ddas = data;
+                    $scope.ddaModal.show();
                     stopLoading();
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
