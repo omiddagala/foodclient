@@ -1,0 +1,83 @@
+<div include-with-scope="page-top.html"></div>
+<div class="mycontent" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+    <div class="widgets">
+        <div class="row">
+            <div class="col-md-12">
+                <div ba-panel ba-panel-title="اس ام اس" ba-panel-class="with-scroll">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                                <tr class="sortable">
+                                    <th>
+                                        <div class="newtable_header">
+                                            عملیات
+                                        </div>
+                                    </th>
+                                    <th st-sort="accountStatus">
+                                        <div class="newtable_header">
+                                            کلمه عبور
+                                        </div>
+                                    </th>
+                                    <th st-sort="username">
+                                        <div class="newtable_header">
+                                            نام کاربری
+                                        </div>
+                                    </th>
+                                    <th st-sort="lastName">
+                                        <div class="newtable_header">
+                                            موبایل
+                                        </div>
+                                    </th>
+                                    <th st-sort="firstName">
+                                        <div class="newtable_header">
+                                            نام
+                                        </div>
+                                    </th>
+                                    <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true">#</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <!--<input st-search="price.averageRate" placeholder="جستجو بر اساس امتیاز" class="input-sm form-control search-input"
+                       type="search"/>-->
+                                    </th>
+                                    <th>
+                                        <!--<input st-search="price.foodPrice" placeholder="جستجو بر اساس قیمت" class="input-sm form-control search-input"
+                       type="search"/>-->
+                                    </th>
+                                    <th><input style="width: 50%;display: inline-table" st-search="name" placeholder="جستجو بر اساس نام"
+                                            class="input-sm form-control search-input" type="search" /></th>
+                                    <th>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="{{$index}}" ng-repeat="item in smsList">
+                                    <td>
+                                        <div class="buttons">
+                                            <button class="btn btn-info editable-table-button btn-xs" ng-click="sendMessage(item.username,$index)">ارسال
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>{{item.password}}</td>
+                                    <td>{{item.username}}</td>
+                                    <td>{{item.mobile}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td class="table-id">{{$index+1}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

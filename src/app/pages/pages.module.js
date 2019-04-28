@@ -79,7 +79,8 @@
         'BlurAdmin.pages.admin-food',
         'BlurAdmin.pages.admin-fooddetail',
         'BlurAdmin.pages.admin-orders',
-        'BlurAdmin.pages.admin-order'
+        'BlurAdmin.pages.admin-order',
+        'BlurAdmin.pages.ad-sms'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -301,6 +302,10 @@
                         url: "admin-cheque",
                         img: "assets/img/theme/icon/karafeedIcon/cheque.png",
                         title: "مالی کارافید"
+                    }, {
+                        url: "ad-sms",
+                        img: "assets/img/theme/icon/karafeedIcon/cheque.png",
+                        title: "اس ام اس"
                     })
             }
             if ($rootScope.hasRole("ADMIN_RESTAURANT")) {
