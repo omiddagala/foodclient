@@ -303,7 +303,7 @@
 }
 
 .margin__top_10 {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 .margin__top_15 {
@@ -315,7 +315,7 @@
 }
 
 .margin__top_30 {
-    margin-top: 30px;
+    margin-top: 30px !important;
 }
 
 .margin__top_40 {

@@ -61,6 +61,7 @@
                             data[i].totalAmount += data[i].foodOrders[j].totalPrice;
                         }
                         data[i].totalAmount += data[i].deliveryPrice;
+                        data[i].show = true;
                         existVal.restaurants.push(data[i]);
                     } else {
                         var newVal = {
@@ -341,6 +342,20 @@
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
             });
+        };
+
+        $scope.showTab = function (e) {
+            var thisTab = $(e.currentTarget);
+            var tabArrow = $(thisTab).find('.tab-arrow');
+            setTimeout(function () {
+                thisTab.toggleClass("top-padding-20").toggleClass("bottom-padding-20").toggleClass("back-e2eded").toggleClass("box-shadow-reserve-title");
+                tabArrow.toggleClass("rotate");
+            },500);
+            thisTab.next().slideToggle(500);
+
+        };
+        $scope.getTimeFromDate = function (d) {
+            return moment.utc(d).format("HH:mm");
         };
 
         $scope.showSubmit = function (e) {
