@@ -20,7 +20,7 @@
             });
     }
 
-    function homeCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location, $ionicScrollDelegate) {
+    function homeCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location, $uibModalStack) {
         $rootScope.currentMobileActiveMenu = "home";
         var tomorrow;
         $rootScope.foodType = $scope.foodType = $location.search().t ? $location.search().t : 'ALL';
@@ -51,11 +51,11 @@
         });
 
         $scope.loadContent = function (isFirstCall, isSearch) {
-            
+
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params;
             // if called by page load and not search button
@@ -100,7 +100,7 @@
                 }
             } else {
                 // if is called from search button
-                
+
                 var datetime = $('#taghvim').find('input').val();
                 var time = $('.timepicker').wickedpicker('time');
                 var date = moment.utc(datetime + " " + time, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ');
@@ -144,11 +144,11 @@
                             setTimeout(function () {
                                 $rootScope.foods = data;
                                 $rootScope.$apply();
-                            },200);
+                            }, 200);
                         } else {
                             $.merge($rootScope.foods, data);
                         }
-                        
+
                         if (data.length === params.pageableDTO.size) {
                             $rootScope.empPageNum++;
                             $rootScope.enableScroll = true;
@@ -159,8 +159,8 @@
                         }
                     }
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "foodSearch/find", err, httpOptions);
-                });
+                $rootScope.handleError(params, "foodSearch/find", err, httpOptions);
+            });
         };
 
         $scope.homeInit = function () {
@@ -213,7 +213,7 @@
         $scope.setDateForCardsAndDetail = function () {
             var searchedDate = $('#dateForOrder').val();
             var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
-            moment.loadPersian({ dialect: 'persian-modern' });
+            moment.loadPersian({dialect: 'persian-modern'});
             var time = $("#searchTime").val().replace(/\s/g, '');
             $rootScope.dateToOrder = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
             var m = $rootScope.dateToOrder.format('LLLL');
@@ -236,7 +236,7 @@
         function loadRestaurants() {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             $http.post("http://127.0.0.1:9000/v1/employee/findRestaurantNames", null, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -245,7 +245,7 @@
                         $scope.$apply();
                     }, 1000);
                 }).catch(function (err) {
-                });
+            });
         }
 
         $scope.resName_changed = function (r) {
@@ -260,7 +260,7 @@
         function checkMyGift() {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 direction: 'DESC',
@@ -278,13 +278,13 @@
                             scope: $scope
                         });
                         $scope.gift = data.data.list[0];
-                        $http.post("http://127.0.0.1:9000/v1/employee/setGiftVisited", { "id": $scope.gift.id }, httpOptions)
+                        $http.post("http://127.0.0.1:9000/v1/employee/setGiftVisited", {"id": $scope.gift.id}, httpOptions)
                             .then(function (data, status, headers, config) {
                             }).catch(function (err) {
-                            });
+                        });
                     }
                 }).catch(function (err) {
-                });
+            });
         }
 
         $scope.getGiftType = function (type) {
@@ -347,7 +347,7 @@
             }, 1000);
         };
 
-        $scope.addToTodayReserves = function (name, day, id, resId, foodType, restName) {
+        $scope.addToTodayReserves = function (name, day, id, resId, foodType, restName, count) {
             var todaysKey = moment.utc(day).format("MM-DD-YYYY");
             var todays = {
                 name: name,
@@ -356,7 +356,8 @@
                 resId: resId,
                 foodType: foodType,
                 restName: restName,
-                addedLocally: false
+                addedLocally: false,
+                count: count
             };
             var elem = $rootScope.reservesPerDay.get(todaysKey);
             if (!elem) {
@@ -366,13 +367,13 @@
             }
         };
 
-        $scope.removeFromTodayReserves = function (day, id) {
+        $scope.removeFromTodayReserves = function (day, id, count) {
             var todaysKey = moment.utc(day).format("MM-DD-YYYY");
             var elem = $rootScope.reservesPerDay.get(todaysKey);
             if (elem) {
                 for (var i = 0; i < elem.length; i++) {
                     if (elem[i].id === id) {
-                        elem.splice(i, 1);
+                        elem[i].count = elem[i].count - count;
                         return;
                     }
                 }
@@ -386,7 +387,7 @@
             var todays = $rootScope.reservesPerDay.get(key);
             if (todays) {
                 for (var i = 0; i < todays.length; i++) {
-                    $scope.createOrderCart(todays[i].name, moment.utc(todays[i].day).format('YYYY-MM-DDTHH:mmZ'), todays[i].id, todays[i].resId, todays[i].foodType, todays[i].restName, todays[i].addedLocally);
+                    $scope.createOrderCart(todays[i].name, moment.utc(todays[i].day).format('YYYY-MM-DDTHH:mmZ'), todays[i].id, todays[i].resId, todays[i].foodType, todays[i].restName, todays[i].addedLocally, todays[i].count);
                 }
             } else {
                 $('.cart').empty();
@@ -400,7 +401,7 @@
                 $scope.forms.myform.$setPristine();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 id: $scope.food.id
@@ -411,15 +412,15 @@
                     for (var i = 0; i < data.length; i++) {
                         var day = m.get(data[i].dayOfWeek);
                         if (!day) {
-                            m.set(data[i].dayOfWeek, [{ startTime: data[i].startTime, endTime: data[i].endTime }]);
+                            m.set(data[i].dayOfWeek, [{startTime: data[i].startTime, endTime: data[i].endTime}]);
                         } else {
-                            day.push({ startTime: data[i].startTime, endTime: data[i].endTime });
+                            day.push({startTime: data[i].startTime, endTime: data[i].endTime});
                         }
                     }
                     $scope.days = m;
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/food/getFoodAvailableDates", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/food/getFoodAvailableDates", err, httpOptions);
+            });
         };
 
 
@@ -428,7 +429,7 @@
             $scope.updateStar(rate);
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 "foodId": $scope.food.id,
@@ -439,8 +440,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/rate", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/rate", err, httpOptions);
+            });
         };
 
         $scope.updateStar = function (s) {
@@ -455,7 +456,7 @@
         $scope.loadYourLastRateToThisFood = function () {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 id: $scope.food.id
@@ -465,8 +466,8 @@
                     $scope.foodRate = data.rate === 0 ? "-" : data.rate;
                     $scope.updateStar(data.rate);
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
+            });
         };
 
         $scope.getPersianDay = function (d) {
@@ -510,7 +511,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 foodId: $scope.food.id,
@@ -521,8 +522,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodComment/add", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodComment/add", err, httpOptions);
+            });
         };
 
         $scope.cleanComments = function () {
@@ -540,7 +541,7 @@
             $("#commentInDetail").val("");
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 id: $scope.food.id,
@@ -576,8 +577,8 @@
                     }
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodComment/getFoodComments", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodComment/getFoodComments", err, httpOptions);
+            });
         };
 
         $scope.open = function (page, size) {
@@ -623,11 +624,11 @@
             });
         }
 
-        $scope.orderFood = function (foodId, date) {
+        $scope.orderFood = function (foodId, date, f) {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 date: date,
@@ -637,20 +638,22 @@
                 .success(function (data, status, headers, config) {
                     $rootScope.userBalance = data.availableBalanceAmount;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                    if (f)
+                        f.count++;
                     stopLoading();
                 }).catch(function (err) {
-                    setTimeout(function () {
-                        $scope.loadOrders();
-                    }, 2000);
-                    $rootScope.handleError(params, "/employee/order", err, httpOptions);
-                });
+                setTimeout(function () {
+                    $scope.loadOrders();
+                }, 2000);
+                $rootScope.handleError(params, "/employee/order", err, httpOptions);
+            });
         };
 
-        $scope.cancelFood = function (foodId, date) {
+        $scope.cancelFood = function (foodId, date, f) {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 date: date,
@@ -660,18 +663,20 @@
                 .success(function (data, status, headers, config) {
                     $rootScope.userBalance = data.availableBalanceAmount;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                    if (f)
+                        f.count--;
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/cancelOrderByOrderDTO", err, httpOptions);
-                    $scope.loadOrders();
-                });
+                $rootScope.handleError(params, "/employee/cancelOrderByOrderDTO", err, httpOptions);
+                $scope.loadOrders();
+            });
         };
 
-        $scope.cancelAllFood = function (foodId, localId, date) {
+        $scope.cancelAllFood = function (foodId, date, f) {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 date: date,
@@ -682,11 +687,13 @@
                     stopLoading();
                     $rootScope.userBalance = data.availableBalanceAmount;
                     $scope.loadOrders();
+                    if (f)
+                        $uibModalStack.dismissAll();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/cancelOrderByOrderDTOList", err, httpOptions);
-                    $scope.loadOrders();
-                });
+                $rootScope.handleError(params, "/employee/cancelOrderByOrderDTOList", err, httpOptions);
+                $scope.loadOrders();
+            });
         };
 
         $scope.foodTypeChanged = function (t) {
@@ -703,7 +710,7 @@
         $scope.loadOrders = function () {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 pageableDTO: {
@@ -723,27 +730,27 @@
                         for (var j = 0; j < data[i].foodOrders.length; j++) {
                             $scope.addToTodayReserves(data[i].foodOrders[j].food.name,
                                 data[i].deliveryDate,
-                                data[i].foodOrders[j].food.id, data[i].restaurant.id, data[i].foodOrders[j].food.foodType, data[i].restaurant.name);
+                                data[i].foodOrders[j].food.id, data[i].restaurant.id, data[i].foodOrders[j].food.foodType, data[i].restaurant.name, data[i].foodOrders[j].count);
                         }
                     }
                     $scope.renderTodaysReserves();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
+            });
         };
 
-        $scope.createOrderCart = function (name, day, id, resId, foodType, restName, addedLocally) {
+        $scope.createOrderCart = function (name, day, id, resId, foodType, restName, addedLocally, count) {
             var cartItem;
             moment.locale('fa');
             var d = moment.utc(day, 'YYYY-MM-DDTHH:mmZ');
             orderId = d.format('YYYY-MM-DDTHH:mmZ') + id;
             if (jQuery.inArray(orderId, $rootScope.orderids) < 0) {
-                moment.loadPersian({ dialect: 'persian-modern' });
+                moment.loadPersian({dialect: 'persian-modern'});
                 var d2 = d.format("LLLL");
                 var d3 = d2.substr(0, d2.lastIndexOf(' '));
                 var t = d2.substr(d2.lastIndexOf(' '));
                 $rootScope.orderids.push(orderId);
-                cartItem = '<div id="' + orderId + '" class="animated zoomIn omidProduct newsabad_cards" data-orderdate="' + d.format() + '" data-delivery="' + day + '" data-foodid="' + id + '" data-resid="' + resId + '" data-foodtype="' + foodType + '" data-restname="' + restName + '" data-foodname="' + name + '" data-quantity="1">' +
+                cartItem = '<div id="' + orderId + '" class="animated zoomIn omidProduct newsabad_cards" data-orderdate="' + d.format() + '" data-delivery="' + day + '" data-foodid="' + id + '" data-resid="' + resId + '" data-foodtype="' + foodType + '" data-restname="' + restName + '" data-foodname="' + name + '" data-quantity="' + count + '">' +
                     '<div class="product-preview">' +
                     // '<div class="thumbnail"><img class="image" src="' + productImage + '"/></div>' +
                     '<div class="product-paper">' +
@@ -753,7 +760,7 @@
                     '<div class="product-name" style="color: #2e6977">' +
                     restName +
                     '</div>' +
-                    '<div class="product-quantity">1</div>' +
+                    '<div class="product-quantity">' + count + '</div>' +
                     '<div class="product-date">' +
                     d3 +
                     '</div>' +
@@ -805,7 +812,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var product = $($event.currentTarget).closest('.omidProduct');
             var date = product.data("orderdate");
@@ -828,8 +835,8 @@
                     $rootScope.foods = data;
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
+            });
         };
 
         $scope.cancelDessert = function () {
@@ -856,7 +863,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 pageableDTO: {
@@ -909,25 +916,72 @@
                     stopLoading();
                     $scope.open('app/pages/employee/home/selected.html', 'lg');
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/getOrderList", err, httpOptions);
+            });
         };
 
-        $scope.foodDetailOrder = function () {
-            var searchedDate = $('#dateForOrder').val();
-            var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
-            moment.locale('fa');
-            moment.loadPersian({ dialect: 'persian-modern' });
-            var time = $("#searchTime").val();
-            var d = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
-            $scope.addToTodayReserves($scope.food.name, d, $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name);
-            $scope.orderFood($scope.food.id, d.format('YYYY-MM-DDTHH:mmZ'));
-            $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true);
+        $scope.addFoodInReservePopup = function (f, r, d) {
+            $scope.food = {
+                name: f.food.name,
+                id: f.food.id,
+                foodType: f.food.foodType,
+                restaurant: {
+                    name: r.name,
+                    id: r.id
+                },
+                date: d
+            };
+            $scope.foodDetailOrder(f);
+        };
+
+        $scope.minusFoodInReservePopup = function (f, d) {
+            $scope.food = {
+                name: f.food.name,
+                id: f.food.id,
+                foodType: f.food.foodType
+            };
+            $scope.removeFromTodayReserves(d, f.food.id, 1);
+            var key = moment.utc(d).format('YYYY-MM-DDTHH:mmZ') + $scope.food.id;
+            var card = $rootScope.cartItems.get(key);
+            if (card) {
+                if (f.count === 1) {
+                    $scope.productDel(key);
+                } else {
+                    var q = Math.max(1, f.count - 1);
+                    card.data('quantity', q);
+                    $scope.updateProduct(card);
+                }
+            }
+            if (f.count === 1) {
+                $scope.cancelAllFood(f.food.id, d, f);
+            } else {
+                $scope.cancelFood(f.food.id, d, f);
+            }
+        };
+
+        $scope.foodDetailOrder = function (f) {
+            var d;
+            if (f) {
+                d = moment.utc($scope.food.date);
+                // if added from reserves popup and id related to today's foods so we have to show it in right panel
+                if ($rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + $scope.food.id))
+                    $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
+            } else {
+                var searchedDate = $('#dateForOrder').val();
+                var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
+                moment.locale('fa');
+                moment.loadPersian({dialect: 'persian-modern'});
+                var time = $("#searchTime").val();
+                d = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
+                $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
+            }
+            $scope.addToTodayReserves($scope.food.name, d, $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, 1);
+            $scope.orderFood($scope.food.id, d.format('YYYY-MM-DDTHH:mmZ'), f);
         };
 
         $scope.myFormatDate = function (d) {
             moment.locale('fa');
-            moment.loadPersian({ dialect: 'persian-modern' });
+            moment.loadPersian({dialect: 'persian-modern'});
             return moment.utc(d).format('LLLL');
         };
         $scope.getDayOfWeek = function (d) {
@@ -942,6 +996,7 @@
 
         $scope.productPlus = function ($event, isNotPlusButton) {
             var product = $($event.currentTarget).closest('.omidProduct');
+            var q = product.data('quantity') + 1;
             // just if action is from plus button
             if (!isNotPlusButton) {
                 var foodid = product.data("foodid");
@@ -950,10 +1005,9 @@
                 var resid = product.data("resid");
                 var foodtype = product.data("foodtype");
                 var restname = product.data("restname");
-                $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname);
+                $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname, q);
                 $scope.orderFood(foodid, orderdate);
             }
-            var q = product.data('quantity') + 1;
             product.data('quantity', q);
             $scope.updateProduct(product);
         };
@@ -961,9 +1015,10 @@
         $scope.productMinus = function ($event) {
             var product = $($event.currentTarget).closest('.omidProduct');
             var pq = product.data('quantity');
-            $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"));
-            if ($scope.num === 0 || pq === 1) {
-                $scope.productDel($event);
+            $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"), 1);
+            if (pq === 1) {
+                $scope.cancelAllFood(product.data("foodid"), product.data("orderdate"));
+                $scope.productDel(orderId);
             } else {
                 $scope.cancelFood(product.data("foodid"), product.data("orderdate"));
                 var q = Math.max(1, pq - 1);
@@ -978,11 +1033,10 @@
         };
 
         $scope.productDel = function ($event) {
-            var product = $($event.currentTarget).closest('.omidProduct');
-            $scope.cancelAllFood(product.data("foodid"), product.attr("id"), product.data("orderdate"));
-            product.hide('blind', { direction: 'left' }, 500, function () {
+            var product = $($rootScope.cartItems.get(orderId));
+            product.hide('blind', {direction: 'left'}, 500, function () {
                 product.remove();
-                if ($('.product').length == 0) {
+                if ($('.product').length === 0) {
                     $('.cart-container .cart').hide();
                     $('.cart-container .empty').show();
                 }
@@ -996,7 +1050,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
                 id: id,
@@ -1007,8 +1061,8 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                    $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
-                });
+                $rootScope.handleError(params, "/employee/addOrderDescription", err, httpOptions);
+            });
         };
         $scope.validateSubmitMin = function (index) {
             var desc = $("#orderDesc_" + index).val();
@@ -1097,7 +1151,7 @@
                 setTimeout(function () {
                     $('div.floating-cart').remove();
                     $("body").removeClass("MakeFloatingCart");
-                    $scope.createOrderCart(food.name, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, true);
+                    $scope.createOrderCart(food.name, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, true, 1);
                 }, 1000);
                 return false;
             }

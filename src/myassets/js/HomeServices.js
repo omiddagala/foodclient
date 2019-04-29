@@ -392,7 +392,7 @@ function getArticleMain($scope, $compile, $parse, data) {
             setTimeout(function () {
                 $('div.floating-cart').remove();
                 $("body").removeClass("MakeFloatingCart");
-                $scope.createOrderCart(e.currentTarget.getAttribute("name"), d.format('YYYY-MM-DDTHH:mmZ'), foodid, Number(resid), foodType, resname, true);
+                $scope.createOrderCart(e.currentTarget.getAttribute("name"), d.format('YYYY-MM-DDTHH:mmZ'), foodid, Number(resid), foodType, resname, true, 1);
             }, 1000);
             return false;
         });
