@@ -15,7 +15,7 @@
             });
     }
 
-    function adminInvoiceCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, localStorageService, $uibModal, $rootScope, $uibModalStack, toastrConfig, toastr) {
+    function adminInvoiceCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, localStorageService, $uibModal, $rootScope, $location) {
         $scope.smartTablePageSize = 10;
         $scope.cancelReason = 'RESTAURANT_MISTAKE';
         var preventTwiceLoad = true;
@@ -86,65 +86,9 @@
                 });
         };
 
-        $scope.opneModal = function (page, size, item) {
-            $rootScope.order = item;
-            $scope.submitted = false;
-            var m = $uibModal.open({
-                animation: true,
-                templateUrl: page,
-                size: size,
-                scope: $scope
-            });
-            m.rendered.then(function (e) {
-                if ($('.modal-dialog .modal-content .modal-content.modal-fit').length > 0) {
-                    $('.modal-dialog').addClass('fit-height-imp');
-                }                
-            }); 
-        };
-
-        $scope.cancelReasonChanged = function (r) {
-            $scope.cancelReason = r;
-        };
-
-        $scope.cancelFood = function (form) {
-            $scope.submitted = true;
-            if (!form.$valid) {
-                return;
-            }
-            startLoading();
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            var param = {
-                "cancelOrderReason": $scope.cancelReason,
-                "comment": $('#desc').val(),
-                "orderId": $rootScope.order.id
-            };
-            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
-                .then(function (data, status, headers, config) {
-                    stopLoading();
-                    $uibModalStack.dismissAll();
-                    $rootScope.numOfAllFactors --;
-                    $scope.orders.splice($scope.commentIndex, 1);
-                    if ($scope.orders.length === 0){
-                        $scope.$broadcast('refreshMyTable');
-                    }
-                    showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
-                }).catch(function (err) {
-                $uibModalStack.dismissAll();
-                $rootScope.handleError(param, "/adminEmployeeManagementRest/cancelFoodOrder", err, httpOptions);
-            });
-        };
-
-        $scope.printFactor = function () {
-
-        };
-
-
-        editableOptions.theme = 'bs3';
-        editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
-        editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
+        $scope.goToDetail = function (id) {
+            $location.path("/ad-order").search({id: id});
+        }
 
     }
 })();

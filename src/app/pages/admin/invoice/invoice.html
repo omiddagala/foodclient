@@ -31,11 +31,6 @@
                                         عملیات
                                     </div>
                                 </th>
-                                <th st-sort="totalPrice">
-                                    <div class="newtable_header">
-                                        قیمت
-                                    </div>
-                                </th>
                                 <th st-sort="employee.name">
                                     <div class="newtable_header">
                                         نام تحویل گیرنده
@@ -77,20 +72,16 @@
                             <tr ng-repeat="item in orders">
                                 <td>
                                     <div class="buttons">
-                                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/invoice/cancel-modal.html', 'md',item,$index)">لغو
-                                            غذا
-                                        </button>
-                                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/invoice/invoice-modal.html', 'md',item,$index)">
-                                            مشاهده
+                                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="goToDetail(item.id)">
+                                            جزییات
                                         </button>
                                     </div>
                                 </td>
-                                <td>{{item.totalPrice}}</td>
                                 <td>{{item.employee.name}}</td>
                                 <td>{{item.employee.address.phone}}</td>
-                                <td>{{item.food.restaurant.address.phone}}</td>
-                                <td>{{item.food.restaurant.name}}</td>
-                                <td>kf-{{item.orderGroup.id}}</td>
+                                <td>{{item.restaurant.address.phone}}</td>
+                                <td>{{item.restaurant.name}}</td>
+                                <td>kf-{{item.id}}</td>
                                 <td>{{myFormatDate(item.deliveryDate)}}</td>
                                 <td class="table-id">{{$index+1}}</td>
                             </tr>
