@@ -119,7 +119,7 @@
             var param = {
                 "cancelOrderReason": $scope.cancelReason,
                 "comment": $('#desc').val(),
-                "orderId": $rootScope.factor.id
+                "orderId": $rootScope.order.id
             };
             $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
                 .then(function (data, status, headers, config) {

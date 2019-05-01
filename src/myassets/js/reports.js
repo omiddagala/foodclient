@@ -48,7 +48,8 @@ function prepareFactorToPrint(item,$rootScope) {
         '<div style="animation-delay: 1.5s;height: 20px;border-bottom:1px solid black;border-bottom-width:thin' +
         'border-bottom: 2px dashed black !important;font-size: small;border-top: 0;list-style-type: none;">' +
         '<div style="float: left;letter-spacing: 1px;color: black;width: 30%;text-align: left;font-size: medium"> قیمت </div>' +
-        '<div style="float:left;color: black;font-weight: 300;width: 30%;text-align: center;font-size: medium"> تخفیف </div>' +
+        '<div style="float:left;color: black;font-weight: 300;width: 25%;text-align: center;font-size: medium"> تخفیف </div>' +
+        '<div style="float:left;color: black;font-weight: 300;width: 5%;text-align: center;font-size: medium"> تعداد </div>' +
         '<span style="color: black;font-weight: 300;width: 40%;text-align: right;float: right;font-size: medium;direction: rtl"> نام غذا </span>' +
         '</div>' +
         '</div>';
@@ -57,7 +58,8 @@ function prepareFactorToPrint(item,$rootScope) {
             '<div style="animation-delay: 1.5s;overflow: auto;' +
             'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;list-style-type: none;line-height: 30px">' +
             '<div style="float: left;letter-spacing: 1px;color: black;width: 30%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodPriceAfterOff) + '</div>' +
-            '<div style="float:left;letter-spacing: 1px;color: black;width: 30%;text-align: center;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodOriginalPrice - item.foodOrders[i].foodPriceAfterOff) + '</div>' +
+            '<div style="float:left;letter-spacing: 1px;color: black;width: 25%;text-align: center;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodOriginalPrice - item.foodOrders[i].foodPriceAfterOff) + '</div>' +
+            '<div style="color: black;font-weight: 300;width: 5%;text-align: center;float: left;font-size: medium">' + item.foodOrders[i].count + '</div>' +
             '<div style="color: black;font-weight: 300;width: 40%;text-align: right;float: right;font-size: medium">' + item.foodOrders[i].food.name + '</div>' +
             '</div>' +
             '</div>'
