@@ -363,6 +363,12 @@
             if (!elem) {
                 $rootScope.reservesPerDay.set(todaysKey, [todays]);
             } else {
+                for (var i = 0; i < elem.length; i++) {
+                    if (elem[i].id === todays.id) {
+                        elem[i].count++;
+                        return;
+                    }
+                }
                 elem.push(todays);
             }
         };
@@ -374,6 +380,8 @@
                 for (var i = 0; i < elem.length; i++) {
                     if (elem[i].id === id) {
                         elem[i].count = elem[i].count - count;
+                        if (elem[i].count === 0)
+                            elem.splice(i, 1);
                         return;
                     }
                 }
@@ -672,7 +680,7 @@
             });
         };
 
-        $scope.cancelAllFood = function (foodId, date, f) {
+        $scope.cancelAllFood = function (foodId, date, orderId, f) {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -686,7 +694,11 @@
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.userBalance = data.availableBalanceAmount;
-                    $scope.loadOrders();
+                    for (var i = 0; i < $rootScope.orderids.length; i++) {
+                        if ($rootScope.orderids[i] === orderId) {
+                            $rootScope.orderids.splice(i, 1);
+                        }
+                    }
                     if (f)
                         $uibModalStack.dismissAll();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
@@ -953,7 +965,7 @@
                 }
             }
             if (f.count === 1) {
-                $scope.cancelAllFood(f.food.id, d, f);
+                $scope.cancelAllFood(f.food.id, d, key, f);
             } else {
                 $scope.cancelFood(f.food.id, d, f);
             }
@@ -1017,8 +1029,8 @@
             var pq = product.data('quantity');
             $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"), 1);
             if (pq === 1) {
-                $scope.cancelAllFood(product.data("foodid"), product.data("orderdate"));
-                $scope.productDel(orderId);
+                $scope.cancelAllFood(product.data("foodid"), product.data("orderdate"), product.attr("id"));
+                $scope.productDel(product.attr("id"));
             } else {
                 $scope.cancelFood(product.data("foodid"), product.data("orderdate"));
                 var q = Math.max(1, pq - 1);
@@ -1032,8 +1044,8 @@
             $('.product-quantity', product).text(quantity);
         };
 
-        $scope.productDel = function ($event) {
-            var product = $($rootScope.cartItems.get(orderId));
+        $scope.productDel = function (id) {
+            var product = $($rootScope.cartItems.get(id));
             product.hide('blind', {direction: 'left'}, 500, function () {
                 product.remove();
                 if ($('.product').length === 0) {
@@ -1132,7 +1144,7 @@
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'));
             if (!$rootScope.isMobile()) {
-                $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name);
+                $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name,1);
                 var currentElem = $($event.currentTarget);
                 var productCard = currentElem.parent();
                 var floatImage = productCard.find(".card__image");
