@@ -49,7 +49,7 @@
                     "sortBy": 'id'
                 }
             };
-            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/getCompanyEmployeeList", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/feedgram/employee/getCompanyEmployeeList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.colleagues = data;
                     stopLoading();
@@ -68,7 +68,7 @@
             var params = {
                 "id": id
             };
-            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/followPage", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/feedgram/employee/followPage", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                 }).catch(function (err) {
@@ -93,7 +93,7 @@
                     "sortBy": 'id'
                 }
             };
-            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/getFollowerList", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/feedgram/employee/getFollowerList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     for (var i = 0; i < data.length; i++) {
                         $scope.colleagues.push(data[i].follower);
@@ -121,7 +121,7 @@
                     "sortBy": 'id'
                 }
             };
-            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/getFollowingList", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/feedgram/employee/getFollowingList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     for (var i = 0; i < data.length; i++) {
                         $scope.colleagues.push(data[i].following);

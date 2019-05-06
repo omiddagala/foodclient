@@ -62,7 +62,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'name'
                 }
             };
-            return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/search", param, httpOptions)
+            return $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/search", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.companyUsers = data.data.list;
@@ -109,7 +109,7 @@
                 "employeeId": $scope.companyUserId,
                 "transactionTypeEnum": $scope.chargeReason
             };
-            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/chargeEmployee", param, httpOptions)
+            $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/chargeEmployee", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -130,7 +130,7 @@
                 id: $scope.companyUserId,
                 password: $('#newPass').val()
             };
-            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/resetEmployeePassword", param, httpOptions)
+            $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/resetEmployeePassword", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -154,7 +154,7 @@
                 id : $scope.companyUserId,
                 message: $("#desc").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/sendSMS", param, httpOptions)
+            $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/sendSMS", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -178,7 +178,7 @@
             var param = {
                 value: $("#desc").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/sendSystemMessageToAll", param, httpOptions)
+            $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/sendSystemMessageToAll", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

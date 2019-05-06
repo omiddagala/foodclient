@@ -42,9 +42,9 @@
                 }
             };
             if ($scope.customer === "R"){
-                url = "http://127.0.0.1:9000/v1/adminRestaurantManagementRest/findByName"
+                url = "http://127.0.0.1/v1/adminRestaurantManagementRest/findByName"
             } else {
-                url = "http://127.0.0.1:9000/v1/financial/getForceVateCompanyList";
+                url = "http://127.0.0.1/v1/financial/getForceVateCompanyList";
             }
             return $http.post(url, param, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -66,7 +66,7 @@
                 "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
                 "startDate": moment.utc($scope.fromDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
             };
-            $http.post("http://127.0.0.1:9000/v1/financial/createKarafeedCommissionInvoice", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/financial/createKarafeedCommissionInvoice", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
@@ -86,7 +86,7 @@
                 "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
                 "startDate": moment.utc($scope.fromDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
             };
-            $http.post("http://127.0.0.1:9000/v1/financial/getRestaurantInvoiceForKarafeed", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/financial/getRestaurantInvoiceForKarafeed", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
@@ -106,7 +106,7 @@
                 "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
                 "startDate": moment.utc($scope.fromDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
             };
-            $http.post("http://127.0.0.1:9000/v1/financial/getInvoiceOfKarafeedForCompany", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/financial/getInvoiceOfKarafeedForCompany", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();

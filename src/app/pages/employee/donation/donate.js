@@ -26,7 +26,7 @@
             var params = {
                 "comment": $scope.desc, // $("#desc").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/employee/giveFoodToCharity", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/employee/giveFoodToCharity", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
                     stopLoading();

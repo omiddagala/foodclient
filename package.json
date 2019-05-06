@@ -54,6 +54,7 @@
   "dependencies": {
     "angular-local-storage": "^0.7.1",
     "angular-star-rating": "^3.0.8",
+    "bower": "^1.8.8",
     "jalali-date": "^1.0.2",
     "ng2-jalali-date-picker": "^2.1.0",
     "rm": "^0.3.0"

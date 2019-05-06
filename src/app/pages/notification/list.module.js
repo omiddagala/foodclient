@@ -53,7 +53,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'date'
                 }
             };
-            return $http.post("http://127.0.0.1:9000/v1/message/getMessages", param, httpOptions)
+            return $http.post("http://127.0.0.1/v1/message/getMessages", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.messages = data.data.list;
@@ -81,7 +81,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1:9000/v1/message/makeMessageRead", $scope.item.id, httpOptions)
+            $http.post("http://127.0.0.1/v1/message/makeMessageRead", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.item.read = true;

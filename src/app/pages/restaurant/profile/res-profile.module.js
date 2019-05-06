@@ -39,7 +39,7 @@
                 var httpOptions = {
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
-                $http.post("http://127.0.0.1:9000/v1/restaurant/getLoginRestaurantDetail", null, httpOptions)
+                $http.post("http://127.0.0.1/v1/restaurant/getLoginRestaurantDetail", null, httpOptions)
                     .then(function (data, status, headers, config) {
                         stopLoading();
                         $scope.restInfo = data.data.restaurant;
@@ -58,7 +58,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1:9000/v1/restaurant/removeProfileImage", null, httpOptions)
+            $http.post("http://127.0.0.1/v1/restaurant/removeProfileImage", null, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $scope.restInfo.imageAddress = data;
@@ -135,7 +135,7 @@
                 "image": img.substring(img.indexOf(",") + 1),
                 "postfix": postfix
             };
-            $http.post("http://127.0.0.1:9000/v1/restaurant/uploadProfileImage", params, httpOptions)
+            $http.post("http://127.0.0.1/v1/restaurant/uploadProfileImage", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.restInfo.imageAddress = data;
                     $rootScope.myProfilePic = data;

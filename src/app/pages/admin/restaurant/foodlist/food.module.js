@@ -59,7 +59,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'name'
                 }
             };
-            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/foodList", param, httpOptions)
+            return $http.post("http://127.0.0.1/v1/adminRestaurantManagementRest/foodList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.foods = data.data.list;
@@ -103,7 +103,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/deleteFood", $scope.item.id, httpOptions)
+            return $http.post("http://127.0.0.1/v1/adminRestaurantManagementRest/deleteFood", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.foods.splice($scope.itemIndex, 1);
                     if ($scope.foods.length === 0) {
@@ -122,7 +122,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/setFoodFinishedToday", $scope.item.id, httpOptions)
+            return $http.post("http://127.0.0.1/v1/restaurant/food/setFoodFinishedToday", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

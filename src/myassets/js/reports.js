@@ -14,11 +14,16 @@ function mydownload(data,name,type) {
         var elem = window.document.createElement('a');
         elem.href = window.URL.createObjectURL(blob);
         elem.download = filename;
+        //document.getElementById("test").appendChild(elem);
+        //elem.className = 'ttest';
         document.body.appendChild(elem);
-        elem.click();
-        document.body.removeChild(elem);
+        window.location = elem.href;
+        //elem.click();
+       document.body.removeChild(elem);
     }
 }
+
+
 
 function myview(data) {
     var objbuilder = '';
