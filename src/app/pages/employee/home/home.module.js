@@ -134,7 +134,7 @@
                     $location.search('jo', off.toString());
                 }
             }
-            $http.post("http://127.0.0.1/v1/foodSearch/find", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/foodSearch/find", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     if (data.length > 0) {
@@ -238,7 +238,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1/v1/employee/findRestaurantNames", null, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/findRestaurantNames", null, httpOptions)
                 .then(function (data, status, headers, config) {
                     setTimeout(function () {
                         $scope.restNames = data.data;
@@ -268,7 +268,7 @@
                 size: 1,
                 sortBy: 'creationDate'
             };
-            $http.post("http://127.0.0.1/v1/employee/newGiftList", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/newGiftList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     if (data.data.list.length > 0) {
                         $uibModal.open({
@@ -278,7 +278,7 @@
                             scope: $scope
                         });
                         $scope.gift = data.data.list[0];
-                        $http.post("http://127.0.0.1/v1/employee/setGiftVisited", {"id": $scope.gift.id}, httpOptions)
+                        $http.post("http://127.0.0.1:9000/v1/employee/setGiftVisited", {"id": $scope.gift.id}, httpOptions)
                             .then(function (data, status, headers, config) {
                             }).catch(function (err) {
                         });
@@ -414,7 +414,7 @@
             var params = {
                 id: $scope.food.id
             };
-            $http.post("http://127.0.0.1/v1/food/getFoodAvailableDates", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/food/getFoodAvailableDates", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     var m = new HashMap();
                     for (var i = 0; i < data.length; i++) {
@@ -443,7 +443,7 @@
                 "foodId": $scope.food.id,
                 "rate": rate
             };
-            $http.post("http://127.0.0.1/v1/employee/rate", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/rate", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
@@ -469,7 +469,7 @@
             var params = {
                 id: $scope.food.id
             };
-            $http.post("http://127.0.0.1/v1/employee/lastRate", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/lastRate", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.foodRate = data.rate === 0 ? "-" : data.rate;
                     $scope.updateStar(data.rate);
@@ -525,7 +525,7 @@
                 foodId: $scope.food.id,
                 comment: $('#commentInDetail').val()
             };
-            $http.post("http://127.0.0.1/v1/foodComment/add", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/foodComment/add", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
@@ -560,7 +560,7 @@
                     sortBy: "date"
                 }
             };
-            $http.post("http://127.0.0.1/v1/foodComment/getFoodComments", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/foodComment/getFoodComments", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     if (data.length > 0) {
                         Array.prototype.push.apply($scope.comments, data);
@@ -642,7 +642,7 @@
                 date: date,
                 foodId: foodId
             };
-            $http.post("http://127.0.0.1/v1/employee/order", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/order", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.userBalance = data.availableBalanceAmount;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
@@ -667,7 +667,7 @@
                 date: date,
                 foodId: foodId
             };
-            $http.post("http://127.0.0.1/v1/employee/cancelOrderByOrderDTO", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/cancelOrderByOrderDTO", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.userBalance = data.availableBalanceAmount;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
@@ -690,7 +690,7 @@
                 date: date,
                 foodId: foodId
             };
-            $http.post("http://127.0.0.1/v1/employee/cancelOrderByOrderDTOList", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/cancelOrderByOrderDTOList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.userBalance = data.availableBalanceAmount;
@@ -732,7 +732,7 @@
                     "sortBy": "deliveryDate"
                 }
             };
-            $http.post("http://127.0.0.1/v1/employee/getOrderList", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/getOrderList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $('.cart').empty();
                     $rootScope.orderids = [];
@@ -840,7 +840,7 @@
                 },
                 "restaurantId": resId
             };
-            $http.post("http://127.0.0.1/v1/foodSearch/getRestaurantDDA", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/foodSearch/getRestaurantDDA", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $rootScope.isMainFood = false;
                     $rootScope.empPageNum = 0;
@@ -885,7 +885,7 @@
                     "sortBy": "deliveryDate"
                 }
             };
-            $http.post("http://127.0.0.1/v1/employee/getOrderList", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/getOrderList", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     var map = new HashMap();
                     for (var i = 0; i < data.length; i++) {
@@ -1068,7 +1068,7 @@
                 id: id,
                 comment: desc
             };
-            $http.post("http://127.0.0.1/v1/employee/addOrderDescription", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/addOrderDescription", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();

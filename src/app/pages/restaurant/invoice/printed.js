@@ -61,7 +61,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
-            return $http.post("http://127.0.0.1/v1/restaurant/food/getPrintedInvoiceData", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/getPrintedInvoiceData", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.orders = data.data.list;
                     for (var i = 0; i < $scope.orders.length; i++) {

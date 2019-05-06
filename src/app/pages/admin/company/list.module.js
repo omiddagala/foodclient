@@ -59,7 +59,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'name'
                 }
             };
-            return $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/findByName", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/findByName", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.rests = data.data.list;
@@ -88,7 +88,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/delete", $scope.item.id, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/delete", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     $uibModalStack.dismissAll();
                     $scope.rests.splice($scope.itemIndex, 1);
@@ -134,7 +134,7 @@
                 "companyId": $scope.item,
                 "transferAmount": $("#amount").val()
             };
-            $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/chargeCompany", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/chargeCompany", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -159,7 +159,7 @@
                 id : $scope.item,
                 message: $("#desc").val()
             };
-            $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/sendSMS", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/sendSMS", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -183,7 +183,7 @@
             var param = {
                 value: $("#desc").val()
             };
-            $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/sendSystemMessageToAll", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/sendSystemMessageToAll", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -200,7 +200,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/deActive", $scope.item.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/deActive", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.item.accountStatus = 'DELETE';
@@ -218,7 +218,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/active", $scope.item.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/active", $scope.item.id, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.item.accountStatus = 'ACTIVE';
@@ -240,7 +240,7 @@
                 id: $scope.item.id,
                 password: $('#newPass').val()
             };
-            $http.post("http://127.0.0.1/v1/adminCompanyManagementRest/resetCompanyPassword", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/resetCompanyPassword", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

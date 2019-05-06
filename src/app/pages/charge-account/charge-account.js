@@ -47,7 +47,7 @@
                 }
                 var params = $scope.amount + "," + type;
                 startLoading();
-                $http.post("http://127.0.0.1/v1/payment/getRefId", params, httpOptions)
+                $http.post("http://127.0.0.1:9000/v1/payment/getRefId", params, httpOptions)
                     .then(function (data, status, headers, config) {
                         $scope.refId = data.data;
                         $scope.accepted = true;

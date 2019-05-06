@@ -68,7 +68,7 @@
                 personnelCode: $scope.personnelCode,
                 status: "DE_ACTIVE"
             };
-            return $http.post("http://127.0.0.1/v1/companyEmployeeManagement/searchEmployee", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/searchEmployee", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     // data.data.list = new Array(1);
@@ -110,7 +110,7 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
-            $http.post("http://127.0.0.1/v1/companyEmployeeManagement/activeEmployee", $scope.companyUserId, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/activeEmployee", $scope.companyUserId, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -131,7 +131,7 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
-            $http.post("http://127.0.0.1/v1/companyEmployeeManagement/deleteEmployee", $scope.companyUserId, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/deleteEmployee", $scope.companyUserId, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -152,7 +152,7 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
-            $http.post("http://127.0.0.1/v1/companyEmployeeManagement/settlingDeActiveEmployee", $scope.companyUserId, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/settlingDeActiveEmployee", $scope.companyUserId, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

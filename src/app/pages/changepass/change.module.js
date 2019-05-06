@@ -23,13 +23,13 @@
             startLoading();
             var url;
             if (jQuery.inArray("EMPLOYEE", $rootScope.roles) > -1) {
-                url = "http://127.0.0.1/v1/employee/changePassword";
+                url = "http://127.0.0.1:9000/v1/employee/changePassword";
             } else if (jQuery.inArray("RESTAURANT", $rootScope.roles) > -1) {
-                url = "http://127.0.0.1/v1/restaurant/changePassword";
+                url = "http://127.0.0.1:9000/v1/restaurant/changePassword";
             } else if (jQuery.inArray("COMPANY", $rootScope.roles) > -1 || $rootScope.hasRole("SILVER_COMPANY")) {
-                url = "http://127.0.0.1/v1/company/changePassword";
+                url = "http://127.0.0.1:9000/v1/company/changePassword";
             } else {
-                url = "http://127.0.0.1/v1/admin/changePassword";
+                url = "http://127.0.0.1:9000/v1/admin/changePassword";
             }
             var token = localStorageService.get("my_access_token");
             var httpOptions = {

@@ -61,7 +61,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
-            return $http.post("http://127.0.0.1/v1/charity/getFoodList", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/charity/getFoodList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.orders = data.data.list;
                     stopLoading();

@@ -39,7 +39,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'id'
                 }
             };
-            return $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/getOrderById", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getOrderById", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.orders = data.data.list;
@@ -79,7 +79,7 @@
                 "comment": $('#desc').val(),
                 "orderId": $rootScope.order.id
             };
-            $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.order.foodOrderStatus = $scope.cancelReason;
@@ -100,7 +100,7 @@
             var param = {
                 "groupId": $location.search().id
             };
-            $http.post("http://127.0.0.1/v1/adminEmployeeManagementRest/deleteOrderByGroupId", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/deleteOrderByGroupId", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.orders = [];

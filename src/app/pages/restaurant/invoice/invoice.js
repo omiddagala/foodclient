@@ -69,7 +69,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
-            return $http.post("http://127.0.0.1/v1/restaurant/food/getInvoiceDataForRestaurant", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/getInvoiceDataForRestaurant", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.orders = data.data.list;
                     for (var i = 0; i < $scope.orders.length; i++) {
@@ -135,7 +135,7 @@
                 "comment":"",
                 "list": ids
             };
-            $http.post("http://127.0.0.1/v1/restaurant/food/printInvoice", JSON.stringify(data), httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/restaurant/food/printInvoice", JSON.stringify(data), httpOptions)
                 .then(function (data, status, headers, config) {
                     $rootScope.numOfAllFactors --;
                     $scope.$broadcast('refreshMyTable');
@@ -162,7 +162,7 @@
                 "comment":"",
                 "list": ids
             };
-            $http.post("http://127.0.0.1/v1/restaurant/food/printInvoice", JSON.stringify(data), httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/restaurant/food/printInvoice", JSON.stringify(data), httpOptions)
                 .then(function (data, status, headers, config) {
                     $rootScope.numOfAllFactors = $rootScope.numOfAllFactors - $scope.orders.length;
                     $scope.$broadcast('refreshMyTable');
