@@ -734,6 +734,7 @@
             };
             $http.post("http://127.0.0.1:9000/v1/employee/getOrderList", params, httpOptions)
                 .success(function (data, status, headers, config) {
+                    data = data.list;
                     $('.cart').empty();
                     $rootScope.orderids = [];
                     $rootScope.cartItems = new HashMap();
@@ -887,6 +888,7 @@
             };
             $http.post("http://127.0.0.1:9000/v1/employee/getOrderList", params, httpOptions)
                 .success(function (data, status, headers, config) {
+                    data = data.list;
                     var map = new HashMap();
                     for (var i = 0; i < data.length; i++) {
                         var existVal = map.get(data[i].deliveryDate);

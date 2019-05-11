@@ -17,7 +17,7 @@
 
     function adminCompanyUsersCtrl($scope, $filter, editableOptions, editableThemes, $state, $rootScope,$q, $http, localStorageService, $location, $uibModal, $uibModalStack, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
-        $scope.chargeReason = 'GIFT';
+        $scope.chargeReason = 'CHARGE_BY_ADMIN';
         var preventTwiceLoad = true;
 
         $scope.initCtrl = function () {

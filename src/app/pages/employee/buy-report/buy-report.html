@@ -53,33 +53,55 @@
                     <div class="horizontal-scroll">
                         <table class="table" st-table="foods" refresh-table>
                             <thead>
-                                <tr class="sortable ">
-                                    <th>
-                                        <div class="newtable_header">مبلغ</div>
-                                    </th>
-                                    <th>
-                                        <div class="newtable_header">تاریخ</div>
-                                    </th>
-                                    <th>
-                                        <div class="newtable_header">نوع</div>
-                                    </th>
-                                    <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
-                                </tr>
+                            <tr class="sortable ">
+                                <th>
+                                    <div class="newtable_header">
+                                        عملیات
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="newtable_header">
+                                        نام رستوران
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="newtable_header">
+                                        شماره فاکتور
+                                    </div>
+                                </th>
+                                <th st-sort="deliveryDate">
+                                    <div class="newtable_header">
+                                        تاریخ تحویل
+                                    </div>
+                                </th>
+                                <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true">
+                                    <div class="newtable_header">
+                                        ردیف
+                                    </div>
+                                </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in orders">
-                                    <td>{{formatPrice(item[2])}}</td>
-                                    <td>{{myFormatDate(item[1])}}</td>
-                                    <td>{{getTransactionType(item[3])}}</td>
-                                    <td class="table-id">{{$index+1}}</td>
-                                </tr>
+                            <tr ng-repeat="item in orders">
+                                <td>
+                                    <div class="buttons">
+                                        <button class="confirm_button confirm_yes btn" ng-click="goToDetail(item.id)">
+                                            جزییات
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>{{item.restaurant.name}}</td>
+                                <td>kf-{{item.id}}</td>
+                                <td>{{myFormatDate(item.deliveryDate)}}</td>
+                                <td class="table-id">{{$index+1}}</td>
+                            </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="12" class="text-center">
-                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -95,21 +117,8 @@
     </div>
 </aside>
 <style>
-    /* .mycontent {
-        margin-left: 10px !important;
-    } */
-
     .mycontent.widgets .row {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
-    /* .menu-top {
-        left: 10px;
-    }
-    @media (min-width: 2048px) {
-        .menu-top {
-            left: calc(50% - 162px);
-            width: 1685px;
-        }
-    } */
 </style>

@@ -1,26 +1,31 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.user-financial', [])
+    angular.module('BlurAdmin.pages.emp-buy-report', [])
         .config(routeConfig)
-        .controller('userFinancial', userFinancial);
+        .controller('empBuyReport', empBuyReport);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('user-financial', {
-                url: '/user-financial',
-                templateUrl: 'app/pages/employee/financial/financial.html',
-                controller: 'userFinancial'
+            .state('buy-report', {
+                url: '/buy-report',
+                templateUrl: 'app/pages/employee/buy-report/buy-report.html',
+                controller: 'empBuyReport'
             });
     }
 
-    function userFinancial($scope, $filter, editableOptions, editableThemes, $state, $rootScope, $q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
+    function empBuyReport($scope, $filter, editableOptions, editableThemes, $state, $rootScope, $q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
         $scope.fromDate = moment(new Date()).subtract('days', 7).format('jYYYY/jM/jD');
         $scope.toDate = moment(new Date()).format('jYYYY/jM/jD');
         var preventTwiceLoad = true;
-        $scope.reportType = "ALL";
+
+        $scope.$on('$locationChangeStart', function () {
+            if ($location.path() !== "/buy-report-detail" && $location.path() !== "/buy-report") {
+                $location.search({});
+            }
+        });
 
         $scope.toggleSidebar = function (e) {
             console.log(this);
@@ -40,25 +45,26 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
+            var s = $scope.fromDate = $location.search().rs1 ? $location.search().rs1 : $scope.fromDate;
+            var e = $scope.toDate = $location.search().re1 ? $location.search().re1 : $scope.toDate;
+            $location.search({rs1: s,re1: e});
             var param = {
-                "id": "0",
-                "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
-                "startDate": moment.utc($scope.fromDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
-                "balanceEffectType": $scope.reportType,
+                "startDate": moment.utc(s, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
+                "endDate": moment.utc(e, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
                 "pageableDTO": {
                     "direction": sort.reverse ? 'DESC' : 'ASC',
                     "page": pagination.start / pagination.number,
                     "size": pagination.number,
-                    "sortBy": sort.predicate ? sort.predicate : 'id'
+                    "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
-            return $http.post("http://127.0.0.1:9000/v1/employee/getFinancialReport", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/employee/getOrderList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.orders = data.data.list;
                     return data.data;
                 }).catch(function (err) {
-                    $rootScope.handleError(param, "/employee/getFinancialReport", err, httpOptions);
+                    $rootScope.handleError(param, "/employee/getOrderList", err, httpOptions);
                 });
         };
 
@@ -73,12 +79,17 @@
                 showMessage(toastrConfig, toastr, "خطا", "تاریخ پایان از تاریخ آغاز کوچکتر است", "error");
                 return;
             }
-            if (end.diff($scope.fromDate,'days') > 7) {
-                showMessage(toastrConfig, toastr, "خطا", "حداکثر بازه زمانی ۷ روزه انتخاب نمایید", "error");
+            if (end.diff($scope.fromDate,'days') > 30) {
+                showMessage(toastrConfig, toastr, "خطا", "حداکثر بازه زمانی ۳۰ روزه انتخاب نمایید", "error");
                 return;
             }
+            $location.search({});
             $scope.$broadcast('refreshMyTable');
         };
+
+        $scope.goToDetail = function (id) {
+            $location.path("/buy-report-detail").search('brid', id);
+        }
 
     }
 })();

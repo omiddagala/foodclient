@@ -80,7 +80,9 @@
         'BlurAdmin.pages.admin-fooddetail',
         'BlurAdmin.pages.admin-orders',
         'BlurAdmin.pages.admin-order',
-        'BlurAdmin.pages.ad-sms'
+        'BlurAdmin.pages.ad-sms',
+        'BlurAdmin.pages.emp-buy-report',
+        'BlurAdmin.pages.emp-buy-report-detail'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -339,6 +341,10 @@
                     url: "user-financial",
                     img: "assets/img/ui/menu/fin.png",
                     title: "مالی"
+                }, {
+                    url: "buy-report",
+                    img: "assets/img/ui/menu/res-orders.png",
+                    title: "سفارشات"
                 }, {
                         url: "myrestaurant",
                         img: "assets/img/ui/menu/restaurant.png",
@@ -732,46 +738,67 @@
         $rootScope.getTransactionType = function (type) {
             switch (type) {
                 case 'BUY_FOOD':
+                case 0:
                     return "خرید غذا";
                 case 'DELIVERY':
+                case 1:
                     return "هزینه ارسال";
                 case 'CHARGE_USER_BY_COMPANY':
+                case 2:
                     return "افزایش اعتبار توسط شرکت";
                 case 'GIFT':
+                case 3:
                     return "هدیه";
                 case 'LOTTERY':
+                case 4:
                     return "قرعه کشی";
                 case 'RESTAURANT_CANCEL_PENALTY':
+                case 5:
                     return "جریمه کنسل شدن غذا توسط رستوران";
                 case 'TRANSFER_TO_COWORKER':
+                case 6:
                     return "انتقال به همکار";
                 case 'BANK_TRANSFER':
+                case 7:
                     return "واریز بانکی";
                 case 'PAY_TO_RESTAURANT':
+                case 8:
                     return "پرداخت به رستوران";
                 case 'CHARGE_BY_ADMIN':
+                case 9:
                     return "افزایش اعتبار توسط راهبر سیستم";
                 case 'PENALTY_FOR_RESTAURANT_MISTAKE':
+                case 10:
                     return "جریمه اشتباه رستوران";
                 case 'CHEQUE_FOR_RESTAURANT':
+                case 11:
                     return "صدور چک برای رستوران";
                 case 'CHEQUE_FOR_ADMIN':
+                case 12:
                     return "صدور چک درامد سیستم";
                 case 'CHEQUE_FOR_TAX':
+                case 13:
                     return "صدور چک ارزش افزورده";
                 case 'SETTLEMENT':
+                case 14:
                     return "تسویه";
                 case 'INCREASE_GIFT_BUDGET':
+                case 15:
                     return "افزایش بودجه پرداخت هدیه";
                 case 'INCREASE_GIFT_WALLET_BY_COMPANY':
+                case 16:
                     return "پراخت هدیه تشویقی به کارمندان";
                 case 'BUY_FROM_GIFT_WALLET':
+                case 17:
                     return "انتقال موجودی هدایا برای تسویه خرید";
                 case 'INCREASE_GIFT_WALLET_BY_MANAGER':
+                case 18:
                     return "دریافت هدیه تشویقی از مدیر";
                 case 'RECEIVE_GIFT_WALLET_FROM_COMPANY':
+                case 19:
                     return "دریافت هدیه تشویقی از شرکت";
                 case 'BANK_TRANSFER_TO_GIFT_WALLET':
+                case 20:
                     return "شارژ موجودی هدیه";
             }
         };

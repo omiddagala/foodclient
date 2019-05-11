@@ -1,0 +1,99 @@
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; height: 100%">
+        <ul class="al-sidebar-list sidebar__" slimscroll-watch="menuHeight">
+            <li style="text-align: center" class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded">
+                <button ng-click="goBackToList()" type="button" style="width: auto" class="confirm_button confirm_yes btn">بازگشت
+                    به لیست سفارشات
+                </button>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<div class="mycontent widgets">
+    <div class="content__wrapper">
+
+        <div style="background: #e2eded;padding-left: 16px;padding-top: 5%">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal-scroll">
+                        <table class="table" st-table="foods" refresh-table>
+                            <thead>
+                            <tr class="sortable ">
+                                <th>
+                                    <div class="newtable_header">
+                                        عملیات
+                                    </div>
+                                </th>
+                                <th st-sort="totalPrice">
+                                    <div class="newtable_header">
+                                        قیمت
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="newtable_header">
+                                        نام رستوران
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="newtable_header">
+                                        نام غذا
+                                    </div>
+                                </th>
+                                <th st-sort="deliveryDate">
+                                    <div class="newtable_header">
+                                        تاریخ تحویل
+                                    </div>
+                                </th>
+                                <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true">
+                                    <div class="newtable_header">
+                                        ردیف
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in orders">
+                                <td>
+                                    <div class="buttons">
+                                        <button class="confirm_button confirm_yes btn" ng-click="opneModal('app/pages/employee/buy-report/detail-modal.html', 'lg',item,$index)">
+                                            مشاهده
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>{{item.totalPrice}}</td>
+                                <td>{{item.food.restaurant.name}}</td>
+                                <td>{{item.food.name}}</td>
+                                <td>{{myFormatDate(item.deliveryDate)}}</td>
+                                <td class="table-id">{{$index+1}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<aside class="al-sidebar sabad__">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 90% !important;">
+        <ul id="sabad-side" class="al-sidebar-list" style="overflow:hidden;width: auto; height: 100%;padding-top: 0;">
+        </ul>
+    </div>
+</aside>
+<style>
+    .mycontent.widgets .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+</style>
