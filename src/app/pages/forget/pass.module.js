@@ -31,7 +31,7 @@
             var params = {
                 "phone": $("#mobile").val(), // $("#mobile").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/userSecurity/getResetCode", params, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/userSecurity/getResetCode", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.mylevel = '2';
                     localStorageService.set("mobile", $("#mobile").val());
@@ -60,7 +60,7 @@
                 "password":  $("#password").val(),
                 "code": $("#code").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/userSecurity/resetPassByCode", params, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/userSecurity/resetPassByCode", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.mylevel = '1';
                     localStorageService.remove("mobile");

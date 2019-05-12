@@ -59,7 +59,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'name'
                 }
             };
-            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/findByName", param, httpOptions)
+            return $http.post("https://demoapi.karafeed.com/v1/adminRestaurantManagementRest/findByName", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.rests = data.data.list;
@@ -101,7 +101,7 @@
                 id : $scope.itemId,
                 comment: $("#desc").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/financial/createAllRestaurantsCheque", param, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/financial/createAllRestaurantsCheque", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -121,7 +121,7 @@
             var param = {
                 id : $scope.itemId
             };
-            $http.post("http://127.0.0.1:9000/v1/financial/payToActiveRestaurants", param, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/financial/payToActiveRestaurants", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

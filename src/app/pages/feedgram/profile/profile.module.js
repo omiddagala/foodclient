@@ -43,7 +43,7 @@
             var params = {
                 "id": null
             };
-            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/getPageInfo", params, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/feedgram/employee/getPageInfo", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.info = data;
                     stopLoading();
@@ -61,7 +61,7 @@
             var params = {
                 "value": $("#desc").val()
             };
-            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/editPageInfo", params, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/feedgram/employee/editPageInfo", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.editModal.hide();
                     $scope.info.description = params.value;

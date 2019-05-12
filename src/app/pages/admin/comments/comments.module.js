@@ -58,9 +58,9 @@
             };
             var url;
             if ($scope.commentType === "F"){
-                url = "http://127.0.0.1:9000/v1/adminCommentManagementRest/getNewComments";
+                url = "https://demoapi.karafeed.com/v1/adminCommentManagementRest/getNewComments";
             } else {
-                url = "http://127.0.0.1:9000/v1/adminCommentManagementRest/getNewCommentsOfRestaurant";
+                url = "https://demoapi.karafeed.com/v1/adminCommentManagementRest/getNewCommentsOfRestaurant";
             }
             return $http.post(url, param, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -96,9 +96,9 @@
             };
             var url;
             if ($scope.commentType === "F"){
-                url = "http://127.0.0.1:9000/v1/adminCommentManagementRest/approve";
+                url = "https://demoapi.karafeed.com/v1/adminCommentManagementRest/approve";
             } else {
-                url = "http://127.0.0.1:9000/v1/adminCommentManagementRest/approveRestaurantComment";
+                url = "https://demoapi.karafeed.com/v1/adminCommentManagementRest/approveRestaurantComment";
             }
             $http.post(url, $scope.commentId, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -123,9 +123,9 @@
             };
             var url;
             if ($scope.commentType === "F"){
-                url = "http://127.0.0.1:9000/v1/adminCommentManagementRest/reject";
+                url = "https://demoapi.karafeed.com/v1/adminCommentManagementRest/reject";
             } else {
-                url = "http://127.0.0.1:9000/v1/adminCommentManagementRest/rejectRestaurantComment";
+                url = "https://demoapi.karafeed.com/v1/adminCommentManagementRest/rejectRestaurantComment";
             }
             $http.post(url, $scope.commentId, httpOptions)
                 .then(function (data, status, headers, config) {

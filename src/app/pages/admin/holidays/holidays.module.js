@@ -58,11 +58,11 @@
             };
             var url;
             if ($scope.holidayType === 'ramadan'){
-                url = "http://127.0.0.1:9000/v1/vacation/getRamadan";
+                url = "https://demoapi.karafeed.com/v1/vacation/getRamadan";
             } else if ($scope.holidayType === 'vacation'){
-                url = "http://127.0.0.1:9000/v1/vacation/getVacationList";
+                url = "https://demoapi.karafeed.com/v1/vacation/getVacationList";
             } else {
-                url = "http://127.0.0.1:9000/v1/vacation/getOffDaysList";
+                url = "https://demoapi.karafeed.com/v1/vacation/getOffDaysList";
             }
             return $http.post(url, null, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -121,7 +121,7 @@
                 startTime: Number($('#fromTime').val().replace(':','')),
                 endTime: Number($('#toTime').val().replace(':',''))
             };
-            $http.post("http://127.0.0.1:9000/v1/vacation/addRamadan", param, httpOptions)
+            $http.post("https://demoapi.karafeed.com/v1/vacation/addRamadan", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -145,9 +145,9 @@
             };
             var url;
             if ($scope.holidayType === 'vacation'){
-                url = "http://127.0.0.1:9000/v1/vacation/addVacation";
+                url = "https://demoapi.karafeed.com/v1/vacation/addVacation";
             } else {
-                url = "http://127.0.0.1:9000/v1/vacation/addKarafeedOffDay";
+                url = "https://demoapi.karafeed.com/v1/vacation/addKarafeedOffDay";
             }
             $http.post(url, param, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -172,9 +172,9 @@
             };
             var url;
             if ($scope.holidayType === 'vacation'){
-                url = "http://127.0.0.1:9000/v1/vacation/deleteVacation";
+                url = "https://demoapi.karafeed.com/v1/vacation/deleteVacation";
             } else {
-                url = "http://127.0.0.1:9000/v1/vacation/deleteOffDays";
+                url = "https://demoapi.karafeed.com/v1/vacation/deleteOffDays";
             }
             $http.post(url, param, httpOptions)
                 .then(function (data, status, headers, config) {
