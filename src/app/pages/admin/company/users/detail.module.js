@@ -40,7 +40,7 @@
                 var httpOptions = {
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
-                $http.post("https://demoapi.karafeed.com/v1/adminEmployeeManagementRest/findById", id, httpOptions)
+                $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/findById", id, httpOptions)
                     .then(function (data, status, headers, config) {
                         stopLoading();
                         $scope.restInfo = data.data;

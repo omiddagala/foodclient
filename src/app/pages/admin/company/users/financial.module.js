@@ -66,7 +66,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'id'
                 }
             };
-            return $http.post("https://demoapi.karafeed.com/v1/adminEmployeeManagementRest/getFinancialReport", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getFinancialReport", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.orders = data.data.list;

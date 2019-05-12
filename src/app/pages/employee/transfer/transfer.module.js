@@ -32,7 +32,7 @@
                     headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
                 };
 
-                $http.post("https://demoapi.karafeed.com/v1/employee/findCompanyCoWorkerByName",
+                $http.post("http://127.0.0.1:9000/v1/employee/findCompanyCoWorkerByName",
                     //$("#colNameToSearch").val(), 
                     $scope.colNameToSearch,
                     httpOptions)
@@ -79,7 +79,7 @@
                 "sourceAccountId": null,
                 "transferAmount": $scope.amount, // $('#amount').val()
             };
-            $http.post("https://demoapi.karafeed.com/v1/employee/employeeToEmployeeTransfer", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/employeeToEmployeeTransfer", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.loadBalanceByRole();

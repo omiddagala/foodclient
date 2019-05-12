@@ -37,7 +37,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'id'
                 }
             };
-            return $http.post("https://demoapi.karafeed.com/v1/adminEmployeeManagementRest/getFailedRegistrationSmsList", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getFailedRegistrationSmsList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.smsList = data.data.list;
@@ -54,7 +54,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'text/plain; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/v1/adminEmployeeManagementRest/resendRegistrationSms", username, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/resendRegistrationSms", username, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.smsList.splice(index, 1);

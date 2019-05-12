@@ -65,7 +65,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
-            return $http.post("https://demoapi.karafeed.com/v1/adminEmployeeManagementRest/getEmployeeOrderList", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getEmployeeOrderList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.orders = data.data.list;
@@ -119,7 +119,7 @@
                 "comment": $('#desc').val(),
                 "orderId": $scope.order.id
             };
-            $http.post("https://demoapi.karafeed.com/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();

@@ -39,7 +39,7 @@
                     "sortBy": sort.predicate ? sort.predicate : 'deliveryDate'
                 }
             };
-            return $http.post("https://demoapi.karafeed.com/v1/company/getSellerRestaurantList", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/company/getSellerRestaurantList", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.rests = data.data.list;
@@ -57,7 +57,7 @@
             var params = {
                 "date": moment.utc($scope.commissionDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
             };
-            $http.post("https://demoapi.karafeed.com/v1/company/getInvoiceOfKarafeed", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/company/getInvoiceOfKarafeed", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     mydownload(data,'karafeed-commissions.pdf','application/pdf');
                     stopLoading();
@@ -76,7 +76,7 @@
                 "id": id,
                 "date": moment.utc($scope.commissionDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
             };
-            $http.post("https://demoapi.karafeed.com/v1/company/getInvoiceOfRestaurant", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/company/getInvoiceOfRestaurant", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();

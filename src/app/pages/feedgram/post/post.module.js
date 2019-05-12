@@ -57,7 +57,7 @@
                 "image": null,
                 "description": $scope.desc
             };
-            $http.post("https://demoapi.karafeed.com/v1/feedgram/employee/post", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/feedgram/employee/post", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();

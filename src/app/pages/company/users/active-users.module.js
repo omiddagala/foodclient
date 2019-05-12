@@ -71,7 +71,7 @@
                 personnelCode: $scope.personnelCode,
                 status: "ACTIVE"
             };
-            return $http.post("https://demoapi.karafeed.com/v1/companyEmployeeManagement/searchEmployee", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/searchEmployee", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     // data.data.list = new Array(10);
@@ -119,7 +119,7 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
-            $http.post("https://demoapi.karafeed.com/v1/companyEmployeeManagement/getEmployeeById", $rootScope.companyUserId, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/getEmployeeById", $rootScope.companyUserId, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.userInfo = data.data;
@@ -157,7 +157,7 @@
                     return;
                 }
             }
-            $http.post("https://demoapi.karafeed.com/v1/companyEmployeeManagement/addOrUpdateEmployee", $rootScope.userInfo, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/addOrUpdateEmployee", $rootScope.userInfo, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.userInfo = data.data;
@@ -218,7 +218,7 @@
                 id: $rootScope.companyUserId,
                 password: $('#newPass').val()
             };
-            $http.post("https://demoapi.karafeed.com/v1/companyEmployeeManagement/resetEmployeePassword", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/resetEmployeePassword", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -235,7 +235,7 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
-            $http.post("https://demoapi.karafeed.com/v1/companyEmployeeManagement/deActiveEmployee", {id:$rootScope.companyUserId}, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/deActiveEmployee", {id:$rootScope.companyUserId}, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.showList();
@@ -266,7 +266,7 @@
                 "employeeAccountId": $rootScope.companyUserId,
                 "transferAmount": $("#camount").val()
             };
-            $http.post("https://demoapi.karafeed.com/v1/company/chargeEmployee", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/company/chargeEmployee", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -350,7 +350,7 @@
                 "transferAmount": $("#amount").val()
                 // "giftTypeEnum": $scope.chargeReason
             };
-            $http.post("https://demoapi.karafeed.com/v1/company/giveGift", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/company/giveGift", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
@@ -404,7 +404,7 @@
             var param = {
                 "id": item.id
             };
-            $http.post("https://demoapi.karafeed.com/v1/companyEmployeeManagement/getEmployeeExtraData", param, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/getEmployeeExtraData", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.employee = {

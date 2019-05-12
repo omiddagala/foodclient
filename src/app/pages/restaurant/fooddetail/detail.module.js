@@ -43,7 +43,7 @@
                 var httpOptions = {
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
-                return $http.post("https://demoapi.karafeed.com/v1/restaurant/food/getFoodById", $scope.foodid, httpOptions)
+                return $http.post("http://127.0.0.1:9000/v1/restaurant/food/getFoodById", $scope.foodid, httpOptions)
                     .then(function (data, status, headers, config) {
                         $scope.food = data.data;
                         stopLoading();
@@ -77,7 +77,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("https://demoapi.karafeed.com/v1/restaurant/food/addFood", $scope.food, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/addFood", $scope.food, httpOptions)
                 .then(function (data, status, headers, config) {
                     if (!$scope.foodid)
                         $scope.food = data.data;
@@ -106,7 +106,7 @@
                 id: dayId,
                 startTime: $('#from-' + index).val().replace(':', '')
             };
-            return $http.post("https://demoapi.karafeed.com/v1/restaurant/food/addFoodAvailableDate", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/addFoodAvailableDate", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.food.availableDates = data.data;
                     stopLoading();
@@ -181,7 +181,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("https://demoapi.karafeed.com/v1/restaurant/food/deleteFoodAvailableDate", dayId, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/deleteFoodAvailableDate", dayId, httpOptions)
                 .then(function (data, status, headers, config) {
                     $scope.food.availableDates.splice(index, 1);
                     stopLoading();
@@ -214,7 +214,7 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("https://demoapi.karafeed.com/v1/restaurant/food/removeFoodImage", $scope.food.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/restaurant/food/removeFoodImage", $scope.food.id, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $scope.food.imageAddress = data;
@@ -289,7 +289,7 @@
                 "image": img.substring(img.indexOf(",") + 1),
                 "postfix": postfix
             };
-            $http.post("https://demoapi.karafeed.com/v1/restaurant/food/uploadFoodImage", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/restaurant/food/uploadFoodImage", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.food.imageAddress = data;
                     stopLoading();
