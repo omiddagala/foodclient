@@ -56,8 +56,8 @@
         function prepareMapForLocation() {
             var mapCanvas = document.getElementById('map');
             var myLatLng;
-            if ($scope.restInfo && $scope.restInfo.address.point) {
-                var loc = $scope.restInfo.address.point.split(",");
+            if ($scope.restInfo && $scope.restInfo.location.point) {
+                var loc = $scope.restInfo.location.point.split(",");
                 myLatLng = {lat: Number(loc[0]), lng: Number(loc[1])}
             } else {
                 myLatLng = {lat: 35.747262, lng: 51.451300};

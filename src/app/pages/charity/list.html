@@ -60,10 +60,10 @@
                         <tbody>
                         <tr id="{{$index}}" ng-repeat="item in orders">
                             <td style="line-height: 65px">{{item.comment}}</td>
-                            <td style="line-height: 65px">{{item.employee.address.mobile}}</td>
-                            <td style="line-height: 65px">{{item.employee.address.phone}}</td>
+                            <td style="line-height: 65px">{{item.employee.mobile}}</td>
+                            <td style="line-height: 65px">{{item.employee.phone}}</td>
                             <td style="line-height: 65px">{{myFormatDate(item.requestDate)}}</td>
-                            <td style="line-height: 65px">{{item.employee.address.address}}</td>
+                            <td style="line-height: 65px">{{item.employee.location.address}}</td>
                             <td style="line-height: 65px">{{item.employee.name}}</td>
                             <td style="line-height: 65px" class="table-id">{{$index+1}}</td>
                         </tr>

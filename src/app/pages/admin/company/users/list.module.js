@@ -53,7 +53,7 @@
             };
             var param = {
                 // companyName: search.predicateObject ? search.predicateObject.companyName : null,
-                mobileNumber: search.predicateObject && search.predicateObject.address ? search.predicateObject.address.mobile : null,
+                mobileNumber: search.predicateObject ? search.predicateObject.mobile : null,
                 name: search.predicateObject ? search.predicateObject.name : null,
                 "pageableDTO": {
                     "direction": sort.reverse ? 'DESC' : 'ASC',

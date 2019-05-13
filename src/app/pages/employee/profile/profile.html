@@ -63,7 +63,7 @@
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
                                 <input type="tel" class="confirm_input form-control" ng-maxlength="11" ng-minlength="11"
-                                    required name="mobile" ng-model="employee.address.mobile" id="mobile">
+                                    required name="mobile" ng-model="employee.mobile" id="mobile">
                                 <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
                                     حداکثر 11 کاراکتر وارد کنید
                                 </div>
@@ -79,7 +79,7 @@
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
                                 <input type="tel" ng-minlength="4" ng-maxlength="100" required class="confirm_input form-control"
-                                    id="phone" name="phone" ng-model="employee.address.phone">
+                                    id="phone" name="phone" ng-model="employee.phone">
                                 <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
                                     حداکثر 100 کاراکتر وارد کنید
                                 </div>
@@ -95,7 +95,7 @@
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
                                 <input ng-disabled="true" type="text" ng-maxlength="150" required class="confirm_input form-control"
-                                    name="adr" id="adr" ng-model="employee.address.address">
+                                    name="adr" id="adr" ng-model="employee.location.address">
                                 <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
                                     حداکثر 150 کاراکتر وارد کنید
                                 </div>

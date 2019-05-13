@@ -86,8 +86,8 @@
                         </td>
                         <td>{{item.totalPrice}}</td>
                         <td>{{item.employee.name}}</td>
-                        <td>{{item.employee.address.phone}}</td>
-                        <td>{{item.food.restaurant.address.phone}}</td>
+                        <td>{{item.employee.phone}}</td>
+                        <td>{{item.food.restaurant.phone}}</td>
                         <td>{{item.food.restaurant.name}}</td>
                         <td ng-style="getStatusColor(item.foodOrderStatus)">{{getFoodOrderStatus(item.foodOrderStatus)}}</td>
                         <td>{{myFormatDate(item.deliveryDate)}}</td>

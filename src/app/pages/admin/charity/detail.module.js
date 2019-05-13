@@ -46,14 +46,13 @@
                         .then(function (data, status, headers, config) {
                             stopLoading();
                             $scope.restInfo = data.data;
-                            addressId = $scope.restInfo.address ? $scope.restInfo.address.id : null;
                             prepareMapForLocation();
                         }).catch(function (err) {
                         $rootScope.handleError(id, "/adminCharityManagementRest/findById", err, httpOptions);
                     });
                 } else {
                     $scope.restInfo = {
-                        address : {
+                        location : {
                             point : null
                         }
                     };
@@ -69,13 +68,6 @@
             }
             startLoading();
             var param = {
-                "address": {
-                    "address": $scope.restInfo.address.address, //$('#adr').val(),
-                    "id": addressId,
-                    "mobile": $scope.restInfo.address.mobile, // $('#mobile').val(),
-                    "phone": $scope.restInfo.address.phone, // $('#phone').val(),
-                    "point": marker.getPosition().lat() + "," + marker.getPosition().lng()
-                },
                 "name": $scope.restInfo.name, // $('#name').val(),
                 "id": id,
                 "password": $scope.restInfo.user.password, // $('#pass').val(),
@@ -104,8 +96,8 @@
         function prepareMapForLocation() {
             var mapCanvas = document.getElementById('map');
             var myLatLng;
-            if ($scope.restInfo && $scope.restInfo.address.point){
-                var loc = $scope.restInfo.address.point.split(",");
+            if ($scope.restInfo && $scope.restInfo.location.point){
+                var loc = $scope.restInfo.location.point.split(",");
                myLatLng = {lat: Number(loc[0]), lng: Number(loc[1])}
             } else {
                 myLatLng = {lat: 35.747262, lng: 51.451300};
@@ -130,7 +122,7 @@
                     position: location,
                     map: map
                 });
-                $scope.restInfo.address.point = location.lat() + "," + location.lng();
+                $scope.restInfo.location.point = location.lat() + "," + location.lng();
             }
 
             $('#map').parent().css('height', '400px');

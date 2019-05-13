@@ -47,10 +47,10 @@
                                 <tr class="sortable ">
                                     <th>
                                     </th>
-                                    <th st-sort="address.mobile">
+                                    <th st-sort="mobile">
                                         <div class="newtable_header">موبایل</div>
                                     </th>
-                                    <th st-sort="address.phone">
+                                    <th st-sort="phone">
                                         <div class="newtable_header">تلفن</div>
                                     </th>
                                     <th st-sort="personnelCode">
@@ -75,8 +75,8 @@
                                             <div class="newtable_operation_text">هدیه</div>
                                         </div>
                                     </td>
-                                    <td>{{item.address.mobile}}</td>
-                                    <td>{{item.address.phone}}</td>
+                                    <td>{{item.mobile}}</td>
+                                    <td>{{item.phone}}</td>
                                     <td>{{item.personnelCode}}</td>
                                     <td>{{item.name}}</td>
                                     <td class="table-id">{{$index+1}}</td>
@@ -112,8 +112,8 @@
                         <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">شماره پرسنلی :
                             {{employee.general.personnelCode}}</div>
                         <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">شماره تلفن :
-                            {{employee.general.address.phone}}</div>
-                        <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">{{employee.general.address.mobile}}</div>
+                            {{employee.general.phone}}</div>
+                        <div class="hide__text_overflow ng-binding bottom-margin-md padding-md">{{employee.general.mobile}}</div>
                     </div>
                     <div style="width: 20%;float: right;text-align: right;">
                         <div style="width: 100%">

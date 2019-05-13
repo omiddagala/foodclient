@@ -74,16 +74,10 @@
             return $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/searchEmployee", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
-                    // data.data.list = new Array(10);
-                    // data.data.count = 90;
                     $scope.companyUsers = data.data.list;
-                    $scope.companyAddress = data.data.companyAddress;
                     return data.data;
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/companyEmployeeManagement/searchEmployee", err, httpOptions);
-
-                    // $scope.companyUsers = new Array(10);;
-                    // $scope.companyAddress = data.data.companyAddress;
                 });
         };
         var delayTimer;

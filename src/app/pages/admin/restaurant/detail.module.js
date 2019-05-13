@@ -56,8 +56,6 @@
                 } else {
                     $scope.restInfo = {
                         deliveryPrice: 0,
-                        address: {
-                        },
                         location: {
                           point: null,
                           address: null,

@@ -52,7 +52,7 @@
                 } else {
                     $scope.restInfo = {
                         companyType:"GOLDEN",
-                        address : {
+                        location : {
                             point : null
                         }
                     };

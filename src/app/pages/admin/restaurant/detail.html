@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
                             <div class="col-md-8 col-sm-7 col-xs-12">
-                                <input tabindex="4" ng-model="restInfo.address.mobile" ng-maxlength="11" ng-minlength="11"
+                                <input tabindex="4" ng-model="restInfo.mobile" ng-maxlength="11" ng-minlength="11"
                                     required type="tel" class="form-control" id="mobile" name="mobile" placeholder="">
                                 <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
                                     حداکثر 11 کاراکتر وارد کنید
@@ -76,7 +76,7 @@
 
                         <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
                             <div class="col-md-8 col-sm-7 col-xs-12">
-                                <input tabindex="3" ng-model="restInfo.address.phone" ng-minlength="4" ng-maxlength="100" required type="tel"
+                                <input tabindex="3" ng-model="restInfo.phone" ng-minlength="4" ng-maxlength="100" required type="tel"
                                     class="form-control" id="phone" name="phone" placeholder="">
                                 <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
                                     حداکثر 100 کاراکتر وارد کنید

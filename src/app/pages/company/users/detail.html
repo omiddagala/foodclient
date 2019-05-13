@@ -40,7 +40,7 @@
                         <div class="row">
                             <div class="col-sm-10 margin__bottom_5">
                                 <input tabindex="3" type="tel" name="phone" ng-minlength="4" ng-maxlength="100"
-                                    required ng-model="userInfo.address.phone" class="confirm_input form-control" id="phone"
+                                    required ng-model="userInfo.phone" class="confirm_input form-control" id="phone"
                                     style="text-align:right;">
                                 <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
                                     حداکثر 100 کاراکتر وارد کنید
@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-sm-10 margin__bottom_5">
                                 <input tabindex="4" name="mobile" type="tel" ng-maxlength="11" ng-minlength="11"
-                                    required ng-model="userInfo.address.mobile" class="confirm_input form-control" id="mobile"
+                                    required ng-model="userInfo.mobile" class="confirm_input form-control" id="mobile"
                                     style="text-align:right;">
                                 <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
                                     حداکثر 11 کاراکتر وارد کنید
