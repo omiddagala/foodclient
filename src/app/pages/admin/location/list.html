@@ -1,0 +1,108 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu
+   ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive"/>
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded" ui-sref-active="selected"
+                style="height: 285px">
+                <ul class="al-sidebar-sublist" style="display: block;">
+                    <li style="text-align: center !important;">
+                        <button ng-click="opneModal('app/pages/admin/location/detail-modal.html', 'lg')"
+                                type="button" style="width: auto" class="confirm_button confirm_yes btn">افزودن
+                        </button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="mycontent widgets" ng-init="initCtrl()" style="background: #e2eded;padding-left: 16px;padding-bottom: 25%;padding-top: 5%">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="horizontal-scroll">
+                <table class="table" st-table="foods" refresh-table>
+                    <thead>
+                    <tr class="sortable">
+                        <th>
+                            <div class="newtable_header">
+                                عملیات
+                            </div>
+                        </th>
+                        <th>
+                            <div class="newtable_header">
+                                آدرس
+                            </div>
+                        </th>
+                        <th>
+                            <div class="newtable_header">
+                                عنوان
+                            </div>
+                        </th>
+                        <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true">#</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="{{$index}}" ng-repeat="item in locs">
+                        <td>
+                            <div class="buttons">
+                                <button class="confirm_button confirm_yes btn"
+                                        ng-click="opneModal('app/pages/admin/location/detail-modal.html', 'lg',item.location,$index)">
+                                    ویرایش
+                                </button>
+                                <button class="confirm_button confirm_yes btn"
+                                        ng-click="opneModal('app/pages/admin/location/delete-modal.html', 'lg',item.location,$index,true)">
+                                    حذف
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{item.location.address}}</td>
+                        <td>{{item.location.title}}</td>
+                        <td class="table-id">{{$index+1}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="12" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-right: 328px !important;
+        margin-left: 12px !important;
+    }
+
+    @media (max-width: 1300px) and (min-width: 768px) {
+        .ng-scope .mycontent {
+            margin-top: -67px !important;
+            margin-right: 12px !important;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .al-sidebar {
+            display: none !important;
+        }
+    }
+</style>
+

@@ -32,21 +32,6 @@
                     <div class="col-sm-6 col-xs-12">
                         <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
                             <div class="col-sm-8 col-xs-12">
-                                <input tabindex="2" ng-model="restInfo.address.address" ng-maxlength="250" required
-                                       type="text" class="form-control" name="adr" id="adr" placeholder="">
-                                <div class="error-message"
-                                     ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
-                                    حداکثر 250 کاراکتر وارد کنید
-                                </div>
-                                <div class="error-message"
-                                     ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
-                                    پر کردن این فیلد اجباریست
-                                </div>
-                            </div>
-                            <label for="adr" class="col-sm-4 col-xs-12 control-label">آدرس</label>
-                        </div>
-                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
-                            <div class="col-sm-8 col-xs-12">
                                 <input tabindex="4" ng-model="restInfo.address.mobile" ng-maxlength="11"
                                        ng-minlength="11"
                                        required type="tel" class="form-control" id="mobile" name="mobile"
@@ -65,6 +50,15 @@
                                 </div>
                             </div>
                             <label for="mobile" class="col-sm-4 col-xs-12 control-label">موبایل</label>
+                        </div>
+                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
+                            <div class="col-sm-8 col-xs-12">
+                                <input tabindex="3" ng-model="restInfo.minExtraHourForPreOrder"
+                                       type="number"
+                                       class="form-control" id="minExtraHourForPreOrder" name="minExtraHourForPreOrder"
+                                       placeholder="">
+                            </div>
+                            <label class="col-sm-4 col-xs-12 control-label">محدودیت سفارش دهی کارمندان(ساعت)</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xs-12">
@@ -238,14 +232,6 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
-                            <div class="col-sm-8 col-xs-12">
-                                <input tabindex="3" ng-model="restInfo.minExtraHourForPreOrder"
-                                       type="number"
-                                       class="form-control" id="minExtraHourForPreOrder" name="minExtraHourForPreOrder" placeholder="">
-                            </div>
-                            <label class="col-sm-4 col-xs-12 control-label">محدودیت سفارش دهی کارمندان(ساعت)</label>
-                        </div>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                         <div class="form-group row clearfix flex-xs flex-col-reverse-xs">
@@ -265,7 +251,7 @@
                                     <span>هوشمند(موقعیت جغرافیایی)</span>
                                 </label>
                             </div>
-                            <label class="col-md-6 col-xs-8 control-label">نحوه تخصیص رستوران به شرکت</label>
+                            <label class="col-md-6 col-xs-8 control-label">نحوه تخصیص رستوران به کارمندان شرکت</label>
                         </div>
                     </div>
                 </div>
@@ -292,14 +278,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-
-                <div class="row" style="text-align: center;height: 400px">
-                    <div style="width: 90%;display: inline-table;" ba-panel ba-panel-title="محل شرکت"
-                         class="viewport100">
-                        <div id="map" style="height: 100%;width: 100%"></div>
                     </div>
                 </div>
 

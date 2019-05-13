@@ -116,6 +116,8 @@
                                                 </button>
                                                 <button class="btn btn-info editable-table-button btn-xs" ng-click="openModal('app/pages/admin/company/message-modal.html', 'md',item.id,$index)">پیام
                                                 </button>
+                                                <button class="btn btn-info editable-table-button btn-xs" ng-click="coAddresses(item.id)">آدرسها
+                                                </button>
                                             </div>
                                         </td>
                                         <td ng-style="getStatusColor(item.accountStatus)">{{getStatus(item.accountStatus)}}</td>

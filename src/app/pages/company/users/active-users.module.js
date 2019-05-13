@@ -23,23 +23,23 @@
 
         $scope.initCtrl = function () {
             $scope.submitted = false;
-            setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({ scrollTop: 0 }, 800);
-                    return false;
-                });
-            }, 1000)
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                "pageableDTO": {
+                    "direction": 'ASC',
+                    "page": 0,
+                    "size": 50,
+                    "sortBy": 'id'
+                }
+            };
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/getCompanyLocationsForEmployeeDefinition", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    $scope.locs = data.data;
+                }).catch(function (err) {
+            });
         };
         //vahid seraj updated code. (1397.09.29) ------------- [start]
         $scope.toggleSidebar = function (e) {
@@ -58,7 +58,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 pageableDTO: {
@@ -81,7 +81,7 @@
                     return data.data;
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/companyEmployeeManagement/searchEmployee", err, httpOptions);
-                    
+
                     // $scope.companyUsers = new Array(10);;
                     // $scope.companyAddress = data.data.companyAddress;
                 });
@@ -117,7 +117,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/getEmployeeById", $rootScope.companyUserId, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -129,8 +129,8 @@
                     }
                     drawMap();
                 }).catch(function (err) {
-                    $rootScope.handleError($rootScope.companyUserId, "/companyEmployeeManagement/getEmployeeById", err, httpOptions);
-                });
+                $rootScope.handleError($rootScope.companyUserId, "/companyEmployeeManagement/getEmployeeById", err, httpOptions);
+            });
         };
 
         $scope.saveOrUpdateUser = function (form) {
@@ -141,19 +141,24 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var bdate = $("#birthdate").find('input').val();
             $rootScope.userInfo.birthday = bdate ? moment.utc(bdate, 'jYYYY/jM/jD').format('YYYY-MM-DD') : null;
             $rootScope.userInfo.employeeLevel = $scope.employeeLevel;
-            if (!$rootScope.userInfo.id){
+            if (!$rootScope.userInfo.id) {
                 $rootScope.userInfo.user = {
-                    username : $("#username").val().toLowerCase(),
-                    password : $("#pass").val()
+                    username: $("#username").val().toLowerCase(),
+                    password: $("#pass").val()
                 };
-                if (!$rootScope.isValid($rootScope.userInfo.user.username)){
+                if (!$rootScope.isValid($rootScope.userInfo.user.username)) {
                     stopLoading();
-                    showMessage(toastrConfig,toastr,"خطا","لطفا در فیلد نام کاربری از کاراکترهای مجاز استفاده کنید","error");
+                    showMessage(toastrConfig, toastr, "خطا", "لطفا در فیلد نام کاربری از کاراکترهای مجاز استفاده کنید", "error");
+                    return;
+                }
+                if (!$rootScope.userInfo.location.title) {
+                    stopLoading();
+                    showMessage(toastrConfig, toastr, "خطا", "لطفا محل کارمند را انتخاب کنید", "error");
                     return;
                 }
             }
@@ -163,8 +168,8 @@
                     $rootScope.userInfo = data.data;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError($rootScope.userInfo, "/companyEmployeeManagement/addOrUpdateEmployee", err, httpOptions);
-                });
+                $rootScope.handleError($rootScope.userInfo, "/companyEmployeeManagement/addOrUpdateEmployee", err, httpOptions);
+            });
         };
 
 
@@ -173,8 +178,14 @@
         function drawMap() {
             setTimeout(function () {
                 var mapCanvas = document.getElementById('map');
-                var latlng = $rootScope.userInfo.address.point.split(",");
-                var myLatLng = { lat: Number(latlng[0]), lng: Number(latlng[1]) };
+                var myLatLng;
+                if ($rootScope.userInfo.location && $rootScope.userInfo.location.point) {
+                    var latlng = $rootScope.userInfo.location.point.split(",");
+                    myLatLng = {lat: Number(latlng[0]), lng: Number(latlng[1])};
+                } else {
+                    myLatLng = {lat: 35.747262, lng: 51.451300};
+                }
+
                 var mapOptions = {
                     center: new google.maps.LatLng(myLatLng),
                     zoom: 14,
@@ -185,18 +196,6 @@
                     position: myLatLng,
                     map: map
                 });
-                google.maps.event.addListener(map, 'click', function (event) {
-                    placeMarker(event.latLng);
-                });
-
-                function placeMarker(location) {
-                    marker.setMap(null);
-                    marker = new google.maps.Marker({
-                        position: location,
-                        map: map
-                    });
-                    $rootScope.userInfo.address.point = location.lat() + "," + location.lng();
-                }
             }, 1000);
         }
 
@@ -212,7 +211,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 id: $rootScope.companyUserId,
@@ -224,18 +223,18 @@
                     $uibModalStack.dismissAll();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $uibModalStack.dismissAll();
-                    $rootScope.handleError(param, "/companyEmployeeManagement/resetEmployeePassword", err, httpOptions);
-                });
+                $uibModalStack.dismissAll();
+                $rootScope.handleError(param, "/companyEmployeeManagement/resetEmployeePassword", err, httpOptions);
+            });
         };
 
         $scope.deactiveUser = function () {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/deActiveEmployee", {id:$rootScope.companyUserId}, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/deActiveEmployee", {id: $rootScope.companyUserId}, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.showList();
@@ -246,9 +245,9 @@
                     }
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $uibModalStack.dismissAll();
-                    $rootScope.handleError($rootScope.companyUserId, "/companyEmployeeManagement/deActiveEmployee", err, httpOptions);
-                });
+                $uibModalStack.dismissAll();
+                $rootScope.handleError($rootScope.companyUserId, "/companyEmployeeManagement/deActiveEmployee", err, httpOptions);
+            });
         };
         $scope.doCharge = function (form) {
             $scope.submitted = true;
@@ -258,7 +257,7 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 "comment": $('#cdesc').val(),
@@ -273,14 +272,15 @@
                     $scope.loadBalanceByRole();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $uibModalStack.dismissAll();
-                    $rootScope.handleError(param, "/company/chargeEmployee", err, httpOptions);
-                });
+                $uibModalStack.dismissAll();
+                $rootScope.handleError(param, "/company/chargeEmployee", err, httpOptions);
+            });
         };
         $scope.uploadGiftImage = function () {
             var fileInput = document.getElementById('uploadFile');
             $(fileInput).off('change');
-            $(fileInput).on('change',  handleFiles);
+            $(fileInput).on('change', handleFiles);
+
             // fileInput.addEventListener("change", handleFiles, false);
 
             function handleFiles() {
@@ -289,18 +289,18 @@
                 var file = this.files[0];
                 if (!file)
                     return;
-                if(!file.type || $.inArray(file.type.substr(file.type.indexOf("/") + 1), ['png','jpg','jpeg']) === -1) {
+                if (!file.type || $.inArray(file.type.substr(file.type.indexOf("/") + 1), ['png', 'jpg', 'jpeg']) === -1) {
                     showMessage(toastrConfig, toastr, "خطا", "لطفا فایل عکس آپلود کنید", "error");
                     return;
                 }
                 startLoading();
                 img.onload = function () {
-                    if (this.width > 1600){
+                    if (this.width > 1600) {
                         showMessage(toastrConfig, toastr, "خطا", "عرض عکس باید کمتر از ۱۶۰۰ پیکسل باشد", "error");
                         stopLoading();
                         return;
                     }
-                    if (this.height>1600){
+                    if (this.height > 1600) {
                         showMessage(toastrConfig, toastr, "خطا", "ارتفاع عکس باید کمتر از ۱۶۰۰ پیکسل باشد", "error");
                         stopLoading();
                         return;
@@ -310,7 +310,7 @@
                         quality: 80,
                         //rotate: 90,
                         callback: function (data, width, height) {
-                            if ((4 * Math.ceil((data.length / 3))*0.5624896334383812)/1000 > 600){
+                            if ((4 * Math.ceil((data.length / 3)) * 0.5624896334383812) / 1000 > 600) {
                                 showMessage(toastrConfig, toastr, "خطا", "حجم فایل زیاد است", "error");
                                 stopLoading();
                                 return;
@@ -325,10 +325,12 @@
 
             fileInput.click();
         };
+
         function setPicElements(img, postfix) {
             $scope.giftImage = img;
             $scope.giftImagePostfix = postfix;
         }
+
         $scope.doGift = function (form) {
             $scope.submitted = true;
             if (!form.$valid) {
@@ -337,10 +339,10 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
-                "giftImage" : {
+                "giftImage": {
                     "image": $scope.giftImage ? $scope.giftImage.substring($scope.giftImage.indexOf(",") + 1) : null,
                     "postfix": $scope.giftImagePostfix
                 },
@@ -357,13 +359,13 @@
                     $scope.loadBalanceByRole();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $uibModalStack.dismissAll();
-                    $rootScope.handleError(param, "/company/giveGift", err, httpOptions);
-                });
+                $uibModalStack.dismissAll();
+                $rootScope.handleError(param, "/company/giveGift", err, httpOptions);
+            });
         };
 
         $scope.finance = function (id) {
-            $location.path('/co-employee-financial').search({ id: id });
+            $location.path('/co-employee-financial').search({id: id});
         };
 
         $scope.addUsesr = function () {
@@ -372,7 +374,10 @@
             $rootScope.userInfo = {
                 name: null,
                 personnelCode: null,
-                address: $scope.companyAddress
+                location: {
+                    point: null,
+                    address: null
+                }
             };
             drawMap();
         };
@@ -399,7 +404,7 @@
             $scope.isInList = false;
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 "id": item.id
@@ -413,8 +418,8 @@
                         detail: data.data
                     };
                 }).catch(function (err) {
-                    $rootScope.handleError(param, "/companyEmployeeManagement/getEmployeeExtraData", err, httpOptions);
-                });
+                $rootScope.handleError(param, "/companyEmployeeManagement/getEmployeeExtraData", err, httpOptions);
+            });
         };
         $scope.showList = function () {
             $("#container").toggleClass("active-employees-background");
@@ -434,6 +439,11 @@
         $scope.gift = function (id) {
             $scope.submitted = false;
             $scope.employeeActiveMenu = 'gift';
+        };
+
+        $scope.address_changed = function (r) {
+            $scope.userInfo.location = r;
+            drawMap();
         };
 
     }

@@ -1,0 +1,148 @@
+<div class="modal-stage" style="position: relative;height: 100%;overflow: auto;">
+    <input id="test" type="text" style="display: none" title="hi" />
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+                <div class="confirm_header_title padding-md">
+                    <i class="ion-checkmark modal-icon"></i><span>آدرس شرکت</span>
+                </div>
+            </div>
+        </div>
+        <div class="h-40" style="height: 20%;padding-bottom: 9%">
+
+        </div>
+        <div class="h-50" style="background: #e1e1e1;padding: 9% 15% 2%;">
+
+        </div>
+    </div>
+    <div class="food_detail_footer edit_emp_modal relative block">
+        <div class="panel-content">
+            <div>
+                <div style="position: absolute;width: 100%;left: 0;text-align: right;padding-left: 20px;padding-right: 20px;">
+                    <form name="myform" ng-submit="myform.$valid && saveOrUpdate()" novalidate>
+                        <div class="row form_input_margin">
+                            <div class="col-sm-8 col-xs-12">
+                                <input type="text" ng-model="location.title" name="title" required ng-maxlength="100" class="confirm_input form-control" id="title">
+                                <div class="error-message" ng-show="(myform.title.$dirty || submitted) && inputIsInvalid(myform.title.$valid,'title') && myform.title.$error.maxlength">
+                                    حداکثر 100 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.title.$dirty || submitted) && inputIsInvalid(myform.title.$valid,'title') && myform.title.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="title" class="col-sm-4 col-xs-12 control-label">عنوان</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <textarea tabindex="7" ng-model="location.address" ng-maxlength="250" required
+                                    class="confirm_input form-control" id="address" name="address" style="text-align:right;direction: rtl"></textarea>
+                                <div class="error-message" ng-show="(myform.address.$dirty || submitted) && inputIsInvalid(myform.address.$valid,'address') && myform.address.$error.maxlength">
+                                    حداکثر 250 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message" ng-show="(myform.address.$dirty || submitted) && inputIsInvalid(myform.address.$valid,'address') && myform.address.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
+                            </div>
+                            <label for="address" class="col-sm-2 control-label">آدرس</label>
+                        </div>
+                        <div>
+                            <div class="margin__top_10 text-left">
+                                <button ng-if="location.id" type="submit" style="width: auto;"
+                                    class="confirm_button confirm_yes btn">بروزرسانی</button>
+                                <button ng-if="!location.id" type="submit" style="width: auto"
+                                    class="confirm_button confirm_yes btn">ثبت</button>
+                                <button type="button" ng-click="$dismiss()" style="float: left;margin-bottom: 5px;"
+                                    class="confirm_button confirm_no btn"> بازگشت
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile__map_wrapper relative" style="height: 55%">
+        <div style="text-align: right;color: #575757">
+            محل شرکت
+        </div>
+        <div class="row profile__map">
+            <div id="map" style="height: 100%;width: 100%"></div>
+        </div>
+    </div>
+</div>
+<style>
+
+    .row.profile__map {
+        margin-left: 0 !important;
+        height: 100% !important;
+    }
+
+    .food_detail_body .h-50 {
+        height: 70%;
+    }
+
+    .modal-open .modal {
+        height: 100%;
+    }
+    .modal .modal-dialog {
+        height: 91% !important;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    .profile__map_wrapper {
+        top: 4.5em !important;
+        position: relative !important;
+        width: 90% !important;
+    }
+
+    .modal-content {
+        top: 0 !important;
+        height: 100% !important;
+    }
+
+    input[type="text"]:not([ng-click="openCalendar()"]),
+    input[type="tel"],
+    input[type="password"] {
+        height: 35px !important;
+    }
+
+    textarea.form-control {
+        height: 64px !important;
+    }
+
+    .btn-group.form-control {
+        height: 32px !important;
+    }
+
+    .modal-content .edit_emp_modal {
+        top: 3.5em;
+    }
+
+    .modal-content .food_detail_footer {
+        width: 90%;
+        height: 30%;
+        margin: auto;
+    }
+
+    @media (max-height: 800px) and (min-width: 1025px) {
+        .modal-content .newmodal_small_logo {
+            width: 64px;
+            height: 28px;
+        }
+    }
+
+    @media (min-height: 900px) {
+        /* .modal-stage {
+            overflow: hidden !important;
+        } */
+    }
+    *[name="myform"] .form-control {
+        min-height: unset !important;
+    }
+</style>

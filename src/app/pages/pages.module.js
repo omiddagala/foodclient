@@ -82,7 +82,8 @@
         'BlurAdmin.pages.admin-order',
         'BlurAdmin.pages.ad-sms',
         'BlurAdmin.pages.emp-buy-report',
-        'BlurAdmin.pages.emp-buy-report-detail'
+        'BlurAdmin.pages.emp-buy-report-detail',
+        'BlurAdmin.pages.ad-loc'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {

@@ -58,6 +58,11 @@
                         deliveryPrice: 0,
                         address: {
                         },
+                        location: {
+                          point: null,
+                          address: null,
+                          title: null
+                        },
                         restaurantInfo:{
                         }
                     };
@@ -108,7 +113,7 @@
             }
             $scope.restInfo.restaurantInfo.endTimeOfWork = Number($('#toTime').val().replace(':', ''));
             $scope.restInfo.restaurantInfo.startTimeOfWork = Number($('#fromTime').val().replace(':', ''));
-            $scope.restInfo.address.point = marker.getPosition().lat() + "," + marker.getPosition().lng();
+            $scope.restInfo.location.point = marker.getPosition().lat() + "," + marker.getPosition().lng();
             $scope.restInfo.serviceAria = {
                 points: path.length === 0 ? null : path
             };
@@ -232,8 +237,8 @@
         function prepareMapForLocation() {
             var mapCanvas = document.getElementById('map');
             var myLatLng;
-            if ($scope.restInfo && $scope.restInfo.address.point) {
-                var loc = $scope.restInfo.address.point.split(",");
+            if ($scope.restInfo.location && $scope.restInfo.location.point) {
+                var loc = $scope.restInfo.location.point.split(",");
                 myLatLng = {lat: Number(loc[0]), lng: Number(loc[1])}
             } else {
                 myLatLng = {lat: 35.747262, lng: 51.451300};
@@ -258,7 +263,7 @@
                     position: location,
                     map: map
                 });
-                $scope.restInfo.address.point = location.lat() + "," + location.lng();
+                $scope.restInfo.location.point = location.lat() + "," + location.lng();
             }
 
             $('#map').parent().css('height', '400px');

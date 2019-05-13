@@ -251,6 +251,10 @@
             });
         };
 
+        $scope.coAddresses = function(id){
+            $location.path("/ad-loc").search({id: id})
+        };
+
         $scope.getStatus = function(status){
             if (status === "DE_ACTIVE" || status === "DELETE"){
                 return "غیرفعال";

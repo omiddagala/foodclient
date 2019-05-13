@@ -46,7 +46,6 @@
                             stopLoading();
                             $scope.restInfo = data.data;
                             $scope.selectedRest = data.data.restaurants;
-                            prepareMapForLocation();
                         }).catch(function (err) {
                         $rootScope.handleError(id, "/adminCompanyManagementRest/findById", err, httpOptions);
                     });
@@ -57,7 +56,6 @@
                             point : null
                         }
                     };
-                    prepareMapForLocation();
                 }
                 $('#pass + .glyphicon').on('click', function() {
                     $(this).toggleClass('glyphicon-eye-close').toggleClass('glyphicon-eye-open'); // toggle our classes for the eye icon
@@ -77,7 +75,6 @@
                 return;
             }
             startLoading();
-            $scope.restInfo.address.point = marker.getPosition().lat() + "," + marker.getPosition().lng();
             if (!$scope.restInfo.id) {
                 $scope.restInfo.userName = $("#username").val().toLowerCase();
                 $scope.restInfo.password = $("#pass").val();
@@ -150,43 +147,6 @@
         $scope.setForceVAT = function (v) {
             $scope.restInfo.forceVAT = v;
         };
-
-        var marker;
-
-        function prepareMapForLocation() {
-            var mapCanvas = document.getElementById('map');
-            var myLatLng;
-            if ($scope.restInfo && $scope.restInfo.address.point){
-                var loc = $scope.restInfo.address.point.split(",");
-               myLatLng = {lat: Number(loc[0]), lng: Number(loc[1])}
-            } else {
-                myLatLng = {lat: 35.747262, lng: 51.451300};
-            }
-            var mapOptions = {
-                center: new google.maps.LatLng(myLatLng),
-                zoom: 14,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(mapCanvas, mapOptions);
-            marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map
-            });
-            google.maps.event.addListener(map, 'click', function (event) {
-                placeMarker(event.latLng);
-            });
-
-            function placeMarker(location) {
-                marker.setMap(null);
-                marker = new google.maps.Marker({
-                    position: location,
-                    map: map
-                });
-                $scope.restInfo.address.point = location.lat() + "," + location.lng();
-            }
-
-            $('#map').parent().css('height', '400px');
-        }
 
         $scope.removePicture = function () {
             startLoading();

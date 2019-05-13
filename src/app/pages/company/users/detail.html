@@ -121,19 +121,6 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-10 margin__bottom_5">
-                                <textarea tabindex="7" ng-model="userInfo.address.address" ng-maxlength="250" required
-                                    class="confirm_input form-control" id="address" name="address" style="text-align:right;direction: rtl"></textarea>
-                                <div class="error-message" ng-show="(myform.address.$dirty || submitted) && inputIsInvalid(myform.address.$valid,'address') && myform.address.$error.maxlength">
-                                    حداکثر 250 کاراکتر وارد کنید
-                                </div>
-                                <div class="error-message" ng-show="(myform.address.$dirty || submitted) && inputIsInvalid(myform.address.$valid,'address') && myform.address.$error.required">
-                                    پر کردن این فیلد اجباریست
-                                </div>
-                            </div>
-                            <label for="address" class="col-sm-2 control-label">آدرس</label>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-10 margin__bottom_5">
                                 <select ng-change="employeeLevelChanged(employeeLevel)" class="confirm_input form-control btn-primary"
                                     ng-model="employeeLevel" data-style="btn-primary" selectpicker>
                                     <option value="EMPLOYEE">کارمند</option>
@@ -150,7 +137,35 @@
                             </div>
                             <label for="birthdate" class="col-sm-2 control-label">تاریخ تولد</label>
                         </div>
-
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <div class="btn-group bootstrap-select form-control btn-primary ng-pristine ng-untouched ng-valid ng-empty">
+                                    <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
+                                            role="button" data-id="resName" aria-expanded="false"><span id="resName_selected_title"
+                                                                                                        class="filter-option pull-left">{{userInfo.location.title}}</span>&nbsp;<span class="bs-caret"><span
+                                            class="caret"></span></span></button>
+                                    <div class="dropdown-menu open" role="combobox" style="max-height: 350px; overflow: hidden; min-height: 0px;">
+                                        <ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 339px; overflow-y: auto; min-height: 0px;">
+                                            <li ng-click="address_changed(loc.location)" ng-repeat="loc in locs">
+                                                <a tabindex="0" class="no-border no-box-shadow" data-tokens="null" role="option"
+                                                   aria-disabled="false" aria-selected="false">
+                                                    <span class="text">{{loc.location.title}}</span>
+                                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="address" class="col-sm-2 control-label">انتخاب محل</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 margin__bottom_5">
+                                <textarea tabindex="7" ng-model="userInfo.location.address" ng-readonly="true"
+                                          class="confirm_input form-control" id="address" name="address" style="text-align:right;direction: rtl"></textarea>
+                            </div>
+                            <label for="address" class="col-sm-2 control-label">آدرس</label>
+                        </div>
                         <div>
                             <div class="margin__top_10 text-left">
                                 <button ng-if="userInfo.id" type="submit" style="width: auto;" ng-class="{'confirm_blue_button' : !isInList}"
