@@ -374,7 +374,7 @@ function getArticleMain($scope, $compile, $parse, data) {
             var foodType = e.currentTarget.getAttribute("foodtype");
             var d = getFormattedDate();
             $scope.addToTodayReserves(e.currentTarget.getAttribute("name"), d, foodid, Number(resid), foodType, resname);
-            $scope.orderFood(foodid, d.format('YYYY-MM-DDTHH:mmZ'));
+            $scope.orderFood(foodid, d.format('YYYY-MM-DDTHH:mmZ'),1);
             var productCard = $(this).parent();
             var floatImage = productCard.find(".card__image");
             var position = productCard.offset();
