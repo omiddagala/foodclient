@@ -780,6 +780,12 @@
                     return "دریافت هدیه تشویقی از شرکت";
                 case 'BANK_TRANSFER_TO_GIFT_WALLET':
                     return "شارژ موجودی هدیه";
+                case 'KARAFEED_TRADE':
+                    return "معاملات کارافید";
+                case 'SELL_TO_KARAFEED':
+                    return "فروش به کارافید";
+                case 'BUY_FROM_KARAFEED':
+                    return "خرید از کارافید";
             }
         };
         $rootScope.getFoodOrderStatus = function (status) {

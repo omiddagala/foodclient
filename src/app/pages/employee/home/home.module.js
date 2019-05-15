@@ -376,16 +376,26 @@
         $scope.removeFromTodayReserves = function (day, id, count) {
             var todaysKey = moment.utc(day).format("MM-DD-YYYY");
             var elem = $rootScope.reservesPerDay.get(todaysKey);
+            var mainFoodRemoved = false;
             if (elem) {
                 for (var i = 0; i < elem.length; i++) {
                     if (elem[i].id === id) {
                         elem[i].count = elem[i].count - count;
-                        if (elem[i].count === 0)
+                        if (elem[i].count === 0) {
                             elem.splice(i, 1);
-                        return;
+                            mainFoodRemoved = true;
+                        }
                     }
                 }
-
+                if (mainFoodRemoved) {
+                    for (i = 0; i < elem.length; i++) {
+                        if (elem[i].foodType !== "DDA") {
+                            return;
+                        }
+                    }
+                    $rootScope.reservesPerDay.delete(todaysKey);
+                    $scope.renderTodaysReserves();
+                }
             }
         };
 
@@ -992,7 +1002,7 @@
                 $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
             }
             $scope.addToTodayReserves($scope.food.name, d, $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, 1);
-            $scope.orderFood($scope.food.id, d.format('YYYY-MM-DDTHH:mmZ'), 1,  f);
+            $scope.orderFood($scope.food.id, d.format('YYYY-MM-DDTHH:mmZ'), 1, f);
         };
 
         $scope.myFormatDate = function (d) {
@@ -1028,11 +1038,11 @@
         ///end of food counts
         $scope.productPlus = function ($event, isNotPlusButton, count) {
             var product = $($event.currentTarget).closest('.omidProduct');
-            if(product.data('quantity') < 3){
+            if (product.data('quantity') < 3) {
                 var q = product.data('quantity') + 1;
                 product.data('quantity', q);
 
-            }else{
+            } else {
                 $scope.open('app/pages/employee/home/foodcounts.html');
                 this.extraq = product.data('quantity');
                 $scope.check = function () {
@@ -1041,27 +1051,27 @@
 
 
                     product.data('quantity', count);
-                        var foodid = product.data("foodid");
-                        var orderdate = product.data("orderdate");
-                        var foodname = product.data("foodname");
-                        var resid = product.data("resid");
-                        var foodtype = product.data("foodtype");
-                        var restname = product.data("restname");
+                    var foodid = product.data("foodid");
+                    var orderdate = product.data("orderdate");
+                    var foodname = product.data("foodname");
+                    var resid = product.data("resid");
+                    var foodtype = product.data("foodtype");
+                    var restname = product.data("restname");
 
-                        $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname, q);
-                        $scope.orderFood(foodid, orderdate, count ? q : 1);
+                    $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname, q);
+                    $scope.orderFood(foodid, orderdate, count ? q : 1);
 
-                        $scope.updateProduct(product);
-                        $uibModalStack.dismissAll();
+                    $scope.updateProduct(product);
+                    $uibModalStack.dismissAll();
                 }
 
 
                 //$scope.qq = function(date, foodId, count){
 
-                  //  var count =  $scope.qqq;
-                   // alert(qqq);
-                  //  var q = count ? count - product.data('quantity') : product.data('quantity') + 1;
-                   // product.data('quantity' , q);
+                //  var count =  $scope.qqq;
+                // alert(qqq);
+                //  var q = count ? count - product.data('quantity') : product.data('quantity') + 1;
+                // product.data('quantity' , q);
                 //}
             }
 
@@ -1087,7 +1097,7 @@
 
         $scope.productMinus = function ($event) {
             var product = $($event.currentTarget).closest('.omidProduct');
-            if(product.data('quantity') < 4){
+            if (product.data('quantity') < 4) {
                 var pq = product.data('quantity');
                 $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"), 1);
                 if (pq === 1) {
@@ -1100,7 +1110,7 @@
                     $scope.updateProduct(product);
                 }
 
-            }else {
+            } else {
                 $scope.open('app/pages/employee/home/foodcounts.html');
                 this.extraq = product.data('quantity');
                 $scope.check = function () {
@@ -1225,7 +1235,7 @@
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), 1);
             if (!$rootScope.isMobile()) {
-                $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name,1);
+                $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, 1);
                 var currentElem = $($event.currentTarget);
                 var productCard = currentElem.parent();
                 var floatImage = productCard.find(".card__image");
