@@ -65,20 +65,11 @@
         };
 
         $scope.searchByOrderGroup = function () {
-            var pagination = {
-                start: 0,
-                number: 10
-            };
-            var sort = {
-                reverse: null,
-                predicate: null
-            };
-            $scope.search(pagination,sort);
+            $scope.$broadcast('refreshMyTable');
         };
 
         $scope.goToDetail = function (id) {
             $location.path("/ad-order").search({id: id});
         }
-
     }
 })();
