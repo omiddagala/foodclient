@@ -49,8 +49,6 @@ function myview(data) {
 function prepareFactorToPrint(item,$rootScope) {
     var param = '<div class="myprint" style="page-break-after:always;">' +
         '<h5 style="text-align: center;font-size: medium;direction: rtl">'+item.restaurant.name+'</h5>' +
-        '<h5 style="text-align: center;font-size: medium;direction: rtl">'+item.restaurant.location.address+'</h5>' +
-        '<h5 style="text-align: center;font-size: medium;direction: rtl">'+item.restaurant.phone+'</h5>' +
         '<div style="list-style: none;">' +
         '<div>' +
         '<div style="animation-delay: 1.5s;height: 20px;border-bottom:1px solid black;border-bottom-width:thin' +
@@ -118,7 +116,7 @@ function prepareFactorToPrint(item,$rootScope) {
         '<div>' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
         'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+item.employee.location.address+'</span>' +
+        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">'+item.location.address+'</span>' +
         '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">آدرس</span>' +
         '</div>' +
         '</div>' +
