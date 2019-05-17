@@ -81,7 +81,7 @@
                                                 <span class="glyphicon glyphicon-ok check-mark"></span>
                                             </a>
                                         </li>
-                                        <li ng-click="resName_changed($index+1)" ng-repeat="res in restNames"
+                                        <li ng-click="resName_changed($index+1)" ng-repeat="res in restNames track by $index"
                                             data-original-index="{{$index + 1}}">
                                             <a tabindex="0" class="no-border no-box-shadow" data-tokens="null" role="option"
                                                aria-disabled="false" aria-selected="false">
