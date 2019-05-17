@@ -62,7 +62,10 @@
                           title: null
                         },
                         restaurantInfo:{
-                        }
+                        },
+                        hasTax: false,
+                        workAtVacation: false,
+                        restaurantLevel: "NORMAL"
                     };
                     prepareMapForDeliveryZone(null);
                     prepareMapForLocation();
