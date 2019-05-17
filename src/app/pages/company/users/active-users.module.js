@@ -37,7 +37,7 @@
             };
             $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/getCompanyLocationsForEmployeeDefinition", param, httpOptions)
                 .then(function (data, status, headers, config) {
-                    $scope.locs = data.data;
+                    $rootScope.locs = data.data;
                 }).catch(function (err) {
             });
         };

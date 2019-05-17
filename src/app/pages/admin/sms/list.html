@@ -15,6 +15,11 @@
                                     </th>
                                     <th st-sort="accountStatus">
                                         <div class="newtable_header">
+                                            نوع
+                                        </div>
+                                    </th>
+                                    <th st-sort="accountStatus">
+                                        <div class="newtable_header">
                                             کلمه عبور
                                         </div>
                                     </th>
@@ -60,6 +65,7 @@
                                             </button>
                                         </div>
                                     </td>
+                                    <td>{{getSmsType(item.smsType)}}</td>
                                     <td>{{item.password}}</td>
                                     <td>{{item.username}}</td>
                                     <td>{{item.mobile}}</td>
