@@ -102,7 +102,7 @@
                 var loc = $scope.location.point.split(",");
                 myLatLng = {lat: Number(loc[0]), lng: Number(loc[1])}
             } else {
-                myLatLng = {lat: 35.747262, lng: 51.451300};
+                myLatLng = $scope.location.point = {lat: 35.747262, lng: 51.451300};
             }
             var mapOptions = {
                 center: new google.maps.LatLng(myLatLng),
