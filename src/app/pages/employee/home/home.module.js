@@ -990,35 +990,23 @@
         };
 
         $scope.foodDetailOrder = function (f) {
-            var d;
-            if (f) {
-                d = moment.utc($scope.food.date);
-                var product = $rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + $scope.food.id);
-                if (product) {
-                    if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
-                        $scope.lastCount++;
-                        if ($scope.lastCount >= 2) {
-                            $uibModalStack.dismissAll();
-                            $scope.extraq = product.data("quantity");
-                            $scope.open('app/pages/employee/home/foodcounts.html', "sm");
-                            return;
-                        }
-                    } else {
-                        $scope.lastElement = product;
-                        $scope.lastCount = 0;
+            var d = moment.utc($rootScope.dateToOrder);
+            var product = $rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + $scope.food.id);
+            if (product) {
+                if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+                    $scope.lastCount++;
+                    if ($scope.lastCount >= 2) {
+                        $uibModalStack.dismissAll();
+                        $scope.extraq = product.data("quantity");
+                        $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                        return;
                     }
-                    // if added from reserves popup and id related to today's foods so we have to show it in right panel
-                    $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
+                } else {
+                    $scope.lastElement = product;
+                    $scope.lastCount = 0;
                 }
-            } else {
-                var searchedDate = $('#dateForOrder').val();
-                var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
-                moment.locale('fa');
-                moment.loadPersian({dialect: 'persian-modern'});
-                var time = $("#searchTime").val();
-                d = moment.utc(t + " " + time, 'jYYYY/jM/jD HH:mm');
-                $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
             }
+            $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
             $scope.addToTodayReserves($scope.food.name, d, $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, 1);
             $scope.orderFood($scope.food.id, d.format('YYYY-MM-DDTHH:mmZ'), 1, f);
         };
@@ -1216,6 +1204,22 @@
             }
         };
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
+            var d = moment.utc($rootScope.dateToOrder);
+            var product = $rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + food.id);
+            if (product) {
+                if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+                    $scope.lastCount++;
+                    if ($scope.lastCount >= 2) {
+                        $uibModalStack.dismissAll();
+                        $scope.extraq = product.data("quantity");
+                        $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                        return;
+                    }
+                } else {
+                    $scope.lastElement = product;
+                    $scope.lastCount = 0;
+                }
+            }
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), 1);
             if (!$rootScope.isMobile()) {
                 $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, 1);
