@@ -72,9 +72,9 @@
         };
 
         $scope.getSmsType = function (s) {
-            if (s === 0) {
+            if (s === "REGISTRATION") {
                 return "ثبت نام";
-            } else if (s === 1) {
+            } else if (s === "DELIVERY") {
                 return "تحویل";
             }
         }
