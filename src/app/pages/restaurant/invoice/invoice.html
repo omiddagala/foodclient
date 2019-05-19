@@ -55,7 +55,7 @@
                                     </td>
                                     <td>{{formatPrice(item.totalAmount)}}</td>
                                     <td>{{item.id}}</td>
-                                    <td>{{myFormatDate(item.deliveryDate)}}</td>
+                                    <td>{{subtranctMinutes(item.deliveryDate,15)}}</td>
                                     <td class="table-id">{{$index+1}}</td>
                                 </tr>
                             </tbody>

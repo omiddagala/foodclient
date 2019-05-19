@@ -226,7 +226,7 @@
                 $rootScope.mainMenus.push({
                     url: "rest-reports",
                     img: "assets/img/ui/menu/res-reports.png",
-                    title: "گزارشات"
+                    title: "گزارشها"
                 }, {
                         url: "rest-cheque-report",
                         img: "assets/img/ui/menu/res-incomes.png",
@@ -246,7 +246,7 @@
                     }, {
                         url: "res-orders",
                         img: "assets/img/ui/menu/res-orders.png",
-                        title: "سفارشات"
+                        title: "سفارشها"
                     }, {
                         url: "res-printed",
                         img: "assets/img/ui/menu/res-printed.png",
@@ -261,7 +261,7 @@
                 $rootScope.mainMenus.push({
                     url: "co-reports",
                     img: "assets/img/ui/menu/co-reports.png",
-                    title: "گزارشات"
+                    title: "گزارشها"
                 }, {
                         url: "app/pages/company/charge-all/charge.html",
                         img: "assets/img/ui/menu/co-chargeall.png",
@@ -300,7 +300,7 @@
                     }, {
                         url: "ad-reports",
                         img: "assets/img/theme/icon/karafeedIcon/report.png",
-                        title: "گزارشات"
+                        title: "گزارشها"
                     }, {
                         url: "admin-cheque",
                         img: "assets/img/theme/icon/karafeedIcon/cheque.png",
@@ -319,7 +319,7 @@
                 },{
                     url: "ad-orders",
                     img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
-                    title: "سفارشات"
+                    title: "سفارشها"
                 }, {
                         url: "rest-cheque",
                         img: "assets/img/theme/icon/karafeedIcon/cheque.png",
@@ -345,7 +345,7 @@
                 }, {
                     url: "buy-report",
                     img: "assets/img/ui/menu/res-orders.png",
-                    title: "سفارشات"
+                    title: "سفارشها"
                 }, {
                         url: "myrestaurant",
                         img: "assets/img/ui/menu/restaurant.png",
@@ -486,6 +486,11 @@
             moment.locale('fa');
             moment.loadPersian({ dialect: 'persian-modern' });
             return moment.utc(d).format('LLLL');
+        };
+        $rootScope.subtranctMinutes = function (d,m) {
+            moment.locale('fa');
+            moment.loadPersian({ dialect: 'persian-modern' });
+            return moment.utc(d).subtract("minutes",m).format('LLLL');
         };
         $rootScope.newNotifications = function () {
             startLoading();

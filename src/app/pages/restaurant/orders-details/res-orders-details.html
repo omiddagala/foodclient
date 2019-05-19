@@ -2,7 +2,7 @@
 <div class="widgets mycontent" ng-init="initCtrl()">
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="جزییات سفارشات" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-title="جزییات سفارشها" ba-panel-class="with-scroll">
                 <div class="horizontal-scroll">
                     <div class="form-group select-page-size-wrap a0">
                         <div class="a1">
@@ -63,7 +63,7 @@
                             <td>{{formatPrice(item.containerPrice)}}</td>
                             <td>{{formatPrice(item.foodPriceAfterOff)}}</td>
                             <td>{{formatPrice(item.foodOriginalPrice)}}</td>
-                            <td>{{myFormatDate(item.deliveryDate)}}</td>
+                            <td>{{subtranctMinutes(item.deliveryDate,15)}}</td>
                             <td>{{item.food.name}}</td>
                             <td class="table-id">{{$index+1}}</td>
                         </tr>
