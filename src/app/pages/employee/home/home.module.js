@@ -342,6 +342,8 @@
                     $('.cart').empty();
                     $rootScope.orderids = [];
                     $rootScope.cartItems = new HashMap();
+                    $scope.lastElement = null;
+                    $scope.lastCount = 0;
                     $scope.renderTodaysReserves();
                 }
             }, 1000);
@@ -365,7 +367,7 @@
             } else {
                 for (var i = 0; i < elem.length; i++) {
                     if (elem[i].id === todays.id) {
-                        elem[i].count++;
+                        elem[i].count = elem[i].count + count;
                         return;
                     }
                 }
@@ -376,25 +378,14 @@
         $scope.removeFromTodayReserves = function (day, id, count) {
             var todaysKey = moment.utc(day).format("MM-DD-YYYY");
             var elem = $rootScope.reservesPerDay.get(todaysKey);
-            var mainFoodRemoved = false;
             if (elem) {
                 for (var i = 0; i < elem.length; i++) {
                     if (elem[i].id === id) {
                         elem[i].count = elem[i].count - count;
-                        if (elem[i].count === 0) {
+                        if (elem[i].count === 0)
                             elem.splice(i, 1);
-                            mainFoodRemoved = true;
-                        }
+                        return;
                     }
-                }
-                if (mainFoodRemoved) {
-                    for (i = 0; i < elem.length; i++) {
-                        if (elem[i].foodType !== "DDA") {
-                            return;
-                        }
-                    }
-                    $rootScope.reservesPerDay.delete(todaysKey);
-                    $scope.renderTodaysReserves();
                 }
             }
         };
@@ -669,7 +660,7 @@
             });
         };
 
-        $scope.cancelFood = function (foodId, date, f) {
+        $scope.cancelFood = function (foodId, date, count, f) {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -677,7 +668,8 @@
             };
             var params = {
                 date: date,
-                foodId: foodId
+                foodId: foodId,
+                count: count
             };
             $http.post("http://127.0.0.1:9000/v1/employee/cancelOrderByOrderDTO", params, httpOptions)
                 .success(function (data, status, headers, config) {
@@ -882,7 +874,7 @@
                 $rootScope.empPageNum = 0;
                 $scope.loadContent(false, true);
             }, 600);
-        }
+        };
 
         $scope.orderList = function () {
             startLoading();
@@ -966,9 +958,21 @@
                 id: f.food.id,
                 foodType: f.food.foodType
             };
-            $scope.removeFromTodayReserves(d, f.food.id, 1);
             var key = moment.utc(d).format('YYYY-MM-DDTHH:mmZ') + $scope.food.id;
             var card = $rootScope.cartItems.get(key);
+            if ($scope.lastElement && $scope.lastElement.attr("id") === card.attr("id")) {
+                $scope.lastCount++;
+                if ($scope.lastCount >= 2) {
+                    $uibModalStack.dismissAll();
+                    $scope.extraq = card.data("quantity");
+                    $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                    return;
+                }
+            } else {
+                $scope.lastElement = card;
+                $scope.lastCount = 0;
+            }
+            $scope.removeFromTodayReserves(d, f.food.id, 1);
             if (card) {
                 if (f.count === 1) {
                     $scope.productDel(key);
@@ -981,7 +985,7 @@
             if (f.count === 1) {
                 $scope.cancelAllFood(f.food.id, d, key, f);
             } else {
-                $scope.cancelFood(f.food.id, d, f);
+                $scope.cancelFood(f.food.id, d, 1, f);
             }
         };
 
@@ -989,9 +993,23 @@
             var d;
             if (f) {
                 d = moment.utc($scope.food.date);
-                // if added from reserves popup and id related to today's foods so we have to show it in right panel
-                if ($rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + $scope.food.id))
+                var product = $rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + $scope.food.id);
+                if (product) {
+                    if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+                        $scope.lastCount++;
+                        if ($scope.lastCount >= 2) {
+                            $uibModalStack.dismissAll();
+                            $scope.extraq = product.data("quantity");
+                            $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                            return;
+                        }
+                    } else {
+                        $scope.lastElement = product;
+                        $scope.lastCount = 0;
+                    }
+                    // if added from reserves popup and id related to today's foods so we have to show it in right panel
                     $scope.createOrderCart($scope.food.name, d.format('YYYY-MM-DDTHH:mmZ'), $scope.food.id, Number($scope.food.restaurant.id), $scope.food.foodType, $scope.food.restaurant.name, true, 1);
+                }
             } else {
                 var searchedDate = $('#dateForOrder').val();
                 var t = searchedDate ? searchedDate : $('#taghvim').find('input').val();
@@ -1020,62 +1038,37 @@
             return d.substring(d.indexOf(' '), d.lastIndexOf(' '));
         };
 
-        ///food counts in popup
-        /*$scope.showFoodCounts = function () {
-            $scope.open('app/pages/employee/home/foodcounts.html', 'md');
-            $scope.increment = function () {
-                $scope.count += 1;
-               };
-            $scope.decrement = function () {
-                if($scope.count>0){
-                    $scope.count -= 1;
-                }
-                else{
-                    $scope.count = 0;
-                }
-            }
-        };*/
-        ///end of food counts
-        $scope.productPlus = function ($event, isNotPlusButton, count) {
-            var product = $($event.currentTarget).closest('.omidProduct');
-            if (product.data('quantity') < 3) {
-                var q = product.data('quantity') + 1;
-                product.data('quantity', q);
-
+        $scope.submitProductCountModal = function (count) {
+            if ($scope.lastElement.data("quantity") === count)
+                return;
+            if ($scope.lastElement.data("quantity") < count) {
+                $scope.doProductPlus($scope.lastElement, count, false);
             } else {
-                $scope.open('app/pages/employee/home/foodcounts.html');
-                this.extraq = product.data('quantity');
-                $scope.check = function () {
-                    count = this.extraq;
-                    var q = count ? count - product.data('quantity') : product.data('quantity') + 1;
-
-
-                    product.data('quantity', count);
-                    var foodid = product.data("foodid");
-                    var orderdate = product.data("orderdate");
-                    var foodname = product.data("foodname");
-                    var resid = product.data("resid");
-                    var foodtype = product.data("foodtype");
-                    var restname = product.data("restname");
-
-                    $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname, q);
-                    $scope.orderFood(foodid, orderdate, count ? q : 1);
-
-                    $scope.updateProduct(product);
-                    $uibModalStack.dismissAll();
-                }
-
-
-                //$scope.qq = function(date, foodId, count){
-
-                //  var count =  $scope.qqq;
-                // alert(qqq);
-                //  var q = count ? count - product.data('quantity') : product.data('quantity') + 1;
-                // product.data('quantity' , q);
-                //}
+                $scope.doProductMinus($scope.lastElement, count);
             }
+        };
 
-            // just if action is from plus button
+        $scope.lastElement = null;
+        $scope.lastCount = 0;
+
+        $scope.productPlus = function ($event, isNotPlusButton) {
+            var product = $($event.currentTarget).closest('.omidProduct');
+            if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+                $scope.lastCount++;
+                if ($scope.lastCount >= 2) {
+                    $scope.extraq = product.data("quantity");
+                    $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                    return;
+                }
+            } else {
+                $scope.lastElement = product;
+                $scope.lastCount = 0;
+            }
+            $scope.doProductPlus(product, null, isNotPlusButton);
+        };
+
+        $scope.doProductPlus = function (product, count, isNotPlusButton) {
+            var q = product.data('quantity');
             if (!isNotPlusButton) {
                 var foodid = product.data("foodid");
                 var orderdate = product.data("orderdate");
@@ -1083,54 +1076,46 @@
                 var resid = product.data("resid");
                 var foodtype = product.data("foodtype");
                 var restname = product.data("restname");
-
-
-                $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname, q);
-                $scope.orderFood(foodid, orderdate, count ? q : 1);
+                $scope.addToTodayReserves(foodname, moment.utc(orderdate), foodid, resid, foodtype, restname, count ? count - q : 1);
+                $scope.orderFood(foodid, orderdate, count ? count - q : 1);
             }
-
-            product.data('quantity', q);
+            product.data('quantity', count ? count : q + 1);
             $scope.updateProduct(product);
-
         };
-
 
         $scope.productMinus = function ($event) {
             var product = $($event.currentTarget).closest('.omidProduct');
-            if (product.data('quantity') < 4) {
-                var pq = product.data('quantity');
-                $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"), 1);
-                if (pq === 1) {
-                    $scope.cancelAllFood(product.data("foodid"), product.data("orderdate"), product.attr("id"));
-                    $scope.productDel(product.attr("id"));
-                } else {
-                    $scope.cancelFood(product.data("foodid"), product.data("orderdate"));
-                    var q = Math.max(1, pq - 1);
-                    product.data('quantity', q);
-                    $scope.updateProduct(product);
+            if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+                $scope.lastCount++;
+                if ($scope.lastCount >= 2) {
+                    $scope.extraq = product.data("quantity");
+                    $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                    return;
                 }
-
             } else {
-                $scope.open('app/pages/employee/home/foodcounts.html');
-                this.extraq = product.data('quantity');
-                $scope.check = function () {
-                    var count = this.extraq;
-                    var pq = product.data('quantity');
-
-                    var q = pq - count;
-                    product.data('quantity', count);
-                    $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"), q);
-                    $scope.updateProduct(product);
-                    $uibModalStack.dismissAll();
-                }
+                $scope.lastElement = product;
+                $scope.lastCount = 0;
             }
+            $scope.doProductMinus(product);
+        };
 
+        $scope.doProductMinus = function (product, count) {
+            var pq = product.data('quantity');
+            $scope.removeFromTodayReserves(moment.utc(product.data("orderdate")), product.data("foodid"), count ? pq - count : 1);
+            if (!count && pq === 1) {
+                $scope.cancelAllFood(product.data("foodid"), product.data("orderdate"), product.attr("id"));
+                $scope.productDel(product.attr("id"));
+            } else {
+                $scope.cancelFood(product.data("foodid"), product.data("orderdate"), count ? pq - count : 1);
+                var q = Math.max(1, count ? count : pq - 1);
+                product.data('quantity', q);
+                $scope.updateProduct(product);
+            }
         };
 
         $scope.updateProduct = function (product) {
             var quantity = product.data('quantity');
             $('.product-quantity', product).text(quantity);
-
         };
 
         $scope.productDel = function (id) {
@@ -1230,8 +1215,6 @@
                 $scope.loadYourLastRateToThisFood();
             }
         };
-
-
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), 1);
             if (!$rootScope.isMobile()) {
@@ -1277,3 +1260,4 @@
 
 
 })();
+
