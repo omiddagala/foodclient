@@ -83,7 +83,8 @@
         'BlurAdmin.pages.ad-sms',
         'BlurAdmin.pages.emp-buy-report',
         'BlurAdmin.pages.emp-buy-report-detail',
-        'BlurAdmin.pages.ad-loc'
+        'BlurAdmin.pages.ad-loc',
+        'BlurAdmin.pages.feedbacks'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -228,34 +229,34 @@
                     img: "assets/img/ui/menu/res-reports.png",
                     title: "گزارشها"
                 }, {
-                        url: "rest-cheque-report",
-                        img: "assets/img/ui/menu/res-incomes.png",
-                        title: "واریزی ها"
-                    }, {
-                        url: "food",
-                        img: "assets/img/ui/menu/res-menu.png",
-                        title: "منو"
-                    }, {
-                        url: "rest-financial",
-                        img: "assets/img/ui/menu/res-finance.png",
-                        title: "مالی"
-                    }, {
-                        url: "total-res-orders",
-                        img: "assets/img/ui/menu/res-total.png",
-                        title: "تجمیعی"
-                    }, {
-                        url: "res-orders",
-                        img: "assets/img/ui/menu/res-orders.png",
-                        title: "سفارشها"
-                    }, {
-                        url: "res-printed",
-                        img: "assets/img/ui/menu/res-printed.png",
-                        title: "فاکتورهای چاپ شده"
-                    }, {
-                        url: "invoice",
-                        img: "assets/img/ui/menu/res-factors.png",
-                        title: "فاکتورها"
-                    })
+                    url: "rest-cheque-report",
+                    img: "assets/img/ui/menu/res-incomes.png",
+                    title: "واریزی ها"
+                }, {
+                    url: "food",
+                    img: "assets/img/ui/menu/res-menu.png",
+                    title: "منو"
+                }, {
+                    url: "rest-financial",
+                    img: "assets/img/ui/menu/res-finance.png",
+                    title: "مالی"
+                }, {
+                    url: "total-res-orders",
+                    img: "assets/img/ui/menu/res-total.png",
+                    title: "تجمیعی"
+                }, {
+                    url: "res-orders",
+                    img: "assets/img/ui/menu/res-orders.png",
+                    title: "سفارشها"
+                }, {
+                    url: "res-printed",
+                    img: "assets/img/ui/menu/res-printed.png",
+                    title: "فاکتورهای چاپ شده"
+                }, {
+                    url: "invoice",
+                    img: "assets/img/ui/menu/res-factors.png",
+                    title: "فاکتورها"
+                })
             }
             if ($rootScope.hasRole("COMPANY")) {
                 $rootScope.mainMenus.push({
@@ -263,23 +264,23 @@
                     img: "assets/img/ui/menu/co-reports.png",
                     title: "گزارشها"
                 }, {
-                        url: "app/pages/company/charge-all/charge.html",
-                        img: "assets/img/ui/menu/co-chargeall.png",
-                        title: "شارژ همه",
-                        isModal: true
-                    }, {
-                        url: "co-financial",
-                        img: "assets/img/ui/menu/co-financial.png",
-                        title: "مالی"
-                    }, {
-                        url: "co-inactive-users",
-                        img: "assets/img/ui/menu/inactive-users.png",
-                        title: "کارمندان غیرفعال"
-                    }, {
-                        url: "co-active-users",
-                        img: "assets/img/ui/menu/active-users.png",
-                        title: "کارمندان فعال"
-                    })
+                    url: "app/pages/company/charge-all/charge.html",
+                    img: "assets/img/ui/menu/co-chargeall.png",
+                    title: "شارژ همه",
+                    isModal: true
+                }, {
+                    url: "co-financial",
+                    img: "assets/img/ui/menu/co-financial.png",
+                    title: "مالی"
+                }, {
+                    url: "co-inactive-users",
+                    img: "assets/img/ui/menu/inactive-users.png",
+                    title: "کارمندان غیرفعال"
+                }, {
+                    url: "co-active-users",
+                    img: "assets/img/ui/menu/active-users.png",
+                    title: "کارمندان فعال"
+                })
             }
             if ($rootScope.hasRole("ADMIN_EMPLOYEE")) {
                 $rootScope.mainMenus.push({
@@ -294,41 +295,45 @@
                     img: "assets/img/theme/icon/karafeedIcon/comment.png",
                     title: "نظرات"
                 }, {
-                        url: "holidays",
-                        img: "assets/img/theme/icon/karafeedIcon/vacation.png",
-                        title: "تعطیلات"
-                    }, {
-                        url: "ad-reports",
-                        img: "assets/img/theme/icon/karafeedIcon/report.png",
-                        title: "گزارشها"
-                    }, {
-                        url: "admin-cheque",
-                        img: "assets/img/theme/icon/karafeedIcon/cheque.png",
-                        title: "مالی کارافید"
-                    }, {
-                        url: "ad-sms",
-                        img: "assets/img/theme/icon/karafeedIcon/cheque.png",
-                        title: "اس ام اس"
-                    })
+                    url: "feedbacks",
+                    img: "assets/img/theme/icon/karafeedIcon/comment.png",
+                    title: "بازخورد مشتری"
+                }, {
+                    url: "holidays",
+                    img: "assets/img/theme/icon/karafeedIcon/vacation.png",
+                    title: "تعطیلات"
+                }, {
+                    url: "ad-reports",
+                    img: "assets/img/theme/icon/karafeedIcon/report.png",
+                    title: "گزارشها"
+                }, {
+                    url: "admin-cheque",
+                    img: "assets/img/theme/icon/karafeedIcon/cheque.png",
+                    title: "مالی کارافید"
+                }, {
+                    url: "ad-sms",
+                    img: "assets/img/theme/icon/karafeedIcon/cheque.png",
+                    title: "اس ام اس"
+                })
             }
             if ($rootScope.hasRole("ADMIN_RESTAURANT")) {
                 $rootScope.mainMenus.push({
                     url: "ad-invoice",
                     img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
                     title: "فاکتورهای صادرنشده"
-                },{
+                }, {
                     url: "ad-orders",
                     img: "assets/img/theme/icon/karafeedIcon/printInvoice.png",
                     title: "سفارشها"
                 }, {
-                        url: "rest-cheque",
-                        img: "assets/img/theme/icon/karafeedIcon/cheque.png",
-                        title: "مالی رستوران"
-                    }, {
-                        url: "rest-list",
-                        img: "assets/img/theme/icon/karafeedIcon/restaurant.png",
-                        title: "رستوران ها"
-                    })
+                    url: "rest-cheque",
+                    img: "assets/img/theme/icon/karafeedIcon/cheque.png",
+                    title: "مالی رستوران"
+                }, {
+                    url: "rest-list",
+                    img: "assets/img/theme/icon/karafeedIcon/restaurant.png",
+                    title: "رستوران ها"
+                })
             }
             if ($rootScope.hasRole("ADMIN_COMPANY")) {
                 $rootScope.mainMenus.push({
@@ -347,14 +352,14 @@
                     img: "assets/img/ui/menu/res-orders.png",
                     title: "سفارشها"
                 }, {
-                        url: "myrestaurant",
-                        img: "assets/img/ui/menu/restaurant.png",
-                        title: "رستوران"
-                    }, {
-                        url: "home",
-                        img: "assets/img/ui/menu/reserve.png",
-                        title: "رزرو غذا"
-                    })
+                    url: "myrestaurant",
+                    img: "assets/img/ui/menu/restaurant.png",
+                    title: "رستوران"
+                }, {
+                    url: "home",
+                    img: "assets/img/ui/menu/reserve.png",
+                    title: "رزرو غذا"
+                })
             }
         };
         $rootScope.loadMenus();
@@ -374,7 +379,7 @@
         $rootScope.loadBalance = function (url, isEmployee) {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             $http.post(url, null, httpOptions)
                 .success(function (data, status, headers, config) {
@@ -385,8 +390,8 @@
                         $rootScope.userBalance = data.balanceAmount;
                     }
                 }).catch(function (err) {
-                    $rootScope.handleError(null, url, err, httpOptions);
-                });
+                $rootScope.handleError(null, url, err, httpOptions);
+            });
         };
 
         $rootScope.isMobile = function () { //تشخیص موبایل 
@@ -424,7 +429,7 @@
         $rootScope.loadProfileImage = function () {
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             $http.post("http://127.0.0.1:9000/v1/general/getProfileImage", null, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -437,7 +442,7 @@
                         $rootScope.myProfilePic = "assets/img/defaults/default-menu.png";
                     }
                 }).catch(function (err) {
-                });
+            });
         };
         if (!token || !$rootScope.roles) {
             if (location.hash !== '#/forget')
@@ -484,19 +489,19 @@
         };
         $rootScope.myFormatDate = function (d) {
             moment.locale('fa');
-            moment.loadPersian({ dialect: 'persian-modern' });
+            moment.loadPersian({dialect: 'persian-modern'});
             return moment.utc(d).format('LLLL');
         };
-        $rootScope.subtranctMinutes = function (d,m) {
+        $rootScope.subtranctMinutes = function (d, m) {
             moment.locale('fa');
-            moment.loadPersian({ dialect: 'persian-modern' });
-            return moment.utc(d).subtract("minutes",m).format('LLLL');
+            moment.loadPersian({dialect: 'persian-modern'});
+            return moment.utc(d).subtract("minutes", m).format('LLLL');
         };
         $rootScope.newNotifications = function () {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
                 "direction": "DESC",
@@ -509,8 +514,8 @@
                     stopLoading();
                     $rootScope.notifications = data.data;
                 }).catch(function (err) {
-                    $rootScope.handleError(param, "/message/getNewMessages", err, httpOptions);
-                });
+                $rootScope.handleError(param, "/message/getNewMessages", err, httpOptions);
+            });
         };
 
         $rootScope.inputIsInvalid = function (inputIsValid, inputId) {
@@ -709,7 +714,7 @@
                 $http.post("http://127.0.0.1:9000/v1/log/insert", p, h)
                     .then(function (data, status, headers, config) {
                     }).catch(function (err) {
-                    });
+                });
             } else {
                 showMessage(toastrConfig, toastr, "خطا", err.data.message, "error");
             }

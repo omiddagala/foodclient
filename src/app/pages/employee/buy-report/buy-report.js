@@ -15,7 +15,7 @@
             });
     }
 
-    function empBuyReport($scope, $filter, editableOptions, editableThemes, $state, $rootScope, $q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
+    function empBuyReport($scope, $filter, $uibModalStack, $state, $rootScope, $q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
         $scope.fromDate = moment(new Date()).subtract('days', 7).format('jYYYY/jM/jD');
         $scope.toDate = moment(new Date()).format('jYYYY/jM/jD');
@@ -33,7 +33,7 @@
             window.setTimeout(function () {
                 $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanded');
             }, 10);
-        }
+        };
 
         $scope.search = function (pagination, sort) {
             if (preventTwiceLoad) {
@@ -43,11 +43,11 @@
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
-                headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var s = $scope.fromDate = $location.search().rs1 ? $location.search().rs1 : $scope.fromDate;
             var e = $scope.toDate = $location.search().re1 ? $location.search().re1 : $scope.toDate;
-            $location.search({rs1: s,re1: e});
+            $location.search({rs1: s, re1: e});
             var param = {
                 "startDate": moment.utc(s, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
                 "endDate": moment.utc(e, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
@@ -68,6 +68,44 @@
                 });
         };
 
+        $scope.openModal = function (page, size, item) {
+            $scope.item = item;
+            var m = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope
+            });
+            m.rendered.then(function (e) {
+                if ($('.modal-dialog .modal-content .modal-content.modal-fit').length > 0) {
+                    $('.modal-dialog').addClass('fit-height-imp');
+                }
+            });
+        };
+
+        $scope.orderIsForPast = function(o) {
+            return moment.utc(o,"YYYY-MM-DDTHH:mmZ").isBefore(new Date());
+        };
+
+        $scope.feedback = function () {
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var params = {
+                id: $scope.item.id,
+                comment: $("#desc").val()
+            };
+            $http.post("http://127.0.0.1:9000/v1/employee/addCustomerFeedback", params, httpOptions)
+                .success(function (data, status, headers, config) {
+                    $uibModalStack.dismissAll();
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                    stopLoading();
+                }).catch(function (err) {
+                $rootScope.handleError(params, "/employee/addCustomerFeedback", err, httpOptions);
+            });
+        };
+
         $scope.dateChanged = function (date, isFromDate) {
             if (isFromDate) {
                 $scope.fromDate = date;
@@ -79,7 +117,7 @@
                 showMessage(toastrConfig, toastr, "خطا", "تاریخ پایان از تاریخ آغاز کوچکتر است", "error");
                 return;
             }
-            if (end.diff($scope.fromDate,'days') > 30) {
+            if (end.diff($scope.fromDate, 'days') > 30) {
                 showMessage(toastrConfig, toastr, "خطا", "حداکثر بازه زمانی ۳۰ روزه انتخاب نمایید", "error");
                 return;
             }
