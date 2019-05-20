@@ -342,8 +342,7 @@
                     $('.cart').empty();
                     $rootScope.orderids = [];
                     $rootScope.cartItems = new HashMap();
-                    $scope.lastElement = null;
-                    $scope.lastCount = 0;
+                    $scope.initOrderWithCount();
                     $scope.renderTodaysReserves();
                 }
             }, 1000);
@@ -703,6 +702,7 @@
                             $rootScope.orderids.splice(i, 1);
                         }
                     }
+                    $scope.initOrderWithCount();
                     if (f)
                         $uibModalStack.dismissAll();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
@@ -786,9 +786,9 @@
                     '</div>' +
                     '</div></div>' +
                     '<div class="product-interactions"><div ng-click="dessert($event,' + resId + ')" style="background-image: url(/assets/img/ui/dessert.png);background-size: 16px 26px" class="button">' +
-                    '</div><div class="button" style="background-image: url(/assets/img/ui/add-food.png)" ng-click="productPlus($event)">' +
+                    '</div><div class="button" style="background-image: url(/assets/img/ui/add-food.png)" ng-click="productPlusWithButton($event)">' +
                     '</div>' +
-                    '<div class="button" style="background-image: url(/assets/img/ui/rem-food.png);background-position: top" ng-click="productMinus($event)">' +
+                    '<div class="button" style="background-image: url(/assets/img/ui/rem-food.png);background-position: top" ng-click="productMinusWithButton($event)">' +
                     '</div>' +
                     '</div>';
                 cartItem += '</div>';
@@ -878,6 +878,7 @@
 
         $scope.orderList = function () {
             startLoading();
+            $scope.initOrderWithCount();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
@@ -1026,9 +1027,37 @@
             return d.substring(d.indexOf(' '), d.lastIndexOf(' '));
         };
 
+        $scope.productPlusWithButton = function($event) {
+            if ($scope.wasClicked !== "leftCards") {
+                $scope.initOrderWithCount();
+                $scope.wasClicked = "leftCards";
+            }
+            $scope.productPlus($event, false);
+        };
+
+        $scope.productMinusWithButton = function($event) {
+            if ($scope.wasClicked !== "leftCards") {
+                $scope.initOrderWithCount();
+                $scope.wasClicked = "leftCards";
+            }
+            $scope.productMinus($event);
+        };
+
+        $scope.initOrderWithCount = function() {
+            $scope.lastElement = null;
+            $scope.lastCount = 0;
+        };
+
         $scope.submitProductCountModal = function (count) {
             if ($scope.lastElement.data("quantity") === count)
                 return;
+            $uibModalStack.dismissAll();
+            if (count === 0) {
+                $scope.cancelAllFood($scope.lastElement.data("foodid"), $scope.lastElement.data("orderdate"), $scope.lastElement.attr("id"));
+                $scope.removeFromTodayReserves(moment.utc($scope.lastElement.data("orderdate")), $scope.lastElement.data("foodid"), $scope.lastElement.data("quantity"));
+                $scope.productDel($scope.lastElement.attr("id"));
+                return;
+            }
             if ($scope.lastElement.data("quantity") < count) {
                 $scope.doProductPlus($scope.lastElement, count, false);
             } else {
@@ -1042,11 +1071,13 @@
         $scope.productPlus = function ($event, isNotPlusButton) {
             var product = $($event.currentTarget).closest('.omidProduct');
             if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
-                $scope.lastCount++;
-                if ($scope.lastCount >= 2) {
-                    $scope.extraq = product.data("quantity");
-                    $scope.open('app/pages/employee/home/foodcounts.html', "sm");
-                    return;
+                if ($scope.wasClicked === "leftCards") {
+                    $scope.lastCount++;
+                    if ($scope.lastCount >= 2) {
+                        $scope.extraq = product.data("quantity");
+                        $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                        return;
+                    }
                 }
             } else {
                 $scope.lastElement = product;
@@ -1073,12 +1104,14 @@
 
         $scope.productMinus = function ($event) {
             var product = $($event.currentTarget).closest('.omidProduct');
-            if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
-                $scope.lastCount++;
-                if ($scope.lastCount >= 2) {
-                    $scope.extraq = product.data("quantity");
-                    $scope.open('app/pages/employee/home/foodcounts.html', "sm");
-                    return;
+            if (product.data("quantity") !== 1 && $scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+                if ($scope.wasClicked === "leftCards") {
+                    $scope.lastCount++;
+                    if ($scope.lastCount >= 2) {
+                        $scope.extraq = product.data("quantity");
+                        $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+                        return;
+                    }
                 }
             } else {
                 $scope.lastElement = product;
@@ -1197,6 +1230,7 @@
             } else {
                 $scope.food = food;
                 $scope.foodDetail();
+                $scope.initOrderWithCount();
                 $scope.open('app/pages/employee/home/detail.html', 'md');
                 $scope.cleanComments();
                 $scope.fetchComments();
@@ -1204,22 +1238,27 @@
             }
         };
         $scope.cardsBottomOrderFoodAction = function ($event, food) {
-            var d = moment.utc($rootScope.dateToOrder);
-            var product = $rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + food.id);
-            if (product) {
-                if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
-                    $scope.lastCount++;
-                    if ($scope.lastCount >= 2) {
-                        $uibModalStack.dismissAll();
-                        $scope.extraq = product.data("quantity");
-                        $scope.open('app/pages/employee/home/foodcounts.html', "sm");
-                        return;
-                    }
-                } else {
-                    $scope.lastElement = product;
-                    $scope.lastCount = 0;
-                }
+            if ($scope.wasClicked !== "middleCards") {
+                $scope.initOrderWithCount();
+                $scope.wasClicked = "middleCards"
             }
+            // this has a bug : when a food is removed from left panel and again that food is ordered by the button at the bottom of card(this action), the count will be mistaken
+            // var d = moment.utc($rootScope.dateToOrder);
+            // var product = $rootScope.cartItems.get(d.format('YYYY-MM-DDTHH:mmZ') + food.id);
+            // if (product) {
+            //     if ($scope.lastElement && $scope.lastElement.attr("id") === product.attr("id")) {
+            //         $scope.lastCount++;
+            //         if ($scope.lastCount >= 2) {
+            //             $uibModalStack.dismissAll();
+            //             $scope.extraq = product.data("quantity");
+            //             $scope.open('app/pages/employee/home/foodcounts.html', "sm");
+            //             return;
+            //         }
+            //     } else {
+            //         $scope.lastElement = product;
+            //         $scope.lastCount = 0;
+            //     }
+            // }
             $scope.orderFood(food.id, $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ'), 1);
             if (!$rootScope.isMobile()) {
                 $scope.addToTodayReserves(food.name, $rootScope.dateToOrder, food.id, Number(food.restaurant.id), food.foodType, food.restaurant.name, 1);

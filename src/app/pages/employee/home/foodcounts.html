@@ -18,7 +18,7 @@
             <div style="width:70%;float:right; padding-left: 5%;padding-right: 5%;">
                 <form name="myform" ng-submit="myform.$valid && submitProductCountModal(extraq)" class="ui reply form">
                     <div>
-                        <input min="1" type="number" value="extraq"  ng-model="extraq" id="qqq" class="qentery"/>
+                        <input min="0" type="number" value="extraq"  ng-model="extraq" id="qqq" class="qentery"/>
                     </div>
                     <div class="button-wrapper qbtn">
                         <button style="width: 65px;height: 30px;"  type="submit"  class="btn red__button btn-raised">تایید
@@ -26,7 +26,7 @@
                     </div>
                 </form>
             </div>
-            <button ng-click="extraq = (extraq <= 1) ? 1 : extraq-1"   type="button" class="decrement button hollow circle" data-quantity="minus" data-field="quantity">
+            <button ng-click="extraq = (extraq <= 0) ? 0 : extraq-1"   type="button" class="decrement button hollow circle" data-quantity="minus" data-field="quantity">
                 <i class="fa fa-minus" aria-hidden="true"></i>
             </button>
             <div class="clearfix"></div>
@@ -38,6 +38,7 @@
 <style>
     .modal.fade .modal-dialog {
         height: 20% !important;
+        width: 20%;
     }
     .qbtn button{
         width: 65px;
@@ -124,16 +125,13 @@
         width: 86% !important;
         margin: 24px auto;
     }
-    .modal-content {
-        width: 40%;
-    }
     .modal-open .modal {
         height: 70%;
     }
 
     .modal .modal-dialog {
         height: 80% !important;
-        top: 20%;
+        top: 10%;
         transform: translateY(-20%) !important;
     }
     .modal-content {
