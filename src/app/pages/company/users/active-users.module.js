@@ -140,6 +140,7 @@
             var bdate = $("#birthdate").find('input').val();
             $rootScope.userInfo.birthday = bdate ? moment.utc(bdate, 'jYYYY/jM/jD').format('YYYY-MM-DD') : null;
             $rootScope.userInfo.employeeLevel = $scope.employeeLevel;
+            $rootScope.userInfo.personnelCode = $rootScope.userInfo.personnelCode ? $rootScope.userInfo.personnelCode : "";
             if (!$rootScope.userInfo.id) {
                 $rootScope.userInfo.user = {
                     username: $("#username").val().toLowerCase(),

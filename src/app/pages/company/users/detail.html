@@ -57,12 +57,9 @@
                         <div class="row">
                             <div class="col-sm-10 margin__bottom_5">
                                 <input tabindex="2" ng-model="userInfo.personnelCode" ng-maxlength="50" type="text"
-                                    class="confirm_input form-control" name="code" required id="code" style="text-align:right;">
+                                    class="confirm_input form-control" name="code" id="code" style="text-align:right;">
                                 <div class="error-message" ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'code') && myform.code.$error.maxlength">
                                     حداکثر 50 کاراکتر وارد کنید
-                                </div>
-                                <div class="error-message" ng-show="(myform.code.$dirty || submitted) && inputIsInvalid(myform.code.$valid,'code') && myform.code.$error.required">
-                                    پر کردن این فیلد اجباریست
                                 </div>
                             </div>
                             <label for="code" class="col-sm-2 control-label">کد پرسنلی</label>
