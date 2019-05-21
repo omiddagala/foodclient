@@ -54,7 +54,8 @@
                         companyType:"GOLDEN",
                         location : {
                             point : null
-                        }
+                        },
+                        minExtraHourForPreOrder: 0
                     };
                 }
                 $('#pass + .glyphicon').on('click', function() {

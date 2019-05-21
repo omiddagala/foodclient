@@ -9,15 +9,15 @@
                 <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
             </div>
             <div class="confirm_header_title padding-md">
-                ثبت نظر
+                ثبت دیدگاه
             </div>
         </div>
     </div>
     <div class="confirm_body">
         <form name="myform" ng-submit="myform.$valid && feedback()" novalidate class="form-horizontal modal__form top-padding-lg">
             <div class="form-group">
-                <label for="desc" style="color: #575757" class="col-xs-12 col-sm-4 control-label top-margin-lg pull-right">نظر شما</label>
-                <div class="col-xs-12  col-sm-8" style="margin-bottom: 10px">
+                <label for="desc" style="color: #575757" class="col-xs-12 col-sm-5 control-label top-margin-lg pull-right">دیدگاه شما درباره کیفیت سرویس</label>
+                <div class="col-xs-12  col-sm-7" style="margin-bottom: 10px">
                     <textarea ng-maxlength="150" required class="confirm_input form-control" name="desc" ng-model="desc" id="desc"
                         style="height: 82px !important;"></textarea>
                     <div class="error-message" ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
