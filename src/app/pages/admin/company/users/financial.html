@@ -1,5 +1,5 @@
 <div include-with-scope="page-top.html"></div>
-<div class="widgets mycontent" ng-init="initCtrl()" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
+<div class="widgets mycontent" ng-class="{'admin-content': hasRole('MASTER_ADMIN')}">
     <div class="row">
         <div class="col-md-12">
             <div ba-panel ba-panel-title="غذاها" ba-panel-class="with-scroll">
@@ -49,104 +49,35 @@
                         </div>
                     </div>
                     <div class="horizontal-scroll full-width">
-                        <table class="table" st-table="foods" refresh-table>
+                        <table class="table" st-table="report" refresh-table>
                             <thead>
-                                <tr class="sortable ">
-                                    <th>
-                                        <div class="newtable_header">
-                                            عملیات
-                                        </div>
-                                    </th>
-                                    <th st-sort="transactionTypeEnum">
-                                        <div class="newtable_header">
-                                            نوع
-                                        </div>
-                                    </th>
-                                    <th st-sort="totalAmount">
-                                        <div class="newtable_header">
-                                            قیمت نهایی
-                                        </div>
-                                    </th>
-                                    <th st-sort="taxAmount">
-                                        <div class="newtable_header">
-                                            مالیات
-                                        </div>
-                                    </th>
-                                    <th st-sort="previousBalance">
-                                        <div class="newtable_header">
-                                            موجودی قبلی
-                                        </div>
-                                    </th>
-                                    <th st-sort="newBalance">
-                                        <div class="newtable_header">
-                                            موجودی جدید
-                                        </div>
-                                    </th>
-                                    <th st-sort="containerPrice">
-                                        <div class="newtable_header">
-                                            قیمت ظرف
-                                        </div>
-                                    </th>
-                                    <th st-sort="deliveryPrice">
-                                        <div class="newtable_header">
-                                            هزینه تحویل
-                                        </div>
-                                    </th>
-                                    <th st-sort="transactionDate">
-                                        <div class="newtable_header">
-                                            تاریخ سفارش
-                                        </div>
-                                    </th>
-                                    <th st-sort="foodPriceAfterOff">
-                                        <div class="newtable_header">
-                                            قیمت بعد از تخفیف
-                                        </div>
-                                    </th>
-                                    <th st-sort="description">
-                                        <div class="newtable_header">
-                                            توضیحات
-                                        </div>
-                                    </th>
-                                    <th st-sort="foodPrice">
-                                        <div class="newtable_header">
-                                            قیمت غذا
-                                        </div>
-                                    </th>
-                                    <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true">
-                                        <div class="newtable_header">
-                                            ردیف
-                                        </div>
-                                    </th>
-                                </tr>
+                            <tr class="sortable ">
+                                <th>
+                                    <div class="newtable_header">مبلغ</div>
+                                </th>
+                                <th>
+                                    <div class="newtable_header">تاریخ</div>
+                                </th>
+                                <th>
+                                    <div class="newtable_header">نوع</div>
+                                </th>
+                                <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="buttons">
-                                            <button class="btn btn-info editable-table-button btn-xs" ng-click="openModal('app/pages/admin/company/users/financial-modal.html', 'lg',$index)">مشاهده
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td>{{getTransactionType(item.transactionTypeEnum)}}</td>
-                                    <td>{{formatPrice(item.totalAmount)}}</td>
-                                    <td>{{formatPrice(item.taxAmount)}}</td>
-                                    <td>{{formatPrice(item.previousBalance)}}</td>
-                                    <td>{{formatPrice(item.newBalance)}}</td>
-                                    <td>{{formatPrice(item.containerPrice)}}</td>
-                                    <td>{{formatPrice(item.deliveryPrice)}}</td>
-                                    <td>{{myFormatDate(item.transactionDate)}}</td>
-                                    <td>{{formatPrice(item.foodPriceAfterOff)}}</td>
-                                    <td>{{item.description}}</td>
-                                    <td>{{formatPrice(item.foodPrice)}}</td>
-                                    <td class="table-id">{{$index+1}}</td>
-                                </tr>
+                            <tr ng-repeat="item in orders">
+                                <td>{{formatPrice(item.totalAmount)}}</td>
+                                <td>{{myFormatDate(item.transactionDate)}}</td>
+                                <td>{{getTransactionType(item.transactionTypeEnum)}}</td>
+                                <td class="table-id">{{$index+1}}</td>
+                            </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="12" class="text-center">
-                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>

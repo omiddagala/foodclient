@@ -17,31 +17,11 @@
 
     function adminCompanyUserFinancial($scope, $filter, editableOptions, editableThemes, $state, $rootScope,$q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
-        $scope.fromDate = moment(new Date()).format('jYYYY/jM/jD HH:mm');
-        $scope.toDate = moment(new Date()).add('days', 30).format('jYYYY/jM/jD HH:mm');
+        $scope.fromDate = moment(new Date()).subtract('days', 7).format('jYYYY/jM/jD HH:mm');
+        $scope.toDate = moment(new Date()).format('jYYYY/jM/jD HH:mm');
         var id;
         var preventTwiceLoad = true;
         $scope.reportType = "ALL";
-
-        $scope.initCtrl = function () {
-            setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({scrollTop: 0}, 800);
-                    return false;
-                });
-            }, 1000)
-        };
 
         $scope.search = function (pagination, sort) {
             if (preventTwiceLoad){
@@ -105,10 +85,6 @@
             $scope.reportType = t;
             $scope.$broadcast('refreshMyTable');
         };
-
-        editableOptions.theme = 'bs3';
-        editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
-        editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
 
     }
 })();
