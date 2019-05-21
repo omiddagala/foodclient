@@ -50,7 +50,7 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
-                "id" : $location.search().id,
+                "id": $location.search().id,
                 "value": $scope.foodName,
                 "pageableDTO": {
                     "direction": sort.reverse ? 'DESC' : 'ASC',
@@ -75,7 +75,7 @@
             clearTimeout(delayTimer);
             delayTimer = setTimeout(function () {
                 $scope.$broadcast('refreshMyTable');
-            },1000);
+            }, 1000);
         };
 
         $scope.openModal = function (page, size, item, index) {
@@ -90,11 +90,15 @@
         };
 
         $scope.edit = function (foodid) {
-            $location.path('/admin-fooddetail').search({id: $location.search().id,foodid: foodid,l: $scope.restaurantLevel});
+            $location.path('/admin-fooddetail').search({
+                id: $location.search().id,
+                foodid: foodid,
+                l: $scope.restaurantLevel
+            });
         };
 
         $scope.addFood = function () {
-            $location.path("/admin-fooddetail").search({id: $location.search().id,l: $scope.restaurantLevel});
+            $location.path("/admin-fooddetail").search({id: $location.search().id, l: $scope.restaurantLevel});
         };
 
         $scope.removeFood = function () {
@@ -110,6 +114,7 @@
                         $scope.$broadcast('refreshMyTable');
                     }
                     $uibModalStack.dismissAll();
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
                     $rootScope.handleError($scope.item.id, "/adminRestaurantManagementRest/deleteFood", err, httpOptions);
@@ -122,13 +127,13 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/restaurant/food/setFoodFinishedToday", $scope.item.id, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/setFoodFinishedToday", {id: $scope.item.id}, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError($scope.item.id, "/restaurant/food/setFoodFinishedToday", err, httpOptions);
+                    $rootScope.handleError($scope.item.id, "/adminRestaurantManagementRest/setFoodFinishedToday", err, httpOptions);
                 });
         };
         $scope.toggleSidebar = function (e) {

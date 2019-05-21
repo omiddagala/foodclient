@@ -217,13 +217,13 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1:9000/v1/restaurant/food/removeFoodImage", $scope.food.id, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/removeFoodImage", $scope.food.id, httpOptions)
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     $scope.food.imageAddress = data;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                $rootScope.handleError($scope.food.id, "/restaurant/food/removeFoodImage", err, httpOptions);
+                $rootScope.handleError($scope.food.id, "/adminRestaurantManagementRest/removeFoodImage", err, httpOptions);
             });
         };
 
@@ -292,13 +292,13 @@
                 "image": img.substring(img.indexOf(",") + 1),
                 "postfix": postfix
             };
-            $http.post("http://127.0.0.1:9000/v1/restaurant/food/uploadFoodImage", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/uploadFoodImage", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.food.imageAddress = data;
                     stopLoading();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                $rootScope.handleError(params, "/restaurant/food/uploadFoodImage", err, httpOptions);
+                $rootScope.handleError(params, "/adminRestaurantManagementRest/uploadFoodImage", err, httpOptions);
             });
         }
 
