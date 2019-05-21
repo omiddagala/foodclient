@@ -52,7 +52,7 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
-                // companyName: search.predicateObject ? search.predicateObject.companyName : null,
+                companyName: search.predicateObject ? search.predicateObject.companyName : null,
                 mobileNumber: search.predicateObject ? search.predicateObject.mobile : null,
                 name: search.predicateObject ? search.predicateObject.name : null,
                 "pageableDTO": {

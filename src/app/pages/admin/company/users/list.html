@@ -42,9 +42,9 @@
                                             تلفن
                                         </div>
                                     </th>
-                                    <th st-sort="personnelCode">
+                                    <th st-sort="companyName">
                                         <div class="newtable_header">
-                                            کد پرسنلی
+                                            نام شرکت
                                         </div>
                                     </th>
                                     <th st-sort="name">
@@ -64,7 +64,10 @@
                                             placeholder="جستجو بر اساس موبایل" class="input-sm form-control search-input"
                                             type="search" /></th>
                                     <th></th>
-                                    <th></th>
+                                    <th>
+                                        <input style="width: 50%;display: inline-table" st-search="companyName" placeholder="جستجو بر اساس نام شرکت"
+                                               class="input-sm form-control search-input" type="search" />
+                                    </th>
                                     <th><input style="width: 50%;display: inline-table" st-search="name" placeholder="جستجو بر اساس نام"
                                             class="input-sm form-control search-input" type="search" /></th>
 
@@ -93,7 +96,7 @@
                                     </td>
                                     <td>{{item.mobile}}</td>
                                     <td>{{item.phone}}</td>
-                                    <td>{{item.personnelCode}}</td>
+                                    <td>{{item.companyName}}</td>
                                     <td>{{item.name}}</td>
                                     <td class="table-id">{{$index+1}}</td>
                                 </tr>
