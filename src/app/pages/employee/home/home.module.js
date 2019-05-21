@@ -857,13 +857,14 @@
         };
 
         $scope.cancelDessert = function () {
+            $('.main-stage > div').animate({
+                scrollTop: 0
+            }, 'fast');
             $rootScope.isMainFood = true;
             $rootScope.empPageNum = 0;
             var t = $('#taghvim').find('input').val();
             $("#dateForOrder").val(t);
             $scope.loadContent(false, true);
-            if ($rootScope.isMobile()) {
-            }
         };
         $scope.confirm = function (e) {
             var ionSideMenu = $(e.currentTarget).closest('ion-side-menus');
