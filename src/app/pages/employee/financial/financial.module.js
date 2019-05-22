@@ -22,6 +22,18 @@
         var preventTwiceLoad = true;
         $scope.reportType = "ALL";
 
+        $scope.$on('$locationChangeStart', function () {
+            var a = location.href;
+            $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
+        });
+
+        $scope.initCtrl = function() {
+            if ($rootScope.employee_params && !$rootScope.isMobile())
+                $location.search($rootScope.employee_params);
+            $scope.fromDate = $location.search().fs1 ? $location.search().fs1 : moment(new Date()).subtract('days', 7).format('jYYYY/jM/jD');
+            $scope.toDate = $location.search().fe1 ? $location.search().fe1 : moment(new Date()).format('jYYYY/jM/jD');
+        };
+
         $scope.toggleSidebar = function (e) {
             console.log(this);
             $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanding');
@@ -40,6 +52,8 @@
             var httpOptions = {
                 headers: { 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token }
             };
+            $location.search('fs1', $scope.fromDate);
+            $location.search('fe1', $scope.toDate);
             var param = {
                 "id": "0",
                 "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),

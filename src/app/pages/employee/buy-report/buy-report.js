@@ -49,13 +49,11 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            var s = $scope.fromDate;
-            var e = $scope.toDate;
-            $location.search('rs1', s);
-            $location.search('re1', e);
+            $location.search('rs1', $scope.fromDate);
+            $location.search('re1', $scope.toDate);
             var param = {
-                "startDate": moment.utc(s, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
-                "endDate": moment.utc(e, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
+                "startDate": moment.utc($scope.fromDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
+                "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
                 "pageableDTO": {
                     "direction": sort.reverse ? 'DESC' : 'ASC',
                     "page": pagination.start / pagination.number,
@@ -130,7 +128,7 @@
         };
 
         $scope.goToDetail = function (id) {
-            $location.path("/buy-report-detail").search().brid = id;
+            $location.path("/buy-report-detail").search('brid', id);
         }
 
     }
