@@ -95,7 +95,7 @@
                         });
                     }
 
-                    $scope.foodType = $rootScope.foodType = params.foodType;
+                    $scope.foodType = $rootScope.foodType = params.foodType ? params.foodType : 'ALL';
                     $rootScope.sortOrder = params.pageableDTO.sortBy;
                     $('#dateForOrder').val(dateUrlParam);
                 }
