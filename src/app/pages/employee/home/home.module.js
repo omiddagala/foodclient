@@ -39,6 +39,14 @@
         $rootScope.mobileFoodDetail = {};
 
         $scope.$on('$locationChangeStart', function () {
+            if ($scope.onBrowserBackLeaveDDA) {
+                $scope.cancelDessert();
+                $location.search('dda',null);
+                $scope.onBrowserBackLeaveDDA = false;
+            }
+            if ($location.search().dda === 'dda') {
+                $scope.onBrowserBackLeaveDDA = true;
+            }
             if ($rootScope.currentActiveMenu !== "home") {
                 if ($rootScope.currentActiveMenu === "myrestaurant") {
                     var a = location.href;
@@ -826,6 +834,7 @@
         };
 
         $scope.dessert = function ($event, resId) {
+            $location.search('dda', null);
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -850,6 +859,8 @@
                     $rootScope.isMainFood = false;
                     $rootScope.empPageNum = 0;
                     $rootScope.foods = data;
+                    $scope.onBrowserBackLeaveDDA = false;
+                    $location.search('dda', 'dda');
                     stopLoading();
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/foodSearch/getRestaurantDDA", err, httpOptions);
@@ -864,6 +875,8 @@
             $rootScope.empPageNum = 0;
             var t = $('#taghvim').find('input').val();
             $("#dateForOrder").val(t);
+            $location.search('dda', null);
+            $scope.onBrowserBackLeaveDDA = true;
             $scope.loadContent(false, true);
         };
         $scope.confirm = function (e) {
