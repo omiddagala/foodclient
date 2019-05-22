@@ -17,15 +17,19 @@
 
     function empBuyReport($scope, $filter, $uibModalStack, $state, $rootScope, $q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
-        $scope.fromDate = moment(new Date()).subtract('days', 7).format('jYYYY/jM/jD');
-        $scope.toDate = moment(new Date()).format('jYYYY/jM/jD');
         var preventTwiceLoad = true;
 
         $scope.$on('$locationChangeStart', function () {
-            if ($location.path() !== "/buy-report-detail" && $location.path() !== "/buy-report") {
-                $location.search({});
-            }
+            var a = location.href;
+            $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
         });
+
+        $scope.initCtrl = function() {
+            if ($rootScope.employee_params && !$rootScope.isMobile())
+                $location.search($rootScope.employee_params);
+            $scope.fromDate = $location.search().rs1 ? $location.search().rs1 : moment(new Date()).subtract('days', 7).format('jYYYY/jM/jD');
+            $scope.toDate = $location.search().re1 ? $location.search().re1 : moment(new Date()).format('jYYYY/jM/jD');
+        };
 
         $scope.toggleSidebar = function (e) {
             console.log(this);
@@ -45,9 +49,10 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            var s = $scope.fromDate = $location.search().rs1 ? $location.search().rs1 : $scope.fromDate;
-            var e = $scope.toDate = $location.search().re1 ? $location.search().re1 : $scope.toDate;
-            $location.search({rs1: s, re1: e});
+            var s = $scope.fromDate;
+            var e = $scope.toDate;
+            $location.search('rs1', s);
+            $location.search('re1', e);
             var param = {
                 "startDate": moment.utc(s, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
                 "endDate": moment.utc(e, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
@@ -121,12 +126,11 @@
                 showMessage(toastrConfig, toastr, "خطا", "حداکثر بازه زمانی ۳۰ روزه انتخاب نمایید", "error");
                 return;
             }
-            $location.search({});
             $scope.$broadcast('refreshMyTable');
         };
 
         $scope.goToDetail = function (id) {
-            $location.path("/buy-report-detail").search('brid', id);
+            $location.path("/buy-report-detail").search().brid = id;
         }
 
     }

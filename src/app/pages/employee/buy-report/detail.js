@@ -19,12 +19,6 @@
         $scope.smartTablePageSize = 10;
         var preventTwiceLoad = true;
 
-        $scope.$on('$locationChangeStart', function () {
-            if ($location.path() !== "/buy-report" && $location.path() !== "/buy-report-detail") {
-                $location.search({});
-            }
-        });
-
         $scope.search = function (pagination, sort) {
             if (preventTwiceLoad){
                 preventTwiceLoad = false;

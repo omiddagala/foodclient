@@ -20,14 +20,8 @@
         $rootScope.currentMobileActiveMenu = "myrestaurant";
 
         $scope.$on('$locationChangeStart', function () {
-            if ($rootScope.currentActiveMenu !== "myrestaurant") {
-                if ($rootScope.currentActiveMenu === "home") {
-                    var a = location.href;
-                    $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
-                } else {
-                    $rootScope.employee_params = null;
-                }
-            }
+            var a = location.href;
+            $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
         });
 
         $scope.loadContent = function (isFirstCall, isSearch) {
@@ -75,12 +69,12 @@
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     if (data.list.length > 0) {
-                        if (params.pageableDTO.page === 0){
+                        if (params.pageableDTO.page === 0) {
                             $scope.rests = [];
                             setTimeout(function () {
                                 $scope.rests = data.list;
                                 $scope.$apply();
-                            },200);
+                            }, 200);
                         } else {
                             $.merge($scope.rests, data.list);
                         }
@@ -89,7 +83,7 @@
                             $rootScope.resPageNum++;
                         }
                     } else {
-                        if (params.pageableDTO.page === 0){
+                        if (params.pageableDTO.page === 0) {
                             $scope.rests = [];
                         }
                     }
@@ -99,7 +93,7 @@
         };
 
         $scope.ctrlInit = function () {
-            if ($rootScope.employee_params)
+            if ($rootScope.employee_params && !$rootScope.isMobile())
                 $location.search($rootScope.employee_params);
             $rootScope.resPageNum = 0;
             $scope.commentPageNum = 0;
@@ -108,26 +102,25 @@
             setTimeout(function () {
                 $scope.rests = [];
                 $scope.loadContent(true, false);
-                
                 if (!$rootScope.isMobile()) {
-                $('.main-stage > div').scroll(function () {
-                    if ($rootScope.scrollIsAtEnd($('.main-stage > div'))) {
-                        if ($rootScope.resEnableScroll) {
-                            $rootScope.resEnableScroll = false;
-                            $scope.loadContent(false, false);
+                    $('.main-stage > div').scroll(function () {
+                        if ($rootScope.scrollIsAtEnd($('.main-stage > div'))) {
+                            if ($rootScope.resEnableScroll) {
+                                $rootScope.resEnableScroll = false;
+                                $scope.loadContent(false, false);
+                            }
                         }
-                    }
-                });
-            } else {
-                $('.article-mobile-list').scroll(function () {
-                    if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
-                        if ($rootScope.resEnableScroll) {                            
-                            $rootScope.resEnableScroll = false;
-                            $scope.loadContent(false, false);
+                    });
+                } else {
+                    $('.article-mobile-list').scroll(function () {
+                        if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
+                            if ($rootScope.resEnableScroll) {
+                                $rootScope.resEnableScroll = false;
+                                $scope.loadContent(false, false);
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
             }, 700);
         };
         var selectedTypes = [];
@@ -289,8 +282,8 @@
             $rootScope.currentActiveMenu = "home";
             $rootScope.currentMobileActiveMenu = "home";
         };
-        
-        
+
+
         $scope.confirm = function (e) {
             var ionSideMenu = $(e.currentTarget).closest('ion-side-menus');
             $(ionSideMenu).find('ion-side-menu .confirm-box').removeClass('confirm-box-disable');

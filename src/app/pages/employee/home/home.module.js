@@ -47,15 +47,8 @@
             if ($location.search().dda === 'dda') {
                 $scope.onBrowserBackLeaveDDA = true;
             }
-            if ($rootScope.currentActiveMenu !== "home") {
-                if ($rootScope.currentActiveMenu === "myrestaurant") {
-                    var a = location.href;
-                    $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
-                } else {
-                    $rootScope.employee_params = null;
-                }
-                $rootScope.foods = [];
-            }
+            var a = location.href;
+            $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
         });
 
         $scope.loadContent = function (isFirstCall, isSearch) {
@@ -102,7 +95,7 @@
                         });
                     }
 
-                    $rootScope.foodType = params.foodType;
+                    $scope.foodType = $rootScope.foodType = params.foodType;
                     $rootScope.sortOrder = params.pageableDTO.sortBy;
                     $('#dateForOrder').val(dateUrlParam);
                 }
