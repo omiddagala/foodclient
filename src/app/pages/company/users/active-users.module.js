@@ -15,11 +15,22 @@
             });
     }
 
-    function companyActiveUsersCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, localStorageService, $location, $uibModal, $uibModalStack, toastrConfig, toastr, $rootScope) {
+    function companyActiveUsersCtrl($scope, $state, $q, $http, localStorageService, $location, $uibModal, $uibModalStack, toastrConfig, toastr, $rootScope) {
         $scope.smartTablePageSize = 10;
         var preventTwiceLoad = true;
         $scope.chargeReason = "BIRTHDAY";
         $scope.employeeLevel = "EMPLOYEE";
+
+        $scope.$on('$locationChangeStart', function () {
+            if ($scope.onBrowserBackLeaveDetail) {
+                $scope.showList();
+                $location.search('emp',null);
+                $scope.onBrowserBackLeaveDetail = false;
+            }
+            if ($location.search().emp === 'emp') {
+                $scope.onBrowserBackLeaveDetail = true;
+            }
+        });
 
         $scope.initCtrl = function () {
             $scope.submitted = false;
@@ -389,7 +400,8 @@
         $scope.employeeActiveMenu = "gift";
         $scope.isInList = true;
         $scope.showDetail = function (item, index) {
-            startLoading();
+            $scope.onBrowserBackLeaveDetail = false;
+            $location.search("emp","emp");
             $rootScope.companyUserId = item.id;
             $("#container").toggleClass("active-employees-background");
             $("#emp-table").fadeOut();
@@ -406,7 +418,6 @@
             };
             $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/getEmployeeExtraData", param, httpOptions)
                 .then(function (data, status, headers, config) {
-                    stopLoading();
                     $scope.employee = {
                         id: item.id,
                         general: item,
@@ -417,6 +428,8 @@
             });
         };
         $scope.showList = function () {
+            $scope.onBrowserBackLeaveDetail = false;
+            $location.search("emp",null);
             $("#container").toggleClass("active-employees-background");
             $("#emp-detail").fadeOut();
             $("#emp-table").fadeIn();
