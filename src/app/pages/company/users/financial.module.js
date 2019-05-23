@@ -23,23 +23,9 @@
         var preventTwiceLoad = true;
 
         $scope.initCtrl = function () {
-            setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({scrollTop: 0}, 800);
-                    return false;
-                });
-            }, 1000)
+            $rootScope.selectedEmpPageNum = $location.search().p;
+            $rootScope.empId = $location.search().id;
+            $rootScope.searchedEmployeeName = $location.search().n;
         };
 
         $scope.search = function (pagination, sort) {
@@ -84,7 +70,7 @@
         };
 
         $scope.backBtn = function () {
-          $state.go('co-active-users');
+            window.history.back();
         };
 
         $scope.openModal = function (page, size, index) {
@@ -96,9 +82,6 @@
                 scope: $scope
             });
         };
-        editableOptions.theme = 'bs3';
-        editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
-        editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
 
     }
 })();

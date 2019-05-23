@@ -66,6 +66,10 @@
                 preventTwiceLoad = false;
                 return;
             }
+            if ($rootScope.selectedEmpPageNum >= 0) {
+                pagination.start = $rootScope.selectedEmpPageNum * pagination.number;
+                $scope.employeeName = $rootScope.searchedEmployeeName;
+            }
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -82,10 +86,20 @@
                 personnelCode: $scope.personnelCode,
                 status: "ACTIVE"
             };
+            $scope.pageNumber = param.pageableDTO.page;
             return $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/searchEmployee", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $scope.companyUsers = data.data.list;
+                    if ($rootScope.selectedEmpPageNum >= 0) {
+                        for (var i = 0; i < $scope.companyUsers.length; i++) {
+                            if ($scope.companyUsers[i].id === Number($rootScope.empId)) {
+                                $scope.showDetail($scope.companyUsers[i], i);
+                            }
+                        }
+                        $scope.onBrowserBackLeaveDetail = true;
+                        $rootScope.selectedEmpPageNum = -1;
+                    }
                     return data.data;
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/companyEmployeeManagement/searchEmployee", err, httpOptions);
@@ -371,7 +385,7 @@
         };
 
         $scope.finance = function (id) {
-            $location.path('/co-employee-financial').search({id: id});
+            $location.path('/co-employee-financial').search({id: id, p: $scope.pageNumber, n: $scope.employeeName});
         };
 
         $scope.addUsesr = function () {
@@ -401,7 +415,7 @@
         $scope.isInList = true;
         $scope.showDetail = function (item, index) {
             $scope.onBrowserBackLeaveDetail = false;
-            $location.search("emp","emp");
+            $location.search("emp", "emp");
             $rootScope.companyUserId = item.id;
             $("#container").toggleClass("active-employees-background");
             $("#emp-table").fadeOut();
@@ -429,7 +443,7 @@
         };
         $scope.showList = function () {
             $scope.onBrowserBackLeaveDetail = false;
-            $location.search("emp",null);
+            $location.search("emp", null);
             $("#container").toggleClass("active-employees-background");
             $("#emp-detail").fadeOut();
             $("#emp-table").fadeIn();
