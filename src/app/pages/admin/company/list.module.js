@@ -132,7 +132,7 @@
             var param = {
                 "comment": $("#desc").val(),
                 "companyId": $scope.item,
-                "transferAmount": $("#amount").val()
+                "transferAmount": $("#amount").val().replace(/,/g, '')
             };
             $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/chargeCompany", param, httpOptions)
                 .then(function (data, status, headers, config) {

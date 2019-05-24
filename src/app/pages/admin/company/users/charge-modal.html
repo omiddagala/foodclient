@@ -18,15 +18,15 @@
             <div class="modal-body text-center">
                 <div class="row">
                     <div class="col-sm-9">
-                        <input type="number" ng-maxlength="10" required name="amount" ng-model="amount" class="confirm_input form-control" id="amount">
+                        <input type="text" ng-maxlength="15" required name="amount" ng-model="amount" class="confirm_input form-control" id="amount" commaseparator>
                         <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.maxlength">
-                            حداکثر 10 کاراکتر وارد کنید
+                            حداکثر 15 کاراکتر وارد کنید
                         </div>
                         <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.required">
                             پر کردن این فیلد اجباریست
                         </div>
                     </div>
-                    <label for="amount" class="col-sm-3 control-label">مبلغ مورد نظر</label>
+                    <label for="amount" class="col-sm-3 control-label">مبلغ مورد نظر(تومان)</label>
                 </div>
                 <div class="row" style="margin-top: 20px">
                         <div class="col-sm-9">
@@ -40,10 +40,10 @@
                         <label for="desc" class="col-sm-3 control-label">توضیحات</label>
                 </div>
                 <div style="margin-top: 30px">
-                    <div class="col-sm-5">
-                        <button type="submit" style="width: 52px" class="confirm_button confirm_yes">ثبت</button>
-                        <button type="button" ng-click="$dismiss()" style="float: left;width: 52px"
-                                class="confirm_button confirm_no"> بازگشت
+                    <div class="col-sm-6">
+                        <button type="submit" class="confirm_button confirm_yes btn">ثبت</button>
+                        <button type="button" ng-click="$dismiss()"
+                                class="confirm_button confirm_no btn pull-left"> بازگشت
                         </button>
                     </div>
                 </div>

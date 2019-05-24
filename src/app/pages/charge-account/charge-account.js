@@ -45,6 +45,7 @@
                 } else {
                     return;
                 }
+                $scope.amount = $scope.amount.replace(/,/g, '');
                 var params = $scope.amount + "," + type;
                 startLoading();
                 $http.post("http://127.0.0.1:9000/v1/payment/getRefId", params, httpOptions)

@@ -104,7 +104,7 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
-                "amount": $("#amount").val(),
+                "amount": $("#amount").val().replace(/,/g, ''),
                 "comment": $("#desc").val(),
                 "employeeId": $scope.companyUserId,
                 "transactionTypeEnum": $scope.chargeReason
