@@ -18,7 +18,7 @@
     function adminOrdersCtrl($scope, $filter, $state, $q, $http, localStorageService, $uibModal, $rootScope, $location) {
         $scope.smartTablePageSize = 10;
         $scope.fromDate = moment(new Date()).format('jYYYY/jM/jD HH:mm');
-        $scope.toDate = moment(new Date()).add('hours', 2).format('jYYYY/jM/jD HH:mm');
+        $scope.toDate = moment(new Date()).add('days', 1).format('jYYYY/jM/jD HH:mm');
         $scope.factorNumber = null;
         var preventTwiceLoad = true;
 
