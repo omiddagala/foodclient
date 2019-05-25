@@ -59,7 +59,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in orders">
-                                    <td>{{formatPrice(item.totalPrice)}}</td>
+                                    <td>{{item.totalPrice | number}}</td>
                                     <td>{{subtranctMinutes(item.deliveryDate,15)}}</td>
                                     <td>{{item.name}}</td>
                                     <td class="table-id">{{$index+1}}</td>

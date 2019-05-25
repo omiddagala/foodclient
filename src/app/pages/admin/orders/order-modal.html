@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group row clearfix flex-xs flex-col-reverse-xs no-margin">
                     <div class="col-sm-6">
-                        <label id="deliveryPrice">{{order.orderGroup.deliveryPrice}}</label>
+                        <label id="deliveryPrice">{{order.orderGroup.deliveryPrice | number}}</label>
                     </div>
                     <label for="deliveryPrice" class="col-sm-6 control-label">هزینه حمل</label>
                 </div>
@@ -72,7 +72,7 @@
 
                 <div class="form-group row clearfix flex-xs flex-col-reverse-xs no-margin">
                     <div class="col-sm-6">
-                        <label id="containerPrice">{{order.containerPrice}}</label>
+                        <label id="containerPrice">{{order.containerPrice | number}}</label>
                     </div>
                     <label for="containerPrice" class="col-sm-6 control-label">هزینه ظرف</label>
                 </div>
@@ -82,7 +82,7 @@
             <div class="col-md-6">
                 <div class="form-group row clearfix flex-xs flex-col-reverse-xs no-margin">
                     <div class="col-sm-6">
-                        <label id="totalPrice">{{order.totalPrice}}</label>
+                        <label id="totalPrice">{{order.totalPrice | number}}</label>
                     </div>
                     <label for="totalPrice" class="col-sm-6 control-label">قیمت نهایی غذا</label>
                 </div>

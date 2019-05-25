@@ -58,11 +58,11 @@
                                 </div>
                             </td>
                             <td>{{item.employee.name}}</td>
-                            <td>{{formatPrice(item.totalPrice)}}</td>
+                            <td>{{item.totalPrice | number}}</td>
                             <td>{{item.taxAmount}}</td>
-                            <td>{{formatPrice(item.containerPrice)}}</td>
-                            <td>{{formatPrice(item.foodPriceAfterOff)}}</td>
-                            <td>{{formatPrice(item.foodOriginalPrice)}}</td>
+                            <td>{{item.containerPrice | number}}</td>
+                            <td>{{item.foodPriceAfterOff | number}}</td>
+                            <td>{{item.foodOriginalPrice | number}}</td>
                             <td>{{subtranctMinutes(item.deliveryDate,15)}}</td>
                             <td>{{item.food.name}}</td>
                             <td class="table-id">{{$index+1}}</td>

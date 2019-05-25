@@ -56,7 +56,7 @@
         <img src="assets/img/ui/wallet.png">
     </div>
     <div class="top-search page-top-charge">
-        {{formatPrice(userBalance)}} تومان
+        {{userBalance | number}} تومان
     </div>
     <div class="top-search page-top-buttons pointer charge-account" ng-click="chargeAccount()">
         <img src="assets/img/ui/shape-696.svg" alt="charge-img"/>

@@ -53,7 +53,7 @@
                                             </button>
                                         </div>
                                     </td>
-                                    <td>{{formatPrice(item.totalAmount)}}</td>
+                                    <td>{{item.totalAmount | number}}</td>
                                     <td>{{item.id}}</td>
                                     <td>{{subtranctMinutes(item.deliveryDate,15)}}</td>
                                     <td class="table-id">{{$index+1}}</td>

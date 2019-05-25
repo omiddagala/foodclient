@@ -31,7 +31,7 @@
                             قیمت
                         </div>
                         <div class="food_detail_title" ng-class="{'is__off_white':food.price.preOrderPrice<food.price.foodPrice}" style="text-align: left">
-                            {{formatPrice(food.price.foodPrice)}} تومان
+                            {{food.price.foodPrice | number}} تومان
                         </div>
                     </div>
                     <div ng-if="food.price.preOrderPrice<food.price.foodPrice" class="flex">
@@ -39,7 +39,7 @@
                             رزرو اکنون({{diffDaysForOff}}روزه)
                         </div>
                         <div class="food_detail_title" style="text-align: left">
-                            {{formatPrice(food.price.preOrderPrice)}} تومان
+                            {{food.price.preOrderPrice | number}} تومان
                         </div>
                     </div>
                     <div ng-if="food.mealAverageCalorie" class="food_detail_title" style="font-size: x-small">کالری :

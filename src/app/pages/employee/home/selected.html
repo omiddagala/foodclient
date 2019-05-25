@@ -36,7 +36,7 @@
                     <div id="receipt" class="w-70 pull-left">
                         <div id="r-{{$parent.$index + '-' + $index}}">
                             <div ng-repeat="food in res.foodOrders" style="width: 100%;height: 30px">
-                                <div class="paypal__item-price">{{formatPrice(food.foodPriceAfterOff * food.count)}}
+                                <div class="paypal__item-price">{{food.foodPriceAfterOff * food.count | number}}
                                 </div>
                                 <div class="w-20 left-float items-center food-count-box">
                                     <svg xmlns="http://www.w3.org/2000/svg" ng-click="minusFoodInReservePopup(food,myday.dayDate)"
@@ -59,21 +59,21 @@
                             <div class="remove-float"></div>
                             <div class="no-bottom-margin cost-container" ng-if="showDetails">
                                 <div>
-                                    <div class="paypal__item-price">{{formatPrice(res.totalContainerPrice)}}</div>
+                                    <div class="paypal__item-price">{{res.totalContainerPrice | number}}</div>
                                     <div class="paypal__item-name">ظرف</div>
                                 </div>
                             </div>
                             <div class="remove-float"></div>
                             <div class="no-bottom-margin cost-container" ng-if="showDetails">
                                 <div>
-                                    <div class="paypal__item-price">{{formatPrice(res.deliveryPrice)}}</div>
+                                    <div class="paypal__item-price">{{res.deliveryPrice | number}}</div>
                                     <div class="paypal__item-name">هزینه حمل</div>
                                 </div>
                             </div>
                             <div class="remove-float"></div>
                             <div class="no-bottom-margin cost-container" ng-if="showDetails">
                                 <div class="no-bottom-border">
-                                    <div class="paypal__item-price">{{formatPrice(res.totalTaxAmount)}}</div>
+                                    <div class="paypal__item-price">{{res.totalTaxAmount | number}}</div>
                                     <div class="paypal__item-name">مالیات</div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <div class="black-color paypal__item-name no-padding-left no-padding-right">مجموع
                                     </div>
                                     <div class="black-color paypal__item-price no-padding-left no-padding-right">
-                                        {{formatPrice(res.totalAmount)}}
+                                        {{res.totalAmount | number}}
                                     </div>
                                 </div>
                             </div>

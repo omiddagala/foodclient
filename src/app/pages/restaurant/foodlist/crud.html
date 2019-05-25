@@ -32,7 +32,7 @@
                 </div>
             </td>
             <td>{{item.price.averageRate}}</td>
-            <td>{{formatPrice(item.price.foodPrice)}}</td>
+            <td>{{item.price.foodPrice | number}}</td>
             <td>{{item.name}}</td>
             <td class="table-id">{{$index+1}}</td>
         </tr>

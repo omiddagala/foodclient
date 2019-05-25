@@ -68,7 +68,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in orders">
-                                    <td>{{formatPrice(item.totalAmount)}}</td>
+                                    <td>{{item.totalAmount | number}}</td>
                                     <td>{{myFormatDate(item.transactionDate)}}</td>
                                     <td>{{getTransactionType(item.transactionTypeEnum)}}</td>
                                     <td class="table-id">{{$index+1}}</td>

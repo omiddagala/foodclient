@@ -246,12 +246,12 @@
                             <div class="margin__bottom_10">
                                 <div class="card__price__title">قیمت</div>
                                 <div class="card__price__amount" ng-class="{'is__off':food.price.preOrderPrice<food.price.foodPrice}">
-                                    {{formatPrice(food.price.foodPrice)}}
+                                    {{food.price.foodPrice | number}}
                                 </div>
                             </div>
                             <div ng-if="food.price.preOrderPrice<food.price.foodPrice">
                                 <div class="card__price__title">رزرو اکنون({{diffDaysForOff}}روزه)</div>
-                                <div class="card__price__amount" style="width: 40%; color: rgb(26, 64, 73);">{{formatPrice(food.price.preOrderPrice)}}
+                                <div class="card__price__amount" style="width: 40%; color: rgb(26, 64, 73);">{{food.price.preOrderPrice | number}}
                                 </div>
                             </div>
                         </div>

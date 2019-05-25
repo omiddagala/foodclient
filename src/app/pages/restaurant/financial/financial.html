@@ -68,8 +68,8 @@
                                             </button>
                                         </div>
                                     </td>
-                                    <td>{{formatPrice(item.totalAmount)}}</td>
-                                    <td>{{formatPrice(item.taxAmount)}}</td>
+                                    <td>{{item.totalAmount | number}}</td>
+                                    <td>{{item.taxAmount | number}}</td>
                                     <td>{{myFormatDate(item.transactionDate)}}</td>
                                     <td class="table-id">{{$index+1}}</td>
                                 </tr>

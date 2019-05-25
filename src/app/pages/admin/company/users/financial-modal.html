@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group row clearfix flex-xs flex-col-reverse-xs no-margin">
                     <div class="col-sm-6">
-                        <label id="phone">{{formatPrice(order.foodPrice)}}</label>
+                        <label id="phone">{{order.foodPrice | number}}</label>
                     </div>
                     <label for="phone" class="col-sm-6 control-label">قیمت غذا</label>
                 </div>
@@ -34,7 +34,7 @@
             <div class="col-md-6">
                 <div class="form-group row clearfix flex-xs flex-col-reverse-xs no-margin">
                     <div class="col-sm-6">
-                        <label id="name">{{formatPrice(order.foodPriceAfterOff)}}</label>
+                        <label id="name">{{order.foodPriceAfterOff | number}}</label>
                     </div>
                     <label for="name" class="col-sm-6 control-label">قیمت بعد از تخفیف</label>
                 </div>
@@ -82,7 +82,7 @@
             <div class="col-md-6">
                 <div class="form-group row clearfix flex-xs flex-col-reverse-xs no-margin">
                     <div class="col-sm-6">
-                        <label id="totalPrice">{{formatPrice(order.totalAmount)}}</label>
+                        <label id="totalPrice">{{order.totalAmount | number}}</label>
                     </div>
                     <label for="totalPrice" class="col-sm-6 control-label">قیمت نهایی</label>
                 </div>

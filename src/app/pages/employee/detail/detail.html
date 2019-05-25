@@ -47,11 +47,11 @@
                     <div class="flex flex-col w-30">
                         <div class="food_detail_title font-xxs color-939292 w-100 left-text"
                             ng-class="{'is__off_white':mobileFoodDetail.price.preOrderPrice<mobileFoodDetail.price.foodPrice}">
-                            {{formatPrice(mobileFoodDetail.price.foodPrice)}} تومان
+                            {{mobileFoodDetail.price.foodPrice | number}} تومان
                         </div>
 
                         <div class="food_detail_title font-xxs color-939292 w-100 left-text">
-                            {{formatPrice(mobileFoodDetail.price.preOrderPrice)}} تومان
+                            {{mobileFoodDetail.price.preOrderPrice | number}} تومان
                         </div>
                     </div>
                 </div>
