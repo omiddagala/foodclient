@@ -54,20 +54,21 @@
             var httpOptions = {
                 headers: {'Content-type': 'text/plain; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/resendRegistrationSms", username, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/resendSms", username, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     if (data.data) {
-                        $scope.smsList.splice(index, 1);
-                        if ($scope.smsList.length === 0) {
-                            $scope.$broadcast('refreshMyTable');
+                        for (var i = 0; i < $scope.smsList.length; i++) {
+                            if ($scope.smsList[i].username === username) {
+                                $scope.smsList.splice(index, 1);
+                            }
                         }
                         showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     } else {
                         showMessage(toastrConfig, toastr, "خطا", "ارسال مجدد پیام با خطا مواجه شد. لطفا مجددا تلاش کنید.", "error");
                     }
                 }).catch(function (err) {
-                $rootScope.handleError(username, "/adminEmployeeManagementRest/resendRegistrationSms", err, httpOptions);
+                $rootScope.handleError(username, "/adminEmployeeManagementRest/resendSms", err, httpOptions);
             });
         };
 
