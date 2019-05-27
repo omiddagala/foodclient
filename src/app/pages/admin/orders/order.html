@@ -76,7 +76,7 @@
                     <tr ng-repeat="item in orders">
                         <td>
                             <div class="buttons">
-                                <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/orders/cancel-modal.html', 'md',item,$index)">لغو
+                                <button ng-show="item.foodOrderStatus === 'NORMAL' || item.foodOrderStatus === 'FACTOR'" class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/orders/cancel-modal.html', 'md',item,$index)">لغو
                                     غذا
                                 </button>
                                 <button class="btn btn-danger editable-table-button btn-xs" ng-click="opneModal('app/pages/admin/orders/order-modal.html', 'md',item,$index)">
