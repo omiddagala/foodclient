@@ -15,7 +15,7 @@
             });
     }
 
-    function adminCompanyUsersCtrl($scope, $filter, editableOptions, editableThemes, $state, $rootScope,$q, $http, localStorageService, $location, $uibModal, $uibModalStack, toastrConfig, toastr) {
+    function adminCompanyUsersCtrl($scope, $filter, editableOptions, editableThemes, $state, $rootScope, $q, $http, localStorageService, $location, $uibModal, $uibModalStack, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
         $scope.chargeReason = 'CHARGE_BY_ADMIN';
         var preventTwiceLoad = true;
@@ -42,7 +42,7 @@
         };
 
         $scope.search = function (pagination, sort, search) {
-            if (preventTwiceLoad){
+            if (preventTwiceLoad) {
                 preventTwiceLoad = false;
                 return;
             }
@@ -81,11 +81,11 @@
                 size: size,
                 scope: $scope
             });
-            
+
             m.rendered.then(function (e) {
                 if ($('.modal-dialog .modal-content .modal-content.modal-fit').length > 0) {
                     $('.modal-dialog').addClass('fit-height-imp');
-                }                
+                }
             });
         };
 
@@ -93,9 +93,23 @@
             $scope.chargeReason = r;
         };
 
+        $scope.charge = function (id, index, username) {
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'text/plain; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getEmployeeBalance", username, httpOptions)
+                .success(function (data, status, headers, config) {
+                    $scope.thisBalance = data.availableBalanceAmount;
+                }).catch(function (err) {
+                $rootScope.handleError(username, "http://127.0.0.1:9000/v1/adminEmployeeManagementRest/getEmployeeBalance", err, httpOptions);
+            });
+            $scope.openModal('app/pages/admin/company/users/charge-modal.html', 'md', id, index);
+        };
+
         $scope.doCharge = function (form) {
             $scope.submitted = true;
-            if (!form.$valid){
+            if (!form.$valid) {
                 return;
             }
             startLoading();
@@ -113,7 +127,7 @@
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
-                    showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
                 $uibModalStack.dismissAll();
                 $rootScope.handleError(param, "/adminEmployeeManagementRest/chargeEmployee", err, httpOptions);
@@ -142,7 +156,7 @@
 
         $scope.sendMessage = function (form) {
             $scope.submitted = true;
-            if (!form.$valid){
+            if (!form.$valid) {
                 return;
             }
             startLoading();
@@ -151,14 +165,14 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var param = {
-                id : $scope.companyUserId,
+                id: $scope.companyUserId,
                 message: $("#desc").val()
             };
             $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/sendSMS", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
-                    showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
                 $uibModalStack.dismissAll();
                 $rootScope.handleError(param, "/adminEmployeeManagementRest/sendSMS", err, httpOptions);
@@ -167,7 +181,7 @@
 
         $scope.sendSystemMessage = function (form) {
             $scope.submitted = true;
-            if (!form.$valid){
+            if (!form.$valid) {
                 return;
             }
             startLoading();
@@ -182,7 +196,7 @@
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
-                    showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
                 $uibModalStack.dismissAll();
                 $rootScope.handleError(param, "/adminEmployeeManagementRest/sendSystemMessageToAll", err, httpOptions);
