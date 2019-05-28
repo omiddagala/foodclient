@@ -42,7 +42,7 @@
         $scope.$on('$locationChangeStart', function () {
             if ($scope.onBrowserBackLeaveDDA) {
                 $scope.cancelDessert();
-                $location.search('dda',null);
+                $location.search('dda', null);
                 $scope.onBrowserBackLeaveDDA = false;
             }
             if ($location.search().dda === 'dda') {
@@ -379,14 +379,34 @@
         $scope.removeFromTodayReserves = function (day, id, count) {
             var todaysKey = moment.utc(day).format("MM-DD-YYYY");
             var elem = $rootScope.reservesPerDay.get(todaysKey);
+            var deletedItem;
             if (elem) {
                 for (var i = 0; i < elem.length; i++) {
                     if (elem[i].id === id) {
                         elem[i].count = elem[i].count - count;
-                        if (elem[i].count === 0)
+                        if (elem[i].count === 0) {
+                            deletedItem = elem[i];
                             elem.splice(i, 1);
-                        return;
+                        }
+                        break;
                     }
+                }
+                // delete all DDAs of this restaurant if this was the only main food of that restaurant in that time
+                if (deletedItem && deletedItem.foodType !== "DDA") {
+                    for (var j = 0; j < elem.length; j++) {
+                        if (elem[j].resId === deletedItem.resId && elem[j].day === deletedItem.day && elem[j].foodType !== "DDA") {
+                            return;
+                        }
+                    }
+                    elem = jQuery.grep(elem, function(value) {
+                        return value.resId !== deletedItem.resId || value.day !== deletedItem.day;
+                    });
+                    $rootScope.reservesPerDay.set(todaysKey, elem);
+                    $('.cart').empty();
+                    $rootScope.orderids = [];
+                    $rootScope.cartItems = new HashMap();
+                    $scope.initOrderWithCount();
+                    $scope.renderTodaysReserves();
                 }
             }
         };
@@ -1036,7 +1056,7 @@
             return d.substring(d.indexOf(' '), d.lastIndexOf(' '));
         };
 
-        $scope.productPlusWithButton = function($event) {
+        $scope.productPlusWithButton = function ($event) {
             if ($scope.wasClicked !== "leftCards") {
                 $scope.initOrderWithCount();
                 $scope.wasClicked = "leftCards";
@@ -1044,7 +1064,7 @@
             $scope.productPlus($event, false);
         };
 
-        $scope.productMinusWithButton = function($event) {
+        $scope.productMinusWithButton = function ($event) {
             if ($scope.wasClicked !== "leftCards") {
                 $scope.initOrderWithCount();
                 $scope.wasClicked = "leftCards";
@@ -1052,7 +1072,7 @@
             $scope.productMinus($event);
         };
 
-        $scope.initOrderWithCount = function() {
+        $scope.initOrderWithCount = function () {
             $scope.lastElement = null;
             $scope.lastCount = 0;
         };
