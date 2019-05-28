@@ -827,7 +827,8 @@
         };
 
         $scope.dessert = function ($event, resId) {
-            $location.search('dda', null);
+            if ($location.search().dda === 'dda')
+                return;
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
