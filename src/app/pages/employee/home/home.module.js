@@ -37,6 +37,7 @@
         $scope.headerImg = $rootScope.foodType === "ALL" ? '' : $rootScope.foodType;
         $scope.headerImgSrc = $scope.headerImg !== '' ? '../../../../assets/img/ui/mobile/' + $scope.headerImg + '.png' : '';
         $rootScope.mobileFoodDetail = {};
+        $location.search('dda', null);
 
         $scope.$on('$locationChangeStart', function () {
             if ($scope.onBrowserBackLeaveDDA) {
