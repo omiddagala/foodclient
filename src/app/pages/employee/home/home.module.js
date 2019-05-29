@@ -37,7 +37,6 @@
         $scope.headerImg = $rootScope.foodType === "ALL" ? '' : $rootScope.foodType;
         $scope.headerImgSrc = $scope.headerImg !== '' ? '../../../../assets/img/ui/mobile/' + $scope.headerImg + '.png' : '';
         $rootScope.mobileFoodDetail = {};
-        $location.search('dda', null);
 
         $scope.$on('$locationChangeStart', function () {
             if ($scope.onBrowserBackLeaveDDA) {
@@ -168,6 +167,7 @@
         $scope.homeInit = function () {
             if ($rootScope.employee_params && !$rootScope.isMobile())
                 $location.search($rootScope.employee_params);
+            $location.search('dda', null);
             $rootScope.empPageNum = 0;
             $scope.commentPageNum = 0;
             $rootScope.enableScroll = false;
