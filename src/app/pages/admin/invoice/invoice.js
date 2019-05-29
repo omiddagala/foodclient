@@ -15,7 +15,7 @@
             });
     }
 
-    function adminInvoiceCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, localStorageService, $uibModal, $rootScope, $location) {
+    function adminInvoiceCtrl($scope, $filter, $uibModalStack, $state, $q, $http, localStorageService, $uibModal, $rootScope, $location, toastrConfig,toastr) {
         $scope.smartTablePageSize = 10;
         $scope.cancelReason = 'RESTAURANT_MISTAKE';
         var preventTwiceLoad = true;
@@ -24,21 +24,6 @@
         $scope.initCtrl = function () {
             $scope.submitted = false;
             setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({scrollTop: 0}, 800);
-                    return false;
-                });
                 autoLoad = setInterval(function () {
                     $scope.$broadcast('refreshMyTable');
                 }, 180000);
@@ -84,6 +69,47 @@
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/adminRestaurantManagementRest/getUnFactoredOrders", err, httpOptions);
                 });
+        };
+
+        $scope.openModal = function (page, size, item, index) {
+            $scope.orderGroup = item;
+            $scope.orderIndex = index;
+            var m = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope
+            });
+            m.rendered.then(function (e) {
+                if ($('.modal-dialog .modal-content .modal-content.modal-fit').length > 0) {
+                    $('.modal-dialog').addClass('fit-height-imp');
+                }
+            });
+        };
+
+        $scope.printFactor = function() {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                "cancelOrderReason": "PRINT_INVOICE",
+                "groupId": $scope.orderGroup.id
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminEmployeeManagementRest/cancelFoodOrder", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    $uibModalStack.dismissAll();
+                    $scope.orders.splice($scope.orderIndex, 1);
+                    if ($scope.orders.length === 0) {
+                        $scope.$broadcast('refreshMyTable');
+                    }
+                    showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
+                }).catch(function (err) {
+                $uibModalStack.dismissAll();
+                $rootScope.handleError(param, "/adminEmployeeManagementRest/cancelFoodOrder", err, httpOptions);
+            });
         };
 
         $scope.goToDetail = function (id) {

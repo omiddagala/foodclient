@@ -55,10 +55,15 @@
             <div class="horizontal-scroll">
                 <table class="table" st-table="foods" refresh-table>
                     <thead>
-                    <tr class="sortable ">
+                    <tr class="sortable">
                         <th>
                             <div class="newtable_header">
                                 عملیات
+                            </div>
+                        </th>
+                        <th st-sort="foodOrderStatus">
+                            <div class="newtable_header">
+                                وضعیت
                             </div>
                         </th>
                         <th st-sort="employee.name">
@@ -105,8 +110,12 @@
                                 <button class="btn btn-danger editable-table-button btn-xs" ng-click="goToDetail(item.id)">
                                     جزییات
                                 </button>
+                                <button ng-show="item.foodOrderStatus === 'NORMAL'" class="btn btn-danger editable-table-button btn-xs" ng-click="openModal('app/pages/admin/invoice/print-modal.html', 'md',item)">
+                                    چاپ
+                                </button>
                             </div>
                         </td>
+                        <td>{{getFoodOrderStatus(item.foodOrderStatus)}}</td>
                         <td>{{item.employee.name}}</td>
                         <td>{{item.employee.phone}}</td>
                         <td>{{item.restaurant.phone}}</td>
