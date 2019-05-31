@@ -13,11 +13,15 @@
     <div class="confirm_body" style="height: 95%; padding-bottom: 10px;">
         <div class="confirm_icon"></div>
         <div class="confirm_question">
-            آیا از اعلام اتمام غذا برای امروز اطمینان دارید؟
+            آیا از اعلام اتمام تمام غذاها تا تاریخ زیر اطمینان دارید؟
+        </div>
+        <div style="width: 50%;margin: 0 auto;padding-bottom: 20px">
+            <adm-dtp id="finishDate" on-datechange="dateChanged(finishDate)" ng-model='finishDate'
+                     options='{calType: "jalali", format: "YYYY/MM/DD hh:mm",default:"{{finishDate}}", multiple:false,freezeInput:true,dtpType:"datetime",autoClose:true}'></adm-dtp>
         </div>
         <div class="confirm_button_wrapper left-text left-padding-lg">
             <button type="button" style="width: 4em;" class="btn confirm_button confirm_no" ng-click="$dismiss()">خیر</button>
-            <button type="button" style="width: 4em;margin-bottom: 0" class="btn confirm_button confirm_yes" ng-click="finishFood()">بله</button>
+            <button type="button" style="width: 4em;margin-bottom: 0" class="btn confirm_button confirm_yes" ng-click="finishAllFoods()">بله</button>
         </div>
     </div>
 </div>

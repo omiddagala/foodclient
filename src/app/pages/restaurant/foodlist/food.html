@@ -28,6 +28,12 @@
                     </li>
                 </ul>
             </li>
+            <li style="text-align: center !important;margin-top: 60px">
+                <button ng-if="someFoodsAreAvailable()" ng-click="openModal('app/pages/restaurant/foodlist/finish-all-modal.html', 'md',null,null)" type="button" style="width: auto;margin-top: 15px" class="confirm_button confirm_yes btn">رستوران امروز تعطیل شود
+                </button>
+                <button ng-if="!someFoodsAreAvailable()" ng-click="openModal('app/pages/restaurant/foodlist/available-all-modal.html', 'md',null,null)" type="button" style="width: auto;margin-top: 15px" class="confirm_button confirm_yes btn">رستوران باز شود
+                </button>
+            </li>
         </ul>
     </div>
 </aside>

@@ -18,32 +18,19 @@
     function adminFoodCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, $rootScope, localStorageService, $location, $uibModalStack, $uibModal, toastrConfig, toastr) {
         $scope.smartTablePageSize = 50;
         var preventTwiceLoad = true;
+        var today = new Date();
+        today.setHours(23);
+        today.setMinutes(59);
+        $scope.finishDate = moment(today).format('jYYYY/jM/jD HH:mm');
 
-        $scope.initCtrl = function () {
-            setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({scrollTop: 0}, 800);
-                    return false;
-                });
-            }, 1000)
-        };
 
         $scope.search = function (pagination, sort, search) {
             if (preventTwiceLoad) {
                 preventTwiceLoad = false;
                 return;
             }
+            if (!pagination)
+                return;
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -127,26 +114,107 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/setFoodFinishedToday", {id: $scope.item.id}, httpOptions)
+            var param = {
+                id: $scope.item.id,
+                date: moment.utc($scope.finishDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ')
+            };
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/finishFood", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
+                    $scope.item.finishDate = param.date;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
-                    $rootScope.handleError($scope.item.id, "/adminRestaurantManagementRest/setFoodFinishedToday", err, httpOptions);
+                    $rootScope.handleError(param, "/adminRestaurantManagementRest/finishFood", err, httpOptions);
                 });
         };
+
+        $scope.finishAllFoods = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                id: $location.search().id,
+                date: moment.utc($scope.finishDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ')
+            };
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/finishAllFood", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    $uibModalStack.dismissAll();
+                    $.each($scope.foods, function(i,v) {
+                        v.finishDate = param.date;
+                    });
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                }).catch(function (err) {
+                    $rootScope.handleError(param, "/adminRestaurantManagementRest/finishAllFood", err, httpOptions);
+                });
+        };
+
+        $scope.makeFoodAvailable = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                id: $scope.item.id
+            };
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/makeFoodAvailable", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    $uibModalStack.dismissAll();
+                    $scope.item.finishDate = null;
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                }).catch(function (err) {
+                    $rootScope.handleError(param, "/adminRestaurantManagementRest/makeFoodAvailable", err, httpOptions);
+                });
+        };
+
+        $scope.makeAllFoodsAvailable = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                id: $location.search().id
+            };
+            return $http.post("http://127.0.0.1:9000/v1/adminRestaurantManagementRest/makeAllFoodsAvailable", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    $uibModalStack.dismissAll();
+                    $.each($scope.foods, function(i,v) {
+                        v.finishDate = null;
+                    });
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                }).catch(function (err) {
+                    $rootScope.handleError(param, "/adminRestaurantManagementRest/makeAllFoodsAvailable", err, httpOptions);
+                });
+        };
+
+        $scope.someFoodsAreAvailable = function() {
+            if (!$scope.foods)
+                return true;
+            for (var i = 0; i < $scope.foods.length; i++) {
+                if (!$scope.foods[i].finishDate || moment(new Date()).isAfter($scope.foods[i].finishDate))
+                    return true;
+            }
+            return false;
+        };
+
+        $scope.dateChanged = function (date) {
+            $scope.finishDate = date;
+        };
+
         $scope.toggleSidebar = function (e) {
             console.log(this);
             $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanding');
             window.setTimeout(function () {
                 $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanded');
             }, 10);
-        }
-
-        editableOptions.theme = 'bs3';
-        editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';
-        editableThemes['bs3'].cancelTpl = '<button type="button" ng-click="$form.$cancel()" class="btn btn-default btn-with-icon"><i class="ion-close-round"></i></button>';
+        };
 
     }
 })();

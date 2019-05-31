@@ -895,9 +895,10 @@
         $rootScope.isKarafeedRestaurant = function (level) {
             return level && level.toLowerCase().indexOf("karafeed") >= 0;
         };
-        ////
-        var username = $rootScope.username;
-        // var stars =  star in mobile menu
+
+        $rootScope.foodIsAvailable = function(finishDate) {
+            return !finishDate || moment(new Date()).isAfter(finishDate);
+        };
 
     }
 
