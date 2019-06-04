@@ -897,7 +897,10 @@
         };
 
         $rootScope.foodIsAvailable = function(finishDate) {
-            return !finishDate || moment(new Date()).isAfter(finishDate);
+            var now = moment.utc();
+            now.add('hours',4);
+            now.add('minutes',30);
+            return !finishDate || now.isAfter(moment.utc(finishDate).format());
         };
 
     }

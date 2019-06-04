@@ -16,7 +16,7 @@
             آیا از اعلام اتمام تمام غذاها تا تاریخ زیر اطمینان دارید؟
         </div>
         <div style="width: 50%;margin: 0 auto;padding-bottom: 20px">
-            <adm-dtp id="finishDate" on-datechange="dateChanged(finishDate)" ng-model='finishDate'
+            <adm-dtp id="finishDate" on-change="dateChanged(finishDate)" ng-model='finishDate'
                      options='{calType: "jalali", format: "YYYY/MM/DD hh:mm",default:"{{finishDate}}", multiple:false,freezeInput:true,dtpType:"datetime",autoClose:true}'></adm-dtp>
         </div>
         <div class="confirm_button_wrapper left-text left-padding-lg">

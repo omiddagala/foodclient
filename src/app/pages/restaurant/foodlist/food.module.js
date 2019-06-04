@@ -198,8 +198,11 @@
         $scope.someFoodsAreAvailable = function () {
             if (!$scope.foods)
                 return true;
+            var now = moment.utc();
+            now.add('hours',4);
+            now.add('minutes',30);
             for (var i = 0; i < $scope.foods.length; i++) {
-                if (!$scope.foods[i].finishDate || moment(new Date()).isAfter($scope.foods[i].finishDate))
+                if (!$scope.foods[i].finishDate || now.isAfter(moment.utc($scope.foods[i].finishDate).format()))
                     return true;
             }
             return false;
