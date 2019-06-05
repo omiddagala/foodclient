@@ -116,7 +116,7 @@
 </head>
 <!--  -->
 
-<body>
+<body style="display: none">
     <div class="body-bg"></div>
     <div class="monitor-container"></div>
     <main class="main-stage" style="height: 100%; background-color: rgb(255, 255, 255);"
@@ -162,34 +162,34 @@
                     </ion-content>
                     <ion-footer-bar ng-if="canRender()" ng-class="showFeedgramTab() ? 'black-back' : ''"
                         class="tabs-positive tabs-icon-top flex content-between fit-height-imp left-direction">
-                        <a class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/feedgram-list">
-                            <img ng-src="{{currentMobileActiveMenu === 'feedgram' ? '/assets/img/ui/mobile/tab-icons/f-home-s.png' : '/assets/img/ui/mobile/tab-icons/f-home.svg'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
-                                ng-class="currentMobileActiveMenu =='feedgram'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">فیدگرام</span>
-                        </a>
-                        <a ng-if="showFeedgramTab()"
-                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/feedgram-post">
-                            <img ng-src="{{currentMobileActiveMenu === 'feedgram-post' ? '/assets/img/ui/mobile/tab-icons/f-post.png' : '/assets/img/ui/mobile/tab-icons/f-post.png'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
-                                ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">ثبت
-                                تجربه</span>
-                        </a>
-                        <a ng-if="showFeedgramTab()"
-                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/feedgram-co">
-                            <img ng-src="{{currentMobileActiveMenu === 'feedgram-co' ? '/assets/img/ui/mobile/tab-icons/f-co-s.png' : '/assets/img/ui/mobile/tab-icons/f-co.png'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
-                                ng-class="currentMobileActiveMenu =='feedgram-co'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">همکاران</span>
-                        </a>
-                        <a ng-if="showFeedgramTab()"
-                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/feedgram-profile">
-                            <img ng-src="{{currentMobileActiveMenu === 'feedgram-profile' ? '/assets/img/ui/mobile/tab-icons/f-profile-s.png' : '/assets/img/ui/mobile/tab-icons/f-profile.png'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
-                                ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">پروفایل</span>
-                        </a>
+                        <!--<a class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"-->
+                            <!--ng-click="mobileMenuClicked($event)" href="#/feedgram-list">-->
+                            <!--<img ng-src="{{currentMobileActiveMenu === 'feedgram' ? '/assets/img/ui/mobile/tab-icons/f-home-s.png' : '/assets/img/ui/mobile/tab-icons/f-home.svg'}}" width="45px" height="35px"/>-->
+                            <!--<span class="color-808285 line-height-1"-->
+                                <!--ng-class="currentMobileActiveMenu =='feedgram'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">فیدگرام</span>-->
+                        <!--</a>-->
+                        <!--<a ng-if="showFeedgramTab()"-->
+                            <!--class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"-->
+                            <!--ng-click="mobileMenuClicked($event)" href="#/feedgram-post">-->
+                            <!--<img ng-src="{{currentMobileActiveMenu === 'feedgram-post' ? '/assets/img/ui/mobile/tab-icons/f-post.png' : '/assets/img/ui/mobile/tab-icons/f-post.png'}}" width="45px" height="35px"/>-->
+                            <!--<span class="color-808285 line-height-1"-->
+                                <!--ng-class="currentMobileActiveMenu =='feedgram-post'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">ثبت-->
+                                <!--تجربه</span>-->
+                        <!--</a>-->
+                        <!--<a ng-if="showFeedgramTab()"-->
+                            <!--class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"-->
+                            <!--ng-click="mobileMenuClicked($event)" href="#/feedgram-co">-->
+                            <!--<img ng-src="{{currentMobileActiveMenu === 'feedgram-co' ? '/assets/img/ui/mobile/tab-icons/f-co-s.png' : '/assets/img/ui/mobile/tab-icons/f-co.png'}}" width="45px" height="35px"/>-->
+                            <!--<span class="color-808285 line-height-1"-->
+                                <!--ng-class="currentMobileActiveMenu =='feedgram-co'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">همکاران</span>-->
+                        <!--</a>-->
+                        <!--<a ng-if="showFeedgramTab()"-->
+                            <!--class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"-->
+                            <!--ng-click="mobileMenuClicked($event)" href="#/feedgram-profile">-->
+                            <!--<img ng-src="{{currentMobileActiveMenu === 'feedgram-profile' ? '/assets/img/ui/mobile/tab-icons/f-profile-s.png' : '/assets/img/ui/mobile/tab-icons/f-profile.png'}}" width="45px" height="35px"/>-->
+                            <!--<span class="color-808285 line-height-1"-->
+                                <!--ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">پروفایل</span>-->
+                        <!--</a>-->
                         <a ng-if="!showFeedgramTab()" ng-class="$rootScope.currentMobileActiveMenu == 'reserve' ? '':''"
                             class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
                             ng-click="mobileMenuClicked($event)" href="#/reserve">
@@ -207,7 +207,7 @@
                         </a>
                         <a ng-if="!showFeedgramTab()"
                             class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/category">
+                            ng-click="mobileMenuClicked($event)" href="#/home">
                             <img ng-src="{{currentMobileActiveMenu === 'home' || currentMobileActiveMenu === 'category' ? '/assets/img/ui/mobile/tab-icons/home-s.svg' : '/assets/img/ui/mobile/tab-icons/home.svg'}}" width="45px" height="35px"/>
                             <span class="color-808285 line-height-1"
                                 ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected-text':''">غذاها</span>

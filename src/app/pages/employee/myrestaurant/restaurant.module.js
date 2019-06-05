@@ -285,6 +285,7 @@
 
 
         $scope.confirm = function (e) {
+            $rootScope.hideBackButton = false;
             var ionSideMenu = $(e.currentTarget).closest('ion-side-menus');
             $(ionSideMenu).find('ion-side-menu .confirm-box').removeClass('confirm-box-disable');
             window.setTimeout(function () {
