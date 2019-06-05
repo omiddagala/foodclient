@@ -36,7 +36,6 @@
         $rootScope.pageTitle = 'رزرو غذا';
         $scope.headerImg = $rootScope.foodType === "ALL" ? '' : $rootScope.foodType;
         $scope.headerImgSrc = $scope.headerImg !== '' ? '../../../../assets/img/ui/mobile/' + $scope.headerImg + '.png' : '';
-        $rootScope.mobileFoodDetail = {};
 
         $scope.$on('$locationChangeStart', function () {
             if ($scope.onBrowserBackLeaveDDA) {
@@ -1253,9 +1252,8 @@
             }, 280);
         };
         $scope.showFoodDetail = function (food) {
-            $rootScope.mobileFoodDetail = food;
             if (window.isMobile()) {
-                window.location.assign('/#detail');
+                $location.path('/emp-mobile-detail').search({id:food.id, d: $rootScope.dateToShowOnCards, t: $rootScope.timeToShowOnCards});
             } else {
                 $scope.food = food;
                 $scope.foodDetail();

@@ -19,7 +19,7 @@
         'BlurAdmin.pages.home',
         'BlurAdmin.pages.myrestaurant',
         'BlurAdmin.pages.reserve',
-        'BlurAdmin.pages.detail',
+        'BlurAdmin.pages.emp-mobile-detail',
         'BlurAdmin.pages.category',
         'BlurAdmin.pages.myfood',
         'BlurAdmin.pages.fooddetail',
