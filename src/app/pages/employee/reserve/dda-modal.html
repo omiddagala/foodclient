@@ -1,40 +1,45 @@
 <ion-modal-view>
     <ion-content>
-        <div ng-repeat="food in ddas" ng-if="food.food.foodType != 'DDA'"
+        <div style="background: red;height: 45px">
+            <button type="button" class="close newmodal_close" ng-click="ddaModal.hide()" aria-label="Close">
+                <img src="/assets/img/ui/close.png">
+            </button>
+            <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+        </div>
+        <div ng-repeat="food in ddas" style="padding: 10px"
              class="w-100 flex items-center content-between color-319ab1 font-bold">
-            <div class="mobile-food-name text-right font-sm line-height-initial font-bold">
-                {{food.food.name}}
-            </div>
+            <div>{{food.price.foodPrice | number}}</div>
             <div class="fit-width flex items-center food-count-box">
-                <svg xmlns="http://www.w3.org/2000/svg" ng-click="productMinus($event)"
+                <svg xmlns="http://www.w3.org/2000/svg" ng-click="cancelDessert(food)"
                      class="unset-position"
                      viewbox="0 -15 60 90" width="20" height="30">
                     <path fill="#1A4049" fill-rule="evenodd"
                           d="M29.513.307C13.225.307.026 13.669.026 30.149c0 16.48 13.199 29.842 29.487 29.842 16.281 0 29.481-13.362 29.481-29.842 0-16.48-13.2-29.842-29.481-29.842zm15.083 33.219h-30.16c-1.837 0-3.343-1.518-3.343-3.377 0-1.858 1.506-3.378 3.343-3.378h30.16c1.829 0 3.336 1.52 3.336 3.378 0 1.859-1.507 3.377-3.336 3.377z"/>
                 </svg>
-                <span class="white-color candy-back white-color candy-back redius-xl reserve-item-count right-margin-sm left-margin-sm">{{res.foodOrders.length}}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" ng-click="productPlus($event)"
+                <span class="white-color candy-back white-color candy-back redius-xl reserve-item-count right-margin-sm left-margin-sm">{{food.count}}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" ng-click="orderDessert(food)"
                      class="unset-position"
                      viewbox="0 -15 60 90" width="20" height="30">
                     <path fill="#1A4049" fill-rule="evenodd"
                           d="M29.473.012C13.194.012-.006 13.371-.006 29.852c0 16.482 13.2 29.841 29.479 29.841 16.285 0 29.48-13.359 29.48-29.841 0-16.481-13.195-29.84-29.48-29.84zm15.083 33.22H32.813v11.883c0 1.861-1.503 3.38-3.34 3.38-1.832 0-3.336-1.519-3.336-3.38V33.232H14.395c-1.832 0-3.345-1.522-3.345-3.38 0-1.858 1.513-3.375 3.345-3.375h11.742v-11.89c0-1.852 1.504-3.373 3.336-3.373 1.837 0 3.34 1.521 3.34 3.373v11.89h11.743c1.832 0 3.334 1.517 3.334 3.375s-1.502 3.38-3.334 3.38z"/>
                 </svg>
             </div>
-            <div class="">{{food.foodPriceAfterOff | number}}</div>
-            <div id="foodID" class="hidden">{{food.food.id}}</div>
+            <div class="mobile-food-name text-right font-sm line-height-initial font-bold">
+                {{food.name}}
+            </div>
         </div>
     </ion-content>
 </ion-modal-view>
 
 <style>
     .modal-open .modal{
-        height: 80% !important;
-        min-height: 80% !important;
+        height: 50% !important;
+        min-height: 50% !important;
         width: 80% !important;
         min-width: 80% !important;
         position: absolute;
-        bottom: 10%;
-        left: 10%;
+        bottom: 30% !important;
+        left: 10% !important;
         top: unset;
     }
     .modal-backdrop{
@@ -42,6 +47,9 @@
     }
     .modal{
         top: unset !important;
-        min-height: 80% !important;
+        min-height: 50% !important;
+        width: 80% !important;
+        bottom: 30% !important;
+        left: 10% !important;
     }
 </style>
