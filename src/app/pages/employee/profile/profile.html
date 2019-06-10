@@ -32,7 +32,7 @@
                     <input type="file" ng-show="false" id="uploadFile">
                 </div>
                 <div class="user-form-container col-sm-10 col-xs-12 pull-left">
-                    <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)" novalidate style="padding-left: 20px;font-size: small">
+                    <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate()" novalidate style="padding-left: 20px;font-size: small">
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
                                 <input ng-disabled="true" type="text" class="confirm_input form-control" name="family"
@@ -49,14 +49,8 @@
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input ng-disabled="true" type="text" ng-maxlength="150" required class="confirm_input form-control"
+                                <input ng-disabled="true" type="text" class="confirm_input form-control"
                                     name="userName" id="userName" ng-model="employee.userName">
-                                <div class="error-message" ng-show="(myform.userName.$dirty || submitted) && inputIsInvalid(myform.userName.$valid,'userName') && myform.userName.$error.maxlength">
-                                    حداکثر 150 کاراکتر وارد کنید
-                                </div>
-                                <div class="error-message" ng-show="(myform.userName.$dirty || submitted) && inputIsInvalid(myform.userName.$valid,'userName') && myform.userName.$error.required">
-                                    پر کردن این فیلد اجباریست
-                                </div>
                             </div>
                             <label for="userName" class="col-sm-3 col-xs-12 control-label">نام کاربری</label>
                         </div>
@@ -94,14 +88,8 @@
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input ng-disabled="true" type="text" ng-maxlength="150" required class="confirm_input form-control"
+                                <input ng-disabled="true" type="text" class="confirm_input form-control"
                                     name="adr" id="adr" ng-model="employee.location.address">
-                                <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
-                                    حداکثر 150 کاراکتر وارد کنید
-                                </div>
-                                <div class="error-message" ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
-                                    پر کردن این فیلد اجباریست
-                                </div>
                             </div>
                             <label for="adr" class="col-sm-3 col-xs-12 control-label">آدرس</label>
                         </div>

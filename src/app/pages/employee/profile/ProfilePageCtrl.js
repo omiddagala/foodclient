@@ -14,23 +14,7 @@
 
         $rootScope.pageTitle = 'حساب کاربری';
         $scope.initCtrl = function () {
-            $scope.submitted = false;
             setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({scrollTop: 0}, 800);
-                    return false;
-                });
                 startLoading();
                 var token = localStorageService.get("my_access_token");
                 var httpOptions = {
@@ -49,7 +33,7 @@
                     }).catch(function (err) {
                     $rootScope.handleError(null, "/employee/getProfileData", err, httpOptions);
                 });
-            }, 1000)
+            }, 700)
         };  
 
         // $scope.onFileSelect = function ($files) {
@@ -145,11 +129,7 @@
             });
         }
 
-        $scope.saveOrUpdate = function (form) {
-            $scope.submitted = true;
-            if (!form.$valid) {
-                return;
-            }
+        $scope.saveOrUpdate = function () {
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -159,7 +139,6 @@
                 .success(function (data, status, headers, config) {
                     stopLoading();
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
-                    $scope.submitted = false;
                 }).catch(function (err) {
                 $rootScope.handleError($scope.employee, "/employee/edit", err, httpOptions);
             });

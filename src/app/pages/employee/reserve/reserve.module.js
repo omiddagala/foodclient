@@ -20,7 +20,7 @@
             });
     }
 
-    function reserveCtrl($scope, $compile, $ionicModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
+    function reserveCtrl($scope, $compile, $ionicModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr) {
         $rootScope.pageTitle = 'رزروها';
         $scope.reserves = {};
         $rootScope.currentMobileActiveMenu = "reserve";
