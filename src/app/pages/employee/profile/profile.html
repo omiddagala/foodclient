@@ -1,5 +1,5 @@
 <div style="position: relative;height: 100%">
-    <input id="test" type="text" style="display: none" title="hi" />
+    <input id="test" type="text" style="display: none" title="hi"/>
     <div class="food_detail_body" style="width: 100%">
         <div style="height: 10%">
             <div class="newmodal_close_header">
@@ -28,43 +28,58 @@
             <div>
                 <div class="userpic col-sm-2 col-xs-12 pull-right">
                     <img style="border-radius: 50%" ng-src="{{ employee.imageAddress }}" ng-click="uploadPicture()">
-                    <i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="employee.imageAddress !== 'assets/img/defaults/default-employee.png'"></i>
+                    <i class="ion-ios-close-outline" ng-click="removePicture()"
+                       ng-if="employee.imageAddress !== 'assets/img/defaults/default-employee.png'"></i>
                     <input type="file" ng-show="false" id="uploadFile">
                 </div>
                 <div class="user-form-container col-sm-10 col-xs-12 pull-left">
-                    <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate()" novalidate style="padding-left: 20px;font-size: small">
+                    <form id="form" name="myform" ng-submit="myform.$valid && saveOrUpdate(myform)" novalidate
+                          style="padding-left: 20px;font-size: small">
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
                                 <input ng-disabled="true" type="text" class="confirm_input form-control" name="family"
-                                    ng-maxlength="8" id="family" ng-model="employee.name">
+                                       id="family" ng-model="employee.name">
                             </div>
                             <label for="family" class="col-sm-3 col-xs-12 control-label">نام و خانوادگی</label>
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input ng-disabled="true" type="text" class="confirm_input form-control" id="personnelCode"
-                                    ng-model="employee.personnelCode">
+                                <input ng-disabled="true" type="text" class="confirm_input form-control"
+                                       id="personnelCode"
+                                       ng-model="employee.personnelCode">
                             </div>
                             <label for="personnelCode" class="col-sm-3 col-xs-12 control-label">کد پرسنلی</label>
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input ng-disabled="true" type="text" class="confirm_input form-control"
-                                    name="userName" id="userName" ng-model="employee.userName">
+                                <input ng-disabled="true" type="text" ng-maxlength="150" required
+                                       class="confirm_input form-control"
+                                       name="userName" id="userName" ng-model="employee.userName">
+                                <div class="error-message"
+                                     ng-show="(myform.userName.$dirty || submitted) && inputIsInvalid(myform.userName.$valid,'userName') && myform.userName.$error.maxlength">
+                                    حداکثر 150 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message"
+                                     ng-show="(myform.userName.$dirty || submitted) && inputIsInvalid(myform.userName.$valid,'userName') && myform.userName.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
                             </div>
                             <label for="userName" class="col-sm-3 col-xs-12 control-label">نام کاربری</label>
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
                                 <input type="tel" class="confirm_input form-control" ng-maxlength="11" ng-minlength="11"
-                                    required name="mobile" ng-model="employee.mobile" id="mobile">
-                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
+                                       required name="mobile" ng-model="employee.mobile" id="mobile">
+                                <div class="error-message"
+                                     ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.maxlength">
                                     حداکثر 11 کاراکتر وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
+                                <div class="error-message"
+                                     ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.minlength">
                                     حداقل 11 کاراکتر وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
+                                <div class="error-message"
+                                     ng-show="(myform.mobile.$dirty || submitted) && inputIsInvalid(myform.mobile.$valid,'mobile') && myform.mobile.$error.required">
                                     پر کردن این فیلد اجباریست
                                 </div>
                             </div>
@@ -72,15 +87,19 @@
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input type="tel" ng-minlength="4" ng-maxlength="100" required class="confirm_input form-control"
-                                    id="phone" name="phone" ng-model="employee.phone">
-                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
+                                <input type="tel" ng-minlength="4" ng-maxlength="100" required
+                                       class="confirm_input form-control"
+                                       id="phone" name="phone" ng-model="employee.phone">
+                                <div class="error-message"
+                                     ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.maxlength">
                                     حداکثر 100 کاراکتر وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
+                                <div class="error-message"
+                                     ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.minlength">
                                     حداقل 4 کاراکتر وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
+                                <div class="error-message"
+                                     ng-show="(myform.phone.$dirty || submitted) && inputIsInvalid(myform.phone.$valid,'phone') && myform.phone.$error.required">
                                     پر کردن این فیلد اجباریست
                                 </div>
                             </div>
@@ -88,8 +107,17 @@
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input ng-disabled="true" type="text" class="confirm_input form-control"
-                                    name="adr" id="adr" ng-model="employee.location.address">
+                                <input ng-disabled="true" type="text" ng-maxlength="150" required
+                                       class="confirm_input form-control"
+                                       name="adr" id="adr" ng-model="employee.location.address">
+                                <div class="error-message"
+                                     ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
+                                    حداکثر 150 کاراکتر وارد کنید
+                                </div>
+                                <div class="error-message"
+                                     ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
+                                    پر کردن این فیلد اجباریست
+                                </div>
                             </div>
                             <label for="adr" class="col-sm-3 col-xs-12 control-label">آدرس</label>
                         </div>
@@ -106,7 +134,7 @@
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
                                     <input ng-model="employee.employeeInfo.obesityDiet" type="checkbox" id="obesityDiet"
-                                        name="obesityDiet">
+                                           name="obesityDiet">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -117,8 +145,9 @@
                             </div>
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right;" class="checkbox-inline custom-checkbox nowrap">
-                                    <input ng-model="employee.employeeInfo.slimmingDiet" type="checkbox" id="slim" name="slim"
-                                        value="true">
+                                    <input ng-model="employee.employeeInfo.slimmingDiet" type="checkbox" id="slim"
+                                           name="slim"
+                                           value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -129,8 +158,9 @@
                             </div>
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
-                                    <input ng-model="employee.employeeInfo.sugarDiet" type="checkbox" id="sugar" name="sugar"
-                                        value="true">
+                                    <input ng-model="employee.employeeInfo.sugarDiet" type="checkbox" id="sugar"
+                                           name="sugar"
+                                           value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -141,8 +171,9 @@
                                 <label class="self-center self-baseline-xs bottom-padding-md left-padding-md right-padding-md no-margin no-text-wrap text-left basis-md">حساسیت
                                     غذایی به</label>
                                 <input type="text" ng-maxlength="500" placeholder="" class="confirm_input form-control"
-                                    name="allergicTo" id="allergicTo" ng-model="employee.employeeInfo.foodAllergy">
-                                <div class="error-message" ng-show="(myform.allergicTo.$dirty || submitted) && inputIsInvalid(myform.allergicTo.$valid,'allergicTo') && myform.allergicTo.$error.maxlength">
+                                       name="allergicTo" id="allergicTo" ng-model="employee.employeeInfo.foodAllergy">
+                                <div class="error-message"
+                                     ng-show="(myform.allergicTo.$dirty || submitted) && inputIsInvalid(myform.allergicTo.$valid,'allergicTo') && myform.allergicTo.$error.maxlength">
                                     حداکثر 500 کاراکتر وارد کنید
                                 </div>
                             </div>
@@ -159,8 +190,9 @@
                             </div>
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
-                                    <input ng-model="employee.employeeInfo.vegetarian" type="checkbox" id="veg" name="veg"
-                                        value="true">
+                                    <input ng-model="employee.employeeInfo.vegetarian" type="checkbox" id="veg"
+                                           name="veg"
+                                           value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -171,8 +203,9 @@
                             </div>
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
-                                    <input ng-model="employee.employeeInfo.tourists" type="checkbox" id="tourist" name="tourist"
-                                        value="true">
+                                    <input ng-model="employee.employeeInfo.tourists" type="checkbox" id="tourist"
+                                           name="tourist"
+                                           value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -184,7 +217,7 @@
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
                                     <input ng-model="employee.employeeInfo.experimenter" type="checkbox" id="experiment"
-                                        name="experiment" value="true">
+                                           name="experiment" value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -195,8 +228,9 @@
                             </div>
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
-                                    <input ng-model="employee.employeeInfo.conservative" type="checkbox" id="cons" name="cons"
-                                        value="true">
+                                    <input ng-model="employee.employeeInfo.conservative" type="checkbox" id="cons"
+                                           name="cons"
+                                           value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -209,7 +243,7 @@
                             <div class="col-xs-1 padding-sm">
                                 <label style="float: right" class="checkbox-inline custom-checkbox nowrap">
                                     <input ng-model="employee.employeeInfo.adviceRequest" type="checkbox" id="advice"
-                                        name="advice" value="true">
+                                           name="advice" value="true">
                                     <span style="color: white"></span>
                                 </label>
                             </div>
@@ -218,8 +252,9 @@
                             <div class="col-sm-6 flex flex-col-xs col-xs-12 top-margin-lg">
                                 <label class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">جنسیت</label>
 
-                                <select ng-disabled="!employee.employeeInfo.adviceRequest" class="form-control btn-primary"
-                                    ng-model="employee.employeeInfo.gender" data-style="btn-primary" selectpicker>
+                                <select ng-disabled="!employee.employeeInfo.adviceRequest"
+                                        class="form-control btn-primary"
+                                        ng-model="employee.employeeInfo.gender" data-style="btn-primary" selectpicker>
                                     <option style="color: black" value="FEMALE">زن</option>
                                     <option style="color: black" value="MEN">مرد</option>
                                 </select>
@@ -227,36 +262,43 @@
                             <div class="col-sm-6 flex flex-col-xs col-xs-12 top-margin-lg">
                                 <label class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">سن</label>
 
-                                <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
-                                    placeholder="" class="confirm_input form-control" name="age" id="age" ng-model="employee.employeeInfo.age">
-                                <div class="error-message" ng-show="(myform.age.$dirty || submitted) && inputIsInvalid(myform.age.$valid,'age') && myform.age.$error.maxlength">
-                                    حداکثر 3 رقم وارد کنید
+                                <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="2"
+                                       placeholder="" class="confirm_input form-control" name="age" id="age"
+                                       ng-model="employee.employeeInfo.age">
+                                <div class="error-message"
+                                     ng-show="(myform.age.$dirty || submitted) && inputIsInvalid(myform.age.$valid,'age') && myform.age.$error.maxlength">
+                                    حداکثر 2 رقم وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="myform.age.$valid && isNotNumber(employee.employeeInfo.age)">
+                                <div class="error-message"
+                                     ng-show="myform.age.$valid && isNotNumber(employee.employeeInfo.age)">
                                     لطفا عدد وارد کنید
                                 </div>
                             </div>
                             <div class="col-sm-6 flex flex-col-xs col-xs-12 top-margin-lg">
                                 <label class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">وزن</label>
                                 <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
-                                    placeholder="" class="confirm_input form-control" name="weight" id="weight"
-                                    ng-model="employee.employeeInfo.weight">
-                                <div class="error-message" ng-show="(myform.weight.$dirty || submitted) && inputIsInvalid(myform.weight.$valid,'weight') && myform.weight.$error.maxlength">
+                                       placeholder="" class="confirm_input form-control" name="weight" id="weight"
+                                       ng-model="employee.employeeInfo.weight">
+                                <div class="error-message"
+                                     ng-show="(myform.weight.$dirty || submitted) && inputIsInvalid(myform.weight.$valid,'weight') && myform.weight.$error.maxlength">
                                     حداکثر 3 رقم وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="myform.weight.$valid && isNotNumber(employee.employeeInfo.weight)">
+                                <div class="error-message"
+                                     ng-show="myform.weight.$valid && isNotNumber(employee.employeeInfo.weight)">
                                     لطفا عدد وارد کنید
                                 </div>
                             </div>
                             <div class="col-sm-6 flex flex-col-xs col-xs-12 top-margin-lg">
                                 <label class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">قد</label>
                                 <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
-                                    placeholder="" class="confirm_input form-control" name="myheight" id="myheight"
-                                    ng-model="employee.employeeInfo.height">
-                                <div class="error-message" ng-show="(myform.myheight.$dirty || submitted) && inputIsInvalid(myform.myheight.$valid,'myheight') && myform.myheight.$error.maxlength">
+                                       placeholder="" class="confirm_input form-control" name="myheight" id="myheight"
+                                       ng-model="employee.employeeInfo.height">
+                                <div class="error-message"
+                                     ng-show="(myform.myheight.$dirty || submitted) && inputIsInvalid(myform.myheight.$valid,'myheight') && myform.myheight.$error.maxlength">
                                     حداکثر 3 رقم وارد کنید
                                 </div>
-                                <div class="error-message" ng-show="myform.myheight.$valid && isNotNumber(employee.employeeInfo.height)">
+                                <div class="error-message"
+                                     ng-show="myform.myheight.$valid && isNotNumber(employee.employeeInfo.height)">
                                     لطفا عدد وارد کنید
                                 </div>
                             </div>
@@ -264,14 +306,18 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12 margin__bottom_10 margin__top_40 hr" style="font-size: large;font-weight: bold;color: #319ab1">
+                            <div class="col-sm-12 margin__bottom_10 margin__top_40 hr"
+                                 style="font-size: large;font-weight: bold;color: #319ab1">
                                 Bio
                             </div>
                             <div class="col-sm-12 margin__top_10">
-                                <textarea class="confirm_input form-control" name="desc" ng-maxlength="500" ng-model="employee.employeeInfo.biography"
-                                    id="desc" placeholder="دنیای شغلی شما چه آب و رنگی دارد؟" style="text-align:right;"></textarea>
+                                <textarea class="confirm_input form-control" name="desc" ng-maxlength="500"
+                                          ng-model="employee.employeeInfo.biography"
+                                          id="desc" placeholder="دنیای شغلی شما چه آب و رنگی دارد؟"
+                                          style="text-align:right;"></textarea>
                             </div>
-                            <div class="error-message" ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
+                            <div class="error-message"
+                                 ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
                                 حداکثر 500 کاراکتر وارد کنید
                             </div>
                         </div>
@@ -280,7 +326,8 @@
                             <div class="margin__top_10 margin__bottom_20 left-text">
                                 <button type="submit" class="confirm_button confirm_yes btn">ثبت
                                 </button>
-                                <button type="button" ng-click="$dismiss()" class="confirm_button confirm_no btn pull-left">
+                                <button type="button" ng-click="$dismiss()"
+                                        class="confirm_button confirm_no btn pull-left">
                                     بازگشت
                                 </button>
                             </div>
@@ -298,7 +345,7 @@
         height: 95%;
     }
 
-    .modal-dialog.modal-lg>.modal-content {
+    .modal-dialog.modal-lg > .modal-content {
         top: 50%;
         transform: translateY(-50%);
     }
