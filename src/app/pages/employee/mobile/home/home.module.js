@@ -5,22 +5,22 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.home', [])
+    angular.module('BlurAdmin.pages.emp-mobile-home', [])
         .config(routeConfig)
-        .controller('homeCtrl', homeCtrl);
+        .controller('empMobileHomeCtrl', empMobileHomeCtrl);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('home', {
-                url: '/home',
-                templateUrl: 'app/pages/employee/home/home.html',
+            .state('emp-mobile-home', {
+                url: '/emp-mobile-home',
+                templateUrl: 'app/pages/employee/mobile/home/home.html',
                 title: 'خانه',
-                controller: homeCtrl
+                controller: empMobileHomeCtrl
             });
     }
 
-    function homeCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location, $uibModalStack) {
+    function empMobileHomeCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location, $uibModalStack) {
         $rootScope.currentMobileActiveMenu = "home";
         var tomorrow;
         $rootScope.foodType = $scope.foodType = $location.search().t ? $location.search().t : 'ALL';
@@ -59,7 +59,7 @@
             };
             var params;
             // if called by page load and not search button
-            if ((/[?&]/.test(location.hash) || location.hash === '#/home') && !isSearch) {
+            if ((/[?&]/.test(location.hash) || location.hash === '#/emp-mobile-home') && !isSearch) {
                 var dateUrlParam = $location.search().d ? $location.search().d : moment.utc(tomorrow).format('jYYYY/jM/jD');
                 $scope.searchDate = dateUrlParam;
                 day = moment.utc(dateUrlParam, 'jYYYY/jM/jD').day();

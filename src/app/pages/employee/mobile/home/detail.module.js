@@ -14,7 +14,7 @@
         $stateProvider
             .state('emp-mobile-detail', {
                 url: '/emp-mobile-detail',
-                templateUrl: 'app/pages/employee/mobile/detail/detail.html',
+                templateUrl: 'app/pages/employee/mobile/home/detail.html',
                 title: 'جزئیات غذا',
                 controller: detailCtrl
             });

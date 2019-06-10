@@ -14,7 +14,7 @@
         $stateProvider
             .state('reserve', {
                 url: '/reserve',
-                templateUrl: 'app/pages/employee/reserve/reserve.html',
+                templateUrl: 'app/pages/employee/mobile/reserve/reserve.html',
                 title: 'رزروها',
                 controller: reserveCtrl
             });
@@ -24,7 +24,7 @@
         $rootScope.pageTitle = 'رزروها';
         $scope.reserves = {};
         $rootScope.currentMobileActiveMenu = "reserve";
-        $ionicModal.fromTemplateUrl('app/pages/employee/reserve/dda-modal.html', {
+        $ionicModal.fromTemplateUrl('app/pages/employee/mobile/reserve/dda-modal.html', {
             scope: $scope,
             animation: 'slide-in-up',
         }).then(function (modal) {

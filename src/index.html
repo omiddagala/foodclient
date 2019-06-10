@@ -199,7 +199,7 @@
                         </a>
                         <a ng-if="!showFeedgramTab()"
                             class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/myrestaurant">
+                            ng-click="mobileMenuClicked($event)" href="#/emp-mobile-restaurant">
                             <img ng-src="{{currentMobileActiveMenu === 'myrestaurant' ? '/assets/img/ui/mobile/tab-icons/restaurant-s.svg' : '/assets/img/ui/mobile/tab-icons/restaurant.svg'}}" width="45px" height="35px"/>
                             <span class="color-808285 line-height-1"
                                 ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected-text':''">رستوران
@@ -207,7 +207,7 @@
                         </a>
                         <a ng-if="!showFeedgramTab()"
                             class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/home">
+                            ng-click="mobileMenuClicked($event)" href="#/emp-mobile-home">
                             <img ng-src="{{currentMobileActiveMenu === 'home' || currentMobileActiveMenu === 'category' ? '/assets/img/ui/mobile/tab-icons/home-s.svg' : '/assets/img/ui/mobile/tab-icons/home.svg'}}" width="45px" height="35px"/>
                             <span class="color-808285 line-height-1"
                                 ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected-text':''">غذاها</span>

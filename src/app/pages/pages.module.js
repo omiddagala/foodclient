@@ -84,7 +84,9 @@
         'BlurAdmin.pages.emp-buy-report',
         'BlurAdmin.pages.emp-buy-report-detail',
         'BlurAdmin.pages.ad-loc',
-        'BlurAdmin.pages.feedbacks'
+        'BlurAdmin.pages.feedbacks',
+        'BlurAdmin.pages.emp-mobile-restaurant',
+        'BlurAdmin.pages.emp-mobile-home'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -421,7 +423,7 @@
         $rootScope.locateFirstPage = function () {
             if (jQuery.inArray("EMPLOYEE", $rootScope.roles) > -1) {
                 if ($rootScope.isMobile()) {
-                    $location.path("/home");
+                    $location.path("/emp-mobile-home");
                 } else {
                     $location.path("/home");
                     $rootScope.currentActiveMenu = "home";
@@ -879,7 +881,7 @@
                 return false;
             } else if ((window.location.hash == "#/category" || window.location.hash == "#/detail" || window.location.hash == "#/reserve") && item == 'search-bar') {
                 return false;
-            } else if (window.location.hash == "#/home" && item == 'sort-btn') {
+            } else if (window.location.hash == "#/emp-mobile-home" && item == 'sort-btn') {
                 return false;
             } else if (window.location.hash == "#/profile" && (item == 'header' || item == 'fader' || item == 'menu')) {
                 return true;

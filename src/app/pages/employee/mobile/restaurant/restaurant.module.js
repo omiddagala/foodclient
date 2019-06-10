@@ -1,21 +1,21 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.myrestaurant', [])
+    angular.module('BlurAdmin.pages.emp-mobile-restaurant', [])
         .config(routeConfig)
-        .controller('restaurantCtrl', restaurantCtrl);
+        .controller('empMobileRestaurantCtrl', empMobileRestaurantCtrl);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('myrestaurant', {
-                url: '/myrestaurant',
-                templateUrl: 'app/pages/employee/myrestaurant/restaurant.html',
-                controller: 'restaurantCtrl'
+            .state('emp-mobile-restaurant', {
+                url: '/emp-mobile-restaurant',
+                templateUrl: 'app/pages/employee/mobile/restaurant/restaurant.html',
+                controller: 'empMobileRestaurantCtrl'
             });
     }
 
-    function restaurantCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
+    function empMobileRestaurantCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
         $rootScope.pageTitle = 'رستوران';
         $rootScope.currentMobileActiveMenu = "myrestaurant";
 
@@ -276,7 +276,7 @@
             });
         };
         $scope.goToHome = function (name) {
-            var home = window.location.href.replace("myrestaurant", "home");
+            var home = window.location.href.replace("emp-mobile-restaurant", "emp-mobile-home");
             home = replaceUrlParam(home, "r", name);
             window.location.href = home;
             $rootScope.currentActiveMenu = "home";
