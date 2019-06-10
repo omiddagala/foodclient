@@ -601,4 +601,8 @@ body{
     margin-right: auto;
     margin-left: 10px;
 }
+
+.hidden-sort-box {
+    display: none;
+}
 /* ionic [end] */
