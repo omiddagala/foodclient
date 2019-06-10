@@ -19,11 +19,6 @@
         $rootScope.pageTitle = 'رستوران';
         $rootScope.currentMobileActiveMenu = "myrestaurant";
 
-        $scope.$on('$locationChangeStart', function () {
-            var a = location.href;
-            $rootScope.employee_params = a.substring(a.indexOf("?") + 1);
-        });
-
         $scope.loadContent = function (isFirstCall, isSearch) {
             startLoading();
             var token = localStorageService.get("my_access_token");
@@ -93,8 +88,6 @@
         };
 
         $scope.ctrlInit = function () {
-            if ($rootScope.employee_params && !$rootScope.isMobile())
-                $location.search($rootScope.employee_params);
             $rootScope.resPageNum = 0;
             $scope.commentPageNum = 0;
             $rootScope.enableCommentScroll = true;
@@ -102,25 +95,14 @@
             setTimeout(function () {
                 $scope.rests = [];
                 $scope.loadContent(true, false);
-                if (!$rootScope.isMobile()) {
-                    $('.main-stage > div').scroll(function () {
-                        if ($rootScope.scrollIsAtEnd($('.main-stage > div'))) {
-                            if ($rootScope.resEnableScroll) {
-                                $rootScope.resEnableScroll = false;
-                                $scope.loadContent(false, false);
-                            }
+                $('.article-mobile-list').scroll(function () {
+                    if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
+                        if ($rootScope.resEnableScroll) {
+                            $rootScope.resEnableScroll = false;
+                            $scope.loadContent(false, false);
                         }
-                    });
-                } else {
-                    $('.article-mobile-list').scroll(function () {
-                        if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
-                            if ($rootScope.resEnableScroll) {
-                                $rootScope.resEnableScroll = false;
-                                $scope.loadContent(false, false);
-                            }
-                        }
-                    });
-                }
+                    }
+                });
             }, 700);
         };
         var selectedTypes = [];
@@ -140,133 +122,6 @@
             }, 10);
         };
 
-        var delayTimer;
-        $scope.search = function () {
-            clearTimeout(delayTimer);
-            delayTimer = setTimeout(function () {
-                $('.main-stage > div').animate({
-                    scrollTop: 0
-                }, 'fast');
-                $rootScope.resPageNum = 0;
-                $scope.loadContent(false, true)
-            }, 1000);
-        };
-        $scope.resDetail = function (rest) {
-            $scope.open('app/pages/employee/myrestaurant/detail.html', 'md');
-            $scope.selectedRest = rest;
-            $scope.updateStar(Number(rest.averageRate));
-            $scope.cleanComments();
-            $scope.fetchComments();
-        };
-
-        $scope.addComments = function () {
-            startLoading();
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            var params = {
-                id: $scope.selectedRest.id,
-                comment: $('#commentInDetail').val()
-            };
-            $http.post("http://127.0.0.1:9000/v1/restaurantComment/add", params, httpOptions)
-                .success(function (data, status, headers, config) {
-                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
-                    stopLoading();
-                }).catch(function (err) {
-                $rootScope.handleError(params, "/restaurantComment/add", err, httpOptions);
-            });
-        };
-
-        $scope.cleanComments = function () {
-            $scope.comments = [];
-            $scope.commentPageNum = 0;
-        };
-
-        $scope.toggleComments = function () {
-            $("#food_comments").slideToggle();
-            $("#comment_toggle_icon").toggleClass("rotate_90_degrees");
-        };
-
-        $scope.fetchComments = function () {
-            startLoading();
-            $("#commentInDetail").val("");
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            var params = {
-                id: $scope.selectedRest.id,
-                pageableDTO: {
-                    page: $scope.commentPageNum,
-                    size: 10,
-                    direction: 0,
-                    sortBy: "date"
-                }
-            };
-            $http.post("http://127.0.0.1:9000/v1/restaurantComment/getFoodComments", params, httpOptions)
-                .success(function (data, status, headers, config) {
-                    if (data.length > 0) {
-                        Array.prototype.push.apply($scope.comments, data);
-                        $rootScope.enableCommentScroll = true;
-                        if ($scope.commentPageNum === 0) {
-                            setTimeout(function () {
-                                var comments_div = $("#food_comments");
-                                comments_div.off("scroll");
-                                comments_div.on("scroll", function () {
-                                    if ($rootScope.scrollIsAtEnd(comments_div) && $rootScope.enableCommentScroll && $scope.comments.length % params.pageableDTO.size === 0) {
-                                        $rootScope.enableCommentScroll = false;
-                                        $scope.commentPageNum++;
-                                        $scope.fetchComments();
-                                    }
-                                })
-                            }, 200);
-                        }
-                    } else {
-                        if ($scope.commentPageNum === 0) {
-                            $scope.toggleComments();
-                        }
-                    }
-                    stopLoading();
-                }).catch(function (err) {
-                $rootScope.handleError(params, "/restaurantComment/getFoodComments", err, httpOptions);
-            });
-        };
-
-        $scope.updateStar = function (s) {
-            $scope.stars = [];
-            for (var i = 0; i < 5; i++) {
-                $scope.stars.push({
-                    filled: i < s
-                });
-            }
-        };
-
-        $scope.rateRestaurant = function (rate) {
-            startLoading();
-            $scope.updateStar(rate);
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            var params = {
-                "restaurantId": $scope.selectedRest.id,
-                "rate": rate
-            };
-            $http.post("http://127.0.0.1:9000/v1/employee/rateRestaurant", params, httpOptions)
-                .success(function (data, status, headers, config) {
-                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
-                    stopLoading();
-                }).catch(function (err) {
-                $rootScope.handleError(params, "/employee/rateRestaurant", err, httpOptions);
-            });
-        };
-
-        $scope.toggleComments = function () {
-            $("#food_comments").slideToggle();
-            $("#comment_toggle_icon").toggleClass("rotate_90_degrees");
-        };
-
         $scope.open = function (page, size) {
             $uibModal.open({
                 animation: true,
@@ -275,6 +130,7 @@
                 scope: $scope
             });
         };
+
         $scope.goToHome = function (name) {
             var home = window.location.href.replace("emp-mobile-restaurant", "emp-mobile-home");
             home = replaceUrlParam(home, "r", name);
@@ -282,7 +138,6 @@
             $rootScope.currentActiveMenu = "home";
             $rootScope.currentMobileActiveMenu = "home";
         };
-
 
         $scope.confirm = function (e) {
             var ionSideMenu = $(e.currentTarget).closest('ion-side-menus');
@@ -292,7 +147,5 @@
                 $(ionSideMenu).find('ion-side-menu .confirm-box').addClass('confirm-box-disable');
             }, 600);
         }
-
     }
-
 })();

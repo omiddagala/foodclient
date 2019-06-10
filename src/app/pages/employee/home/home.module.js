@@ -619,40 +619,6 @@
                 scope: $scope
             });
         };
-        $scope.openProgressDialog = baProgressModal.open;
-        var timelineBlocks = $('.cd-timeline-block'),
-            offset = 0.8;
-
-        //hide timeline blocks which are outside the viewport
-        hideBlocks(timelineBlocks, offset);
-
-        //on scolling, show/animate timeline blocks when enter the viewport
-        $(window).unbind('scroll');
-        $(window).on('scroll', function () {
-            if (!window.requestAnimationFrame) {
-                setTimeout(function () {
-                    hideBlocks(timelineBlocks, offset);
-                    showBlocks(timelineBlocks, offset);
-                }, 100);
-            } else {
-                window.requestAnimationFrame(function () {
-                    hideBlocks(timelineBlocks, offset);
-                    showBlocks(timelineBlocks, offset);
-                });
-            }
-        });
-
-        function hideBlocks(blocks, offset) {
-            blocks.each(function () {
-                ($(this).offset().top > $(window).scrollTop() + window.innerHeight * offset) && $(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
-            });
-        }
-
-        function showBlocks(blocks, offset) {
-            blocks.each(function () {
-                ($(this).offset().top <= $(window).scrollTop() + window.innerHeight * offset && $(this).find('.cd-timeline-img').hasClass('is-hidden')) && $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
-            });
-        }
 
         $scope.orderFood = function (foodId, date, count, f) {
             startLoading();
