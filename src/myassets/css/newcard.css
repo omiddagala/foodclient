@@ -194,7 +194,7 @@
 }
 
 .card__restaurant__star {
-    float: right;
+    /* float: right; */
     display: inline-block;
     width: 5%;
     height: 14px;
