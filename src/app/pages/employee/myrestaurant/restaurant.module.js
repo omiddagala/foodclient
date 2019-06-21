@@ -10,7 +10,7 @@
         $stateProvider
             .state('myrestaurant', {
                 url: '/myrestaurant',
-                templateUrl: window.isMobile() ? 'app/pages/employee/myrestaurant/m.restaurant.html' : 'app/pages/employee/myrestaurant/restaurant.html',
+                templateUrl: 'app/pages/employee/myrestaurant/restaurant.html',
                 controller: 'restaurantCtrl'
             });
     }

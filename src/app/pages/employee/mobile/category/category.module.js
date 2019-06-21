@@ -14,13 +14,13 @@
         $stateProvider
             .state('category', {
                 url: '/category',
-                templateUrl: 'app/pages/employee/category/category.html',
+                templateUrl: 'app/pages/employee/mobile/category/category.html',
                 title: 'دسته بندی غذا',
                 controller: categoryCtrl
             });
     }
 
-    function categoryCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
+    function categoryCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope) {
         $rootScope.currentMobileActiveMenu = "category";
         $rootScope.pageTitle = 'دسته بندی غذا';
         $rootScope.selectedCategory = '';

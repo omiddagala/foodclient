@@ -132,6 +132,7 @@
     padding: 0 0 35px 0;
 
     -webkit-align-items: center;
+    -webkit-box-align:center;
     align-items: center;
 }
 

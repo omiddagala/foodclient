@@ -14,7 +14,7 @@
         $stateProvider
             .state('emp-mobile-detail', {
                 url: '/emp-mobile-detail',
-                templateUrl: 'app/pages/employee/mobile/detail/detail.html',
+                templateUrl: 'app/pages/employee/mobile/home/detail.html',
                 title: 'جزئیات غذا',
                 controller: detailCtrl
             });
@@ -253,9 +253,6 @@
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                setTimeout(function () {
-                    $scope.loadOrders();
-                }, 2000);
                 $rootScope.handleError(params, "/employee/order", err, httpOptions);
             });
         };

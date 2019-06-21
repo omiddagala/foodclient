@@ -135,7 +135,7 @@
 
                 <ion-side-menu side="left" width="{{width()}}" can-drag-menu>
                     <ion-header-bar ng-if="canRender('header')" class="flex content-between back-ebebeb">
-                        <button class="transparent-back fit-width no-border" ng-click="openMenu($event)" menu-close>
+                        <button class="transparent-back fit-width no-border absolute" ng-click="openMenu($event)" menu-close>
                             <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
                                 viewbox="0 -10 65 65" width="30" height="30">
                                 <path fill="#808285" fill-rule="evenodd"
@@ -144,7 +144,7 @@
                         </button>
                         <h1 class="title transparent-back color-363636 center-text">{{pageTitle}}</h1>
 
-                        <button class="transparent-back fit-width no-border" ng-if="canRender('sort-btn')"
+                        <button class="transparent-back fit-width no-border absolute left-0" ng-if="canRender('sort-btn')"
                             ng-click="goBack()">
                             <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height"
                                 viewbox="0 -50 600 600" width="30" height="30">
@@ -153,7 +153,7 @@
                             </svg>
                         </button>
                     </ion-header-bar>
-                    <ion-content ng-class="canRender() ? 'has-footer back-f4f4f4 no-overflow-imp' : 'back-f4f4f4 no-overflow-imp'">
+                    <ion-content ng-class="canRender() ? 'has-footer back-f4f4f4' : 'back-f4f4f4'">
                         <div ui-view class="view-padding-top"></div>
                         <!-- on-scroll="scrolling()"
                             on-scroll-complete="scrollComplete()"-->
@@ -161,7 +161,7 @@
                         </ion-infinite-scroll> -->
                     </ion-content>
                     <ion-footer-bar ng-if="canRender()" ng-class="showFeedgramTab() ? 'black-back' : ''"
-                        class="tabs-positive tabs-icon-top flex content-between fit-height-imp left-direction">
+                        class="tabs-positive tabs-icon-top flex content-between left-direction">
                         <!--<a class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"-->
                             <!--ng-click="mobileMenuClicked($event)" href="#/feedgram-list">-->
                             <!--<img ng-src="{{currentMobileActiveMenu === 'feedgram' ? '/assets/img/ui/mobile/tab-icons/f-home-s.png' : '/assets/img/ui/mobile/tab-icons/f-home.svg'}}" width="45px" height="35px"/>-->
@@ -191,25 +191,25 @@
                                 <!--ng-class="currentMobileActiveMenu =='feedgram-profile'? 'mobile-menu-selected-text-f':'mobile-menu-unselected-text-f'">پروفایل</span>-->
                         <!--</a>-->
                         <a ng-if="!showFeedgramTab()" ng-class="$rootScope.currentMobileActiveMenu == 'reserve' ? '':''"
-                            class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
+                            class="tab-item padding-md col-xs-4 block no-border"
                             ng-click="mobileMenuClicked($event)" href="#/reserve">
-                            <img ng-src="{{currentMobileActiveMenu === 'reserve' ? '/assets/img/ui/mobile/tab-icons/reserve-s.svg' : '/assets/img/ui/mobile/tab-icons/reserve.svg'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
+                            <img class="block auto-center" ng-src="{{currentMobileActiveMenu === 'reserve' ? '/assets/img/ui/mobile/tab-icons/reserve-s.svg' : '/assets/img/ui/mobile/tab-icons/reserve.svg'}}" width="45px" height="35px"/>
+                            <span class="color-808285 line-height-1 block auto-center right-padding-lg"
                                 ng-class="currentMobileActiveMenu == 'reserve' ? 'mobile-menu-selected-text':''">رزروها</span>
                         </a>
                         <a ng-if="!showFeedgramTab()"
-                            class="tab-item padding-md flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/myrestaurant">
-                            <img ng-src="{{currentMobileActiveMenu === 'myrestaurant' ? '/assets/img/ui/mobile/tab-icons/restaurant-s.svg' : '/assets/img/ui/mobile/tab-icons/restaurant.svg'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
+                            class="tab-item padding-md col-xs-4 block no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/emp-mobile-restaurant">
+                            <img class="block auto-center" ng-src="{{currentMobileActiveMenu === 'myrestaurant' ? '/assets/img/ui/mobile/tab-icons/restaurant-s.svg' : '/assets/img/ui/mobile/tab-icons/restaurant.svg'}}" width="45px" height="35px"/>
+                            <span class="color-808285 line-height-1 block auto-center right-padding-lg"
                                 ng-class="currentMobileActiveMenu == 'myrestaurant' ? 'mobile-menu-selected-text':''">رستوران
                                 ها</span>
                         </a>
                         <a ng-if="!showFeedgramTab()"
-                            class="tab-item padding-md color-808285 flex-imp flex-col items-center content-center fit-height-imp no-border"
-                            ng-click="mobileMenuClicked($event)" href="#/home">
-                            <img ng-src="{{currentMobileActiveMenu === 'home' || currentMobileActiveMenu === 'category' ? '/assets/img/ui/mobile/tab-icons/home-s.svg' : '/assets/img/ui/mobile/tab-icons/home.svg'}}" width="45px" height="35px"/>
-                            <span class="color-808285 line-height-1"
+                            class="tab-item padding-md color-808285 col-xs-4 block no-border"
+                            ng-click="mobileMenuClicked($event)" href="#/emp-mobile-home">
+                            <img class="block auto-center" ng-src="{{currentMobileActiveMenu === 'home' || currentMobileActiveMenu === 'category' ? '/assets/img/ui/mobile/tab-icons/home-s.svg' : '/assets/img/ui/mobile/tab-icons/home.svg'}}" width="45px" height="35px"/>
+                            <span class="color-808285 line-height-1 block auto-center right-padding-lg"
                                 ng-class="(currentMobileActiveMenu =='home' || currentMobileActiveMenu =='category') ? 'mobile-menu-selected-text':''">غذاها</span>
                         </a>
                     </ion-footer-bar>
@@ -229,7 +229,7 @@
                 </ion-header-bar>   -->
                     <!--اگر header , footer دارد ion-content این کلاس هارا باید داشته باشد -->
                     <!-- <ion-content class="has-footer has-wallet">-->
-                    <ion-content class="no-overflow-imp">
+                    <ion-content class="">
                         <ion-list>
                             <div include-with-scope="mobile-menu-content.html"></div>
                         </ion-list>

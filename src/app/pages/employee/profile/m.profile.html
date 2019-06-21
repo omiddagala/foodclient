@@ -79,7 +79,7 @@
                                 d="M23.486.983C11.065.983.983 11.29.983 23.989c0 12.701 10.082 23.006 22.503 23.006S45.991 36.69 45.991 23.989C45.991 11.29 35.907.983 23.486.983zm0 6.904c3.737 0 6.751 3.08 6.751 6.9 0 3.819-3.014 6.901-6.751 6.901-3.735 0-6.748-3.082-6.748-6.901 0-3.82 3.013-6.9 6.748-6.9zm0 32.667c-5.624 0-10.597-2.944-13.499-7.409.067-4.576 8.999-7.085 13.499-7.085 4.479 0 13.436 2.509 13.502 7.085-2.901 4.465-7.874 7.409-13.502 7.409z" />
                         </svg>
                         <div class="w-100">
-                            <input ng-disabled="true" type="text" ng-maxlength="8" class="transparent-back black-color"
+                            <input ng-disabled="true" type="text" class="transparent-back black-color"
                                 name="family" id="family" ng-model="employee.name">
                         </div>
                     </div>
@@ -316,12 +316,12 @@
                         <label
                             class="self-center left-padding-md right-padding-md no-margin no-text-wrap text-left self-baseline-xs bottom-padding-md basis-md">سن</label>
 
-                        <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="3"
+                        <input ng-disabled="!employee.employeeInfo.adviceRequest" type="text" ng-maxlength="2"
                             placeholder="" class="confirm_input form-control" name="age" id="age"
                             ng-model="employee.employeeInfo.age">
                         <div class="error-message"
                             ng-show="(myform.age.$dirty || submitted) && inputIsInvalid(myform.age.$valid,'age') && myform.age.$error.maxlength">
-                            حداکثر 3 رقم وارد کنید
+                            حداکثر 2 رقم وارد کنید
                         </div>
                         <div class="error-message"
                             ng-show="myform.age.$valid && isNotNumber(employee.employeeInfo.age)">
