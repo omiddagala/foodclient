@@ -1,5 +1,5 @@
 <!-- search-bar -->
-<div class="bar bar-subheader stick-search-bar search-bar-box bar-assertive back-e1e1e1 no-border flex-imp content-center items-center no-background-image left-direction">
+<div class="bar bar-subheader stick-search-bar search-bar-box bar-assertive back-e1e1e1 no-border flex content-center items-center no-background-image auto-height left-direction">
     <button class="transparent-back fit-width no-border sort-btn" ng-click="sortBox($event)">
         <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewBox="-10 -10 80 80" width="30"
             height="30">
@@ -7,7 +7,7 @@
                 d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z" />
         </svg>
     </button>
-    <input type="text" ng-change="search()" id="foodName" name="foodName" ng-model="foodName" class="redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
+    <input type="text" ng-change="search()" id="foodName" name="foodName" ng-model="foodName" class="w-90 redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
     <button type="button" class="btn btn-link fit-height fit-width line-height-initial no-padding-imp search-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewbox="-10 -10 60 60" width="35"
             height="50">
@@ -19,9 +19,9 @@
 
 <!-- cardItem -->
 <div class="article-mobile-list scroll-class1" id="article-list-main" ng-init="homeInit()">
-    <!-- <div class="white-back w-100 auto-height flex items-center content-evenly right-direction relative no-overflow">
+    <div class="white-back w-100 auto-height flex items-center content-evenly right-direction relative no-overflow">
         <img ng-src="{{headerImgSrc}}" class="w-90 header-animation header-img" alt="">
-    </div> -->
+    </div>
     <div ng-repeat="food in foods track by $index"
         class="card white-back w-95 mobile-card auto-height flex items-center content-evenly right-direction relative">
         <img src="../../../../../assets/img/ui/info.png" class="mobil-card-info pointer" alt=""
@@ -30,7 +30,7 @@
             <div class="mobil-card-rate">{{food.averageRate === 0 ? '-' : food.averageRate}}</div>
             <img src="{{food.imageAddress}}" class="w-100 card-img">
         </div>
-        <div class="w-60 right-padding-lg left-padding-lg relative">
+        <div class="full-width right-padding-lg left-padding-lg relative flex flex-col items-center content-evenly">
             <div class="defult-color text-right font-bold w-100 font-xl line-height-initial min-height-lg">
                 {{food.name}}</div>
             <div class="text-right flex items-center w-100 font-xl line-height-initial min-height-lg">
@@ -135,6 +135,6 @@
 </div>
 <style>
     .view-padding-top {
-        padding-top: 102px;
+        padding-top: 44px;
     }
 </style>

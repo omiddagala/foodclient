@@ -1,8 +1,8 @@
 <section class="m-login-section col-12 full-height right-direction relative">
-    <div class="fixed bottom-0 left-0 right-0 m-login-img">
-        <img src="../../../assets/img/ui/mobile/m.login.png" class="w-100 bottom-0" alt="">
+    <div class="fixed top-0 bottom-0 left-0 right-0 m-login-img">
+        <img src="../../../assets/img/ui/mobile/m.login.png" class="w-100 fixed bottom-0" alt="">
     </div>
-    <div class="container block m-login-content">
+    <div class="container flex flex-col items-center m-login-content">
         <div class="col-sm-10  flex items-center content-center">
             <img src="../../../assets/img/ui/mobile/food.png" class="col-xs-4 no-padding-left" alt="">
             <img src="../../../assets/img/ui/mobile/karafeed.png" class="col-xs-8" alt="">
@@ -13,7 +13,7 @@
             <div class="form-group">
                 <div class="col-xs-12 bottom-margin-md">
                     <input ng-model="username" name="username" placeholder="نام کاربری" required type="text" class="confirm_input form-control no-margin-right no-margin-left"
-                        id="username" >
+                        id="username" placeholder="">
                     <div class="error-message" ng-show="(myform.username.$dirty || submitted) && inputIsInvalid(myform.username.$valid,'username') && myform.username.$error.maxlength">
                         حداکثر 60 کاراکتر وارد کنید
                     </div>
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <div class="col-xs-12">
                     <input ng-model="pass" name="pass" placeholder="رمز عبور" ng-maxlength="60" required type="password"
-                        class="confirm_input form-control no-margin-right no-margin-left" id="pass" >
+                        class="confirm_input form-control no-margin-right no-margin-left" id="pass" placeholder="">
                     <div class="error-message" ng-show="(myform.pass.$dirty || submitted) && inputIsInvalid(myform.pass.$valid,'pass') && myform.pass.$error.maxlength">
                         حداکثر 60 کاراکتر وارد کنید
                     </div>

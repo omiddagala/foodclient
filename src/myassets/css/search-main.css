@@ -8,7 +8,6 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	-webkit-box-align:center;
 	align-items: center;
 	width: 100%;
 	height: 100vh;
@@ -93,7 +92,6 @@ a,
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	-webkit-box-align:center;
 	align-items: center;
 	width: 100%;
 	padding: 2.5em 2.75em 2.5em 1.5em;

@@ -81,7 +81,7 @@ label.control-label {
 }
 
 .box-shadow-reserve-title {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
 }
 
 .newmodal_body_content {
@@ -265,10 +265,6 @@ nav.ng-scope {
 
 .text-right {
     text-align: right;
-}
-
-.auto-center {
-    margin: 0px auto;
 }
 
 /*.........top....... */
@@ -1279,7 +1275,7 @@ nav.ng-scope {
 }
 
 .unset-position {
-    position: initial !important;
+    position: unset !important;
 }
 
 .item-box-circle {
@@ -1296,12 +1292,10 @@ nav.ng-scope {
 }
 
 .flex {
-    display: -webkit-box;
     display: flex;
 }
 
 .flex-imp {
-    display: -webkit-box !important;
     display: flex !important;
 }
 
@@ -1326,47 +1320,38 @@ nav.ng-scope {
 }
 
 .items-center {
-    -webkit-box-align: center;
     align-items: center;
 }
 
 .item-flex-end {
-    -webkit-box-align: flex-end;
     align-items: flex-end;
 }
 
 .content-end {
-    -webkit-box-pack: flex-end;
     justify-content: flex-end;
 }
 
 .content-evenly {
-    -webkit-box-pack: space-evenly;
     justify-content: space-evenly;
 }
 
 .content-evenly-imp {
-    -webkit-box-pack: space-evenly !important;
     justify-content: space-evenly !important;
 }
 
 .content-between {
-    -webkit-box-pack: justify;
     justify-content: space-between;
 }
 
 .content-around {
-    -webkit-box-pack: space-around;
     justify-content: space-around;
 }
 
 .content-center {
-    -webkit-box-pack: center;
     justify-content: center;
 }
 
 .flex-col {
-    -webkit-box-orient: vertical;
     flex-direction: column;
 }
 
@@ -1773,7 +1758,6 @@ ba-sidebar.expanded .al-sidebar, .al-sidebar.sabad__.expanded, .al-sidebar.sabad
         margin-bottom: 10px;
     }
     .flex-xs {
-        display: -webkit-box;
         display: flex;
     }
     .flex-col-reverse-xs {
@@ -1869,7 +1853,6 @@ ba-sidebar.expanded .al-sidebar, .al-sidebar.sabad__.expanded, .al-sidebar.sabad
         flex-direction: column !important;
     }
     .items-end-500 {
-        -webkit-box-align: end !important;
         align-items: end !important;
     }
     .margin-bottom-2-500 {
@@ -2083,27 +2066,14 @@ ba-sidebar.expanded .al-sidebar, .al-sidebar.sabad__.expanded, .al-sidebar.sabad
     vertical-align: bottom;
     box-sizing: border-box;
     margin: auto auto;
-    display: -webkit-box;
     display: flex;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center;
 }
 
 .stick-search-bar {
-    position: fixed !important; 
-    /* position: sticky !important; */
+    position: sticky !important;
     top: 44px !important;
-}
-
-.stick-search-bar.search-bar-box {
-    height: 68px;
-}
-
-.stick-search-bar.search-bar-box input[type=text] {
-    -webkit-box-flex: 1;
-    flex-grow: 1;
 }
 
 a:hover {
@@ -2114,23 +2084,17 @@ a:hover {
     overflow: auto;
     max-height: calc(80vh - 72px);
 } */
-
-[ui-view]>div.scroll-class1 {
-    /* وقتی در صفحه هم سرچ بار داریم و هم فوتر */
-    /* overflow: auto; */
+[ui-view] > div.scroll-class1 { /* وقتی در صفحه هم سرچ بار داریم و هم فوتر */
+    overflow: auto;
     max-height: calc(100vh - 184px);
 }
-
-[ui-view]>div.scroll-class2 {
-    /* وقتی در صفحه نه سرچ بار داریم و نه فوتر */
-    /* overflow: auto; */
+[ui-view] > div.scroll-class2 { /* وقتی در صفحه نه سرچ بار داریم و نه فوتر */
+    overflow: auto;
     max-height: calc(100vh - 5em);
     margin-top: 0 !important;
 }
-
-[ui-view]>div.scroll-class3 {
-    /* وقتی در صفحه سرچ بار نداریم ولی فوتر داریم */
-    /* overflow: auto; */
+[ui-view] > div.scroll-class3 { /* وقتی در صفحه سرچ بار نداریم ولی فوتر داریم */
+    overflow: auto;
     max-height: calc(100vh - 116px);
     margin-top: 0 !important;
 }
