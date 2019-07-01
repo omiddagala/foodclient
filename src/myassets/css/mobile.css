@@ -43,7 +43,8 @@ html body {
     background-image: none !important;
     border: none !important;
     height: fit-content !important;
-    justify-content: space-evenly !important
+    -webkit-box-pack:space-evenly !important;
+    justify-content: space-evenly !important;
 }
 
 div.pane {
@@ -56,6 +57,7 @@ div.pane {
 /* login */
 
 .m-login-content {
+    -webkit-transform: translateY(10%);
     transform: translateY(10%);
     margin-bottom: 2em;
 }
@@ -80,11 +82,11 @@ div.pane {
 .mobil-card-rate,
 .mobil-card-info {
     position: absolute;
-    width: 29px;
+    width: 19px;
     height: 19px;
-    object-fit: contain;
+    /* object-fit: contain; */
     border-radius: 3px;
-    background-color: #f44545;
+    /* background-color: #f44545; */
     z-index: 1;
     color: white;
     text-align: center;
@@ -286,7 +288,7 @@ div.pane {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 300px) {
     .card>div {
         width: 100% !important;
         min-width: 100% !important;
@@ -389,6 +391,7 @@ ion-wallet-select wallet-content .item:last-child {
 
 .bar-footer {
     z-index: 150;
+    height: 70px;
 }
 
 .bar .title {
@@ -536,6 +539,7 @@ ion-list .card {
 .detail-page ul.rating {
     text-align: center;
     display: flex;
+    -webkit-box-pack:center;
     justify-content: center;
 }
 
@@ -606,3 +610,9 @@ body{
     display: none;
 }
 /* ionic [end] */
+/* captcha...[start]*/
+div#captcha_container {
+    height: 86px;
+    overflow: auto;
+}
+/* captcha...[end]*/
