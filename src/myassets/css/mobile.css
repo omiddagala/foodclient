@@ -91,7 +91,7 @@ div.pane {
     color: white;
     text-align: center;
     line-height: 22px;
-    top: -10px;
+    top: 0px;
     right: 5%;
 }
 
@@ -110,6 +110,12 @@ div.pane {
 .mobil-card-img {
     min-width: 40%;
     max-width: 40%;
+    overflow: hidden;
+    height: 133px;
+    border-radius: .8em;
+}
+.mobile-card-content {
+    margin-left: calc(-.5em - 19px);
 }
 
 .mobile-card {
@@ -120,6 +126,15 @@ div.pane {
 
 .card-img {
     border-radius: .8em;
+}
+
+.mobil-card-img .card-img {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .card__restaurant__star {
@@ -314,7 +329,9 @@ div.pane {
 }
 
 /* ionic [start] */
-
+.tab-item {
+    opacity: 1 !important;
+}
 input[type=text] {
     padding-left: 12px !important;
 }
