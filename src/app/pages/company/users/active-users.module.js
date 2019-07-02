@@ -351,6 +351,14 @@
             $scope.giftImagePostfix = postfix;
         }
 
+        $scope.setAmountOfGift = function(a) {
+            $scope.amount = a;
+        };
+
+        $scope.setDescOfGift = function(d) {
+            $scope.desc = d;
+        };
+
         $scope.doGift = function (form) {
             $scope.submitted = true;
             if (!form.$valid) {

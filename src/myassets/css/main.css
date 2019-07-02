@@ -2092,8 +2092,8 @@ ba-sidebar.expanded .al-sidebar, .al-sidebar.sabad__.expanded, .al-sidebar.sabad
 }
 
 .stick-search-bar {
-    position: fixed !important; 
-    /* position: sticky !important; */
+    /* position: fixed !important;  */
+    position: sticky !important;
     top: 44px !important;
 }
 

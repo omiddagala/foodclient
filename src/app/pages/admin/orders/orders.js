@@ -21,6 +21,19 @@
         $scope.toDate = moment(new Date()).add('days', 1).format('jYYYY/jM/jD HH:mm');
         $scope.factorNumber = null;
         var preventTwiceLoad = true;
+        var autoLoad;
+
+        $scope.initCtrl = function () {
+            setTimeout(function () {
+                autoLoad = setInterval(function () {
+                    $scope.$broadcast('refreshMyTable');
+                }, 180000);
+            }, 1000)
+        };
+
+        $scope.$on('$destroy', function() {
+            clearInterval(autoLoad);
+        });
 
         $scope.search = function (pagination, sort) {
             if (preventTwiceLoad){

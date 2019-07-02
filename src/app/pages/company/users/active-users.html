@@ -198,11 +198,11 @@
                         <div class="row">
                             <div class="col-sm-4" ng-click="uploadGiftImage()">
                                 <img src="/assets/img/ui/camera.png" style="width: 16px;height: 16px;float: right;margin-left: 10px">
-                                <div style="color: #575757">اضافه کردن تصویر</div>
+                                <div style="color: #575757;cursor: pointer">اضافه کردن تصویر</div>
                             </div>
                             <input type="file" ng-show="false" id="uploadFile">
                             <div class="col-sm-6">
-                                <input style="background-color: white" type="number" ng-maxlength="10" required name="amount"
+                                <input style="background-color: white" type="number" ng-maxlength="10" required name="amount" ng-change="setAmountOfGift(amount)"
                                     ng-model="amount" class="form-control" id="amount">
                                 <div class="error-message" ng-show="(myform.amount.$dirty || submitted) && inputIsInvalid(myform.amount.$valid,'amount') && myform.amount.$error.maxlength">
                                     حداکثر 10 کاراکتر وارد کنید
@@ -211,12 +211,12 @@
                                     پر کردن این فیلد اجباریست
                                 </div>
                             </div>
-                            <label for="amount" style="color: #575757" class="col-sm-2 control-label">مبلغ</label>
+                            <label for="amount" style="color: #575757" class="col-sm-2 control-label">مبلغ (تومان)</label>
                         </div>
                         <div class="row" style="margin-top: 20px">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-6">
-                                <textarea class="form-control" name="desc" ng-maxlength="150" ng-model="desc" id="desc"
+                                <textarea class="form-control" name="desc" ng-maxlength="150" ng-model="desc" id="desc" ng-change="setDescOfGift(desc)"
                                     style="text-align:right;direction: rtl;background-color: white;resize: none"></textarea>
                                 <div class="error-message" ng-show="(myform.desc.$dirty || submitted) && inputIsInvalid(myform.desc.$valid,'desc') && myform.desc.$error.maxlength">
                                     حداکثر 150 کاراکتر وارد کنید
@@ -252,7 +252,7 @@
                                     پر کردن این فیلد اجباریست
                                 </div>
                             </div>
-                            <label for="camount" class="col-sm-2 control-label">مبلغ مورد نظر</label>
+                            <label for="camount" class="col-sm-2 control-label">مبلغ مورد نظر (تومان)</label>
                         </div>
                         <div class="row" style="margin-top: 20px">
                             <div class="col-sm-4"></div>

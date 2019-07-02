@@ -21,23 +21,6 @@
         var autoLoad;
 
         $scope.initCtrl = function () {
-            setTimeout(function () {
-                $('.mycontent').scroll(function () {
-                    if ($('.mycontent').scrollTop() >= 50) {
-                        $('.page-top').addClass('scrolled');
-                        $('.menu-top').addClass('scrolled');
-                        $('#backTop').fadeIn(500);
-                    } else {
-                        $('.page-top').removeClass('scrolled');
-                        $('.menu-top').removeClass('scrolled');
-                        $('#backTop').fadeOut(500);
-                    }
-                });
-                $('#backTop').click(function () {
-                    $('.mycontent').animate({scrollTop: 0}, 800);
-                    return false;
-                });
-            }, 1000);
             autoLoad = setInterval(function () {
                 $scope.$broadcast('refreshMyTable');
             }, 240000);

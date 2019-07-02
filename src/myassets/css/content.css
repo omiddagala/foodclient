@@ -1173,7 +1173,6 @@ html [type=button] {
 .ui-select-multiple.ui-select-bootstrap {
     display: flex;
     flex-direction: column;
-    -webkit-box-pack: center;
     justify-content: center;
 }
 .ui-select-match-item.btn:hover{
