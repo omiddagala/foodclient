@@ -423,7 +423,7 @@ ion-wallet-select wallet-content .item:last-child {
 
 .menu-content {
     width: 50% !important;
-    max-width: 350px !important;
+    max-width: 270px !important;
 }
 
 ion-list .card {
