@@ -1855,7 +1855,7 @@ ba-sidebar.expanded .al-sidebar, .al-sidebar.sabad__.expanded, .al-sidebar.sabad
     }
 }
 
-@media (max-width: 496px) {
+@media (max-width: 300px) {
     .dtp-ig {
         display: none;
     }

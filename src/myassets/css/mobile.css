@@ -1,3 +1,6 @@
+* {
+    font-family: IRANSans, serif !important;
+}
 *[ui-view] {
     width: 100% !important;
     background-color: #f4f4f4;
@@ -408,7 +411,9 @@ ion-wallet-select wallet-content .item:last-child {
 
 .bar-footer {
     z-index: 150;
-    height: 70px;
+    height: 62px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .bar .title {
@@ -418,7 +423,7 @@ ion-wallet-select wallet-content .item:last-child {
 
 .menu-content {
     width: 50% !important;
-    max-width: 350px !important;
+    max-width: 270px !important;
 }
 
 ion-list .card {
