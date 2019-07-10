@@ -57,6 +57,8 @@
                     foodType: 'IRANIAN',
                     mealAverageCalorie: 0,
                     availableDates: [],
+                    dayBeforeReserve: 0,
+                    timeBeforeReserve: 0,
                     price: {
                         foodPrice: 0,
                         containerPrice: 0,
