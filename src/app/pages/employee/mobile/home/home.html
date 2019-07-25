@@ -7,7 +7,7 @@
                 d="M-.003 52.499c0 1.925 1.566 3.5 3.479 3.5h17.393v-7H3.476c-1.913 0-3.479 1.574-3.479 3.5zm0-42c0 1.925 1.566 3.5 3.479 3.5h31.307v-7H3.476c-1.913 0-3.479 1.575-3.479 3.5zm34.786 49v-3.5h24.351c1.913 0 3.479-1.575 3.479-3.5 0-1.926-1.566-3.5-3.479-3.5H34.783v-3.5c0-1.925-1.564-3.5-3.477-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5s3.477-1.575 3.477-3.5zm-20.87-35v3.5H3.476c-1.913 0-3.479 1.575-3.479 3.501 0 1.924 1.566 3.499 3.479 3.499h10.437v3.5c0 1.925 1.565 3.5 3.477 3.5 1.914 0 3.479-1.575 3.479-3.5v-14c0-1.925-1.565-3.5-3.479-3.5-1.912 0-3.477 1.575-3.477 3.5zm48.7 7.001c0-1.926-1.566-3.501-3.479-3.501H27.827v7h31.307c1.913 0 3.479-1.575 3.479-3.499zM45.22 20.999c1.914 0 3.479-1.575 3.479-3.5v-3.5h10.435c1.913 0 3.479-1.575 3.479-3.5s-1.566-3.5-3.479-3.5H48.699v-3.5c0-1.925-1.565-3.5-3.479-3.5-1.913 0-3.479 1.575-3.479 3.5v14c0 1.925 1.566 3.5 3.479 3.5z" />
         </svg>
     </button>
-    <input type="text" ng-change="search()" id="foodName" name="foodName" ng-model="foodName" class="redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
+    <input type="text" ng-change="textSearch()" id="foodName" name="foodName" ng-model="foodName" class="redius-lg left-padding-lg-imp right-padding-lg text-right" placeholder="جستجوی غذا">
     <button type="button" class="btn btn-link fit-height fit-width line-height-initial no-padding-imp search-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height" viewbox="-10 -10 60 60" width="35"
             height="50">
@@ -33,6 +33,8 @@
         <div class="w-60 right-padding-lg relative mobile-card-content">
             <div class="defult-color text-right font-bold w-100 font-xl line-height-initial min-height-lg">
                 {{food.name}}</div>
+            <div class="text-right color-2e6977" style="direction: rtl">
+                {{food.price.foodPrice | number}} تومان</div>
             <div class="text-right flex items-center w-100 font-xl line-height-initial min-height-lg">
                 <div class="color-2e6977 pointer" ng-click="goToRestaurantPage(food.restaurant.name)">
                     {{food.restaurant.name}}</div>
@@ -44,7 +46,7 @@
             <div class="text-right color-b6b6b6 w-100 food-ingredients min-height-xs">{{food.ingredients}}</div>
             <div class="text-right w-100 flex items-center content-between pointer min-height-xs"
                 ng-click="cardsBottomOrderFoodAction($event,food)">
-                <div class="color-9f9f9f">سفارش برای {{dateToShowOnCards}} ساعت {{timeToShowOnCards}}</div>
+                <div class="color-9f9f9f">سفارش {{dateToShowOnCards}} {{timeToShowOnCards}}</div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="unset-position" viewbox="-10 -10 130 130" width="35"
                     height="35">
                     <path fill="rgb(242, 69, 69)" fill-rule="evenodd"

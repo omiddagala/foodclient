@@ -146,6 +146,13 @@
                 $rootScope.sortBox();
                 $(ionSideMenu).find('ion-side-menu .confirm-box').addClass('confirm-box-disable');
             }, 600);
-        }
+        };
+        var delayTimer;
+        $scope.textSearch = function () {
+            clearTimeout(delayTimer);
+            delayTimer = setTimeout(function () {
+                $scope.loadContent(false, true);
+            }, 700);
+        };
     }
 })();

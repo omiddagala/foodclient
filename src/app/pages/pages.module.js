@@ -209,6 +209,8 @@
                         $(ionSideMenu).find('ion-content [ui-view] .article-mobile-list').addClass('article-mobile-list-sort-visable');
                         $(ionSideMenu).find('ion-content').addClass('content-sort-visible');
                         $(ionSideMenu).find('ion-footer-bar').addClass('footer-sort-visible');
+                        $('#back-button').addClass('footer-sort-visible');
+                        $('#close-search').removeClass('footer-sort-visible');
                         $('.close-search').removeClass('hidden');
                     } else {
                         thisItem.closest('.search-bar-box').show(200);
@@ -221,6 +223,8 @@
                             $(ionSideMenu).find('ion-content [ui-view] .article-mobile-list').removeClass('article-mobile-list-sort-visable');
                             $(ionSideMenu).find('ion-content').removeClass('content-sort-visible');
                             $(ionSideMenu).find('ion-footer-bar').removeClass('footer-sort-visible');
+                            $('#back-button').removeClass('footer-sort-visible');
+                            $('#close-search').addClass('footer-sort-visible');
                         }, 50);
                     }
                 };

@@ -352,6 +352,14 @@
             }, 600);
         };
 
+        var delayTimer;
+        $scope.textSearch = function () {
+            clearTimeout(delayTimer);
+            delayTimer = setTimeout(function () {
+                $scope.loadContent(false, true);
+            }, 700);
+        };
+
         $scope.myFormatDate = function (d) {
             moment.locale('fa');
             moment.loadPersian({dialect: 'persian-modern'});
