@@ -910,9 +910,7 @@
         };
 
         $rootScope.foodIsAvailable = function(finishDate) {
-            var now = moment.utc();
-            now.add('hours',4);
-            now.add('minutes',30);
+            var now = moment();
             return !finishDate || now.isAfter(moment.utc(finishDate).format());
         };
 

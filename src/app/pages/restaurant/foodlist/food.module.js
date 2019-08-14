@@ -18,6 +18,11 @@
     function foodCtrl($scope, $filter, editableOptions, editableThemes, $state, $q, $http, $rootScope, localStorageService, $location, $uibModalStack, $uibModal, toastrConfig, toastr) {
         $scope.smartTablePageSize = 50;
         var preventTwiceLoad = true;
+        var today = new Date();
+        today.setHours(23);
+        today.setMinutes(59);
+        $scope.finishDate = moment(today).format('jYYYY/jM/jD HH:mm');
+        $scope.startDate = moment(new Date()).format('jYYYY/jM/jD HH:mm');
 
         $scope.search = function (pagination, sort, search) {
             if (preventTwiceLoad) {
@@ -103,21 +108,16 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            var date = moment.utc(new Date());
-            date.set({
-                hour:   23,
-                minute: 59,
-                second: 59
-            });
             var param = {
                 id: $scope.item.id,
-                date: date.format('YYYY-MM-DDTHH:mmZ')
+                startDate: moment.utc($scope.startDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
+                endDate: moment.utc($scope.finishDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ')
             };
             return $http.post("http://127.0.0.1:9000/v1/restaurant/food/finishFood", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
-                    $scope.item.finishDate = param.date;
+                    $scope.item.endOfFinishDate = param.endDate;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/restaurant/food/finishFood", err, httpOptions);
@@ -130,22 +130,17 @@
             var httpOptions = {
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
-            var date = moment.utc(new Date());
-            date.set({
-                hour:   23,
-                minute: 59,
-                second: 59
-            });
             var param = {
                 id: $scope.restaurantId,
-                date: date.format('YYYY-MM-DDTHH:mmZ')
+                startDate: moment.utc($scope.startDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ'),
+                endDate: moment.utc($scope.finishDate, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mmZ')
             };
             return $http.post("http://127.0.0.1:9000/v1/restaurant/food/finishAllFood", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
                     $.each($scope.foods, function (i, v) {
-                        v.finishDate = param.date;
+                        v.endOfFinishDate = param.endDate;
                     });
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
@@ -166,7 +161,7 @@
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $uibModalStack.dismissAll();
-                    $scope.item.finishDate = null;
+                    $scope.item.endOfFinishDate = null;
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/restaurant/food/makeFoodAvailable", err, httpOptions);
@@ -187,7 +182,7 @@
                     stopLoading();
                     $uibModalStack.dismissAll();
                     $.each($scope.foods, function (i, v) {
-                        v.finishDate = null;
+                        v.endOfFinishDate = null;
                     });
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
@@ -198,14 +193,20 @@
         $scope.someFoodsAreAvailable = function () {
             if (!$scope.foods)
                 return true;
-            var now = moment.utc();
-            now.add('hours',4);
-            now.add('minutes',30);
+            var now = moment();
             for (var i = 0; i < $scope.foods.length; i++) {
-                if (!$scope.foods[i].finishDate || now.isAfter(moment.utc($scope.foods[i].finishDate).format()))
+                if (!$scope.foods[i].endOfFinishDate || now.isAfter(moment.utc($scope.foods[i].endOfFinishDate).format()))
                     return true;
             }
             return false;
+        };
+
+        $scope.dateChanged = function (date, isStart) {
+            if (isStart) {
+                $scope.startDate = date;
+            } else {
+                $scope.finishDate = date;
+            }
         };
 
         $scope.toggleSidebar = function (e) {
