@@ -5,11 +5,11 @@
         </ul>
     </div>
 </aside>
-<div class="mycontent">
-    <div style="color: green;padding-top: 10%;text-align: center;">
+<div class="mycontent" ng-init="initCtrl()">
+    <div style="color: green;padding-top: 10%;text-align: center;" ng-style="isMobile() && {'padding-bottom':'10%'}">
         حساب شما با موفقیت شارژ شد
     </div>
-    <div style="text-align: center">
+    <div ng-if="!isMobile()" style="text-align: center">
         <button ng-click="locateFirstPage()" class="btn btn-with-icon save-profile confirm_yes confirm_button  padding-md fit-width">
             <i class="ion-home"></i>خانه
         </button>
