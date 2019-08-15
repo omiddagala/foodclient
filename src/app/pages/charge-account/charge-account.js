@@ -10,12 +10,12 @@
         $stateProvider
             .state('charge-account', {
                 url: '/charge-account',
-                templateUrl: 'app/pages/charge-account/charge-account.html',
+                templateUrl: 'app/pages/charge-account/charge-account-from-app.html',
                 controller: 'chargeAccountCtrl'
             });
     }
 
-    function chargeAccountCtrl($scope, fileReader, $filter, $uibModal, $http, $rootScope, localStorageService, toastrConfig, toastr,$location) {
+    function chargeAccountCtrl($scope, fileReader, $filter, $uibModal, $http, $rootScope, localStorageService, $location) {
         $scope.accepted = false;
 
         $scope.pay = function (myform) {
@@ -33,19 +33,17 @@
             };
 
             $scope.showPreOrder = function () {
-                var token = localStorageService.get("my_access_token");
+                var token = $location.search().tok ? $location.search().tok : localStorageService.get("my_access_token");
                 var httpOptions = {
                     headers: {'Content-type': 'text/plain; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
                 var type;
                 if ($rootScope.hasRole("COMPANY") || $rootScope.hasRole("SILVER_COMPANY")){
                     type = "C"
-                } else if ($rootScope.hasRole("EMPLOYEE")){
-                    type = "E"
                 } else {
-                    return;
+                    type = "E"
                 }
-                $scope.amount = $scope.amount.replace(/,/g, '');
+                $scope.amount = $location.search().amount ? $location.search().amount : $scope.amount.replace(/,/g, '');
                 var params = $scope.amount.slice(0,-1) + "," + type;
                 startLoading();
                 $http.post("http://127.0.0.1:9000/v1/payment/getRefId", params, httpOptions)

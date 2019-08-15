@@ -25,9 +25,9 @@
                     </button>
                     <button class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/delete-modal.html', 'md',item,$index)">حذف
                     </button>
-                    <button ng-show="foodIsAvailable(item.finishDate)" class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/finish-modal.html', 'md',item,$index)">اتمام
+                    <button ng-show="foodIsAvailable(item.endOfFinishDate)" class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/finish-modal.html', 'md',item,$index)">اتمام
                     </button>
-                    <button ng-show="!foodIsAvailable(item.finishDate)" class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/available-modal.html', 'md',item,$index)">موجود
+                    <button ng-show="!foodIsAvailable(item.endOfFinishDate)" class="confirm_button confirm_yes btn" ng-click="openModal('app/pages/admin/restaurant/foodlist/available-modal.html', 'md',item,$index)">موجود
                     </button>
                 </div>
             </td>

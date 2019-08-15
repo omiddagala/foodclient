@@ -16,6 +16,14 @@
     }
 
     function successPaymentCtrl($scope, $uibModal, baProgressModal, $http, $rootScope, $location, toastrConfig, toastr,localStorageService) {
-
+        $scope.initCtrl = function () {
+            setTimeout(function () {
+                if (window.isMobile()) {
+                    $(".page-top").css("display","none");
+                    $(".bar-header").css("display","none");
+                    $(".bar-footer").css("display","none");
+                }
+            },500);
+        }
     }
 })();
