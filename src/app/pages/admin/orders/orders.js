@@ -16,7 +16,7 @@
     }
 
     function adminOrdersCtrl($scope, $filter, $state, $q, $http, localStorageService, $uibModal, $rootScope, $location, $uibModalStack) {
-        $scope.smartTablePageSize = 5;
+        $scope.smartTablePageSize = 50;
         $scope.fromDate = moment(new Date()).format('jYYYY/jM/jD HH:mm');
         $scope.toDate = moment(new Date()).add('days', 1).format('jYYYY/jM/jD HH:mm');
         $scope.factorNumber = null;
