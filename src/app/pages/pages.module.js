@@ -833,7 +833,7 @@
                     return "نرمال";
                 case 'FACTOR':
                     return "فاکتورشده";
-                case 'CHARGE_USER_BY_COMPANY':
+                case 'RESTAURANT_CANCEL':
                     return "کنسل بوسیله رستوران";
                 case 'PAYED_TO_RESTAURANT':
                     return "پرداخت شده به رستوران";
@@ -845,6 +845,40 @@
                     return "لغو:سایر";
             }
         };
+        $rootScope.foodOrderStatusForCombo =  [
+            {
+                title: "همه",
+                value: null
+            },
+                {
+                    title: "نرمال",
+                    value: 'NORMAL'
+                },
+                {
+                    title: "فاکتورشده",
+                    value: 'FACTOR'
+                },
+                {
+                    title: "کنسل بوسیله رستوران",
+                    value: 'RESTAURANT_CANCEL'
+                },
+                {
+                    title: "پرداخت شده به رستوران",
+                    value: 'PAYED_TO_RESTAURANT'
+                },
+                {
+                    title: "لغو:اشتباه رستوران",
+                    value: 'RESTAURANT_MISTAKE'
+                },
+                {
+                    title: "لغو:اشتباه سیستم",
+                    value: 'SYSTEM_ERROR'
+                },
+                {
+                    title: "لغو:سایر",
+                    value: 'OTHER'
+                }
+            ];
         $rootScope.restaurantTypes = [{
             label: "ایرانی",
             value: "IRANIAN"
