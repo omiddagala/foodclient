@@ -92,6 +92,47 @@
                     </li>
                 </ul>
             </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 120px;margin-top: 100px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">گزارش خریدهای کارمندان از تاریخ</div>
+                </div>
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(fromDate,true)" ng-model='fromDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{fromDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true,imgsrc:"xxxx"}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 120px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">تا تاریخ</div>
+                </div>
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="dateChanged(toDate,false)" ng-model='toDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{toDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true,imgsrc:"xxxx"}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px">
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div style="text-align: center;">
+                            <div style="height: 72px">
+                                <img style="width: 72px;" src="/assets/img/ui/download.png">
+                            </div>
+                            <button ng-click="employeesBuyReport()" style="width: 8em;" class="confirm_button confirm_yes btn">دریافت
+                                فایل
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </aside>

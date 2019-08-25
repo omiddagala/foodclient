@@ -2,6 +2,7 @@
 <a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
     <img src="assets/img/filter.png" class="img-responsive" />
 </a>
+<div ng-init="initCtrl()">
 <aside id="mySearchSidebar" class="al-sidebar">
     <div class="slimScrollDiv grid_sidebar__wrapper">
         <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
@@ -17,6 +18,33 @@
                         <div>
                             <input ng-model="factorNumber" type="text" class="form-control" id="factorNumber" name="factorNumber"
                                    placeholder="شماره فاکتور">
+                        </div>
+                        <div>
+                            <input ng-model="companyName" type="text" class="form-control" id="companyName" name="companyName"
+                                   placeholder="نام شرکت">
+                        </div>
+                        <div>
+                            <input ng-model="restName" type="text" class="form-control" id="restName" name="restName"
+                                   placeholder="نام رستوران">
+                        </div>
+                        <div class="col-sm-10 margin__bottom_5" style="margin-top: 10px;width: 100%">
+                            <div class="btn-group bootstrap-select form-control btn-primary ng-pristine ng-untouched ng-valid ng-empty">
+                                <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
+                                        role="button" data-id="resName" aria-expanded="false"><span id="resName_selected_title"
+                                                                                                    class="filter-option pull-left">{{status.title}}</span>&nbsp;<span class="bs-caret"><span
+                                        class="caret"></span></span></button>
+                                <div class="dropdown-menu open" role="combobox" style="max-height: 350px; overflow: hidden; min-height: 0px;">
+                                    <ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 339px; overflow-y: auto; min-height: 0px;">
+                                        <li ng-click="status_changed(item)" ng-repeat="item in foodOrderStatusForCombo">
+                                            <a tabindex="0" class="no-border no-box-shadow" data-tokens="null" role="option"
+                                               aria-disabled="false" aria-selected="false">
+                                                <span class="text">{{item.title}}</span>
+                                                <span class="glyphicon glyphicon-ok check-mark"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li style="padding: 15px; padding-right: 0;" ui-sref-active="selected" ba-sidebar-toggling-item="subitem"
@@ -49,7 +77,7 @@
     </div>
 </aside>
 
-<div class="mycontent widgets" ng-init="initCtrl()" style="background: #e2eded;padding-left: 16px;padding-bottom: 25%;padding-top: 5%">
+<div class="mycontent widgets" style="background: #e2eded;padding-left: 16px;padding-bottom: 25%;padding-top: 5%">
     <div class="row">
         <div class="col-md-12">
             <div class="horizontal-scroll">
@@ -64,6 +92,11 @@
                         <th st-sort="foodOrderStatus">
                             <div class="newtable_header">
                                 وضعیت
+                            </div>
+                        </th>
+                        <th st-sort="employee.company.name">
+                            <div class="newtable_header">
+                                نام شرکت
                             </div>
                         </th>
                         <th st-sort="employee.name">
@@ -81,7 +114,7 @@
                                 شماره رستوران
                             </div>
                         </th>
-                        <th st-sort="deliveryPrice">
+                        <th st-sort="restaurant.name">
                             <div class="newtable_header">
                                 نام رستوران
                             </div>
@@ -116,6 +149,7 @@
                             </div>
                         </td>
                         <td>{{getFoodOrderStatus(item.foodOrderStatus)}}</td>
+                        <td>{{item.employee.company.name}}</td>
                         <td>{{item.employee.name}}</td>
                         <td>{{item.employee.phone}}</td>
                         <td>{{item.restaurant.phone}}</td>
@@ -136,6 +170,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <style>
     .newmenu {
