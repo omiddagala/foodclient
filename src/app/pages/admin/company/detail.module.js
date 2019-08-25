@@ -46,6 +46,7 @@
                             stopLoading();
                             $scope.restInfo = data.data;
                             $scope.selectedRest = data.data.restaurants;
+                            $scope.restChanged($scope.selectedRest);
                         }).catch(function (err) {
                         $rootScope.handleError(id, "/adminCompanyManagementRest/findById", err, httpOptions);
                     });
@@ -92,7 +93,9 @@
             $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/addOrUpdateCompany", $scope.restInfo, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
+                    var a = $scope.restInfo.rests;
                     $scope.restInfo = data.data;
+                    $scope.restInfo.rests = a;
                     $location.url($location.path());
                     $location.search({id: $scope.restInfo.id});
                     showMessage(toastrConfig,toastr,"پیام","عملیات با موفقیت انجام شد","success");
