@@ -17,6 +17,8 @@
 
     function coReports($scope, $filter, editableOptions, editableThemes, $state, $rootScope,$q, $http, localStorageService, $location, $uibModal, $timeout, toastrConfig, toastr) {
         $scope.commissionDate = moment(new Date()).format('jYYYY/jM/jD');
+        $scope.fromDate = moment(new Date()).format('jYYYY/jM/jD');
+        $scope.toDate = moment(new Date()).add('days', 30).format('jYYYY/jM/jD');
         var preventTwiceLoad = true;
         $scope.selectedLoc = {
             title : "لطفا محل را انتخاب کنید"
@@ -125,6 +127,33 @@
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getEmployeesFoodList", err, httpOptions);
             });
+        };
+
+        $scope.employeesBuyReport = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var params = {
+                "endDate": moment.utc($scope.toDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
+                "startDate": moment.utc($scope.fromDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            $http.post("http://127.0.0.1:9000/v1/company/getEmployeesBuyReport", params, httpOptions)
+                .success(function (data, status, headers, config) {
+                    mydownload(data, 'report.pdf','application/pdf');
+                    stopLoading();
+                }).catch(function (err) {
+                $rootScope.handleError(params, "/company/getEmployeesBuyReport", err, httpOptions);
+            });
+        };
+
+        $scope.dateChanged = function (date, isFromDate) {
+            if (isFromDate) {
+                $scope.fromDate = date;
+            } else {
+                $scope.toDate = date;
+            }
         };
 
         $scope.commissionDateChanged = function (d) {
