@@ -181,6 +181,11 @@
                     showMessage(toastrConfig, toastr, "خطا", "لطفا محل کارمند را انتخاب کنید", "error");
                     return;
                 }
+                if (!$rootScope.userInfo.department) {
+                    stopLoading();
+                    showMessage(toastrConfig, toastr, "خطا", "لطفا دپارتمان را انتخاب کنید", "error");
+                    return;
+                }
             }
             $http.post("http://127.0.0.1:9000/v1/companyEmployeeManagement/addOrUpdateEmployee", $rootScope.userInfo, httpOptions)
                 .then(function (data, status, headers, config) {
@@ -474,6 +479,10 @@
         $scope.address_changed = function (r) {
             $scope.userInfo.location = r;
             drawMap();
+        };
+
+        $scope.dept_changed = function (r) {
+            $scope.userInfo.department = r;
         };
 
     }

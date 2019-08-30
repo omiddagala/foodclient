@@ -102,6 +102,29 @@
                 });
         };
 
+        $scope.startDate = moment(new Date()).format('jYYYY/jM/jD');
+        $scope.dateChanged = function(d) {
+            $scope.startDate = d;
+        };
+        $scope.getOfficialInvoice = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                id: $scope.item.id,
+                date: moment.utc($scope.startDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            return $http.post("http://127.0.0.1:9000/v1/financial/createKarafeedOfficialInvoice", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    mydownload(data.data, 'report.pdf','application/pdf');
+                    stopLoading();
+                }).catch(function (err) {
+                    $rootScope.handleError(param, "/financial/createKarafeedOfficialInvoice", err, httpOptions);
+                });
+        };
+
         $scope.openModal = function (page, size, item,index) {
             $scope.item = item;
             $scope.itemIndex = index;
