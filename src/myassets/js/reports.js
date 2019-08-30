@@ -135,7 +135,10 @@ function printFactor(param) {
 
     mywindow.document.close(); // necessary for IE >= 10
     mywindow.focus(); // necessary for IE >= 10*/
+    setTimeout(function () {
+        mywindow.print();
+        mywindow.close();
+    },1000);
 
-    mywindow.print();
-    mywindow.close();
+
 }
