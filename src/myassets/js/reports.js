@@ -46,6 +46,11 @@ function myview(data) {
 }
 
 function prepareFactorToPrint(item, $rootScope) {
+    if (!item.employee.department) {
+        item.employee.department = {
+            name: ""
+        }
+    }
     var param = '<div class="myprint" style="page-break-after:always;">' +
         '<div style="width: 100%;height: 70px;border-bottom: 2px;border-bottom-style: solid;"> ' +
         '<div style="text-align: right;font-size: medium;width: 48%;float: left;line-height: 45px;">' + moment.utc(item.deliveryDate).subtract("minutes", 15).format("HH:mm") + '</div>' +
