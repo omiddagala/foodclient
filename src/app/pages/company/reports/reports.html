@@ -40,7 +40,7 @@
             <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
                 ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px">
                 <div class="al-sidebar-list-link text-right default-cursor">
-                    <div class="newmenu__search_title ">فاکتورهای کارافید</div>
+                    <div class="newmenu__search_title ">گزارش هفتگی هزینه ها از تاریخ {{commissionDate}}</div>
                 </div>
                 <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
                     <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
@@ -49,6 +49,24 @@
                                 <img style="width: 72px;" src="/assets/img/ui/download.png">
                             </div>
                             <button ng-click="factorsOfKarafeed()" style="width: 8em;" class="confirm_button confirm_yes btn">دریافت
+                                فایل
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px;margin-top: 30px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">فاکتور رسمی در تاریخ {{commissionDate}}</div>
+                </div>
+                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div style="text-align: center;">
+                            <div style="height: 72px">
+                                <img style="width: 72px;" src="/assets/img/ui/download.png">
+                            </div>
+                            <button ng-click="getOfficialInvoice()" style="width: 8em;" class="confirm_button confirm_yes btn">دریافت
                                 فایل
                             </button>
                         </div>

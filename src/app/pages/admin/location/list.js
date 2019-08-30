@@ -166,5 +166,10 @@
             });
         };
 
+        $scope.gotToDepartments = function (loc) {
+           $rootScope.LOC = loc;
+           $location.path("/departments");
+        }
+
     }
 })();

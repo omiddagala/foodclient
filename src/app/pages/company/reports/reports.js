@@ -91,6 +91,24 @@
             });
         };
 
+        $scope.getOfficialInvoice = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var params = {
+                "date": moment.utc($scope.commissionDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            $http.post("http://127.0.0.1:9000/v1/company/getOfficialInvoice", params, httpOptions)
+                .success(function (data, status, headers, config) {
+                    mydownload(data,'invoice.pdf','application/pdf');
+                    stopLoading();
+                }).catch(function (err) {
+                $rootScope.handleError(params, "/company/getOfficialInvoice", err, httpOptions);
+            });
+        };
+
         $scope.restaurantFactor = function(id,name){
             startLoading();
             var token = localStorageService.get("my_access_token");

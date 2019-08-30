@@ -47,112 +47,76 @@ function myview(data) {
 
 function prepareFactorToPrint(item, $rootScope) {
     var param = '<div class="myprint" style="page-break-after:always;">' +
-        '<h5 style="text-align: center;font-size: medium;direction: rtl">' + item.restaurant.name + '</h5>' +
+        '<div style="width: 100%;height: 70px;border-bottom: 2px;border-bottom-style: solid;"> ' +
+        '<div style="text-align: right;font-size: medium;width: 48%;float: left;line-height: 45px;">' + moment.utc(item.deliveryDate).subtract("minutes", 15).format("HH:mm") + '</div>' +
+        '<div style="text-align: left;font-size: medium;width: 48%;float: right"><img style="width: 45px" src="/assets/img/ui/clock.png"></div>' +
+        '</div>' +
+        '<div style="width: 100%;height: 150px;border-bottom: 2px;border-bottom-style: solid;padding-top: 30px"> ' +
+        '<div style="text-align: center;font-size: medium;width: 50%;float: left;line-height: 45px">' +
+        '<div style="border-bottom: 1px;border-bottom-style: solid;"> ' + item.location.title + '</div>' +
+        '<div>' + item.employee.department.name + '</div>' +
+        '</div>' +
+        '<div style="text-align: center;font-size: medium;width: 50%;float: right;padding-top: 35px">' + item.employee.company.name + '</div>' +
+        '</div>' +
+        '<div style="width: 100%;height: 50px;border-bottom: 2px;border-bottom-style: solid;padding-top: 15px;font-size: small;text-align: right;direction: rtl"> ' +
+        item.location.address +
+        '</div>' +
+        '<div style="text-align: center;font-size: medium;width: 100%;float: right;padding-top: 10px;margin-top: 30px">' + item.restaurant.name + '</div>' +
         '<div style="list-style: none;">' +
         '<div>' +
-        '<div style="animation-delay: 1.5s;height: 20px;border-bottom:1px solid black;border-bottom-width:thin' +
-        'border-bottom: 2px dashed black !important;font-size: small;border-top: 0;list-style-type: none;">' +
-        '<div style="float: left;letter-spacing: 1px;color: black;width: 30%;text-align: left;font-size: medium"> قیمت </div>' +
-        '<div style="float:left;color: black;font-weight: 300;width: 25%;text-align: center;font-size: medium"> تخفیف </div>' +
-        '<div style="float:left;color: black;font-weight: 300;width: 5%;text-align: center;font-size: medium"> تعداد </div>' +
-        '<span style="color: black;font-weight: 300;width: 40%;text-align: right;float: right;font-size: medium;direction: rtl"> نام غذا </span>' +
+        '<div style="animation-delay: 1.5s;height: 20px;' +
+        ';font-size: small;border-top: 0;list-style-type: none;">' +
+        '<div style="float:left;color: black;font-weight: 300;width: 10%;text-align: center;font-size: medium"> تعداد </div>' +
+        '<span style="color: black;font-weight: 300;width: 90%;text-align: right;float: right;font-size: medium;direction: rtl"> نام غذا </span>' +
         '</div>' +
         '</div>';
     for (var i = 0; i < item.foodOrders.length; i++) {
         param += '<div>' +
             '<div style="animation-delay: 1.5s;overflow: auto;' +
-            'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;list-style-type: none;line-height: 30px">' +
-            '<div style="float: left;letter-spacing: 1px;color: black;width: 30%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodPriceAfterOff) + '</div>' +
-            '<div style="float:left;letter-spacing: 1px;color: black;width: 25%;text-align: center;font-size: medium">' + $rootScope.formatPrice(item.foodOrders[i].foodOriginalPrice - item.foodOrders[i].foodPriceAfterOff) + '</div>' +
-            '<div style="color: black;font-weight: 300;width: 5%;text-align: center;float: left;font-size: medium">' + item.foodOrders[i].count + '</div>' +
-            '<div style="color: black;font-weight: 300;width: 40%;text-align: right;float: right;font-size: medium">' + item.foodOrders[i].food.name + '</div>' +
+            'border-top: 1px dashed black !important;font-size: x-small;border-bottom: 0;list-style-type: none;line-height: 30px;width: 100%">' +
+            '<div style="color: black;font-weight: 300;width: 10%;text-align: center;float: left;font-size: medium">' + item.foodOrders[i].count + '</div>' +
+            '<div style="color: black;font-weight: 300;width: 90%;text-align: right;float: right;font-size: medium">' + item.foodOrders[i].food.name + '</div>' +
             '</div>' +
             '</div>'
     }
-    param += '<div>' +
-        '<div style="animation-delay: 1.5s;overflow: auto;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;list-style-type: none;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.totalContainerPrice) + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">ظرف</span>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div style="overflow: auto;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;list-style-type: none;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.totalTaxAmount + item.deliveryPriceTax) + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">مالیات</span>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div style="overflow: auto;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;list-style-type: none;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.deliveryPrice) + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">هزینه حمل</span>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div ' +
-        'style="animation-delay: 1.5s;overflow: auto;list-style-type: none;font-size: x-small;border-top: 0;margin-bottom: 0;border-top: 1px solid black !important;border-bottom: none !important;line-height: 30px">' +
-        '<span style="color: black;font-weight: 300;width: 60%;text-align: right;float: right;font-size: medium">مجموع</span><span ' +
-        'style="float: left;letter-spacing: 1px;color: black;width: 40%;text-align: left;font-size: medium">' + $rootScope.formatPrice(item.totalAmount) + '</span>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
+    param +=
+        '<div style="margin-top: 30px;border-top: 2px;border-top-style: solid;padding-top: 20px">' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
         'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.employee.company.name + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">مشتری</span>' +
+        '<div style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: large">' + item.employee.name + '</div>' +
+        '<div style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: large">' + item.employee.mobile + '</div>' +
         '</div>' +
         '</div>' +
-        '<div>' +
+
+        '<div style="margin-top: 20px;border-top: 2px;border-top-style: solid;padding-top: 20px">' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
         'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.employee.name + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">تحویل گیرنده</span>' +
+        '<div style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: medium">' + $rootScope.subtranctMinutes(item.deliveryDate, 15) + '</div>' +
         '</div>' +
         '</div>' +
-        '<div>' +
+
+        '<div style="margin-top: 20px;border-top: 2px;border-top-style: solid;padding-top: 20px">' +
         '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
         'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.location.address + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">آدرس</span>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.employee.mobile + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">شماره</span>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + $rootScope.subtranctMinutes(item.deliveryDate, 15) + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">زمان تحویل</span>' +
-        '</div>' +
-        '</div>' +
-        '<div>' +
-        '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
-        'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-        '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.id + '</span>' +
-        '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">شماره فاکتور</span>' +
+        '<div style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: large">شماره فاکتور</div>' +
+        '<div style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: large">' + item.id + '</div>' +
         '</div>' +
         '</div>';
     if (item.description) {
-        param += '<div>' +
+        param += '<div style="margin-top: 20px;border-top: 2px;border-top-style: solid;padding-top: 20px">' +
             '<div style="animation-delay: 1.5s;overflow: auto;list-style-type: none;' +
             'border-bottom: 1px dashed black !important;font-size: x-small;border-top: 0;;margin-bottom: 0;border-bottom: none !important;line-height: 30px">' +
-            '<span style="float: left;letter-spacing: 1px;color: black;width: 80%;text-align: left;font-size: medium">' + item.description + '</span>' +
-            '<span style="color: black;font-weight: 300;width: 20%;text-align: right;float: right;font-size: medium">توضیحات</span>' +
+            '<span style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: medium">توضیحات مشتری</span>' +
+            '<span style="float: left;letter-spacing: 1px;color: black;width: 100%;text-align: center;font-size: medium">' + item.description + '</span>' +
             '</div>' +
             '</div>';
     }
-    param += '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 30px">' +
+    param += '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 30px;border-top: 2px;border-top-style: solid;padding-top: 30px">' +
         '<img style="width: 60px;height: 30px" src="/assets/img/ui/mobile/karafeed.png"/>' +
         '</div>' +
-        '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 10px">02126712337</div>' +
+        '<div style="text-align: center;font-size: small;direction: rtl;margin-top: 10px">شبکه تخصصی تامین غذای شرکتی</div>' +
+        '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 10px">021-26712337</div>' +
+        '<div style="text-align: center;font-size: medium;direction: rtl;margin-top: 10px">www.karafeed.com</div>' +
         '</div>';
     return param;
 }

@@ -86,7 +86,8 @@
         'BlurAdmin.pages.ad-loc',
         'BlurAdmin.pages.feedbacks',
         'BlurAdmin.pages.emp-mobile-restaurant',
-        'BlurAdmin.pages.emp-mobile-home'
+        'BlurAdmin.pages.emp-mobile-home',
+        'BlurAdmin.pages.departments'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {

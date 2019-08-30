@@ -10,7 +10,7 @@
                 style="height: 285px">
                 <ul class="al-sidebar-sublist" style="display: block;">
                     <li style="text-align: center !important;">
-                        <button ng-click="opneModal('app/pages/admin/location/detail-modal.html', 'lg')"
+                        <button ng-click="opneModal('app/pages/admin/location/dept-modal.html', 'lg')"
                                 type="button" style="width: auto" class="confirm_button confirm_yes btn">افزودن
                         </button>
                     </li>
@@ -34,12 +34,7 @@
                         </th>
                         <th>
                             <div class="newtable_header">
-                                آدرس
-                            </div>
-                        </th>
-                        <th>
-                            <div class="newtable_header">
-                                عنوان
+                                نام
                             </div>
                         </th>
                         <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true">#</th>
@@ -51,25 +46,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr id="{{$index}}" ng-repeat="item in locs">
+                    <tr id="{{$index}}" ng-repeat="item in LOC.departments">
                         <td>
                             <div class="buttons">
                                 <button class="confirm_button confirm_yes btn"
-                                        ng-click="gotToDepartments(item.location)">
-                                    دپارتمان ها
-                                </button>
-                                <button class="confirm_button confirm_yes btn"
-                                        ng-click="opneModal('app/pages/admin/location/detail-modal.html', 'lg',item.location,$index)">
+                                        ng-click="opneModal('app/pages/admin/location/dept-modal.html', 'lg',item,$index)">
                                     ویرایش
                                 </button>
                                 <button class="confirm_button confirm_yes btn"
-                                        ng-click="opneModal('app/pages/admin/location/delete-modal.html', 'lg',item.location,$index,true)">
+                                        ng-click="opneModal('app/pages/admin/location/delete-modal.html', 'lg',item,$index)">
                                     حذف
                                 </button>
                             </div>
                         </td>
-                        <td>{{item.location.address}}</td>
-                        <td>{{item.location.title}}</td>
+                        <td>{{item.name}}</td>
                         <td class="table-id">{{$index+1}}</td>
                     </tr>
                     </tbody>
