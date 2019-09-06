@@ -68,8 +68,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/financial/createKarafeedCommissionInvoice", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/financial/createKarafeedCommissionInvoice", err, httpOptions);
             });
@@ -88,8 +96,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/financial/getRestaurantInvoiceForKarafeed", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/financial/getRestaurantInvoiceForKarafeed", err, httpOptions);
             });
@@ -108,8 +124,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/financial/getInvoiceOfKarafeedForCompany", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/financial/getInvoiceOfKarafeed", err, httpOptions);
             });
