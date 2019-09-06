@@ -59,8 +59,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/restaurant/getCommissionInvoice", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,'karafeed-commissions.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,'karafeed-commissions.pdf','application/pdf');
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/restaurant/getCommissionInvoice", err, httpOptions);
             });
@@ -77,8 +85,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/restaurant/createInvoiceForKarafeed", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,'karafeed-factors.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,'karafeed-factors.pdf','application/pdf');
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/restaurant/createInvoiceForKarafeed", err, httpOptions);
             });
@@ -96,8 +112,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/restaurant/getInvoiceOfRestaurant", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,name + '.pdf','application/pdf');
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/restaurant/getInvoiceOfRestaurant", err, httpOptions);
             });

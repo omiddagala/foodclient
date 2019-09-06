@@ -84,8 +84,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/company/getInvoiceOfKarafeed", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,'karafeed-commissions.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,'karafeed-commissions.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getInvoiceOfKarafeed", err, httpOptions);
             });
@@ -102,8 +110,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/company/getOfficialInvoice", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,'invoice.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,'invoice.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getOfficialInvoice", err, httpOptions);
             });
@@ -121,8 +137,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/company/getInvoiceOfRestaurant", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,name + '.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getInvoiceOfRestaurant", err, httpOptions);
             });
@@ -140,8 +164,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/company/getEmployeesFoodList", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,'report.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,'report.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getEmployeesFoodList", err, httpOptions);
             });
@@ -159,8 +191,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/company/getEmployeesBuyReport", params, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data, 'report.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data, 'report.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getEmployeesBuyReport", err, httpOptions);
             });

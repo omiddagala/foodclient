@@ -118,8 +118,17 @@
             };
             return $http.post("http://127.0.0.1:9000/v1/financial/createKarafeedOfficialInvoice", param, httpOptions)
                 .then(function (data, status, headers, config) {
-                    mydownload(data.data, 'report.pdf','application/pdf');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data.data, 'report.pdf','application/pdf',toastrConfig,toastr);
+
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/financial/createKarafeedOfficialInvoice", err, httpOptions);
                 });

@@ -273,8 +273,16 @@
             };
             $http.post("http://127.0.0.1:9000/v1/financial/getRestaurantsChequeFile", null, httpOptions)
                 .success(function (data, status, headers, config) {
-                    mydownload(data,'payment.txt','plain/text');
                     stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data,'payment.txt','plain/text',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(null, "/financial/getRestaurantsChequeFile", err, httpOptions);
             });
