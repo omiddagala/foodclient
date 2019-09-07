@@ -206,6 +206,31 @@
             });
         };
 
+        $scope.getAllEmployeesBalancePDF = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var params = {
+            };
+            $http.post("http://127.0.0.1:9000/v1/company/getAllEmployeesBalancePDF", params, httpOptions)
+                .success(function (data, status, headers, config) {
+                    stopLoading();
+                    if (data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data, 'report.pdf','application/pdf',toastrConfig,toastr);
+                }).catch(function (err) {
+                $rootScope.handleError(params, "/company/getAllEmployeesBalancePDF", err, httpOptions);
+            });
+        };
+
         $scope.dateChanged = function (date, isFromDate) {
             if (isFromDate) {
                 $scope.fromDate = date;

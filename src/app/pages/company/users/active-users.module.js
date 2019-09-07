@@ -301,6 +301,20 @@
                 $rootScope.handleError(param, "/company/chargeEmployee", err, httpOptions);
             });
         };
+        $scope.takeBackChargesFromAllEmployee = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            $http.post("http://127.0.0.1:9000/v1/company/takeBackChargesFromAllEmployee", null, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
+                }).catch(function (err) {
+                $rootScope.handleError(null, "/company/takeBackChargesFromAllEmployee", err, httpOptions);
+            });
+        };
         $scope.uploadGiftImage = function () {
             var fileInput = document.getElementById('uploadFile');
             $(fileInput).off('change');
