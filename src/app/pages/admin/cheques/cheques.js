@@ -101,6 +101,29 @@
             });
         };
 
+        $scope.karafeedFinancialStatus = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminReport/karafeedFinancialStatus", null, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    if (data.data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data.data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                }).catch(function (err) {
+                $rootScope.handleError(null, "/adminReport/karafeedFinancialStatus", err, httpOptions);
+            });
+        };
+
         $scope.report = function (id) {
             if (id) {
                 $location.path('/ad-cheque-report').search({id: id});
