@@ -69,12 +69,18 @@
                                         </th>
                                         <th st-sort="firstName">
                                             <div class="newtable_header">
+                                                بدهی
+                                            </div>
+                                        </th>
+                                        <th st-sort="firstName">
+                                            <div class="newtable_header">
                                                 نام
                                             </div>
                                         </th>
                                         <th class="table-id" id="triggerSearch" st-sort="id" st-sort-default="true">#</th>
                                     </tr>
                                     <tr>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                         <th>
@@ -128,6 +134,7 @@
                                         <td ng-style="getStatusColor(item.accountStatus)">{{getStatus(item.accountStatus)}}</td>
                                         <td>{{item.mobile}}</td>
                                         <td>{{item.phone}}</td>
+                                        <td>{{item.companyDept}}</td>
                                         <td>{{item.name}}</td>
                                         <td class="table-id">{{$index+1}}</td>
                                     </tr>
