@@ -17,6 +17,8 @@
 
     function adminChequeCtrl($scope, $filter, editableOptions, editableThemes,$rootScope, $state, $q, $http, localStorageService, $location,$uibModal, $uibModalStack, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
+        $scope.finishDate = moment(new Date()).add('days', 1).format('jYYYY/jM/jD');
+        $scope.startDate = moment(new Date()).format('jYYYY/jM/jD');
 
         $scope.initCtrl = function () {
             $scope.submitted = false;
@@ -121,6 +123,41 @@
                     mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(null, "/adminReport/karafeedFinancialStatus", err, httpOptions);
+            });
+        };
+
+        $scope.dateChanged = function (date, isStart) {
+            if (isStart) {
+                $scope.startDate = date;
+            } else {
+                $scope.finishDate = date;
+            }
+        };
+
+        $scope.karafeedFinancialAbstract = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                startDate: moment.utc($scope.startDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
+                endDate: moment.utc($scope.finishDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminReport/karafeedFinancialAbstract", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    if (data.data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data.data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                }).catch(function (err) {
+                $rootScope.handleError(param, "/adminReport/karafeedFinancialStatus", err, httpOptions);
             });
         };
 
