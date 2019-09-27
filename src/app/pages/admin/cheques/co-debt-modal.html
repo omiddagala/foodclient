@@ -1,0 +1,43 @@
+<div style="position: relative;height: 100%">
+    <input id="test" type="text" style="display: none" title="hi"/>
+    <div class="food_detail_body" style="width: 100%">
+        <div style="height: 10%">
+            <div class="newmodal_close_header">
+                <button type="button" class="close newmodal_close" ng-click="$dismiss()" aria-label="Close">
+                    <img src="/assets/img/ui/close.png">
+                </button>
+                <img src="/assets/img/ui/small-logo.png" class="newmodal_small_logo">
+            </div>
+        </div>
+    </div>
+    <div class="confirm_body" style="height: 95%; padding-bottom: 10px;">
+        <div class="confirm_icon"></div>
+        <div class="confirm_question">
+            گزارش بدهی شرکتها از تاریخ
+        </div>
+        <div style="width: 50%;margin: 0 auto;padding-bottom: 20px">
+            <adm-dtp id="startDate" on-change="dateChanged(startDate, true)" ng-model='startDate'
+                     options='{calType: "jalali", format: "YYYY/MM/DD hh:mm",default:"{{startDate}}", multiple:false,freezeInput:true,dtpType:"datetime",autoClose:true}'></adm-dtp>
+        </div>
+        <div class="confirm_question">
+            تا تاریخ
+        </div>
+        <div style="width: 50%;margin: 0 auto;padding-bottom: 20px">
+            <adm-dtp id="finishDate" on-change="dateChanged(finishDate, false)" ng-model='finishDate'
+                     options='{calType: "jalali", format: "YYYY/MM/DD hh:mm",default:"{{finishDate}}", multiple:false,freezeInput:true,dtpType:"datetime",autoClose:true}'></adm-dtp>
+        </div>
+        <div class="confirm_button_wrapper left-text left-padding-lg">
+            <button type="button" style="width: 4em;" class="btn confirm_button confirm_no" ng-click="$dismiss()">لغو</button>
+            <button type="button" style="width: 4em;margin-bottom: 0" class="btn confirm_button confirm_yes" ng-click="debtOfCompanies()">دریافت</button>
+        </div>
+    </div>
+</div>
+<style>
+    .modal .modal-dialog{
+        height: 50%;
+        top: 25%;
+    }
+    .modal .modal-dialog .confirm_body{
+        top: 15%;
+    }
+</style>

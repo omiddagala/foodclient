@@ -18,6 +18,8 @@
     function companyListCtrl($scope, $filter, editableOptions, editableThemes, $state, $rootScope,$q, $http, localStorageService, $location,$uibModal, $uibModalStack, toastrConfig, toastr) {
         $scope.smartTablePageSize = 10;
         var preventTwiceLoad = true;
+        $scope.finishDate = moment(new Date()).add('days', 1).format('jYYYY/jM/jD');
+        $scope.startDate = moment(new Date()).format('jYYYY/jM/jD');
 
         $scope.initCtrl = function () {
             $scope.submitted = false;
@@ -228,6 +230,34 @@
             });
         };
 
+        $scope.debtReport = function (form) {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                id : $scope.item,
+                startDate: moment.utc($scope.startDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
+                endDate: moment.utc($scope.finishDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminCompanyManagementRest/getDebtReportOfCompany", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    if (data.data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data.data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                }).catch(function (err) {
+                $rootScope.handleError(param, "/adminCompanyManagementRest/getDebtReportOfCompany", err, httpOptions);
+            });
+        };
+
         $scope.sendSystemMessage = function (form) {
             $scope.submitted = true;
             if (!form.$valid){
@@ -326,6 +356,14 @@
                 return {'color':'red'};
             } else {
                 return {'color' : 'green'};
+            }
+        };
+
+        $scope.dateChanged = function (date, isStart) {
+            if (isStart) {
+                $scope.startDate = date;
+            } else {
+                $scope.finishDate = date;
             }
         };
 

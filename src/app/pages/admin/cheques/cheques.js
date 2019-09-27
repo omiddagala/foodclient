@@ -161,6 +161,60 @@
             });
         };
 
+        $scope.debtOfCompanies = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                startDate: moment.utc($scope.startDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
+                endDate: moment.utc($scope.finishDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminReport/getCompaniesDebtReport", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    if (data.data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data.data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                }).catch(function (err) {
+                $rootScope.handleError(param, "/adminReport/getCompaniesDebtReport", err, httpOptions);
+            });
+        };
+
+        $scope.karafeedReport = function () {
+            startLoading();
+            var token = localStorageService.get("my_access_token");
+            var httpOptions = {
+                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
+            };
+            var param = {
+                startDate: moment.utc($scope.startDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ'),
+                endDate: moment.utc($scope.finishDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
+            };
+            $http.post("http://127.0.0.1:9000/v1/adminReport/getKarafeedInvoiceList", param, httpOptions)
+                .then(function (data, status, headers, config) {
+                    stopLoading();
+                    if (data.data === "-1") {
+                        showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
+                        return;
+                    }
+                    if (data.data === "-2") {
+                        showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }
+                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                }).catch(function (err) {
+                $rootScope.handleError(param, "/adminReport/getKarafeedInvoiceList", err, httpOptions);
+            });
+        };
+
         $scope.report = function (id) {
             if (id) {
                 $location.path('/ad-cheque-report').search({id: id});
