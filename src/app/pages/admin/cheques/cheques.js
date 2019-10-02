@@ -209,7 +209,7 @@
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
                         return;
                     }
-                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data.data,'report.xls','vnd.ms-excel',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(param, "/adminReport/getKarafeedInvoiceList", err, httpOptions);
             });
