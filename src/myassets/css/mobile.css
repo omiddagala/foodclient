@@ -89,7 +89,7 @@ div.pane {
     height: 19px;
     /* object-fit: contain; */
     border-radius: 3px;
-    /* background-color: #f44545; */
+     background-color: #f44545;
     z-index: 1;
     color: white;
     text-align: center;
