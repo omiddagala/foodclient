@@ -392,6 +392,11 @@
                 })
             }
         };
+
+        $rootScope.isNotInPaymentPages = function() {
+            return location.hash.indexOf('#/charge-account') < 0 && location.hash.indexOf('#/failed-payment') < 0 && location.hash.indexOf('#/success-payment') < 0;
+        };
+
         $rootScope.loadMenus();
 
         $rootScope.loadBalanceByRole = function () {
@@ -475,7 +480,7 @@
             });
         };
         if (!token || !$rootScope.roles) {
-            if (location.hash !== '#/forget')
+            if (location.hash !== '#/forget' && $rootScope.isNotInPaymentPages())
                 $location.path('/login');
         } else {
             $rootScope.loadBalanceByRole();
@@ -727,13 +732,12 @@
         };
         $rootScope.handleError = function (requestParams, url, err, h) {
             stopLoading();
-            if (err.status === 401) {
+            if (err.status === 401 && $rootScope.isNotInPaymentPages()) {
                 $rootScope.logout();
                 return;
-            }
-            if (!err.data)
+            } else if (!err.data)
                 return;
-            if ($rootScope.isEnglish(err.data.message)) {
+            else if (err.data.message && $rootScope.isEnglish(err.data.message)) {
                 showMessage(toastrConfig, toastr, "خطا", "خطای سیستمی", "error");
                 var r = JSON.stringify(requestParams);
                 var p = {
@@ -745,7 +749,7 @@
                     .then(function (data, status, headers, config) {
                     }).catch(function (err) {
                 });
-            } else {
+            } else if (err.data.message) {
                 showMessage(toastrConfig, toastr, "خطا", err.data.message, "error");
             }
         };
