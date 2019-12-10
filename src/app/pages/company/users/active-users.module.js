@@ -383,6 +383,11 @@
             if (!form.$valid) {
                 return;
             }
+            if (!$("#desc").val() || !$("#amount").val()) {
+                showMessage(toastrConfig, toastr, "خطا", "فیلدهای مورد نظر را پر کنید" +
+                    "", "error");
+                return;
+            }
             startLoading();
             var token = localStorageService.get("my_access_token");
             var httpOptions = {
@@ -404,6 +409,8 @@
                     stopLoading();
                     $uibModalStack.dismissAll();
                     $scope.loadBalanceByRole();
+                    $("#desc").val('');
+                    $("#amount").val('');
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                 }).catch(function (err) {
                 $uibModalStack.dismissAll();

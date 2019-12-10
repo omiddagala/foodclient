@@ -33,18 +33,6 @@
                     </li>
                 </ul>
             </li>
-            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
-                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px;margin-top: 40px">
-                <ul class="al-sidebar-sublist block" ba-ui-sref-toggling-submenu="">
-                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
-                        <div style="text-align: center;">
-                            <button ng-click="takeBackChargesFromAllEmployee()" style="width: 100%;" class="confirm_button confirm_yes btn">
-                                صفر کردن حساب کارمندان
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </li>
         </ul>
     </div>
 </aside>
@@ -58,6 +46,9 @@
                             <thead>
                                 <tr class="sortable ">
                                     <th>
+                                    </th>
+                                    <th st-sort="mobile">
+                                        <div class="newtable_header">نام کاربری</div>
                                     </th>
                                     <th st-sort="mobile">
                                         <div class="newtable_header">موبایل</div>
@@ -87,6 +78,7 @@
                                             <div class="newtable_operation_text">هدیه</div>
                                         </div>
                                     </td>
+                                    <td>{{item.userName}}</td>
                                     <td>{{item.mobile}}</td>
                                     <td>{{item.phone}}</td>
                                     <td>{{item.personnelCode}}</td>
