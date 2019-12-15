@@ -68,6 +68,10 @@
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
                         return;
                     }
+                    if (data === "-403") {
+                        showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
+                        return;
+                    }
                     mydownload(data,'karafeed-commissions.pdf','application/pdf');
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/restaurant/getCommissionInvoice", err, httpOptions);
@@ -92,6 +96,9 @@
                     }
                     if (data === "-2") {
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }   if (data === "-403") {
+                        showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
                     mydownload(data,'karafeed-factors.pdf','application/pdf');
@@ -119,6 +126,9 @@
                     }
                     if (data === "-2") {
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
+                        return;
+                    }   if (data === "-403") {
+                        showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
                     mydownload(data,name + '.pdf','application/pdf');

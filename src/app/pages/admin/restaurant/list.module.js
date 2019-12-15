@@ -281,6 +281,9 @@
                     if (data === "-2") {
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
                         return;
+                    }   if (data === "-403") {
+                        showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
+                        return;
                     }
                     mydownload(data,'payment.txt','plain/text',toastrConfig,toastr);
                 }).catch(function (err) {
