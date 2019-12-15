@@ -44,30 +44,6 @@
             });
         };
 
-        $rootScope.goToFactors = function() {
-            $location.path('/co-factor-reports');
-        };
-
-        $scope.goToWeeklyReports = function() {
-            $location.path('/co-weekly-reports');
-        };
-
-        $scope.goToFormalFactor = function() {
-            $location.path('/co-formal-factor');
-        };
-
-        $scope.goToEmployeeFoods = function() {
-            $location.path('/co-employee-foods');
-        };
-
-        $scope.goToEmployeeBuy = function() {
-            $location.path('/co-employee-buy');
-        };
-
-        $scope.goToEmployeeRemain = function() {
-            $location.path('/co-employee-remain');
-        };
-
         //vahid seraj updated code. (1397.10.01) ------------- [start]
         $scope.toggleSidebar = function (e) {
             console.log(this);
