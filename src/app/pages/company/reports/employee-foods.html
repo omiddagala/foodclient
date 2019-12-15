@@ -1,0 +1,63 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px; margin-top: 25px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">گزارش غذای کارمندان در تاریخ</div>
+                </div>
+                <ul class="al-sidebar-sublist" ba-ui-sref-toggling-submenu="" style="display: block;">
+                    <li ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item" style="padding: 15px; padding-right: 0;">
+                        <div>
+                            <adm-dtp on-datechange="commissionDateChanged(commissionDate)" ng-model='commissionDate' options='{calType: "jalali", format: "YYYY/MM/DD",default:"{{commissionDate}}", multiple:false,minuteStep:15,freezeInput:true,dtpType:"date",autoClose:true,imgsrc:"xxxx"}'></adm-dtp>
+                        </div>
+                    </li>
+                </ul>
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">و محل</div>
+                </div>
+                <div class="col-sm-10 margin__bottom_5" style="margin-top: 10px;width: 100%">
+                    <div class="btn-group bootstrap-select form-control btn-primary ng-pristine ng-untouched ng-valid ng-empty">
+                        <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
+                                role="button" data-id="resName" aria-expanded="false"><span id="resName_selected_title"
+                                                                                            class="filter-option pull-left">{{selectedLoc.title}}</span>&nbsp;<span class="bs-caret"><span
+                                class="caret"></span></span></button>
+                        <div class="dropdown-menu open" role="combobox" style="max-height: 350px; overflow: hidden; min-height: 0px;">
+                            <ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 339px; overflow-y: auto; min-height: 0px;">
+                                <li ng-click="address_changed(loc.location)" ng-repeat="loc in locs">
+                                    <a tabindex="0" class="no-border no-box-shadow" data-tokens="null" role="option"
+                                       aria-disabled="false" aria-selected="false">
+                                        <span class="text">{{loc.location.title}}</span>
+                                        <span class="glyphicon glyphicon-ok check-mark"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="mycontent widgets" style="background: #e2eded;padding-left: 100px;padding-bottom: 25%;padding-top: 5%;padding-right: 100px;text-align: center" ng-init="initCtrl()">
+
+    <button ng-click="employeesFoodReport()" class="confirm_button confirm_yes btn">دریافت
+        فایل
+    </button>
+
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-left: 12px !important;
+    }
+</style>

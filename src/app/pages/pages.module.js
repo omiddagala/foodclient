@@ -87,7 +87,13 @@
         'BlurAdmin.pages.feedbacks',
         'BlurAdmin.pages.emp-mobile-restaurant',
         'BlurAdmin.pages.emp-mobile-home',
-        'BlurAdmin.pages.departments'
+        'BlurAdmin.pages.departments',
+        'BlurAdmin.pages.co-factor-reports',
+        'BlurAdmin.pages.co-weekly-reports',
+        'BlurAdmin.pages.co-formal-factor-reports',
+        'BlurAdmin.pages.co-employee-foods-reports',
+        'BlurAdmin.pages.co-employee-buy-reports',
+        'BlurAdmin.pages.co-employee-remains-reports'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {

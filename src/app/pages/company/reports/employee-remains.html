@@ -1,0 +1,34 @@
+<div include-with-scope="page-top.html"></div>
+<a href class="collapse-menu-link mytoggle" id="responsive-filter-emp" ba-sidebar-toggle-menu ng-click="toggleSidebar($event)">
+    <img src="assets/img/filter.png" class="img-responsive" />
+</a>
+<aside id="mySearchSidebar" class="al-sidebar">
+    <div class="slimScrollDiv grid_sidebar__wrapper">
+        <ul class="al-sidebar-list_grid grid_sidebar__" slimscroll-watch="menuHeight">
+            <li class="al-sidebar-list-item ng-scope with-sub-menu ba-sidebar-item-expanded"
+                ui-sref-active="selected" ba-sidebar-toggling-item="item" style="height: 150px;margin-top: 30px">
+                <div class="al-sidebar-list-link text-right default-cursor">
+                    <div class="newmenu__search_title ">موجودی همه کارمندان</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="mycontent widgets" style="background: #e2eded;padding-left: 100px;padding-bottom: 25%;padding-top: 5%;padding-right: 100px;text-align: center" ng-init="initCtrl()">
+
+    <button ng-click="getAllEmployeesBalancePDF()" style="width: 8em;" class="confirm_button confirm_yes btn">دریافت
+        فایل
+    </button>
+
+</div>
+<style>
+    .newmenu {
+        margin-right: 27px !important;
+        margin-left: 20px !important;
+    }
+
+    .mycontent {
+        margin-left: 12px !important;
+    }
+</style>
