@@ -5,23 +5,23 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.emp-mobile-detail', [])
+    angular.module('BlurAdmin.pages.emp-mobile-rest-detail', [])
         .config(routeConfig)
-        .controller('detailCtrl', detailCtrl);
+        .controller('restDetailCtrl', restDetailCtrl);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('emp-mobile-detail', {
-                url: '/emp-mobile-detail',
-                templateUrl: 'app/pages/employee/mobile/home/detail.html',
+            .state('emp-mobile-rest-detail', {
+                url: '/emp-mobile-rest-detail',
+                templateUrl: 'app/pages/employee/mobile/restaurant/detail.html',
                 title: 'جزئیات غذا',
-                controller: detailCtrl
+                controller: restDetailCtrl
             });
     }
 
-    function detailCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
-        $rootScope.pageTitle = 'جزئیات غذا';
+    function restDetailCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location) {
+        $rootScope.pageTitle = 'جزئیات رستوران';
         $('.hidden-tab').hide();
 
         $scope.initCtrl = function() {
@@ -31,20 +31,16 @@
                     headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
                 };
                 var param = {
-                    date: $location.search().o,
                     id: $location.search().id
-                };
-                $http.post("http://127.0.0.1:9000/v1/foodSearch/findOne", param, httpOptions)
+                }
+                $http.post("http://127.0.0.1:9000/v1/employee/findRestaurantById", param, httpOptions)
                     .success(function (data, status, headers, config) {
                         stopLoading();
                         $scope.mobileFoodDetail = data;
-                        $scope.dateToShowOnCards = $location.search().d;
-                        $scope.timeToShowOnCards = $location.search().t;
                     }).catch(function (err) {
                     $rootScope.handleError($location.search().id, "foodSearch/findOne", err, httpOptions);
                 });
                 $scope.loadYourLastRateToThisFood();
-                $scope.foodDetail();
             }, 700)
         };
 
@@ -56,12 +52,12 @@
             var params = {
                 id: $location.search().id
             };
-            $http.post("http://127.0.0.1:9000/v1/employee/lastRate", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/lastRateOfRestaurant", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     $scope.foodRate = data.rate === 0 ? "-" : data.rate;
                     $scope.updateStar(data.rate);
                 }).catch(function (err) {
-                $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
+                $rootScope.handleError(params, "/employee/lastRateOfRestaurant", err, httpOptions);
             });
         };
 
@@ -73,15 +69,15 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
-                "foodId": $location.search().id,
+                "restaurantId": $location.search().id,
                 "rate": rate
             };
-            $http.post("http://127.0.0.1:9000/v1/employee/rate", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/employee/rateRestaurant", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                $rootScope.handleError(params, "/employee/rate", err, httpOptions);
+                $rootScope.handleError(params, "/employee/rateRestaurant", err, httpOptions);
             });
         };
 
@@ -94,41 +90,6 @@
             }
         };
 
-        $scope.getFoodDetailDaysClass = function (d) {
-            var i = (new Date()).getDay();
-            if (d === i) {
-                return "food_detail_days_title_today";
-            } else {
-                return "food_detail_days_title";
-            }
-        };
-
-        $scope.foodDetail = function () {
-            // if ($scope.forms.myform)
-            //     $scope.forms.myform.$setPristine();
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            var params = {
-                id: $location.search().id
-            };
-            $http.post("http://127.0.0.1:9000/v1/food/getFoodAvailableDates", params, httpOptions)
-                .success(function (data, status, headers, config) {
-                    var m = new HashMap();
-                    for (var i = 0; i < data.length; i++) {
-                        var day = m.get(data[i].dayOfWeek);
-                        if (!day) {
-                            m.set(data[i].dayOfWeek, [{startTime: data[i].startTime, endTime: data[i].endTime}]);
-                        } else {
-                            day.push({startTime: data[i].startTime, endTime: data[i].endTime});
-                        }
-                    }
-                    $scope.days = m;
-                }).catch(function (err) {
-                $rootScope.handleError(params, "/food/getFoodAvailableDates", err, httpOptions);
-            });
-        };
         $scope.formatMyTime = function (d) {
             var rt;
             switch (d.toString().length) {
@@ -167,15 +128,15 @@
                 headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
             };
             var params = {
-                foodId: $location.search().id,
+                id: $location.search().id,
                 comment: $('#commentInDetail').val()
             };
-            $http.post("http://127.0.0.1:9000/v1/foodComment/add", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/restaurantComment/add", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     showMessage(toastrConfig, toastr, "پیام", "عملیات با موفقیت انجام شد", "success");
                     stopLoading();
                 }).catch(function (err) {
-                $rootScope.handleError(params, "/foodComment/add", err, httpOptions);
+                $rootScope.handleError(params, "/restaurantComment/add", err, httpOptions);
             });
         };
 
@@ -200,7 +161,7 @@
                     sortBy: "date"
                 }
             };
-            $http.post("http://127.0.0.1:9000/v1/foodComment/getFoodComments", params, httpOptions)
+            $http.post("http://127.0.0.1:9000/v1/restaurantComment/getFoodComments", params, httpOptions)
                 .success(function (data, status, headers, config) {
                     if (data.length > 0) {
                         Array.prototype.push.apply($scope.comments, data);
@@ -221,26 +182,10 @@
                     }
                     stopLoading();
                 }).catch(function (err) {
-                $rootScope.handleError(params, "/foodComment/getFoodComments", err, httpOptions);
+                $rootScope.handleError(params, "/restaurantComment/getFoodComments", err, httpOptions);
             });
         };
 
-        $scope.loadYourLastRateToThisFood = function () {
-            var token = localStorageService.get("my_access_token");
-            var httpOptions = {
-                headers: {'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + token}
-            };
-            var params = {
-                id: $location.search().id
-            };
-            $http.post("http://127.0.0.1:9000/v1/employee/lastRate", params, httpOptions)
-                .success(function (data, status, headers, config) {
-                    $scope.foodRate = data.rate === 0 ? "-" : data.rate;
-                    $scope.updateStar(data.rate);
-                }).catch(function (err) {
-                $rootScope.handleError(params, "/employee/lastRate", err, httpOptions);
-            });
-        };
         $scope.orderFood = function () {
             startLoading();
             var token = localStorageService.get("my_access_token");

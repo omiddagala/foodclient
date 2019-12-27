@@ -188,8 +188,8 @@
                         }
                     });
                 } else {
-                    $('.article-mobile-list').scroll(function () {
-                        if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
+                    $('ion-content').scroll(function () {
+                        if ($rootScope.scrollIsAtEnd($('ion-content'))) {
                             if ($rootScope.enableScroll && $rootScope.isMainFood) {
                                 $rootScope.enableScroll = false;
                                 $scope.loadContent(false, true)

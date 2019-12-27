@@ -123,7 +123,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data.data,'karafeed' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(null, "/adminReport/karafeedFinancialStatus", err, httpOptions);
             });
@@ -161,7 +161,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data.data,'karafeed' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(param, "/adminReport/karafeedFinancialStatus", err, httpOptions);
             });
@@ -191,7 +191,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data.data,'debt' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(param, "/adminReport/getCompaniesDebtReport", err, httpOptions);
             });
@@ -221,7 +221,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data.data,'report.xls','vnd.ms-excel',toastrConfig,toastr);
+                    mydownload(data.data,'karafeed' + moment.utc().format('jYYYYjMjD') + '.xls','vnd.ms-excel',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(param, "/adminReport/getKarafeedInvoiceList", err, httpOptions);
             });

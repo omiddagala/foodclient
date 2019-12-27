@@ -21,6 +21,9 @@
     }
 
     function empMobileHomeCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location, $uibModalStack) {
+        $scope.$on('$locationChangeStart', function () {
+            $('#ion-content').unbind('scroll');
+        });
         $rootScope.currentMobileActiveMenu = "home";
         var tomorrow;
         $rootScope.foodType = $scope.foodType = $location.search().t ? $location.search().t : 'ALL';
@@ -158,8 +161,8 @@
                 tomorrow.setDate(tomorrow.getDate() + 1);
                 initClock();
                 $scope.loadContent(true, false);
-                $('.article-mobile-list').scroll(function () {
-                    if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
+                $('ion-content').scroll(function () {
+                    if ($rootScope.scrollIsAtEnd($('ion-content'))) {
                         if ($rootScope.enableScroll) {
                             $rootScope.enableScroll = false;
                             $scope.loadContent(false, true)
@@ -354,6 +357,7 @@
 
         var delayTimer;
         $scope.textSearch = function () {
+            $location.search('n', $('#foodName').val());
             clearTimeout(delayTimer);
             delayTimer = setTimeout(function () {
                 $scope.loadContent(false, true);
@@ -370,7 +374,8 @@
             $location.path('/emp-mobile-detail').search({
                 id: food.id,
                 d: $rootScope.dateToShowOnCards,
-                t: $rootScope.timeToShowOnCards
+                t: $rootScope.timeToShowOnCards,
+                o: $rootScope.dateToOrder.format('YYYY-MM-DDTHH:mmZ')
             });
         };
         $scope.cardsBottomOrderFoodAction = function ($event, food) {

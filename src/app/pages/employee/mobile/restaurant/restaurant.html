@@ -20,7 +20,7 @@
 <div class="article-mobile-list scroll-class1" id="article-list-main" ng-init="ctrlInit()">
     <div ng-repeat="rest in rests track by $index" ng-click="goToHome(rest.name)"
         class="card white-back w-95 mobile-card auto-height flex items-center content-evenly right-direction relative pointer">
-        <img src="../../../../../assets/img/ui/info.png" class="mobil-card-info pointer" alt="">
+        <img src="../../../../../assets/img/ui/info.png" ng-click="showDetail(rest)" class="mobil-card-info pointer" alt="">
         <div class="fit-width mobil-card-img full-height relative">
             <div class="mobil-card-rate">{{rest.averageRate === 0 ? '-' : rest.averageRate}}</div>
             <img src="{{rest.imageAddress}}" class="w-100 card-img">

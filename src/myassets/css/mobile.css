@@ -85,7 +85,7 @@ div.pane {
 .mobil-card-rate,
 .mobil-card-info {
     position: absolute;
-    width: 19px;
+    width: 25px;
     height: 19px;
     /* object-fit: contain; */
     border-radius: 3px;

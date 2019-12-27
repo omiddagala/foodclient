@@ -72,6 +72,17 @@ content-evenly right-direction no-box-shadow no-padding-imp no-margin-imp un-ove
                 </span>
             </a>
         </div>
+
+        <div ng-if="hasRole('EMPLOYEE') || hasRole('RESTAURANT') || hasRole('COMPANY')"
+             class="right-direction w-100 bottom-margin-4">
+            <a class="text-right w-100 color-363636 flex items-center" ng-click="chargeAccount()">
+                <img src="assets/img/ui/wallet.png" style="background: rgb(161, 162, 163);border-radius: 50%;padding: 3px" width="25px" height="25px">
+                <span class="fit-height"
+                      ng-class="currentMobileActiveMenu == '' ? 'mobile-menu-selected-text':''">
+                    افزایش موجودی
+                </span>
+            </a>
+        </div>
         <!--<div ng-if="hasRole('EMPLOYEE')" class="right-direction w-100 bottom-margin-4">-->
             <!--<a href="" class="text-right w-100 color-363636 flex items-center" ng-click="closeMenu()">-->
                 <!--<svg xmlns="http://www.w3.org/2000/svg" class="unset-position full-height left-margin-md"-->

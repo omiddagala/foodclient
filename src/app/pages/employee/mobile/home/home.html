@@ -33,8 +33,10 @@
         <div class="w-60 right-padding-lg relative mobile-card-content">
             <div class="defult-color text-right font-bold w-100 font-xl line-height-initial min-height-lg">
                 {{food.name}}</div>
-            <div class="text-right color-2e6977" style="direction: rtl">
+            <div class="text-right color-2e6977" ng-class="{'is__off':food.price.preOrderPrice<food.price.foodPrice}" style="direction: rtl">
                 {{food.price.foodPrice | number}} تومان</div>
+            <div class="text-right color-2e6977" ng-if="food.price.preOrderPrice<food.price.foodPrice">
+                {{food.price.preOrderPrice | number}} تومان</div>
             <div class="text-right flex items-center w-100 font-xl line-height-initial min-height-lg">
                 <div class="color-2e6977 pointer" ng-click="goToRestaurantPage(food.restaurant.name)">
                     {{food.restaurant.name}}</div>

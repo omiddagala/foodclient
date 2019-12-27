@@ -132,7 +132,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data.data, 'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data.data, 'invoice' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
 
                 }).catch(function (err) {
                     $rootScope.handleError(param, "/financial/createKarafeedOfficialInvoice", err, httpOptions);
@@ -258,7 +258,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data.data,'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data.data,'debt' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(param, "/adminCompanyManagementRest/getDebtReportOfCompany", err, httpOptions);
             });

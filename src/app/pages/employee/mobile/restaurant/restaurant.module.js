@@ -19,6 +19,10 @@
         $rootScope.pageTitle = 'رستوران';
         $rootScope.currentMobileActiveMenu = "myrestaurant";
 
+        $scope.$on('$locationChangeStart', function () {
+            $('#ion-content').unbind('scroll');
+        });
+
         $scope.loadContent = function (isFirstCall, isSearch) {
             startLoading();
             var token = localStorageService.get("my_access_token");
@@ -95,8 +99,8 @@
             setTimeout(function () {
                 $scope.rests = [];
                 $scope.loadContent(true, false);
-                $('.article-mobile-list').scroll(function () {
-                    if ($rootScope.scrollIsAtEnd($('.article-mobile-list'))) {
+                $('ion-content').scroll(function () {
+                    if ($rootScope.scrollIsAtEnd($('ion-content'))) {
                         if ($rootScope.resEnableScroll) {
                             $rootScope.resEnableScroll = false;
                             $scope.loadContent(false, false);
@@ -120,6 +124,12 @@
             window.setTimeout(function () {
                 $('ba-sidebar, .al-sidebar.sabad__, #mySearchSidebar').toggleClass('expanded');
             }, 10);
+        };
+
+        $scope.showDetail = function (rest) {
+            $location.path('/emp-mobile-rest-detail').search({
+                id: rest.id
+            });
         };
 
         $scope.open = function (page, size) {

@@ -107,19 +107,9 @@
                         </div>
                         <div class="row form_input_margin">
                             <div class="col-sm-9 col-xs-12">
-                                <input ng-disabled="true" type="text" ng-maxlength="150" required
-                                       class="confirm_input form-control"
-                                       name="adr" id="adr" ng-model="employee.location.address">
-                                <div class="error-message"
-                                     ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.maxlength">
-                                    حداکثر 150 کاراکتر وارد کنید
-                                </div>
-                                <div class="error-message"
-                                     ng-show="(myform.adr.$dirty || submitted) && inputIsInvalid(myform.adr.$valid,'adr') && myform.adr.$error.required">
-                                    پر کردن این فیلد اجباریست
-                                </div>
+                                <div>{{employee.location.address}}</div>
                             </div>
-                            <label for="adr" class="col-sm-3 col-xs-12 control-label">آدرس</label>
+                            <label class="col-sm-3 col-xs-12 control-label">آدرس</label>
                         </div>
 
                         <div class="row margin__bottom_10 margin__top_40 hr">

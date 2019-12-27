@@ -285,7 +285,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data,'payment.txt','plain/text',toastrConfig,toastr);
+                    mydownload(data,'payment' + moment.utc().format('jYYYYjMjD') + '.txt','plain/text',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(null, "/financial/getRestaurantsChequeFile", err, httpOptions);
             });

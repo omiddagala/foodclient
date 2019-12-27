@@ -46,7 +46,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data,'karafeed-commissions.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data,'factors' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getInvoiceOfKarafeed", err, httpOptions);
             });

@@ -80,7 +80,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data,name + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/financial/createKarafeedCommissionInvoice", err, httpOptions);
             });
@@ -111,7 +111,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data,name + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/financial/getRestaurantInvoiceForKarafeed", err, httpOptions);
             });
@@ -142,7 +142,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data,name + '.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data,name + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/financial/getInvoiceOfKarafeed", err, httpOptions);
             });

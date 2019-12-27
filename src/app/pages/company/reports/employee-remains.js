@@ -40,7 +40,7 @@
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
-                    mydownload(data, 'report.pdf','application/pdf',toastrConfig,toastr);
+                    mydownload(data, 'balance' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
                 }).catch(function (err) {
                 $rootScope.handleError(params, "/company/getAllEmployeesBalancePDF", err, httpOptions);
             });

@@ -93,7 +93,8 @@
         'BlurAdmin.pages.co-formal-factor-reports',
         'BlurAdmin.pages.co-employee-foods-reports',
         'BlurAdmin.pages.co-employee-buy-reports',
-        'BlurAdmin.pages.co-employee-remains-reports'
+        'BlurAdmin.pages.co-employee-remains-reports',
+        'BlurAdmin.pages.emp-mobile-rest-detail'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
