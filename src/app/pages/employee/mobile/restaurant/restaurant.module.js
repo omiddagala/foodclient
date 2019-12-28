@@ -19,7 +19,7 @@
         $rootScope.pageTitle = 'رستوران';
         $rootScope.currentMobileActiveMenu = "myrestaurant";
 
-        $scope.$on('$locationChangeStart', function () {
+        $scope.$on('$stateChangeStart', function () {
             $('#ion-content').unbind('scroll');
         });
 

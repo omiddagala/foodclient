@@ -21,7 +21,7 @@
     }
 
     function empMobileHomeCtrl($scope, $compile, $uibModal, baProgressModal, $http, localStorageService, $parse, $rootScope, toastrConfig, toastr, $location, $uibModalStack) {
-        $scope.$on('$locationChangeStart', function () {
+        $scope.$on('$stateChangeStart', function () {
             $('#ion-content').unbind('scroll');
         });
         $rootScope.currentMobileActiveMenu = "home";
