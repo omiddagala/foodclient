@@ -121,14 +121,14 @@
             return $http.post("http://127.0.0.1:9000/v1/financial/createKarafeedOfficialInvoice", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
-                    if (data === "-1") {
+                    if (data.data === "-1") {
                         showMessage(toastrConfig,toastr,'پیام','رکوردی یافت نشد','success');
                         return;
                     }
-                    if (data === "-2") {
+                    if (data.data === "-2") {
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
                         return;
-                    }   if (data === "-403") {
+                    }   if (data.data === "-403") {
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
@@ -254,7 +254,7 @@
                     if (data.data === "-2") {
                         showMessage(toastrConfig,toastr,'پیام','شما مجاز به انجام این عملیات نیستید','success');
                         return;
-                    }   if (data === "-403") {
+                    }   if (data.data === "-403") {
                         showMessage(toastrConfig,toastr,'پیام','انجام این عملیات برای کاربر شما غیر فعال است','success');
                         return;
                     }
