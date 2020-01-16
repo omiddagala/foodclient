@@ -31,8 +31,17 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <div class="buttons" align="center">
+                    <button class="confirm_button confirm_yes btn"
+                            ng-click="getExcel()">
+                        دریافت فایل اکسل
+                    </button>
+                </div>
+            </li>
         </ul>
     </div>
+
 </aside>
 
 <div class="mycontent widgets" style="background: #e2eded;padding-left: 100px;padding-bottom: 25%;padding-top: 5%;padding-right: 100px;text-align: center">
@@ -53,8 +62,12 @@
                             <div class="newtable_header">شماره فاکتور</div>
                         </th>
                         <th st-sort="transactionDate">
-                            <div class="newtable_header">نام شرکت</div>
+                            <div class="newtable_header">ارزش افزوده(ریال)</div>
                         </th>
+                        <th st-sort="transactionDate">
+                            <div class="newtable_header">مبلغ(ریال)</div>
+                        </th>
+
                         <th id="triggerSearch" class="table-id" st-sort="id" st-sort-default="true"></th>
                     </tr>
                     </thead>
@@ -64,19 +77,15 @@
                             <div class="buttons">
                                 <button class="confirm_button confirm_yes btn"
                                         ng-click="getPdf(r.id)">
-                                    pdf
+                                   دریافت فاکتور
                                 </button>
                             </div>
-                            <div class="buttons">
-                                <button class="confirm_button confirm_yes btn"
-                                        ng-click="getExcel()">
-                                    excel
-                                </button>
-                            </div>
+
                         </td>
                         <td>{{myFormatDate(r.date)}}</td>
                         <td>{{r.invoiceNumber}}</td>
-                        <td>{{r.company.name}}</td>
+                        <td>{{r.taxAmount *10 | number  }}</td>
+                        <td >{{r.totalAmount*10 | number }}</td>
                         <td class="table-id">{{$index+1}}</td>
                     </tr>
                     </tbody>
