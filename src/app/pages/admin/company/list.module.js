@@ -118,7 +118,7 @@
                 id: $scope.item.id,
                 date: moment.utc($scope.startDate, 'jYYYY/jM/jD').format('YYYY-MM-DDTHH:mmZ')
             };
-            return $http.post("http://127.0.0.1:9000/v1/financial/createKarafeedOfficialInvoice", param, httpOptions)
+            return $http.post("http://127.0.0.1:9000/v1/adminInvoiceManagement/createKarafeedOfficialInvoice", param, httpOptions)
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     if (data.data === "-1") {
@@ -135,7 +135,7 @@
                     mydownload(data.data, 'invoice' + moment.utc().format('jYYYYjMjD') + '.pdf','application/pdf',toastrConfig,toastr);
 
                 }).catch(function (err) {
-                    $rootScope.handleError(param, "/financial/createKarafeedOfficialInvoice", err, httpOptions);
+                    $rootScope.handleError(param, "/adminInvoiceManagement/createKarafeedOfficialInvoice", err, httpOptions);
                 });
         };
 
