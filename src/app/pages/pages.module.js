@@ -94,7 +94,8 @@
         'BlurAdmin.pages.co-employee-foods-reports',
         'BlurAdmin.pages.co-employee-buy-reports',
         'BlurAdmin.pages.co-employee-remains-reports',
-        'BlurAdmin.pages.emp-mobile-rest-detail'
+        'BlurAdmin.pages.emp-mobile-rest-detail',
+        'BlurAdmin.pages.formal-factor'
     ])
         .run(runFirst).config(routeConfig)
         .directive("refreshTable", function () {
@@ -351,6 +352,10 @@
                     url: "ad-sms",
                     img: "assets/img/theme/icon/karafeedIcon/cheque.png",
                     title: "اس ام اس"
+                }, {
+                    url: "formal-factor",
+                    img: "assets/img/theme/icon/karafeedIcon/report.png",
+                    title: "فاکتور رسمی"
                 })
             }
             if ($rootScope.hasRole("ADMIN_RESTAURANT")) {
