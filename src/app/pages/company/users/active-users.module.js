@@ -142,6 +142,7 @@
                 .then(function (data, status, headers, config) {
                     stopLoading();
                     $rootScope.userInfo = data.data;
+                    $scope.employeeLevel = data.data.employeeLevel;
                     if ($rootScope.userInfo.birthday) {
                         var defaultDate = moment.utc($rootScope.userInfo.birthday).format('jYYYY/jM/jD');
                         $('#birthdate').find('input').val(defaultDate);
